@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="com.kosmo.veve.mybatis.member">
+	<!--resultMap사용시 column속성 필수:ibatis와 다른점  -->
+	
+	
+
+	
+	<insert id="memberInsert" parameterType="java.util.Map">
+		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{selfintro})
+	</insert>
+	<insert id="authInsert" parameterType="java.util.Map">
+		INSERT INTO AUTH_SECURITY(auth_no,userID,enabled,authority) VALUES(SEQ_AUTH_NO.NEXTVAL,#{userID},DEFAULT,DEFAULT)
+	</insert>
+	<insert id="userFileInsert" parameterType="java.util.Map">
+		INSERT INTO USER_FILE(user_file_no,userID,f_path,f_name) VALUES(SEQ_USER_FILE_NO.NEXTVAL,#{userID},#{f_path},#{f_name})
+	</insert>
+	
+</mapper>

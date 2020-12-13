@@ -1,0 +1,81 @@
+package com.kosmo.veve.member;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.kosmo.veve.fileupdown.FileUpDownUtils;
+import com.kosmo.veve.model.service.MemberService;
+
+@Controller
+public class SignController {
+
+	@Resource(name = "memberService")
+	private MemberService service;
+
+	// 로그인 창 이동
+	@RequestMapping("/Member/Auth/Login.do")
+	public String login() {
+
+		return "member/Login.tiles";
+	}
+
+	// 회원가입 창 이동
+	@RequestMapping("/Member/SignUp.do")
+	public String signUp() {
+
+		return "member/Sign.tiles";
+	}
+	// 회원가입
+	@RequestMapping("/Member/UserSignUpUp.do")
+	public String userSign(@RequestParam Map map,@RequestParam MultipartFile upload) {
+		System.out.println("here!");
+		
+		
+		return "member/Login.tiles";
+	}
+	
+	
+
+	// 회원가입
+	@RequestMapping("/Member/UserSignUp.do")
+	public String userSignUp(@RequestParam Map map, @RequestParam MultipartFile upload, HttpServletRequest req)
+			throws IllegalStateException, IOException {
+		System.out.println("controller here");
+		// 1]서버의 물리적 경로 얻기
+		String physicalPath = req.getServletContext().getRealPath("/upload");
+//			
+		String renameFilename = FileUpDownUtils.getNewFileName(physicalPath, upload.getOriginalFilename());
+		// File file = new File(physicalPath+File.separator+renameFilename);
+		// 2]File객체 생성
+		File file = new File(physicalPath + File.separator + upload.getOriginalFilename());
+//			//3]업로드 처리		
+		upload.transferTo(file);
+		map.put("f_path", physicalPath);
+		map.put("f_name", upload.getOriginalFilename());
+		System.out.println(map.get("userID"));
+		System.out.println(map.get("password"));
+		System.out.println(map.get("name"));
+		System.out.println(map.get("nickname"));
+		System.out.println(map.get("age"));
+		System.out.println(map.get("gender"));
+		System.out.println(map.get("vg_level"));
+		System.out.println(map.get("addr"));
+		System.out.println(map.get("selfintro"));
+		System.out.println(map.get("f_path"));
+		System.out.println(map.get("f_name"));
+
+		int temp = service.insert(map);
+
+		return "member/Login.tiles";
+	}
+
+}
