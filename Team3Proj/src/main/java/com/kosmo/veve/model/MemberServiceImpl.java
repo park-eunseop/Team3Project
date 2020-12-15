@@ -57,4 +57,10 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+	@Override
+	public boolean idCheck(String userID) {
+		// TODO Auto-generated method stub
+		return dao.idCheck(userID);
+	}
+
 }

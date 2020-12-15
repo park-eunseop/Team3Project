@@ -8,7 +8,12 @@
 	<!--resultMap사용시 column속성 필수:ibatis와 다른점  -->
 	
 	
-
+	<select id="memberSelectOne" parameterType="java.util.Map" resultType="MemberDTO">
+		SELECT * FROM VG_USER WHERE userID=#{userID}
+	</select>
+	<select id="memberIDcheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM VG_USER WHERE userID=#{userID}
+	</select>
 	
 	<insert id="memberInsert" parameterType="java.util.Map">
 		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{selfintro})
