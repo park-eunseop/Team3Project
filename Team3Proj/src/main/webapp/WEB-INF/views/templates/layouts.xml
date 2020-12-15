@@ -21,4 +21,21 @@
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
 
+
+	<!--  admin page용 -->
+	<definition name="layouts2" template="/WEB-INF/views/tiles_admin/Layouts.jsp">
+		<put-attribute name="top" value="/WEB-INF/views/tiles_admin/Top.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles_admin/Footer.jsp" />
+	</definition>
+	<definition name="*.adminTiles" extends="layouts2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	<definition name="*/*.adminTiles" extends="layouts2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.adminTiles" extends="layouts2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+
 </tiles-definitions>

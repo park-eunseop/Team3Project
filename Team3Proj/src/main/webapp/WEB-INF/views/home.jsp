@@ -1,5 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- home -->
+<!-- 한글 깨짐 방지 -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 
 
 <section id="home" class="home bg-black fix">
@@ -47,7 +50,7 @@
 					<h3 class="text-black text-uppercase">We love to design a
 						website and the other awesome graphic</h3>
 
-					<a href="" class="btn btn-primary m-top-100">Get In Touch</a>
+					<a href="<c:url value='/Admin/Main.do'/>" class="btn btn-primary m-top-100">관리자 게시판으로</a>
 				</div>
 			</div>
 		</div>

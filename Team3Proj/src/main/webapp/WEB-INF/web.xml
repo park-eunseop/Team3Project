@@ -42,6 +42,11 @@
 			<param-name>encoding</param-name><!--setEncoding()호출 -->
 			<param-value>UTF-8</param-value>
 		</init-param>
+		<!--기본값이 리퀘스트만 인코딩하는데 response도 인코딩하게 한다.-->
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>CharacterEncoding</filter-name>
