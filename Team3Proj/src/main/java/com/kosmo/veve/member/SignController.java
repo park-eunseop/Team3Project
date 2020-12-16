@@ -33,12 +33,13 @@ public class SignController {
 	}
 	// 시큐리티에서 로그인 창 이동
 		@RequestMapping("/Member/Auth/SecurityLogin.do")
-		public String login(Principal principal) {
+		public String login(Principal principal,HttpServletRequest req) {
 			String name = principal.getName();
 			System.out.println(name);
-			if(name.equalsIgnoreCase("admin"))
+			if(name.equalsIgnoreCase("admin")) {
+				req.getSession().setAttribute("Admin", name);
 				return "forward:/Admin/Main.do";
-			
+			}
 			return "member/Login.tiles";
 		}
 

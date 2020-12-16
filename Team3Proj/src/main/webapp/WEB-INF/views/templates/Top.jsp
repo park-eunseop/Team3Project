@@ -100,10 +100,12 @@
 								<li><a href="<c:url value="/logout"/>">Logout</a></li>
 								<li><a href="<c:url value="/Member/SignUp.do"/>">My page</a></li>
 							</c:if>
-                            <li><a href="#service">Service</a></li>
-                            <li><a href="#portfolio">Portfolio</a></li>
-                            <li><a href="#test">Testimonial</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#service">Gallary</a></li>
+                            <li><a href="#portfolio">Reciep</a></li>
+                            <li><a href="#test">Notice</a></li>
+                            <c:if test="${!empty Admin}">
+                            <li><a href="<c:url value="/Admin/Main.do"/>">Admin</a></li>
+                            </c:if>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div> 
