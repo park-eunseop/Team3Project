@@ -2,11 +2,14 @@ package com.kosmo.veve.member;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +27,20 @@ public class SignController {
 	// 로그인 창 이동
 	@RequestMapping("/Member/Auth/Login.do")
 	public String login() {
-
+		
+		
 		return "member/Login.tiles";
 	}
+	// 시큐리티에서 로그인 창 이동
+		@RequestMapping("/Member/Auth/SecurityLogin.do")
+		public String login(Principal principal) {
+			String name = principal.getName();
+			System.out.println(name);
+			if(name.equalsIgnoreCase("admin"))
+				return "forward:/Admin/Main.do";
+			
+			return "member/Login.tiles";
+		}
 
 	// 회원가입 창 이동
 	@RequestMapping("/Member/SignUp.do")

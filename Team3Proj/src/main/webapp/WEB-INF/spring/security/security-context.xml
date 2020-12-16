@@ -27,7 +27,7 @@
 		-->
 		<security:form-login
 			login-page="/Member/Auth/Login.do"
-			default-target-url="/Member/Auth/Login.do"
+			default-target-url="/Member/Auth/SecurityLogin.do"
 			authentication-failure-url="/Member/Auth/Login.do?NotLogin=error"
 			login-processing-url="/Member/Auth/LoginProcess.do"
 			username-parameter="userID"
