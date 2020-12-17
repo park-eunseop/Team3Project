@@ -14,6 +14,9 @@
 	<select id="memberIDcheck" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM VG_USER WHERE userID=#{userID}
 	</select>
+	<select id="memberFile" parameterType="string" resultType="MemberFileDTO">
+		SELECT * FROM USER_FILE WHERE userID=#{userID}
+	</select>
 	
 	<insert id="memberInsert" parameterType="java.util.Map">
 		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{selfintro})

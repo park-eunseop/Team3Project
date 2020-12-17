@@ -77,4 +77,10 @@ public class MemberDAO implements MemberService {
 		return (Integer)sqlMapper.selectOne("memberIDcheck",userID)==1?true:false;
 	}
 
+	@Override
+	public MemberFileDTO selectFile(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("memberFile",userID);
+	}
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kosmo.veve.model.MemberDTO;
+import com.kosmo.veve.model.MemberFileDTO;
 
 
 public interface MemberService {
@@ -21,5 +22,7 @@ public interface MemberService {
 		int insert(Map map);
 		int delete(Map map);
 		int update(Map map);
+		//회원 사진 가져오기용]
+		MemberFileDTO selectFile(String userID);
 
 }

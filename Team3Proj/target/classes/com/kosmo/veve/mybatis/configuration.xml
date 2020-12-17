@@ -11,6 +11,8 @@
 	<typeAliases>
 		<typeAlias alias="memberDTO"
 			type="com.kosmo.veve.model.MemberDTO" />
+		<typeAlias alias="memberFileDTO"
+			type="com.kosmo.veve.model.MemberFileDTO" />
 
 	</typeAliases>
 	

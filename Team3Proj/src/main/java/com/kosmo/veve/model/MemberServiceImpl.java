@@ -63,4 +63,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.idCheck(userID);
 	}
 
+	@Override
+	public MemberFileDTO selectFile(String userID) {
+		// TODO Auto-generated method stub
+		return dao.selectFile(userID);
+	}
+
 }
