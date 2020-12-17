@@ -76,6 +76,7 @@ $(function(){
 			reader.readAsDataURL(this.files[0]);
 		  }
 	});//첨부파일 사진
+	
 	$('#inputid').blur(function(){
 		console.log('아이디');
 		var id = $('#inputid').val();

@@ -93,12 +93,14 @@
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
 								<li><a href="javascript:logout()">Logout</a></li>
-								<li><a href="<c:url value="/Member/SignUp.do"/>">My page</a></li>
+								<c:if test="${empty Admin}">
+								<li><a href="<c:url value="/Member/MyHome.do"/>">My page</a></li>
+								</c:if>
 							</sec:authorize>
 							</c:if> 
 							<c:if test="${not isNotKakaologin }">
 								<li><a href="<c:url value="/logout"/>">Logout</a></li>
-								<li><a href="<c:url value="/Member/SignUp.do"/>">My page</a></li>
+								<li><a href="<c:url value="/Member/MyHome.do"/>">My page</a></li>
 							</c:if>
                             <li><a href="#service">Gallary</a></li>
                             <li><a href="#portfolio">Reciep</a></li>
