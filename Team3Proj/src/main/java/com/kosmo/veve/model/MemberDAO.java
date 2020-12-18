@@ -12,7 +12,7 @@ import com.kosmo.veve.model.service.MemberService;
 
 
 
-@Repository
+@Repository  
 public class MemberDAO implements MemberService {
 
 	

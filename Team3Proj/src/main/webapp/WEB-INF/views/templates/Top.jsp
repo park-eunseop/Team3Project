@@ -102,9 +102,9 @@
 								<li><a href="<c:url value="/logout"/>">Logout</a></li>
 								<li><a href="<c:url value="/Member/MyHome.do"/>">My page</a></li>
 							</c:if>
-                            <li><a href="#service">Gallary</a></li>
-                            <li><a href="#portfolio">Reciep</a></li>
-                            <li><a href="#test">Notice</a></li>
+                            <li><a href="<c:url value="/Board/Gallary.do"/>">Gallary</a></li>
+                            <li><a href="<c:url value="/Board/Recipe.do"/>">Recipe</a></li>
+                            <li><a href="<c:url value="/Board/Notice.do"/>">Notice</a></li>
                             <c:if test="${!empty Admin}">
                             <li><a href="<c:url value="/Admin/Main.do"/>">Admin</a></li>
                             </c:if>

@@ -292,15 +292,27 @@ function Dosignup(){
 
 </script>
 
-
+<section id="home" class="home bg-black fix" style="height: 200px">
+	<div class="container">
+		<div class="row">
+			<div class="main_home text-center">
+				<div class="col-md-12">
+					<div class="hello">
+						<div class="slid_item">
+							<div class="home_text ">
+								<h1 class="text-yellow">Sign up</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section>
 
 	<div class="container">
-		<div class="jumbotron" style="color: black; background-color: #5FEE9E">
-			<h1>
-				회원가입 페이지 <small>회원가입</small>
-			</h1>
-		</div>
+
 
 		<div class="row">
 

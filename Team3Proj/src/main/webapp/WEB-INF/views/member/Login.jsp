@@ -3,14 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<section id="home" class="home bg-black fix" style="height: 200px">
+	<div class="container">
+		<div class="row">
+			<div class="main_home text-center">
+				<div class="col-md-12">
+					<div class="hello">
+						<div class="slid_item">
+							<div class="home_text ">
+								<h1 class="text-yellow">Login</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section>
 
 	<div class="container">	 
-		<div class="jumbotron" style="color: black; background-color: #5FEE9E">
-			<h1>
-				로그인 페이지   <small>로그인</small>
-			</h1>
-		</div>
 		<c:if test="${not empty param.NotLogin }">
 			<div class="row">
 				<div class="col-sm-5 alert alert-warning fade in">

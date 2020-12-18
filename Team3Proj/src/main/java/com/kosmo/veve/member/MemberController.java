@@ -21,7 +21,7 @@ public class MemberController {
 	
 	// 마이홈 페이지 이동
 	@RequestMapping("/Member/MyHome.do")
-	public String login(HttpServletRequest req) {
+	public String myhome(HttpServletRequest req) {
 		
 		String userID = (String)req.getSession().getAttribute("UserID");
 		System.out.println("myhome:"+userID);
@@ -31,9 +31,27 @@ public class MemberController {
 		Map map = new HashMap();
 		map.put("userID", userID);
 		MemberDTO userdto = service.selectOne(map);
-		String self=userdto.getSelfintro().replace("\r\n", "</br>");
-		userdto.setSelfintro(self);
+		//String self=userdto.getSelfintro().replace("\n", "<br>");
+		//userdto.setSelfintro(self);
 		req.setAttribute("userdto", userdto);
 		return "member/Myhome.tiles";
 	}
+	
+	// 마이정보 페이지 이동
+		@RequestMapping("/Member/Mypage.do")
+		public String mypage(HttpServletRequest req) {
+			
+			String userID = (String)req.getSession().getAttribute("UserID");
+			System.out.println("myhome:"+userID);
+			MemberFileDTO filedto = service.selectFile(userID);
+			System.out.println(filedto);
+			req.setAttribute("filedto", filedto);
+			Map map = new HashMap();
+			map.put("userID", userID);
+			MemberDTO userdto = service.selectOne(map);
+			req.setAttribute("userdto", userdto);
+			return "member/Mypage.tiles";
+		}
+	
+	
 }
