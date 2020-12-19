@@ -1,5 +1,6 @@
 package com.kosmo.veve.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -81,6 +82,24 @@ public class MemberDAO implements MemberService {
 	public MemberFileDTO selectFile(String userID) {
 		// TODO Auto-generated method stub
 		return sqlMapper.selectOne("memberFile",userID);
+	}
+
+	@Override
+	public int getFollowing(String userID) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlMapper.selectOne("memberFollowing",userID);
+	}
+
+	@Override
+	public int getFollower(String userID) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlMapper.selectOne("memberFollower",userID);
+	}
+
+	@Override
+	public List<MemberFollowDTO> getFollowingInfo(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectList("memberFollowingInfo", userID);
 	}
 
 }

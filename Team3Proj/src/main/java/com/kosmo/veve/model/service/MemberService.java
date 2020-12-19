@@ -1,10 +1,12 @@
 package com.kosmo.veve.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.MemberFileDTO;
+import com.kosmo.veve.model.MemberFollowDTO;
 
 
 public interface MemberService {
@@ -24,5 +26,11 @@ public interface MemberService {
 		int update(Map map);
 		//회원 사진 가져오기용]
 		MemberFileDTO selectFile(String userID);
+		//팔로잉 레코드 수 가져오기
+		int getFollowing(String userID);
+		//팔로워 레코드 수 가져오기
+		int getFollower(String userID);
+		//팔로잉 회원리스트 가져오기
+		List<MemberFollowDTO> getFollowingInfo(String userID);
 
 }

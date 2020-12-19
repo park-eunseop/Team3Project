@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+  
 <section id="home" class="home bg-black fix" style="height: 200px">
 	<div class="container">
 		<div class="row">
@@ -22,18 +23,81 @@
 	</div>
 </section>
 <section>
-	<div class="row text-center" style="padding-top: 30px">
+	<div class="row text-center" style="padding-top: 30px; height: 800px">
 		<div class="col-sm-4">
-			<span class="margin">레시피 게시물</span>
-			<a href="<c:url value="/Board/Recipe.do"/>" class="btn btn-success">레시피 작성</a>
+			<span class="margin">레시피 게시물</span> <a
+				href="<c:url value="/Board/Recipe.do"/>" class="btn btn-success">레시피
+				작성</a>
 
 		</div>
 		<div class="col-sm-4" style="height: 500px">
-			<img
-				style="border: 3px solid gold; border-radius: 7px; -moz-border-radius: 7px; -khtml-border-radius: 7px; -webkit-border-radius: 7px; width: 80%; height: 70%"
-				src='<c:url value="/upload/${filedto.f_name}"></c:url>' alt="no">
-			<textarea style="padding-top: 10px; border: none" rows="5 cols="10">${userdto.selfintro}</textarea>
-			<a href="<c:url value="/Member/Mypage.do"/>" class="btn btn-success">개인정보 수정 </a>
+			<div>
+				<img
+					style="border: 3px solid gold; border-radius: 7px; -moz-border-radius: 7px; -khtml-border-radius: 7px; -webkit-border-radius: 7px; width: 50%; height: 50%"
+					src='<c:url value="/upload/${filedto.f_name}"></c:url>' alt="no">
+
+			</div>
+			<div>
+				<div>${userdto.nickname}</div>
+				<textarea style="width: 100%; padding-top: 10px; border: none"
+					rows="5" cols="5">${userdto.selfintro}</textarea>
+			</div>
+			<div>
+				<a href="<c:url value="/Member/Mypage.do"/>"
+					class="btn btn-success btn-sm">개인정보 수정 </a>
+			</div>
+			<div>
+				<button type="button" class="btn btn-info btn-sm"
+					data-toggle="modal" data-target="#follower">팔로워(${follower})</button>
+				<!-- 팔로워 Modal -->
+				<div class="modal fade" id="follower" role="dialog">
+					<div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">팔로워</h4>
+							</div>
+							<div class="modal-body">
+								<p>팔로워 list</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="button" class="btn btn-info btn-sm"
+					data-toggle="modal" data-target="#following">팔로잉(${following})</button>
+				<!-- 팔로잉 Modal -->
+				<div class="modal fade" id="following" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">팔로잉</h4>
+							</div>
+							<div class="modal-body">
+								<c:forEach var="following" items="${followinglist}">
+								<img style="border: 3px solid gold; width: 50px; height: 50px"
+								src='<c:url value="/upload/${following.file_name}"></c:url>' alt="no">
+								<p>${following.nickname}</p>
+								<p>삭제</p>
+								</c:forEach>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
 		</div>
 		<div class="col-sm-4">
 			<h4>식단 영양 프로그래스바</h4>
@@ -49,16 +113,21 @@
 				영양3
 				<progress value="80" max="100"></progress>
 			</div>
-			<a href="<c:url value="/Member/MemberDiet.do"/>" class="btn btn-success">식단 분석 </a>
+			<a href="<c:url value="/Member/MemberDiet.do"/>"
+				class="btn btn-success">식단 분석 </a>
+
 
 		</div>
 	</div>
+</section>
+<section>
 	<div class="text-center">
 		<div class="margin">팔로워,자기가 작성한 갤러리 게시물</div>
 		<div class="row text-center slideanim">
 			<div class="col-sm-4">
 				<div class="thumbnail">
-					<img src='<c:url value="/resources/vg_level/milk_on.png"/>' alt="milk" width="200px" height="300px">
+					<img src='<c:url value="/resources/vg_level/milk_on.png"/>'
+						alt="milk" width="200px" height="300px">
 					<p>
 						<strong>Milk</strong>
 					</p>
@@ -67,7 +136,8 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="thumbnail">
-					<img src='<c:url value="/resources/vg_level/vg_on.png"/>' alt="banana" width="200px" height="300px">
+					<img src='<c:url value="/resources/vg_level/vg_on.png"/>'
+						alt="banana" width="200px" height="300px">
 					<p>
 						<strong>Banana</strong>
 					</p>
@@ -76,7 +146,8 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="thumbnail">
-					<img src='<c:url value="/resources/vg_level/fish_on.png"/>' alt="fish" width="200px" height="300px">
+					<img src='<c:url value="/resources/vg_level/fish_on.png"/>'
+						alt="fish" width="200px" height="300px">
 					<p>
 						<strong>Fish</strong>
 					</p>
@@ -85,10 +156,12 @@
 			</div>
 		</div>
 	</div>
-	<a href="<c:url value="/Board/Gallary.do"/>" class="btn btn-success">갤러리 작성 </a>
+	<a href="<c:url value="/Board/Gallary.do"/>" class="btn btn-success">갤러리
+		작성 </a>
 	<div class="text-center">
-		<span class="margin">최근 검색 식당 위치</span>
-		<a href="<c:url value="/Board/Restaurant.do"/>" class="btn btn-success">맛집 검색 </a>
+		<span class="margin">최근 검색 식당 위치</span> <a
+			href="<c:url value="/Board/Restaurant.do"/>" class="btn btn-success">맛집
+			검색 </a>
 		<div id="map" style="width: 100%; height: 350px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3c657be3f57506889b45e9c871ee43&libraries=services">
