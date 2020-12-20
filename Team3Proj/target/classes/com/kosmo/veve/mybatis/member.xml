@@ -37,6 +37,9 @@
 	<select id="memberFollowingInfo" parameterType="string" resultType="MemberFollowDTO">
 		SELECT * FROM USER_FOLLOW WHERE userID=#{userID}
 	</select>
+	<select id="memberFollowerInfo" parameterType="string" resultType="MemberFollowDTO">
+		SELECT * FROM USER_FOLLOW WHERE otherID=#{userID}
+	</select>
 	
 	
 </mapper>

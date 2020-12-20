@@ -32,5 +32,7 @@ public interface MemberService {
 		int getFollower(String userID);
 		//팔로잉 회원리스트 가져오기
 		List<MemberFollowDTO> getFollowingInfo(String userID);
+		//팔로워 회원리스트 가져오기
+		List<MemberFollowDTO> getFollowerInfo(String userID);
 
 }

@@ -59,7 +59,12 @@
 								<h4 class="modal-title">팔로워</h4>
 							</div>
 							<div class="modal-body">
-								<p>팔로워 list</p>
+								<c:forEach var="follower" items="${followerlist}">
+								<img style="border: 3px solid gold; width: 50px; height: 50px"
+								src='<c:url value="/upload/${follower.file_name}"></c:url>' alt="no">
+								<a>${follower.nickname}</a>
+								<a>삭제</a>
+								</c:forEach>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
@@ -84,8 +89,8 @@
 								<c:forEach var="following" items="${followinglist}">
 								<img style="border: 3px solid gold; width: 50px; height: 50px"
 								src='<c:url value="/upload/${following.file_name}"></c:url>' alt="no">
-								<p>${following.nickname}</p>
-								<p>삭제</p>
+								<a>${following.nickname}</a>
+								<a>삭제</a>
 								</c:forEach>
 							</div>
 							<div class="modal-footer">

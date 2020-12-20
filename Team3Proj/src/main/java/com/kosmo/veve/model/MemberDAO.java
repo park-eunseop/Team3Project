@@ -102,4 +102,10 @@ public class MemberDAO implements MemberService {
 		return sqlMapper.selectList("memberFollowingInfo", userID);
 	}
 
+	@Override
+	public List<MemberFollowDTO> getFollowerInfo(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectList("memberFollowerInfo", userID);
+	}
+
 }

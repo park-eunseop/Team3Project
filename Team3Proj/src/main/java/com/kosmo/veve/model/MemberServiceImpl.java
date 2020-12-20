@@ -88,4 +88,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getFollowingInfo(userID);
 	}
 
+	@Override
+	public List<MemberFollowDTO> getFollowerInfo(String userID) {
+		// TODO Auto-generated method stub
+		return dao.getFollowerInfo(userID);
+	}
+
 }
