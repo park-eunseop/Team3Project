@@ -5,31 +5,6 @@
 
 <!-- 구글 차트용 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- 날짜 구하는 포멧 moment() method-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
-<style>
-	/* .content:nth-child(6){ background-color: blue}*/
-</style>
-
-
-<!-- 회원 레벨
-비건(Vegan)
-락토(Lacto) :(우유, 유제품)
-오보(Ovo) :달걀
-락토오보(Lacto-Ovo) : (우유,유제품),달걀
-페스코(Pesco):우유,달걀,어류
-폴로(Pollo):우유,달걀,조류,어류
-플렉시테리언(Flexi): 때에 따라 육류
- -->
-<script>
-	var m = moment();//날짜 구하기
-	var dateList = [m.format('YYYY/MM')];
-	for (var i=0; i<5;i++){
-		dateList.push(m.subtract(1,'month').format('YYYY/MM'))
-	}
-</script>
- 
 <!-- 파이 차트 -->
 <script type="text/javascript">
 	google.charts.load('current', {
@@ -38,16 +13,12 @@
 	google.charts.setOnLoadCallback(drawChart);
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
-				[ '비건 등급', '등급별 분포' ], 
-				[ '비건', 2 ], 
-				[ '락토', 2 ], 
-				[ '오보', 3 ], 
-				[ '락토오보', 4 ], 
-				[ '페스코', 6 ],
-				[ '폴로', 5 ],
-				[ '플렉시테리언', 4], ]);
+				[ 'Task', 'Hours per Day' ], [ '비건', 11 ], [ '락토', 2 ],
+				[ '오보', 2 ], [ '페스코', 2 ], ]);
 
-		var options = { title : '' };
+		var options = {
+			title : ''
+		};
 		var chart = new google.visualization.PieChart(document
 				.getElementById('piechart'));
 		chart.draw(data, options);
@@ -63,26 +34,33 @@
 	google.charts.setOnLoadCallback(drawVisualization);
 
 	function drawVisualization() {
+		// Some raw data (not necessarily accurate)
 		var data = google.visualization.arrayToDataTable([
-				[ '가입달', '카카오톡 가입', '일반 가입', '총 가입자수' ],
-				[ dateList[5], 165, 938, 165+938],
-				[ dateList[4], 135, 1120, 135+1120 ],
-				[ dateList[3], 157, 1167,  157+1167 ],
-				[ dateList[2], 139, 1110, 139+1110 ],
-				[ dateList[1], 139, 1110, 139+1110 ],
-				[ dateList[0], 320, 1904, 320+1904 ] ]);
-		
+				[ 'Month', 'Bolivia', 'Ecuador', 'Madagascar',
+						'Papua New Guinea', 'Rwanda', 'Average' ],
+				[ '2004/05', 165, 938, 522, 998, 450, 614.6 ],
+				[ '2005/06', 135, 1120, 599, 1268, 288, 682 ],
+				[ '2006/07', 157, 1167, 587, 807, 397, 623 ],
+				[ '2007/08', 139, 1110, 615, 968, 215, 609.4 ],
+				[ '2008/09', 136, 691, 629, 1026, 366, 569.6 ] ]);
+
 		var options = {
-			title : '',
-			vAxis : { title : '가입자수' },
+			title : 'Monthly Coffee Production by Country',
+			vAxis : {
+				title : 'Cups'
+			},
+			hAxis : {
+				title : 'Month'
+			},
 			seriesType : 'bars',
-			series : { 
-				0 : {color: '#F7E600'},
-				1 : {color: '#FF8C00'},
-				2 : { type : 'line', color: '#3366CC', lineWidth: 2, pointSize: 3} 
-			}, 
+			series : {
+				5 : {
+					type : 'line'
+				}
+			},
 			legend: {position:'bottom'}
 		};
+
 		var chart = new google.visualization.ComboChart(document
 				.getElementById('chart_div1'));
 		chart.draw(data, options);
@@ -90,33 +68,6 @@
 	}
 </script>
 
-<!-- Area 그래프_방문자 & 게시글 -->
-<script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'corechart' ]
-	});
-	google.charts.setOnLoadCallback(drawChart_Area);
-
-	function drawChart_Area() {
-		var data = google.visualization.arrayToDataTable([
-				[ '날짜', '방문자', '피드', '레시피' ], 
-				[ dateList[5], 1000, 400, 300 ],
-				[ dateList[4], 1170, 460, 200 ], 
-				[ dateList[3], 1000, 757, 300 ],
-				[ dateList[2], 999, 568, 457 ],
-				[ dateList[1], 1240, 1101, 557 ],
-				[ dateList[0], 2000, 1111, 500 ] ]);
-
-		var options = {
-			legend: {position:'bottom'}
-		};
-
-		var chart = new google.visualization.AreaChart(document
-				.getElementById('chart_div3'));
-		chart.draw(data, options);
-		window.addEventListener('resize', drawChart_Area, false);
-	}
-</script>
 
 <!-- 꺽은선 그래프  -->
 <!-- Naver 검색어 트랜드 API 적용 -->
@@ -160,10 +111,16 @@
 
 		
 		var options = {
-			hAxis : { title : '일단위 날짜' },
-			vAxis : { title : '검색량 추이' },
+			hAxis : {
+				title : '날짜'
+			},
+			vAxis : {
+				title : '검색량 추이'
+			},
 			series : {
-				1 : { curveType : 'function' }
+				1 : {
+					curveType : 'function'
+				}
 			},
 			legend: {position:'bottom'}
 		};
@@ -188,9 +145,50 @@
 			<a class="navbar-brand" href="#">Dashboard</a>
 		</div>
 		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-left"> </ul>
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-dashboard"></i>
+						<p class="hidden-lg hidden-md">Dashboard</p>
+				</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> <i class="fa fa-globe"></i> <b
+						class="caret hidden-lg hidden-md"></b>
+						<p class="hidden-lg hidden-md">
+							5 Notifications <b class="caret"></b>
+						</p>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Notification 1</a></li>
+						<li><a href="#">Notification 2</a></li>
+						<li><a href="#">Notification 3</a></li>
+						<li><a href="#">Notification 4</a></li>
+						<li><a href="#">Another notification</a></li>
+					</ul></li>
+				<li><a href=""> <i class="fa fa-search"></i>
+						<p class="hidden-lg hidden-md">Search</p>
+				</a></li>
+			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="">
+						<p>Account</p>
+				</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">
+						<p>
+							Dropdown <b class="caret"></b>
+						</p>
+
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li>
 				<li><a href="#">
 						<p>Log out</p>
 				</a></li>
@@ -208,16 +206,25 @@
 				<div class="card">
 
 					<div class="header">
-						<h4 class="title">비건 등급</h4>
-						<p class="category"></p>
+						<h4 class="title">회원 레벨별 분포</h4>
+						<p class="category">차트가 그냥 이미지여서 google chart이용으로 동적으로 변경하기</p>
 					</div>
 					<div class="content">
 						<!-- 구글 차트로 대신함 -->
 						<div id="piechart"></div>
+
 						<div class="footer">
+							<!-- 
+							<div class="legend">
+								<i class="fa fa-circle text-info"></i> 비건 <i
+									class="fa fa-circle text-danger"></i> 락토 <i
+									class="fa fa-circle text-warning"></i> 오보 <i
+									class="fa fa-circle text-success"></i> 페스코
+							</div>
+							 -->
 							<hr>
 							<div class="stats">
-								<i class="fa fa-check"></i> 회원들의 비건 등급 분포도를 나타냅니다.
+								<i class="fa fa-clock-o"></i> Campaign sent 2 days ago
 							</div>
 						</div>
 					</div>
@@ -226,46 +233,53 @@
 
 			<div class="col-md-8">
 				<div class="card">
-					
 					<div class="header">
-						<h4 class="title">가입자 추이</h4>
-						<p class="category"></p>
+						<h4 class="title">방문자 & 게시글</h4>
+						<p class="category">24 Hours performance</p>
 					</div>
 					<div class="content">
-						<!-- 막대 그래프 -->
-						<div id="chart_div1"></div>
+						<div id="chartHours" class="ct-chart"></div>
 						<div class="footer">
+							<div class="legend">
+								<i class="fa fa-circle text-info"></i> 방문자 <i
+									class="fa fa-circle text-danger"></i> 인스타 <i
+									class="fa fa-circle text-warning"></i> 레시피
+							</div>
 							<hr>
 							<div class="stats">
-								<i class="fa fa-check"></i> 달별 회원 가입자 증감 추이를 회원가입 종류별로 나타냅니다.
+								<i class="fa fa-history"></i> Updated 3 minutes ago
 							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 
 
+
 		<div class="row">
 			<div class="col-md-6">
 				<div class="card ">
-				
 					<div class="header">
-						<h4 class="title">방문자 & 게시글</h4>
-						<p class="category"></p>
+						<h4 class="title">막대 그래프 (미정)</h4>
+						<p class="category">철분, 칼슘, 엽산, 비타민 B12 등의 부족</p>
 					</div>
 					<div class="content">
-						<!--Area chart -->
-						<div id="chart_div3"></div>
+						<!-- 막대 그래프 -->
+						<div id="chart_div1"></div>
 						<div class="footer">
+							<!--  							
+							<div class="legend">
+								<i class="fa fa-circle text-info"></i> 채식 까페 <i
+									class="fa fa-circle text-danger"></i> 채식 레시피
+							</div>
+							-->
 							<hr>
 							<div class="stats">
-								<i class="fa fa-check"></i> 달별 방문자수와 게시글 수를 나타냅니다.
+								<i class="fa fa-check"></i> Data information certified
 							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 
@@ -273,10 +287,9 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card ">
-
 						<div class="header">
-							<h4 class="title">키워드 검색량</h4>
-							<p class="category"></p>
+							<h4 class="title">일별 핵심 키워드 검색량 변화</h4>
+							<p class="category">비건에서 핵심 키워드 추가 고려 요망</p>
 						</div>
 						<div class="content">
 							<!-- 키워드 검색 -->
@@ -284,98 +297,14 @@
 							<div class="footer">
 								<hr>
 								<div class="stats">
-									<i class="fa fa-check"></i> 최다 검색일을 100으로 설정하여 상대적인 변화를 나타냅니다.
-									<br /> <i class="fa fa-check"></i>성별, 연령, 검색환경의 제한을 사용하지
-									않았습니다.
+									<i class="fa fa-check"></i> 최다 검색량을 100으로 설정하여 상대적인 변화를 나타냅니다.
+									<br/>
+									<i class="fa fa-check"></i>성별, 연령, 검색환경의 제한을 사용하지 않았습니다. 
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
-				<!-- 워드 클라우드 -->
-				<script src="https://d3js.org/d3.v3.min.js"></script>
-				<script
-					src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
-					type="text/JavaScript"></script>
-
-				<div class="col-md-6">
-					<div class="card ">
-						<div class="header">
-							<h4 class="title">검색어 워드 클라우드</h4>
-							<p class="category"></p>
-						</div>
-						<div class="content">
-							<!-- Styles -->
-							<style>
-							#chartdiv {
-								width: 100%;
-								height: 480px;
-							}
-							</style>
-
-							<!-- Resources -->
-							<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-							<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-							<script src="https://cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>
-							<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-
-							<!-- Chart code -->
-							<script>
-								am4core
-										.ready(function() {
-
-											// Themes begin
-											am4core
-													.useTheme(am4themes_animated);
-											// Themes end
-
-											var chart = am4core
-													.create(
-															"chartdiv",
-															am4plugins_wordCloud.WordCloud);
-											var series = chart.series
-													.push(new am4plugins_wordCloud.WordCloudSeries());
-
-											series.accuracy = 4;
-											series.step = 15;
-											series.rotationThreshold = 0.7;
-											series.maxCount = 200;
-											series.minWordLength = 2;
-											series.labels.template.margin(4, 4,
-													4, 4);
-											series.maxFontSize = am4core
-													.percent(30);
-
-											series.text = "전 세계적으로 채식을 하는 사람들이 늘어나면서 ‘비건(vegan)’이 우리나라에서도 주목을 받고  ‘비건(vegan)’은 채식주의자의 약자로 전 세계의 인구 6%를 차지한다. 한국채식협회에 의하면 국내 채식인구는 약 150만 명이며 완전채식주의자(vegan)는 50만 명에 달한다. 이처럼 국내 비건 인구가 꾸준히 늚에 따라 국내 기업들도 앞 다퉈‘비건 시장’에 적극적으로 뛰어들고 이에 시사캐스트에서는 △비건 종류 △국내 비건 시장 현황 △채식인구 증가 원인 △비건 시장 전망에 대해서 알아본다.";
-
-											series.colors = new am4core.ColorSet();
-											series.colors.passOptions = {}; // makes it loop
-
-											//series.labelsContainer.rotation = 45;
-											series.angles = [ 0, -90 ];
-											series.fontWeight = "700"
-											/*
-											 setInterval(function () {
-											 series.dataItems.getIndex(Math.round(Math.random() * (series.dataItems.length - 1))).setValue("value", Math.round(Math.random() * 10));
-											 }, 10000)
-											 */
-										}); // end am4core.ready()
-							</script>
-
-							<!-- HTML -->
-							<div id="chartdiv"></div>
-
-
-
-
-						</div>
-					</div>
-				</div>
-
-
-
 
 				<div class="col-md-6">
 					<div class="card ">

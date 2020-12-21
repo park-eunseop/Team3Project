@@ -8,13 +8,15 @@
 		<nav class="pull-left">
 			<ul>
 				<li><a href="<c:url value='/'/>"> Home </a></li>
+				<li><a href="#"> Company </a></li>
+				<li><a href="#"> Portfolio </a></li>
+				<li><a href="#"> Blog </a></li>
 			</ul>
 		</nav>
 		<p class="copyright pull-right">
 			&copy;
 			<script>document.write(new Date().getFullYear())</script>
-			KOSMO | 박은섭 | <a href="https://blog.naver.com/dongq2ben" style="color: #777777">
-			이동규</a> | 이유나 | 김원빈 | 최경묵 | 정의림
+			KOSMO | 박은섭 | 이동규 | 이유나 | 김원빈 | 최경묵 | 정의림
 		</p>
 	</div>
 </footer>
