@@ -67,7 +67,7 @@ jQuery( document ).ready( function ( $ ) {
     } );
 
 
-// slick slider active Home Page Tow
+// 캐러셀 속도 조절
     $( ".choose_slide" ).slick( {
         dots: false,
         infinite: true,
@@ -77,10 +77,21 @@ jQuery( document ).ready( function ( $ ) {
         prevArrow: "<i class='icon icon-chevron-left nextprevleft'></i>",
         nextArrow: "<i class='icon icon-chevron-right nextprevright'></i>",
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 3000
     } );
 
 
+// 커뮤니티 소개 캐러셀
+$( ".commu_slide" ).slick( {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: "<i class='icon icon-chevron-left nextprevleft'></i>",
+    nextArrow: "<i class='icon icon-chevron-right nextprevright'></i>",
+    autoplay: false
+} );
 
 
 //---------------------------------------------

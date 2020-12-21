@@ -45,7 +45,19 @@
 			<div>
 				<a href="<c:url value="/Member/Mypage.do"/>"
 					class="btn btn-success btn-sm">개인정보 수정 </a>
+				<a href="javascript:logout()"
+					class="btn btn-success btn-sm">로그아웃 </a>
 			</div>
+			<script>
+			function logout(){
+				//location.replace("<c:url value="/OneMemo/Auth/Logout.do"/>");
+				$('#logoutForm').submit();//스프링 씨큐리티의 csrf공격 사용시
+			}
+			</script>
+			<form id="logoutForm" method="post"
+				action="<c:url value="/Member/Auth/Logout.do"/>">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
 			<div>
 				<button type="button" class="btn btn-info btn-sm"
 					data-toggle="modal" data-target="#follower">팔로워(${follower})</button>

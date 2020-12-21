@@ -89,10 +89,12 @@ $(function(){
 		else{
 			$('#spanid').html('');
 			var data = $('#inputid').serializeArray();
-			obj = {};
+			console.log(data);
+			obj = {};//{userID:eunseop1224}
 			$.each(data,function(index,element){
 				obj[element.name]=element.value;				
-			});
+			});//json
+			console.log(obj);
 			$.ajax({
 				type:'post',
 				url:"<c:url value='/json/sign/idCheck'/>",
