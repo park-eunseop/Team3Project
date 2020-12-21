@@ -56,7 +56,8 @@ public class NaverDataLabTrend {
 				"}";
 
 		String responseBody = post(apiUrl, requestHeaders, requestBody);
-		System.out.println("네이버 API 결과: "+responseBody);
+		//네이버 서버에서 받아온 결과 확인
+		//System.out.println("네이버 API 결과: "+responseBody);
 		
 		//org.json.simple.parser.JSONParser 이용
 		JSONParser parser = new JSONParser();
