@@ -39,4 +39,12 @@
 	</select>
 	
 	
+	
+	<!-- admin -->
+	<select id="selectList_admin" resultType="MemberDTO">
+		SELECT * FROM VG_USER
+	</select>
+	
+	
+	
 </mapper>

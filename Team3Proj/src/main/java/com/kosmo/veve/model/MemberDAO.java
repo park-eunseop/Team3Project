@@ -102,4 +102,14 @@ public class MemberDAO implements MemberService {
 		return sqlMapper.selectList("memberFollowingInfo", userID);
 	}
 
+	
+	
+	
+	///////////////////////////////////////////////////////////admin
+	public List<MemberDTO> selectList_admin() {
+		return sqlMapper.selectList("selectList_admin");
+	}
+
+	
+	
 }
