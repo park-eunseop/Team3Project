@@ -93,5 +93,10 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.getFollowerInfo(userID);
 	}
+	
+	////////////////////////////////////admin
+	public List<MemberDTO> selectList_admin() {
+		return dao.selectList_admin();
+	}
 
 }

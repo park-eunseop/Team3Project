@@ -107,5 +107,10 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return sqlMapper.selectList("memberFollowerInfo", userID);
 	}
+	
+	///////////////////////////////////////////////////////////admin
+	public List<MemberDTO> selectList_admin() {
+		return sqlMapper.selectList("selectList_admin");
+	}
 
 }
