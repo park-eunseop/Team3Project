@@ -4,6 +4,20 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <!-- admin_top -->
+<!-- 로그아웃 시작 -->
+<script>
+	function logout(){
+		//location.replace("<c:url value="/OneMemo/Auth/Logout.do"/>");
+		$('#logoutForm').submit();//스프링 씨큐리티의 csrf공격 사용시
+	}
+</script>
+<form id="logoutForm" method="post"
+	action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<!-- 로그아웃 끝 -->
+
 
 	
 <div class="sidebar" data-color="orange" data-image="/veve/resources/assets_admin/img/vegun_admin_main.jpg">
@@ -36,9 +50,9 @@
 		<li><a href="#"> <i class="pe-7s-map-marker"></i>
 				<p>Maps</p>
 		</a></li>
-		<li><a href="<c:url value='/Admin/Notification.do'/>"> <i
+		<li><a href="javascript:logout()"> <i
 				class="pe-7s-bell"></i>
-				<p>Notifications</p>
+				<p>Logout</p>
 		</a></li>
 		<li class="active-pro"><a href="#"> <i class="pe-7s-rocket"></i>
 				<p>Upgrade to PRO</p>
