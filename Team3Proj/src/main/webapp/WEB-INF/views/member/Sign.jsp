@@ -314,8 +314,6 @@ function Dosignup(){
 <section>
 
 	<div class="container">
-
-
 		<div class="row">
 
 			<div class="col-sm-12">
@@ -386,7 +384,8 @@ function Dosignup(){
 						<label for="id" class="col-sm-3  control-label">Level</label>
 						<div class="col-sm-4">
 							<select name="vg_level" id="selectlevel">
-								<option disabled="disabled" selected="selected">Vegan</option>
+								<option disabled="disabled" selected="selected">Level</option>
+								<option>Vegan</option>
 								<option>Lacto</option>
 								<option>Ovo</option>
 								<option>Lacto-Ovo</option>
@@ -453,7 +452,5 @@ function Dosignup(){
 			</div>
 		</div>
 	</div>
-
-
 
 </section>
