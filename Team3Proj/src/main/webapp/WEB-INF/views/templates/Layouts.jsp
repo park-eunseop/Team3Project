@@ -31,13 +31,14 @@
   <!--Theme Responsive css-->
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/responsive.css"/>"/>
   <script src="<c:url value="/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"/>"></script>
-  
-  
+ 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
+   
+   
+   	
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="100">
-	 <div class="culmn">
+	 
 	<!--top부분 시작-->
 	<tiles:insertAttribute name="top"/>
 	<!--top부분 끝 -->
@@ -47,6 +48,6 @@
 	<!--footer부분 시작-->
 	<tiles:insertAttribute name="footer"/>
 	<!--footer부분 끝 -->
-	</div>
+
 </body>
 </html>

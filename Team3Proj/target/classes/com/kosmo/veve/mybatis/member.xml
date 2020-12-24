@@ -14,6 +14,9 @@
 	<select id="memberIDcheck" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM VG_USER WHERE userID=#{userID}
 	</select>
+	<select id="memberFile" parameterType="string" resultType="MemberFileDTO">
+		SELECT * FROM USER_FILE WHERE userID=#{userID}
+	</select>
 	
 	<insert id="memberInsert" parameterType="java.util.Map">
 		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{selfintro})
@@ -24,5 +27,27 @@
 	<insert id="userFileInsert" parameterType="java.util.Map">
 		INSERT INTO USER_FILE(user_file_no,userID,f_path,f_name) VALUES(SEQ_USER_FILE_NO.NEXTVAL,#{userID},#{f_path},#{f_name})
 	</insert>
+	<!-- 팔로잉/팔로워 count -->
+	<select id="memberFollowing" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM USER_FOLLOW WHERE userID=#{userID}
+	</select>
+	<select id="memberFollower" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM USER_FOLLOW WHERE otherID=#{userID}
+	</select>
+	<select id="memberFollowingInfo" parameterType="string" resultType="MemberFollowDTO">
+		SELECT * FROM USER_FOLLOW WHERE userID=#{userID}
+	</select>
+	<select id="memberFollowerInfo" parameterType="string" resultType="MemberFollowDTO">
+		SELECT * FROM USER_FOLLOW WHERE otherID=#{userID}
+	</select>
+	
+	
+	
+	<!-- admin -->
+	<select id="selectList_admin" resultType="MemberDTO">
+		SELECT * FROM VG_USER
+	</select>
+	
+	
 	
 </mapper>

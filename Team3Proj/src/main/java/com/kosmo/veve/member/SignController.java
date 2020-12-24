@@ -40,7 +40,8 @@ public class SignController {
 				req.getSession().setAttribute("Admin", name);
 				return "forward:/Admin/Main.do";
 			}
-			return "member/Login.tiles";
+			req.getSession().setAttribute("UserID", name);
+			return "forward:/Member/MyHome.do";
 		}
 
 	// 회원가입 창 이동

@@ -76,6 +76,7 @@ $(function(){
 			reader.readAsDataURL(this.files[0]);
 		  }
 	});//첨부파일 사진
+	
 	$('#inputid').blur(function(){
 		console.log('아이디');
 		var id = $('#inputid').val();
@@ -88,10 +89,12 @@ $(function(){
 		else{
 			$('#spanid').html('');
 			var data = $('#inputid').serializeArray();
-			obj = {};
+			console.log(data);
+			obj = {};//{userID:eunseop1224}
 			$.each(data,function(index,element){
 				obj[element.name]=element.value;				
-			});
+			});//json
+			console.log(obj);
 			$.ajax({
 				type:'post',
 				url:"<c:url value='/json/sign/idCheck'/>",
@@ -291,16 +294,26 @@ function Dosignup(){
 
 </script>
 
-
+<section id="home" class="home bg-black fix" style="height: 200px">
+	<div class="container">
+		<div class="row">
+			<div class="main_home text-center">
+				<div class="col-md-12">
+					<div class="hello">
+						<div class="slid_item">
+							<div class="home_text ">
+								<h1 class="text-yellow">Sign up</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section>
 
 	<div class="container">
-		<div class="jumbotron" style="color: black; background-color: #5FEE9E">
-			<h1>
-				회원가입 페이지 <small>회원가입</small>
-			</h1>
-		</div>
-
 		<div class="row">
 
 			<div class="col-sm-12">
@@ -371,7 +384,8 @@ function Dosignup(){
 						<label for="id" class="col-sm-3  control-label">Level</label>
 						<div class="col-sm-4">
 							<select name="vg_level" id="selectlevel">
-								<option disabled="disabled" selected="selected">Vegan</option>
+								<option disabled="disabled" selected="selected">Level</option>
+								<option>Vegan</option>
 								<option>Lacto</option>
 								<option>Ovo</option>
 								<option>Lacto-Ovo</option>
@@ -438,7 +452,5 @@ function Dosignup(){
 			</div>
 		</div>
 	</div>
-
-
 
 </section>
