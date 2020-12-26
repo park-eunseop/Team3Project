@@ -2,6 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- 로그아웃 시작 -->
+<script>
+	function logout(){
+		$('#logoutForm').submit();
+	}
+</script>
+<form id="logoutForm" method="post"
+	action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<!-- 로그아웃 끝 -->
+
+
+
 <!-- 구글 차트용 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- 날짜 구하는 포멧 moment() method-->
@@ -49,6 +64,11 @@
 </script>
 
 
+<!--신고내용 CSS 모달창 -->
+<link href="/veve/resources/assets_admin/css/ReportedPostList.css" rel="stylesheet" />
+
+
+
 <nav class="navbar navbar-default navbar-fixed">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -64,7 +84,7 @@
 			<ul class="nav navbar-nav navbar-left"></ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">
+				<li><a href="javascript:logout()">
 						<p>Log out</p>
 				</a></li>
 				<li class="separator hidden-lg hidden-md"></li>
@@ -100,18 +120,20 @@
 				<div class="card">
 					<div class="header">
 						<h4 class="title">신고된 게시물</h4>
-						<p class="category">제목을 클릭하여 페이지를 확인하세요.</p>
+						<p class="category">제목을 클릭하여 게시글을 확인하세요.</p>
 					</div>
 					<div class="content table-responsive table-full-width">
 						<table class="table table-hover table-striped">
 							<thead>
-								<th>ID</th>
-								<th>NickName</th>
-								<th>Vegan_LV</th>
-								<th>Gender</th>
-								<th>Age</th>
+								<th>신고수</th>
+								<th>글쓴이</th>
+								<th>게시글 카테고리</th>
+								<th>게시글 제목</th>
+								<th>신고 내용</th>
 							</thead>
 							<tbody>
+							<!-- 각 게시판에 DEC table 참조 -->
+							<!-- 신고 내용 누르면 모달창 띄워서 여러가지 내용 보이게 하기 -->
 								<c:forEach var="item" items="${list }" varStatus="loop">
 									<tr>
 										<td>${item.userID }</td>
@@ -128,7 +150,16 @@
 									<td>임시값</td>
 									<td>임시값</td>
 									<td>임시값</td>
-									<td>임시값</td>
+									<td><a href="#open">임시값</a></td>
+									<div class="white_content" id="open">
+								        <div>
+								            <p align="right">
+								            	<a href="#close" >CLOSE</a>
+								        	</p>
+								        	<iframe src="<c:url value="/Admin/ReportedPostList.do"/>"
+								        	 style="width:100%; height:90%;"></iframe>
+								        </div>
+								    </div>
 								</tr>
 								<tr>
 									<td>임시값2</td>

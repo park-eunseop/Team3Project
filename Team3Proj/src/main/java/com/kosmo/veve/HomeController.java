@@ -36,4 +36,11 @@ public class HomeController {
 		return "home.tiles";
 	}
 	
+	
+	@RequestMapping("/board/NewFile.do")
+	public String summernote() {
+		return "board/NewFile";
+	}
+	
+	
 }

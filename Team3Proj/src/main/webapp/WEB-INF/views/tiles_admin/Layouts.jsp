@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="/veve/resources/assets_admin/img/favicon.ico">
+	<link rel="icon" type="image/png" href="/veve/resources/assets_admin/img/VEVE_logo.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>VEVE Admin</title>
