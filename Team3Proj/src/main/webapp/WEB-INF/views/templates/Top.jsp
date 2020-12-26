@@ -179,7 +179,7 @@
                             <li class="dropdown menu-large"><a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>          
                                 <ul class="dropdown-menu megamenu row">
                                     <li><a href="<c:url value="/Board/Gallary.do"/>">스토리</a></li>
-                                    <li><a href="<c:url value="/Board/Recipe.do"/>">채식레시피 공유</a></li>
+                                    <li><a href="<c:url value="/recipe.do"/>">채식레시피 공유</a></li>
                                 </ul>
                             </li>
 

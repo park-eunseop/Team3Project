@@ -97,7 +97,7 @@ CREATE TABLE GALLARY_SCRAP
 CREATE TABLE GAL_FILE
 (
 	notice_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	notice_no number NOT NULL,
@@ -132,7 +132,7 @@ CREATE TABLE NOTICE_COMMENT
 CREATE TABLE NOTICE_FILE
 (
 	notice_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	notice_no number NOT NULL,
@@ -184,7 +184,7 @@ CREATE TABLE REC_DEC
 CREATE TABLE REC_FILE
 (
 	notice_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	res_no number NOT NULL,
@@ -222,7 +222,7 @@ CREATE TABLE RESTAURANT
 CREATE TABLE RES_FILE
 (
 	user_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	res_no number NOT NULL,
 	PRIMARY KEY (user_file_no)
@@ -292,7 +292,7 @@ CREATE TABLE USER_DM
 CREATE TABLE USER_FILE
 (
 	user_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	PRIMARY KEY (user_file_no)
