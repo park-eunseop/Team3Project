@@ -71,7 +71,7 @@ $(function(){
 			 if(this.files && this.files[0]) {
 			 var reader = new FileReader;
 		reader.onload = function(data) {
-		 $(".select_img img").attr("src", data.target.result).width(500);        
+		 $(".select_img img").attr("src", data.target.result).width(300).height(300);        
 			  }
 			reader.readAsDataURL(this.files[0]);
 		  }
@@ -293,36 +293,81 @@ function Dosignup(){
 
 
 </script>
+<style>
+.bg-img {
+  /* The image used */
+  background-image: url('<c:url value="/resources/assets/images/homebg.jpg"/>');
 
-<section id="home" class="home bg-black fix" style="height: 200px">
-	<div class="container">
-		<div class="row">
-			<div class="main_home text-center">
-				<div class="col-md-12">
-					<div class="hello">
-						<div class="slid_item">
-							<div class="home_text ">
-								<h1 class="text-yellow">Sign up</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section>
+  min-height:1000px;
 
-	<div class="container">
-		<div class="row">
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;  
+  position: relative;
+}
+.wrapper {
+  margin: 0 auto;
+  
+}
 
+.wrapper--w960 {
+  max-width: 960px;
+}
+.card {
+  overflow: hidden;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.card-2 {
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  width: 100%;
+  display: table;
+}
+
+.card-2 .card-heading {
+  background: url('<c:url value="/resources/assets/images/bg-heading-02.jpg"/>') top left/cover no-repeat;
+  width: 29.1%;
+  display: table-cell;
+}
+
+.card-2 .card-body {
+  display: table-cell;
+  padding: 80px 90px;
+  padding-bottom: 88px;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+<div class="bg-img">
+	<div class="wrapper wrapper--w960" style="padding-top: 200px;padding-bottom: 200px">
+		<div class="card card-2">
+			<div class="card-heading"></div>
+		<div class="card-body">
+		<h1>  Sign up</h1>
 			<div class="col-sm-12">
 				<form  class ="form-horizontal" id="form" method="post" action="<c:url value="/Member/UserSignUp.do"/>" enctype="multipart/form-data">
 					<div class="form-group" style="color: black">
 						<label for="id" class="col-sm-3  control-label">아이디</label>
 						<div class="col-sm-4">
 							<input id="inputid" type="text" class="form-control" name="userID" 
-								placeholder="아이디를 입력하세요">
+								placeholder="아이디를 입력하세요" style="width:200px">
 							<span id="spanid" style="color:red"></span>
 						</div>
 					</div>
@@ -330,7 +375,7 @@ function Dosignup(){
 						<label for="pwd" class="col-sm-3  control-label">비밀번호</label>
 						<div class="col-sm-4">
 							<input id="inputpwd" type="password" class="form-control" 
-								name="password" placeholder="비밀번호를 입력하세요">
+								name="password" placeholder="비밀번호를 입력하세요" style="width:200px">
 							<span id="spanpwd" style="color:red"></span>
 						</div>
 					</div>
@@ -338,7 +383,7 @@ function Dosignup(){
 						<label for="pwd" class="col-sm-3  control-label">비밀번호 확인</label>
 						<div class="col-sm-4">
 							<input type="password" class="form-control" id="inputpwdcheck"
-								name="passwordcheck" placeholder="비밀번호를 다시 입력하세요">
+								name="passwordcheck" placeholder="비밀번호를 다시 입력하세요" style="width:200px">
 							<span id="spanpwdcheck" style="color:red"></span>
 						</div>
 					</div>
@@ -346,7 +391,7 @@ function Dosignup(){
 						<label for="id" class="col-sm-3  control-label">이름</label>
 						<div class="col-sm-4">
 							<input id="inputname" type="text" class="form-control" name="name" 
-								placeholder="이름를 입력하세요">
+								placeholder="이름를 입력하세요" style="width:200px">
 							<span id="spanname" style="color:red"></span>
 						</div>
 					</div>
@@ -354,7 +399,7 @@ function Dosignup(){
 						<label for="id" class="col-sm-3  control-label">닉네임</label>
 						<div class="col-sm-4">
 							<input id="inputnickname" type="text" class="form-control" name="nickname" 
-								placeholder="닉네임를 입력하세요">
+								placeholder="닉네임를 입력하세요" style="width:200px">
 							<span id="spannickname" style="color:red"></span>
 						</div>
 					</div>
@@ -362,7 +407,7 @@ function Dosignup(){
 						<label for="id" class="col-sm-3  control-label">나이</label>
 						<div class="col-sm-4">
 							<input id="inputage" type="text" class="form-control" name="age" 
-							placeholder="나이를 입력하세요">
+							placeholder="나이를 입력하세요" style="width:200px">
 							<span id="spanage" style="color:red"></span>
 						</div>
 					</div>
@@ -394,6 +439,7 @@ function Dosignup(){
 								<option>Flexi</option>
 							</select>
 							<span id="spanlevel" style="color:red"></span>
+							<div style="width: 500px">
 							<img style="width: 30px; height: 30px;"
 						src="<c:url value="/resources/vg_level/vg_on.png"/>"/>
 							<img id="milk" style="width: 30px; height: 30px;"
@@ -406,7 +452,7 @@ function Dosignup(){
 						src="<c:url value="/resources/vg_level/bird_off.png"/>"/>
 						<img id="beef" style="width: 30px; height: 30px;"
 						src="<c:url value="/resources/vg_level/beef_off.png"/>"/>
-						
+						</div>
 						
 						</div>
 					</div>
@@ -415,7 +461,7 @@ function Dosignup(){
 						<label for="id" class="col-sm-3  control-label">주소</label>
 						<div class="col-sm-4">
 							<input id="inputaddr" type="text" class="form-control" name="addr" 
-							placeholder="주소를 입력하세요">
+							placeholder="주소를 입력하세요" style="width:200px">
 							<span id="spanaddr" style="color:red"></span>
 						</div>
 					</div>
@@ -448,9 +494,8 @@ function Dosignup(){
 						</div>
 					</div>
 				</form>
-				
+				</div>				
 			</div>
 		</div>
 	</div>
-
-</section>
+</div>

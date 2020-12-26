@@ -16,28 +16,13 @@
   <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/slick.css"/>"> 
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/slick-theme.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/animate.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/iconfont.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/font-awesome.min.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/bootstrap.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/magnific-popup.css"/>">
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/bootsnav.css"/>">
-    <!--For Plugins external css-->
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/plugins.css"/>"/>
-  <!--Theme custom css -->
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/style.css"/>"/>
-  <!--Theme Responsive css-->
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/responsive.css"/>"/>
-  <script src="<c:url value="/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"/>"></script>
- 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-   
-   
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
    	
 </head>
-<body data-spy="scroll" data-target=".navbar-collapse" data-offset="100">
+<body>
 	 
 	<!--top부분 시작-->
 	<tiles:insertAttribute name="top"/>
