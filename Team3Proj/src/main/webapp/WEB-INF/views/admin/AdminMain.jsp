@@ -3,15 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- admin_main -->
 
+<!-- 로그아웃 시작 -->
+<script>
+	function logout(){
+		$('#logoutForm').submit();
+	}
+</script>
+<form id="logoutForm" method="post"
+	action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<!-- 로그아웃 끝 -->
+
+
+
 <!-- 구글 차트용 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- 날짜 구하는 포멧 moment() method-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
-<style>
-	/* .content:nth-child(6){ background-color: blue}*/
-</style>
-
 
 <!-- 회원 레벨
 비건(Vegan)
@@ -176,6 +186,8 @@
 </script>
 
 
+
+
 <nav class="navbar navbar-default navbar-fixed">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -191,7 +203,7 @@
 			<ul class="nav navbar-nav navbar-left"> </ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">
+				<li><a href="javascript:logout()">
 						<p>Log out</p>
 				</a></li>
 				<li class="separator hidden-lg"></li>

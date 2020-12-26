@@ -7,8 +7,7 @@
 <!-- 로그아웃 시작 -->
 <script>
 	function logout(){
-		//location.replace("<c:url value="/OneMemo/Auth/Logout.do"/>");
-		$('#logoutForm').submit();//스프링 씨큐리티의 csrf공격 사용시
+		$('#logoutForm').submit();
 	}
 </script>
 <form id="logoutForm" method="post"
@@ -49,8 +48,7 @@
 		<li><a href="<c:url value='/Admin/ReportedPost.do'/>"> <i class="pe-7s-news-paper"></i>
 				<p>Reported Post</p>
 		</a></li>
-		<li><a href="javascript:logout()"> <i
-				class="pe-7s-bell"></i>
+		<li><a href="javascript:logout()"> <i class="pe-7s-power"></i>
 				<p>Logout</p>
 		</a></li>
 		<li class="active-pro"><a href="<c:url value='/'/>"> <i class="pe-7s-rocket"></i>

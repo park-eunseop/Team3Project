@@ -2,6 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- 로그아웃 시작 -->
+<script>
+	function logout(){
+		$('#logoutForm').submit();
+	}
+</script>
+<form id="logoutForm" method="post"
+	action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<!-- 로그아웃 끝 -->
 
 
 <nav class="navbar navbar-default navbar-fixed">
@@ -19,7 +31,7 @@
 			<ul class="nav navbar-nav navbar-left"></ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">
+				<li><a href="javascript:logout()">
 						<p>Log out</p>
 				</a></li>
 				<li class="separator hidden-lg hidden-md"></li>

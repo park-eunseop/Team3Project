@@ -2,6 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- showNotification 여러가지 알람창이 있는 페이지(미완) -->
+
+<!-- 로그아웃 시작 -->
+<script>
+	function logout(){
+		$('#logoutForm').submit();
+	}
+</script>
+<form id="logoutForm" method="post"
+	action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<!-- 로그아웃 끝 -->
+
+
 <nav class="navbar navbar-default navbar-fixed">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -59,7 +75,7 @@
 						<li class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 					</ul></li>
-				<li><a href="#">
+				<li><a href="javascript:logout()">
 						<p>Log out</p>
 				</a></li>
 				<li class="separator hidden-lg hidden-md"></li>

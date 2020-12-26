@@ -1,7 +1,6 @@
 package com.kosmo.veve.admin;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -40,7 +39,13 @@ public class AdminController {
       return "admin/ReportedPost.adminTiles";
    }//////////admin_ReportedPost
    
+   
+   @RequestMapping("/Admin/ReportedPostList.do")
+   public String admin_ReportedPostList() {
+      return "admin/ReportedPostList";
+   }//////////admin_ReportedPostList
 
+   
    
    @RequestMapping("/Admin/Notification.do")
    public String admin_Notification() {
