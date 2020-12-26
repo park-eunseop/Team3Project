@@ -82,6 +82,11 @@ public class SignController {
 		System.out.println(map.get("name"));
 		System.out.println(map.get("nickname"));
 		System.out.println(map.get("age"));
+		String age = (String)map.get("age");
+		String[] birth = age.split("-");
+		int born = Integer.parseInt(birth[0]);
+		int cuAge = 2020-born;		
+		map.put("age", String.valueOf(cuAge));
 		System.out.println(map.get("gender"));
 		System.out.println(map.get("vg_level"));
 		System.out.println(map.get("addr"));
