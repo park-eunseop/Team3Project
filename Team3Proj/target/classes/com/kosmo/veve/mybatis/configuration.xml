@@ -21,6 +21,14 @@
 			type="com.kosmo.veve.model.RecipeFileDTO"/>
 		<typeAlias alias="MemoCommentDTO"
 			type="com.kosmo.veve.model.MemoCommentDTO" />
+		<typeAlias alias="gallaryBoardDTO"
+			type="com.kosmo.veve.model.GallaryBoardDTO" />
+		<typeAlias alias="gallaryFileDTO"
+			type="com.kosmo.veve.model.GallaryFileDTO" />
+		<typeAlias alias="gallaryCommentDTO"
+			type="com.kosmo.veve.model.GallaryCommentDTO" />
+		<typeAlias alias="gallaryLikeDTO"
+		type="com.kosmo.veve.model.GallaryLikeDTO" />
 
 	</typeAliases>
 	
@@ -28,7 +36,9 @@
 		<mapper	resource="com/kosmo/veve/mybatis/member.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/recipe.xml"/>
 		<mapper resource="com/kosmo/veve/mybatis/comment.xml"/>
-		
+		<mapper resource="com/kosmo/veve/mybatis/gallaryBoard.xml"/>
+		<mapper resource="com/kosmo/veve/mybatis/gallaryComment.xml"/>
+		<mapper resource="com/kosmo/veve/mybatis/gallaryLike.xml"/>
 	</mappers>
 	
 	
