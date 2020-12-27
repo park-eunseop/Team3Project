@@ -31,8 +31,8 @@
 		WHERE res_no=#{res_no,jdbcType=NUMERIC}
 	</delete>
 	<insert id="recipeInsert" parameterType="java.util.Map">
-		INSERT INTO rec_board(res_no,title,content,userID)
-		VALUES(SEQ_REC_NO.NEXTVAL,#{title},#{content},#{userID})
+		INSERT INTO rec_board(res_no,title,content,userID,vg_level)
+		VALUES(SEQ_REC_NO.NEXTVAL,#{title},#{content},#{userID},#{vg_level})
 	</insert>
 
 	<insert id="recipeInsertFile" parameterType="java.util.Map">

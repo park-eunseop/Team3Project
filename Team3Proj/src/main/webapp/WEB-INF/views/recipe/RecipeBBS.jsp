@@ -28,45 +28,6 @@ button {
 		$('#myCarousel2').carousel();
 	});
 </script>
-
-<div class="row">
-	<div class="col-md-12">
-		<table
-			class="table table-bordered table-hover table-condensed text-center">
-			<tr>
-				<th class="col-md-1 text-center">번호</th>
-				<th class="text-center">제목</th>
-				<th class="col-md-1 text-center">작성자</th>
-				<th class="col-md-2 text-center">작성일</th>
-			</tr>
-			<c:if test="${empty list }" var="isEmpty">
-				<tr>
-					<td colspan="4">등록된 게시물이 없어요</td>
-				</tr>
-			</c:if>
-			<c:if test="${!isEmpty}">
-				<c:forEach var="item" items="${list }" varStatus="loop">
-					<tr>
-						<td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>
-						<td class="text-left"><a
-							href="<c:url value='/OneMemo/BBS/View.do?no=${item.no}&nowPage='/><c:out value='${param.nowPage}' default='1'/>">${item.title }</a>
-							<span class="badge">${item.commentCount}</span></td>
-						<td>${item.name}</td>
-						<td>${item.postDate}</td>
-					</tr>
-				</c:forEach>
-			</c:if>
-		</table>
-	</div>
-	<div class="row">
-		<div class="col-md-12 text-right">
-			<a href="<c:url value="/RecipeBBS/write.do"/>"
-				class="btn btn-success">등록</a>
-		</div>
-	</div>
-</div>
-
-
 <section class="hotel_list section_padding single_page_hotel_list">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -134,6 +95,11 @@ button {
 
 			</div>
 		</div>
+		<c:if test="${empty boardList }" var="isEmpty">
+				<tr>
+					<td colspan="4">등록된 게시물이 없어요</td>
+				</tr>
+			</c:if>
 		<c:forEach var="item" items="${boardList}" varStatus="var">
 			<div class="col-lg-4 col-sm-6">
 				<div class="single_ihotel_list" style="background-color: #fffff0;">
@@ -165,4 +131,3 @@ button {
 		</c:forEach>
 	</div>
 </section>
-

@@ -13,6 +13,7 @@ public class RecipeDTO {
 	private String content;
 	private String visitcount;
 	private String userID;
+	private String vg_level;
 	public String getRes_no() {
 		return res_no;
 	}

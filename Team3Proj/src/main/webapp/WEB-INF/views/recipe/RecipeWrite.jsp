@@ -70,6 +70,25 @@
 								placeholder="제목을 입력하세요?">
 						</div>
 					</div>
+					
+					
+					<div class="form-group" style="color: black">
+						<label for="id" class="col-sm-2 control-label">Level</label>
+						<div class="col-sm-4">
+							<select name="vg_level" id="selectlevel">
+								<option disabled="disabled" selected="selected">Level</option>
+								<option>Vegan</option>
+								<option>Lacto</option>
+								<option>Ovo</option>
+								<option>Lacto-Ovo</option>
+								<option>Pesco</option>
+								<option>Pollo</option>
+								<option>Flexi</option>
+							</select>
+						</div>
+					</div>
+					
+					
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="uploadInputBox">사진첨부</label>

@@ -26,7 +26,7 @@
 	<div class="row text-center" style="padding-top: 30px; height: 800px">
 		<div class="col-sm-4">
 			<span class="margin">레시피 게시물</span> <a
-				href="<c:url value="/Board/Recipe.do"/>" class="btn btn-success">레시피
+				href="<c:url value="/recipe.do"/>" class="btn btn-success">레시피
 				작성</a>
 
 		</div>
