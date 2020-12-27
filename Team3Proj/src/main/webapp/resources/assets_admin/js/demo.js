@@ -243,15 +243,14 @@ demo = {
     },
 
 	showNotification: function(from, align){
-    	color = Math.floor((Math.random() * 4) + 1);
+    	color = 3;
 
     	$.notify({
         	icon: "pe-7s-gift",
-        	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+        	message: "임시 알람입니다."
 
         },{
             type: type[color],
-            timer: 4000,
             placement: {
                 from: from,
                 align: align

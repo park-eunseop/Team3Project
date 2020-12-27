@@ -2,70 +2,83 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-<section>
+.bg-img {
+  /* The image used */
+  background-image: url('<c:url value="/resources/assets/images/homebg.jpg"/>');
 
-	<div class="container">	 
-		<div class="jumbotron" style="color: black; background-color: #5FEE9E">
-			<h1>
-				로그인 페이지   <small>로그인</small>
-			</h1>
-		</div>
-		<c:if test="${not empty param.NotLogin }">
-			<div class="row">
-				<div class="col-sm-5 alert alert-warning fade in">
-					<button class="close" data-dismiss="alert">
-						<span>&times;</span>
-					</button>
-					  인증이 안된 사용자입니다.
-				</div>
-			</div>
-		</c:if>
-		<div class="row">
-			
-			<sec:authorize access="isAuthenticated()">
-				<div class="col-sm-5 alert alert-success"><sec:authentication property="principal.username"/>님
-					즐감하세요</div>
-			</sec:authorize>
-			<sec:authorize access="isAnonymous()">
-				<div class="col-sm-12">
-					<form class="form-horizontal" id="form" method="post" 
-						action="<c:url value='/Member/Auth/LoginProcess.do'/>">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<div class="form-group" style="color: black">
-							<label for="id" class="col-sm-3  control-label">아이디</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" name="userID" id="userID"
-									placeholder="아이디를 입력하세요">
-							</div>
-						</div>
-						<div class="form-group" style="color: black">
-							<label for="pwd" class="col-sm-3  control-label">비밀번호</label>
-							<div class="col-sm-4">
-								<input type="password" class="form-control" id="password" name="password"
-									placeholder="비밀번호를 입력하세요">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-6 col-sm-10">
-								<input type="submit" value="로그인" class="btn btn-danger" id="btn"/>
-							</div>
-						</div>
-					</form>
-					<a
-						href="https://kauth.kakao.com/oauth/authorize?response_type=code&
+  min-height: 500px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+
+.btn:hover {
+  opacity: 1;
+}
+
+</style>
+
+<div class="bg-img">
+  <form id="form" method="post" action="<c:url value='/Member/Auth/LoginProcess.do'/>" class="container">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <h1>Login</h1>
+
+    <label for="userID"><b>ID</b></label>
+    <input type="text" placeholder="Enter ID" name="userID" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit" class="btn">Login</button>
+    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&
 								client_id=a4931dffe864df9872aec1187961a45d
-								&redirect_uri=http://localhost:8080/veve/login"
-						class="m-b-20"> 
-						<img style="width: 230px; height: 40px;"
-						src="<c:url value="#"/>"
-						alt="KAKAO">
-						카카오 로그인</a>
-				</div>				
-			</sec:authorize>
-		</div>
-	</div>
-
-
-
-</section>
+								&redirect_uri=http://localhost:8080/veve/login" 
+								style="margin-top: 20px">
+    <img style="width:100%;height:55px;padding-top: 5px" src="<c:url value="/resources/assets/images/kakao_login_medium_narrow.png"/>" alt="KAKAO">
+    </a>
+  </form>
+</div>

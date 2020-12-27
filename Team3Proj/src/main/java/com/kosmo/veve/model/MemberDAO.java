@@ -1,5 +1,6 @@
 package com.kosmo.veve.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import com.kosmo.veve.model.service.MemberService;
 
 
 
-@Repository
+@Repository  
 public class MemberDAO implements MemberService {
 
 	
@@ -75,6 +76,41 @@ public class MemberDAO implements MemberService {
 	public boolean idCheck(String userID) {
 		// TODO Auto-generated method stub
 		return (Integer)sqlMapper.selectOne("memberIDcheck",userID)==1?true:false;
+	}
+
+	@Override
+	public MemberFileDTO selectFile(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("memberFile",userID);
+	}
+
+	@Override
+	public int getFollowing(String userID) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlMapper.selectOne("memberFollowing",userID);
+	}
+
+	@Override
+	public int getFollower(String userID) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlMapper.selectOne("memberFollower",userID);
+	}
+
+	@Override
+	public List<MemberFollowDTO> getFollowingInfo(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectList("memberFollowingInfo", userID);
+	}
+
+	@Override
+	public List<MemberFollowDTO> getFollowerInfo(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectList("memberFollowerInfo", userID);
+	}
+	
+	///////////////////////////////////////////////////////////admin
+	public List<MemberDTO> selectList_admin() {
+		return sqlMapper.selectList("selectList_admin");
 	}
 
 }

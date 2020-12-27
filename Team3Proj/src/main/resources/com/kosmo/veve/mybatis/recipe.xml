@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="com.kosmo.veve.mybatis.recipe">
+	<!-- resultType을 Map으로 지정시 키값(대문자)은 컬럼명이고 밸류값는 컬럼에 저장된 값 -->
+	<resultMap type="recipeDTO" id="recipeDTOResult">
+		<!-- property:자바빈의 속성명 column:테이블의 컬럼(조회결과의 컬럼들 의미) -->
+		<result property="res_no" column="res_no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="postDate" column="postDate" />
+		<result property="userID" column="userID" />
+		<result property="visitCount" column="visitCount" />
+		<!-- <result property="notice_file_no" column="notice_file_no"/> <result 
+			property="f_path" column="f_path"/> <result property="f_name" column="f_name"/> -->
+	</resultMap>
+
+	<resultMap type="recipeFileDTO" id="recipeFileDTOResult">
+		<result property="notice_file_no" column="notice_file_no" />
+		<result property="f_path" column="f_path" />
+		<result property="f_name" column="f_name" />
+		<result property="userID" column="userID" />
+		<result property="res_no" column="res_no" />
+	</resultMap>
+
+	<delete id="recipeDeleteByNo" parameterType="java.util.Map">
+		DELETE rec_comment
+		WHERE res_no=#{res_no,jdbcType=NUMERIC}
+	</delete>
+	<insert id="recipeInsert" parameterType="java.util.Map">
+		INSERT INTO rec_board(res_no,title,content,userID)
+		VALUES(SEQ_REC_NO.NEXTVAL,#{title},#{content},#{userID})
+	</insert>
+
+	<insert id="recipeInsertFile" parameterType="java.util.Map">
+		INSERT INTO rec_file(notice_file_no,f_path,f_name,userID,res_no)
+		VALUES(SEQ_REC_FILE_NO.NEXTVAL,#{f_path},#{f_name},#{userID},SEQ_REC_NO.CURRVAL)
+
+	</insert>
+	<select id="recipeSelectList" parameterType="java.util.Map"
+		resultType="recipeDTO">
+		SELECT * FROM rec_board
+	</select>
+	<select id="recipeSelectListFile" parameterType="java.util.Map"
+		resultType="recipeFileDTO">
+		SELECT * FROM rec_file
+	</select>
+	<update id="recipeUpdate" parameterType="java.util.Map">
+		UPDATE rec_board SET title=#{title},content=#{content}
+		WHERE res_no = #{res_no,jdbcType=NUMERIC}
+	
+	</update>
+	<delete id="recipeDelete" parameterType="java.util.Map">
+      DELETE rec_board WHERE res_no=#{res_no,jdbcType=NUMERIC}
+   </delete>
+	<select id="recipeSelectOne" parameterType="java.util.Map" resultType="recipeDTO">
+		SELECT r.* FROM rec_board r JOIN vg_user v ON r.userID=v.userID
+		WHERE r.res_no=#{res_no,jdbcType=NUMERIC}	
+		
+	</select>
+</mapper>

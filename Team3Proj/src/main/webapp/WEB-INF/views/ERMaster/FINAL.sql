@@ -1,5 +1,5 @@
 
-/* Drop Tables 
+/* Drop Tables */
 
 DROP TABLE AUTH_SECURITY CASCADE CONSTRAINTS;
 DROP TABLE GALLARY_COMMENT CASCADE CONSTRAINTS;
@@ -25,10 +25,11 @@ DROP TABLE RES_REVIEW_SCRAP CASCADE CONSTRAINTS;
 DROP TABLE RES_VIEW CASCADE CONSTRAINTS;
 DROP TABLE RESTAURANT CASCADE CONSTRAINTS;
 DROP TABLE USER_DIET CASCADE CONSTRAINTS;
+DROP TABLE USER_DM CASCADE CONSTRAINTS;
 DROP TABLE USER_FILE CASCADE CONSTRAINTS;
 DROP TABLE USER_FOLLOW CASCADE CONSTRAINTS;
 DROP TABLE VG_USER CASCADE CONSTRAINTS;
-*/
+
 
 
 
@@ -96,7 +97,7 @@ CREATE TABLE GALLARY_SCRAP
 CREATE TABLE GAL_FILE
 (
 	notice_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	notice_no number NOT NULL,
@@ -131,7 +132,7 @@ CREATE TABLE NOTICE_COMMENT
 CREATE TABLE NOTICE_FILE
 (
 	notice_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	notice_no number NOT NULL,
@@ -154,6 +155,7 @@ CREATE TABLE REC_BOARD
 	postDate date DEFAULT SYSDATE,
 	visitCount number DEFAULT 0,
 	userID varchar2(20 char) NOT NULL,
+	vg_level nvarchar2(20) NOT NULL,
 	PRIMARY KEY (res_no)
 );
 
@@ -182,7 +184,7 @@ CREATE TABLE REC_DEC
 CREATE TABLE REC_FILE
 (
 	notice_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
 	res_no number NOT NULL,
@@ -219,11 +221,11 @@ CREATE TABLE RESTAURANT
 
 CREATE TABLE RES_FILE
 (
-	res_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	user_file_no number NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	res_no number NOT NULL,
-	PRIMARY KEY (res_file_no)
+	PRIMARY KEY (user_file_no)
 );
 
 
@@ -276,13 +278,24 @@ CREATE TABLE USER_DIET
 );
 
 
+CREATE TABLE USER_DM
+(
+	dm_no number NOT NULL,
+	toOtherUser nvarchar2(20) NOT NULL,
+	content nvarchar2(100) NOT NULL,
+	postDate date DEFAULT SYSDATE,
+	userID varchar2(20 char) NOT NULL,
+	PRIMARY KEY (dm_no)
+);
+
+
 CREATE TABLE USER_FILE
 (
-	res_file_no number NOT NULL,
-	f_path nvarchar2(100) NOT NULL,
+	user_file_no number NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
 	userID varchar2(20 char) NOT NULL,
-	PRIMARY KEY (res_file_no)
+	PRIMARY KEY (user_file_no)
 );
 
 
@@ -539,6 +552,12 @@ ALTER TABLE USER_DIET
 ;
 
 
+ALTER TABLE USER_DM
+	ADD FOREIGN KEY (userID)
+	REFERENCES VG_USER (userID)
+;
+
+
 ALTER TABLE USER_FILE
 	ADD FOREIGN KEY (userID)
 	REFERENCES VG_USER (userID)
@@ -588,6 +607,10 @@ NOCACHE
 NOCYCLE;
 
 CREATE SEQUENCE SEQ_REC_FILE_NO
+NOCACHE
+NOCYCLE;
+
+CREATE SEQUENCE SEQ_USER_DM_NO
 NOCACHE
 NOCYCLE;
 

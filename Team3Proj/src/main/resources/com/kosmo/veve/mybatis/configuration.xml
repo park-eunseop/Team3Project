@@ -11,11 +11,23 @@
 	<typeAliases>
 		<typeAlias alias="memberDTO"
 			type="com.kosmo.veve.model.MemberDTO" />
+		<typeAlias alias="memberFileDTO"
+			type="com.kosmo.veve.model.MemberFileDTO" />
+		<typeAlias alias="memberFollowDTO"
+			type="com.kosmo.veve.model.MemberFollowDTO" />
+		<typeAlias alias="RecipeDTO"
+			type="com.kosmo.veve.model.RecipeDTO" />
+		<typeAlias alias="RecipeFileDTO"
+			type="com.kosmo.veve.model.RecipeFileDTO"/>
+		<typeAlias alias="MemoCommentDTO"
+			type="com.kosmo.veve.model.MemoCommentDTO" />
 
 	</typeAliases>
 	
 	<mappers>
 		<mapper	resource="com/kosmo/veve/mybatis/member.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/recipe.xml"/>
+		<mapper resource="com/kosmo/veve/mybatis/comment.xml"/>
 		
 	</mappers>
 	

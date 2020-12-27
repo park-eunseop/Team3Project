@@ -30,7 +30,7 @@ public class RestController {
 		System.out.println(flag);
 		
 		
-		if(flag) {
+		if(flag) { 
 			obj.put("flag", "0");
 			obj.put("msg", "사용중인 아이디입니다.");
 		}
