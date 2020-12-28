@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+	<definition name="layouts" template="/WEB-INF/views/templates/Layouts.jsp">
+		<put-attribute name="top" value="/WEB-INF/views/templates/Top.jsp" />
+		<!-- 내용은 동적으로 변하기때문에 value에 ""지정 -->
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/templates/Footer.jsp" />
+	</definition>
+	<definition name="*.tiles" extends="layouts">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	<definition name="*/*.tiles" extends="layouts">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.tiles" extends="layouts">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+
+
+	<!--  admin page용 -->
+	<definition name="layouts2" template="/WEB-INF/views/tiles_admin/Layouts.jsp">
+		<put-attribute name="top" value="/WEB-INF/views/tiles_admin/Top.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles_admin/Footer.jsp" />
+	</definition>
+	<definition name="*.adminTiles" extends="layouts2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	<definition name="*/*.adminTiles" extends="layouts2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.adminTiles" extends="layouts2">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+
+</tiles-definitions>

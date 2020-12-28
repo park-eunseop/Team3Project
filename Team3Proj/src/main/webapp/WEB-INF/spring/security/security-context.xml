@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	<!-- 보안과 관련된 설정파일 -->
+	<security:http auto-config="true" use-expressions="true">
+		<!-- X-Frame-Options' to 'deny'관련 오류:씨큐리티 적용시 iframe사용 오류 -->
+		<security:headers>
+			<security:frame-options disabled="true"/>
+		</security:headers>
+		<!-- URL패턴에 따른 접근 권한 설정 :접근범위가 좁은 경우를 위쪽으로-->
+		<!-- 역할에 ROLE_를 미 지정시 자동으로 ROLE_가 추가된다 즉  USER는 ROLE_USER라는 역할을 의미-->
+		<security:intercept-url pattern="/**" access="hasAnyRole('USER','ADMIN')"/>
+		<security:intercept-url pattern="/**" access="permitAll"/>
+		<!-- 폼 기반 로그인 설정 -->
+		<!-- 
+		login-page ="사용자 정의 로그인 페이지 URL지정" .기본값은 /login(Security 프레임워크에서 제공하는 기본 로그인 폼 사용시)
+		default-target-url:로그인 한 후에 보여질 페이지 URL지정.
+		authentication-failure-url: 로그인 실패시 보여질 페이지 URL지정.
+						                           기본값은 /login?error.또한 ENABLED컬럼값이 0인 경우(아이디와 비번이 일치해도)에도 로그인 실패
+		login-processing-url:로그인 처리 URL지정.로그인 폼의 action속성값.기본값은 /loginProcess				          
+		username-parameter : 로그인 폼에 아이디 입력 필드에 지정한 name 속성값. 기본값은 "username"
+		password-parameter : 로그인 폼에 비밀번호 입력 필드에 지정한 name 속성값. 기본값은 "password" 
+		-->
+		<security:form-login
+			login-page="/Member/Auth/Login.do"
+			default-target-url="/Member/Auth/SecurityLogin.do"
+			authentication-failure-url="/Member/Auth/Login.do?NotLogin=error"
+			login-processing-url="/Member/Auth/LoginProcess.do"
+			username-parameter="userID"
+			password-parameter="password"
+		/>
+		<!-- 
+		logout-url :로그아웃 URL지정. 기본값은 "/logout" .		
+		delete-cookies : 쿠키 삭제 여부
+	    invalidate-session : 세션 제거 여부
+		 -->
+		<!-- 로그아웃 설정 -->
+		<security:logout
+			logout-url="/Member/Auth/Logout.do"
+			invalidate-session="true"
+			delete-cookies="true"
+		/>
+		<!-- 중복 로그인 방지용 -->
+		<!-- 
+		invalid-session-url : 세션이 끊어졌을때 이동 할 URL지정(중복으로 인해 끊어진 경우도 해당함).
+		max-sessions="1" : 최대 허용 가능 중복 세션 수.(중복 로그인 방지하기 위해 1로 설정)
+		expired-url : 만기된 세션 즉 세션 유효시간이 경과 한 경우 이동할 URL
+		-->
+		<security:session-management invalid-session-url="/Member/Auth/Login.do">
+			<security:concurrency-control max-sessions="1" expired-url="/Member/Auth/Login.do"/>
+		</security:session-management>
+		<!--  CSRF공격 막기 -->
+		<!-- 
+		disabled="false"로 설정하여 CSRF를 활성화시
+		1.모든 폼  입력에 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>추가
+		2.로그아웃을 POST방식으로 구현		
+		 -->
+		<security:csrf disabled="true"/>
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service 
+			data-source-ref="dataSourceByJNDI"
+			users-by-username-query="SELECT V.USERID USERNAME,V.PASSWORD PASSWORD,ENABLED FROM VG_USER V JOIN AUTH_SECURITY AU ON V.USERID=AU.USERID WHERE V.USERID=?"
+			authorities-by-username-query="SELECT V.USERID AS USERNAME,AUTHORITY FROM VG_USER V JOIN AUTH_SECURITY AU ON V.USERID=AU.USERID WHERE V.USERID=?"
+			
+			/>
+		</security:authentication-provider>	
+	</security:authentication-manager>
+
+
+</beans>

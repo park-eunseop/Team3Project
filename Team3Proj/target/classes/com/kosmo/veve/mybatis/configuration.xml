@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+	<properties resource="com/kosmo/veve/mybatis/dbconnect.properties"/>
+
+
+	<typeAliases>
+		<typeAlias alias="memberDTO"
+			type="com.kosmo.veve.model.MemberDTO" />
+		<typeAlias alias="memberFileDTO"
+			type="com.kosmo.veve.model.MemberFileDTO" />
+		<typeAlias alias="memberFollowDTO"
+			type="com.kosmo.veve.model.MemberFollowDTO" />
+		<typeAlias alias="RecipeDTO"
+			type="com.kosmo.veve.model.RecipeDTO" />
+		<typeAlias alias="RecipeFileDTO"
+			type="com.kosmo.veve.model.RecipeFileDTO"/>
+		<typeAlias alias="MemoCommentDTO"
+			type="com.kosmo.veve.model.MemoCommentDTO" />
+
+	</typeAliases>
+	
+	<mappers>
+		<mapper	resource="com/kosmo/veve/mybatis/member.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/recipe.xml"/>
+		<mapper resource="com/kosmo/veve/mybatis/comment.xml"/>
+		
+	</mappers>
+	
+	
+</configuration>
