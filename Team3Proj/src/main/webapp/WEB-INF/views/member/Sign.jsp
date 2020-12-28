@@ -407,8 +407,6 @@ function Dosignup(){
 
 
 
-
-
 <div class="bg-img">
 	<div class="wrapper wrapper--w960" style="padding-top: 200px;padding-bottom: 200px">
 		<div class="card card-2">

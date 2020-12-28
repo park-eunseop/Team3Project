@@ -103,29 +103,8 @@ $(function(){
 
 
 </script>
-
-
-
-
-
-<section id="home" class="home bg-black fix" style="height: 200px">
-	<div class="container">
-		<div class="row">
-			<div class="main_home text-center">
-				<div class="col-md-12">
-					<div class="hello">
-						<div class="slid_item">
-							<div class="home_text ">
-								<h1 class="text-yellow">My Page</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section>
+<div class="w3-row  w3-border ">
+  
 
 	<h2>회원 정보 수정 페이지 입니다.</h2>
 
@@ -318,7 +297,8 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</section>
+ 
+</div>
 <script>
 	function openCity(evt, cityName) {
 		var i, tabcontent, tablinks;

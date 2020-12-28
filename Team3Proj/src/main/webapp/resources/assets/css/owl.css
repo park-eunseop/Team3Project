@@ -1,0 +1,33 @@
+.card{
+    border: none;
+}
+.card-body{
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.owl-prev{left: 10px;}
+.owl-next{right: 10px;}
+.owl-prev, .owl-next{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.owl-prev:hover, .owl-prev:active, .owl-prev:focus,
+.owl-next:hover, .owl-next:active, .owl-next:focus{
+    outline:0;
+}
+.owl-prev i, .owl-next i {
+    font-size: 30px;
+    color: rgba(136, 136, 136, 0.2)
+}
+.owl-prev i:hover, .owl-next i:hover {
+    color: rgba(136, 136, 136, 0.4)
+}
+.owl-theme .owl-nav{
+    margin-top: 0;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover{
+    background-color: transparent;
+}

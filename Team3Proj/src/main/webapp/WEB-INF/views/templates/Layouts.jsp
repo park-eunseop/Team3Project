@@ -11,14 +11,21 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+      <!-- 부트스트랩 4.5.2 --> <!--부트스트랩4 튜토리얼 : https://www.w3schools.com/bootstrap4/default.asp-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!--아이콘(폰트어썸)-->
+  <script src="https://kit.fontawesome.com/01f3b3b8bd.js" crossorigin="anonymous"></script>
+  <!-- owl 캐러셀 -->
+  <link rel="stylesheet" href="<c:url value="/resources/assets/css/owl.carousel.min.css"/>">
+  <link rel="stylesheet" href="<c:url value="/resources/assets/css/owl.theme.default.min.css"/>">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="<c:url value="/resources/assets/css/style.css"/>"><!-- 템플릿 베이직 CSS -->
+  <link rel="stylesheet" href="<c:url value="/resources/assets/css/nav.css"/>"><!-- 네비게이션바 CSS-->
+  <link rel="stylesheet" href="<c:url value="/resources/assets/css/owl.css"/>"><!-- owl캐러셀 CSS-->
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
   <!-- datepicker js -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

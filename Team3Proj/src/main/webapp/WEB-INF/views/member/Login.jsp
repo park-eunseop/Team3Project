@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <style>
-* {
-  box-sizing: border-box;
-}
+
 
 .bg-img {
   /* The image used */
@@ -31,7 +29,7 @@
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+.input1 {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -39,13 +37,13 @@ input[type=text], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+.btn1:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Set a style for the submit button */
-.btn {
+.btn1 {
   background-color: #4CAF50;
   color: white;
   padding: 16px 20px;
@@ -68,12 +66,12 @@ input[type=text]:focus, input[type=password]:focus {
     <h1>Login</h1>
 
     <label for="userID"><b>ID</b></label>
-    <input type="text" placeholder="Enter ID" name="userID" required>
+    <input type="text" class="input1" placeholder="Enter ID" name="userID" required>
 
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input type="password" class="input1" placeholder="Enter Password" name="password" required>
 
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" class="btn1">Login</button>
     <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&
 								client_id=a4931dffe864df9872aec1187961a45d
 								&redirect_uri=http://localhost:8080/veve/login" 

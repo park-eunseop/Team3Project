@@ -112,112 +112,63 @@
 </nav>
  -->
 
- <nav class="navbar navbar-default bootsnav navbar-fixed no-background white">
-                <div class="container"> 
-                    <!-- 마이홈 버튼-->
-                    <div class="myhome-nav">
-                        <ul>
-                        	<sec:authorize access="isAnonymous()">
-                            <li class="myhome">
-                                <a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-myhome">
-                                    <i class="fas fa-user"></i>&nbsp;&nbsp;Login
-                                </a>
-                            </li>
-                            </sec:authorize>
-                            <sec:authorize access="isAuthenticated()">
-                            <li class="myhome">
-                            	<c:if test="${empty Admin}">
-                                <a href="<c:url value="/Member/MyHome.do"/>" class="btn btn-myhome">
-                                    <i class="fas fa-user"></i>&nbsp;&nbsp;MyHome
-                                </a>
-                                </c:if>
-                                <c:if test="${!empty Admin}">
-                                <a href="<c:url value="/Admin/Main.do"/>" class="btn btn-myhome">
-                                    <i class="fas fa-user"></i>&nbsp;&nbsp;Admin
-                                </a>
-                                </c:if>
-                                
-                            </li>
-                            </sec:authorize>
-                            
-                        </ul>
-                    </div>
 
+<!-- ----------- -->
 
-                    <!-- 통합검색 버튼-->
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        </ul>
-                    </div>
-                    
-                    
-                    <!-- 브랜드 로고 -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="<c:url value="/"/>">
-                            <img src="<c:url value="/resources/assets/images/로고7.png"/>" class="logo" alt="">
-                        </a>
-                    </div>
+    <!-- 네비게이션바 -->
+    <nav class="navbar">
+        <div class="content text-center">
+          <div class="logo">
+            <a href="<c:url value="/"/>"><img src="<c:url value="/resources/assets/images/로고.png"/>" alt=""></a>
+          </div>
+          <div class="logo2">
+            <a href="<c:url value="/"/>"><img src="<c:url value="/resources/assets/images/로고2.png"/>" alt=""></a>
+          </div>
 
-
-                    <!-- 메뉴바 -->
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<c:url value="/"/>">홈</a></li> 
-                            
-                            <li class="dropdown menu-large"><a href="#" class="dropdown-toggle" data-toggle="dropdown">채식서비스 <b class="caret"></b></a>          
-                                <ul class="dropdown-menu megamenu row">
-                                    <li><a href="<c:url value="/Member/MemberDiet.do"/>">베지식단 코칭</a></li>
-                                    <li><a href="<c:url value="/Board/Restaurant.do"/>">베지맛집 찾기</a></li>
-                                    
-                                </ul>
-                            </li>
-
-                            <li class="dropdown menu-large"><a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>          
-                                <ul class="dropdown-menu megamenu row">
-                                    <li><a href="<c:url value="/Board/Gallary.do"/>">스토리</a></li>
-                                    <li><a href="<c:url value="/recipe.do"/>">채식레시피 공유</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown menu-large"><a href="#" class="dropdown-toggle" data-toggle="dropdown">이벤트 <b class="caret"></b></a>          
-                                <ul class="dropdown-menu megamenu row">
-                                    <li><a href="#">진행중 이벤트</a></li>
-                                    <li><a href="#">종료된 이벤트</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown menu-large"><a href="#" class="dropdown-toggle" data-toggle="dropdown">고객센터 <b class="caret"></b></a>          
-                                <ul class="dropdown-menu megamenu row">
-                                    <li><a href="<c:url value="/Board/Notice.do"/>">공지사항</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                <i class="fas fa-times"></i>
                 </div>
-
-
-                <!-- 숨은 검색창 -->
-                <div class="top-search">
-                    <div class="container">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                        </div>
-                    </div>
-                </div>
-
-            </nav>
-
+                <li><a href="<c:url value="/"/>">홈</a></li>
+                <li><a href="#">채식서비스</a>
+                    <!--<ul class="submenu">
+                        <li><a href="#">베지식단 코칭</a></li>
+                        <li><a href="#">베지맛집 찾기</a></li>
+                        <li><a href="#">채식레시피 검색</a></li>
+                    </ul>-->
+                </li>
+                <li><a href="#">커뮤니티</a></li>
+                <li><a href="#">이벤트</a></li>
+                <li><a href="#">고객센터</a></li>
+            </ul>
 
 
 
 
-
+		 <sec:authorize access="isAnonymous()">
+          <div class="login">
+            <button><a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;Login</a></button>
+          </div>         
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+          	<c:if test="${empty Admin}">
+                 <button><a href="<c:url value="/Member/MyHome.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;MyHome</a></button>   
+            </c:if>
+            <c:if test="${!empty Admin}">
+                 <button><a href="<c:url value="/Admin/Main.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;Admin</a></button>   
+             </c:if>
+          </sec:authorize>
+          
+    
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+    
+          
+    
+        </div>
+      </nav>
+    <!-- 네비게이션바 끝 -->
 
 
 
