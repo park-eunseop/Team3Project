@@ -287,7 +287,7 @@
     
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16">갤러리 게시판</h2>
-        <a href="<c:url value="/Board/Gallary.do"/>" class="btn btn-success">갤러리
+        <a href="<c:url value="/Gallary/List.do"/>" class="btn btn-success">갤러리
 		작성 </a>
         
       </div>
