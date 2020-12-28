@@ -18,11 +18,15 @@
 					<table class="table table-bordered table-striped">
 						<tr>
 							<th class="col-md-2 text-center">번호</th>
-							<td>${recipe.res_no}</td>
+							<td>${recipe.rec_no}</td>
 						</tr>
 						<tr>
 							<th class="text-center">제목</th>
 							<td>${recipe.title}</td>
+						</tr>
+						<tr>
+							<th class="text-center">작성자</th>
+							<td>${recipe.vg_level}</td>
 						</tr>
 						<tr>
 							<th class="text-center">작성자</th>
@@ -37,7 +41,7 @@
 							<th class="text-center">사진</th>
 							<td><c:forEach var="file" items="${recipeFile}"
 									varStatus="var">
-									<c:if test="${recipe.res_no == file.res_no}">
+									<c:if test="${recipe.rec_no == file.rec_no}">
 										<img src="<c:url value='/upload/${file.f_name}'/>" />
 									</c:if>
 								</c:forEach></td>
@@ -61,7 +65,7 @@
 						style="width: 200px; margin-bottom: 10px">
 						<c:if test="${sessionScope.UserID == recipe.userID }">
 							<li><a
-								href="<c:url value='/RecipeBBS/edit.do?res_no=${recipe.res_no}'/>"
+								href="<c:url value='/RecipeBBS/edit.do?rec_no=${recipe.rec_no}'/>"
 								class="btn btn-success">수정</a></li>
 							<li><a href="javascript:isDelete();" class="btn btn-success">삭제</a></li>
 						</c:if>
@@ -81,11 +85,11 @@
 						<form class="form-inline" id="frm" method="post">
 							<!-- 씨큐리티 적용:csrf취약점 방어용 -->
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="hidden" name="res_no"
-								value="${recipe.res_no}" />
+								value="${_csrf.token}" /> <input type="hidden" name="rec_no"
+								value="${recipe.rec_no}" />
 
 							<!-- 수정 및 삭제용 파라미터 -->
-							<input type="hidden" name="notice_com_no" /> <input
+							<input type="hidden" name="rec_com_no" /> <input
 								placeholder="댓글을 입력하세요" id="title" class="form-control"
 								type="text" size="50" name="content" /> <input
 								class="btn btn-success" id="submit" type="button" value="등록" />
@@ -138,7 +142,7 @@
 		function showComments(){
 			$.ajax({
 				url:"<c:url value='/RecipeBBS/Comment/list.do'/>",
-				data:{"res_no":"${recipe.res_no}","_csrf":"${_csrf.token}"},
+				data:{"rec_no":"${recipe.rec_no}","_csrf":"${_csrf.token}"},
 				dataType:'json',
 				type:'post',
 				success:showComments_,
@@ -161,7 +165,7 @@
 			$.each(data,function(index,element){
 				comments+="<tr><td>"+element['USERID']+'</td>';
 				if("${sessionScope.UserID}" == element['USERID'])//씨큐리티 미 사용시
-					comments+="<td class='text-left'><span class='commentEdit' title='"+element['NOTICE_COM_NO']+"' style='cursor:pointer'>"+element['CONTENT']+'</span></td>';
+					comments+="<td class='text-left'><span class='commentEdit' title='"+element['REC_COM_NO']+"' style='cursor:pointer'>"+element['CONTENT']+'</span></td>';
 				else 
 					comments+="<td class='text-left'>"+element['CONTENT']+"</td>";
 				
@@ -169,7 +173,7 @@
 				comments+="<td>"+element['POSTDATE']+"</td>";
 				comments+="<td>";
 				if("${sessionScope.UserID}" == element['USERID'])
-					comments+="<span class='commentDelete' title='"+element['NOTICE_COM_NO']+"' style='cursor:pointer'>삭제</span></td>";
+					comments+="<span class='commentDelete' title='"+element['REC_COM_NO']+"' style='cursor:pointer'>삭제</span></td>";
 				else
 					comments+="<span style='color:gray;font-size:.7em'>삭제불가</span>";
 				comments+="</td></tr>";
@@ -182,19 +186,19 @@
 			//반드시 showComments_() 함수 안에
 			//코멘트 제목 클릭시 코멘트 수정처리를 위한 UI변경부분]	
 			$(".commentEdit").click(function(){
-				console.log('클릭한 댓글의 키값(NOTICE_COM_NO):',$(this).attr('title'));
+				console.log('클릭한 댓글의 키값(REC_COM_NO):',$(this).attr('title'));
 				//클릭한 제목으로 텍스트박스 값 설정
 				$('#title').val($(this).html());
 				//버튼은 등록에서 수정으로
 				$('#submit').val('수정');
 				//form의 hidden속성중 name="cno"값 설정
-				$('input[name=notice_com_no]').val($(this).attr('title'));
+				$('input[name=rec_com_no]').val($(this).attr('title'));
 			});
 			//코멘트 삭제 처리]
 			$(".commentDelete").click(function(){
 				$.ajax({
 					url:"<c:url value='/RecipeBBS/Comment/delete.do'/>",
-					data:{"notice_com_no":$(this).attr('title'),"_csrf":"${_csrf.token}"},
+					data:{"rec_com_no":$(this).attr('title'),"_csrf":"${_csrf.token}"},
 					dataType:'text',
 					type:'post',
 					success:function(){showComments();}
@@ -208,7 +212,7 @@
 		}////////////////////	
 		function isDelete(){
 			if(confirm("정말로 삭제 하시겠습니까?")){
-				location.replace("<c:url value='/RecipeBBS/delete.do?res_no=${recipe.res_no}'/>");
+				location.replace("<c:url value='/RecipeBBS/delete.do?rec_no=${recipe.rec_no}'/>");
 			}
 		}////////////isDelete	
 	</script>

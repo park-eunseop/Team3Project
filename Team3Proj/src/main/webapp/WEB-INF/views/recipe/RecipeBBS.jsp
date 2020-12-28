@@ -28,45 +28,6 @@ button {
 		$('#myCarousel2').carousel();
 	});
 </script>
-
-<div class="row">
-	<div class="col-md-12">
-		<table
-			class="table table-bordered table-hover table-condensed text-center">
-			<tr>
-				<th class="col-md-1 text-center">번호</th>
-				<th class="text-center">제목</th>
-				<th class="col-md-1 text-center">작성자</th>
-				<th class="col-md-2 text-center">작성일</th>
-			</tr>
-			<c:if test="${empty list }" var="isEmpty">
-				<tr>
-					<td colspan="4">등록된 게시물이 없어요</td>
-				</tr>
-			</c:if>
-			<c:if test="${!isEmpty}">
-				<c:forEach var="item" items="${list }" varStatus="loop">
-					<tr>
-						<td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>
-						<td class="text-left"><a
-							href="<c:url value='/OneMemo/BBS/View.do?no=${item.no}&nowPage='/><c:out value='${param.nowPage}' default='1'/>">${item.title }</a>
-							<span class="badge">${item.commentCount}</span></td>
-						<td>${item.name}</td>
-						<td>${item.postDate}</td>
-					</tr>
-				</c:forEach>
-			</c:if>
-		</table>
-	</div>
-	<div class="row">
-		<div class="col-md-12 text-right">
-			<a href="<c:url value="/RecipeBBS/write.do"/>"
-				class="btn btn-success">등록</a>
-		</div>
-	</div>
-</div>
-
-
 <section class="hotel_list section_padding single_page_hotel_list">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -93,15 +54,15 @@ button {
 						</ol>
 						<div class="carousel-inner" role="listbox">
 							<div class="item active">
-								<img src="<c:url value="/resources/assets/images/김.jpg"/>">
+								<img src="<c:url value="/resources/assets/images/레시피1.jpg"/>">
 							</div>
 							<div class="item">
 								<img
-									src="<c:url value="/resources/assets/images/recipe03.jpg"/>">
+									src="<c:url value="/resources/assets/images/레시피2.JPG"/>">
 							</div>
 							<div class="item">
 								<img
-									src="<c:url value="/resources/assets/images/recipe02.jpg"/>">
+									src="<c:url value="/resources/assets/images/레시피3.jpg"/>">
 							</div>
 						</div>
 						<a class="left carousel-control" href="#myCarousel" role="button"
@@ -134,19 +95,24 @@ button {
 
 			</div>
 		</div>
+		<c:if test="${empty boardList }" var="isEmpty">
+				<tr>
+					<td colspan="4">등록된 게시물이 없어요</td>
+				</tr>
+			</c:if>
 		<c:forEach var="item" items="${boardList}" varStatus="var">
 			<div class="col-lg-4 col-sm-6">
 				<div class="single_ihotel_list" style="background-color: #fffff0;">
 					<c:forEach var="file" items="${fileList}" varStatus="var">
-						<c:if test="${item.res_no == file.res_no}">
-							<li><img src="<c:url value='/upload/${file.f_name}'/>" /></li>
+						<c:if test="${item.rec_no == file.rec_no}">
+							<img src="<c:url value='/upload/${file.f_name}'/>" />
 						</c:if>
 					</c:forEach>
 
 					<div class="hotel_text_iner">
 						<h3>
 							<a
-								href="<c:url value='/RecipeBBS/view.do?res_no=${item.res_no}'/>">${item.title}</a>
+								href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.title}</a>
 						</h3>
 						<div class="place_review">
 							<a href="#"><i class="fas fa-star"></i></a> <a href="#"><i
@@ -155,7 +121,7 @@ button {
 								class="fas fa-star"></i></a> <span>(210 review)</span>
 						</div>
 						<a
-							href="<c:url value='/RecipeBBS/view.do?res_no=${item.res_no}'/>">${item.content }</a>
+							href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.content }</a>
 						<p></p>
 						<p>ID: ${item.userID }</p>
 						<p>Date: ${item.postDate }</p>

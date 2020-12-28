@@ -16,5 +16,7 @@ public interface RecipeService {
 	int insert(Map map);
 	int insertFile(Map map);
 	int delete(Map map);
+	int deleteFile(Map map);
 	int update(Map map);
+	int updateFile(Map map);
 }

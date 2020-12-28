@@ -33,7 +33,7 @@ public class CommentController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		map.put("userID", auth.getName());
 		commentService.insert(map);
-		return map.get("res_no").toString();
+		return map.get("rec_no").toString();
 	}/////////////////
 	
 	@ResponseBody
@@ -50,14 +50,14 @@ public class CommentController {
 	@RequestMapping(value="edit.do",produces = "text/html; charset=UTF-8")
 	public String update(@RequestParam Map map) {
 		commentService.update(map);
-		return String.format("%s : %s",map.get("res_no").toString(),map.get("notice_com_no").toString());
+		return String.format("%s : %s",map.get("rec_no").toString(),map.get("rec_com_no").toString());
 		
 	}
 	@ResponseBody
 	@RequestMapping(value="delete.do",produces = "text/html; charset=UTF-8")
 	public String delete(@RequestParam Map map) {
 		commentService.delete(map);
-		return String.format("%s",map.get("notice_com_no").toString());
+		return String.format("%s",map.get("rec_com_no").toString());
 		
 	}
 	

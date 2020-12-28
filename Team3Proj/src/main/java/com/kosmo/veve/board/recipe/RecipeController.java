@@ -160,7 +160,7 @@ public class RecipeController {
 				 req.setAttribute("recipe", recipe);
 			     req.setAttribute("recipeFile",recipeFile);
 				//수정 폼으로 이동]
-				return "/recipe/RecipeEdit.tiles";
+				return "recipe/RecipeEdit.tiles";
 			}
 			//수정처리후 상세보기로 이동
 			//서비스 호출
@@ -175,5 +175,13 @@ public class RecipeController {
 			recipeService.delete(map);
 			//뷰정보 반환]
 			return "forward:/recipe.do";
+		}////////////
+		
+		@RequestMapping("/RecipeBBS/deleteFile.do")
+		public String deleteFile(@RequestParam Map map) {
+			//서비스 호출
+			recipeService.deleteFile(map);
+			//뷰정보 반환]
+			return "forward:/RecipeBBS/write.do";
 		}////////////
 }

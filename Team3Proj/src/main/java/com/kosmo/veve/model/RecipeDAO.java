@@ -59,12 +59,24 @@ public class RecipeDAO  implements RecipeService{
 		return sqlMapper.update("recipeUpdate",map);
 	}
 	@Override
+	public int updateFile(Map map) {
+		
+		return sqlMapper.update("recipeUpdateFile",map);
+	}
+	@Override
 	   public int delete(Map map) {
 		
 		sqlMapper.delete("recipeDeleteByNo",map);
 		
 	      return sqlMapper.delete("recipeDelete", map);
 	   }
+	
+	@Override
+	   public int deleteFile(Map map) {
+		
+	      return sqlMapper.delete("recipeDeleteFile", map);
+	   }
+
 
 
 

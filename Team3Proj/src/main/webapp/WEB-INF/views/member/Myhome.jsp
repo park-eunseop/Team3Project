@@ -293,7 +293,7 @@
       </div>
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16">레시피 게시판</h2>
-        <a href="<c:url value="/Board/Recipe.do"/>" class="btn btn-success">레시피
+        <a href="<c:url value="/recipe.do"/>" class="btn btn-success">레시피
 				작성</a>
         
       </div>

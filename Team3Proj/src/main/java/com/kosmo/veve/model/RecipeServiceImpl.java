@@ -58,9 +58,20 @@ public class RecipeServiceImpl implements  RecipeService{
 		return dao.update(map);
 	}
 	@Override
+	public int updateFile(Map map) {
+		
+		return dao.updateFile(map);
+	}
+	@Override
 	public int delete(Map map) {
 		
 		return dao.delete(map);
+	}
+	
+	@Override
+	public int deleteFile(Map map) {
+		
+		return dao.deleteFile(map);
 	}
 
 	
