@@ -200,7 +200,7 @@ function Dosignup(){
 	var level = $("#selectlevel option:selected").val();
 	var file = $('#inputfile').val();
 	var addr = $('#inputaddr').val();
-	var self = $('#textself').val();
+	var self = $('#summernote').val();
 	console.log('id: ',id);
 	console.log('pwd: ',pwd);
 	console.log('name: ',name);
@@ -329,7 +329,7 @@ function Dosignup(){
 	}
 	if(self.length==0){		
 		$('#spanself').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#textself').focus();
+		$('#summernote').summernote('focus');
 		return false;
 	}
 	else if(self.length!=0){		
@@ -518,18 +518,21 @@ function Dosignup(){
 						</div>
 					</div>
 					
+					
+					
 					<div class="form-group" style="color: black">
 						<label for="id" class="col-sm-3  control-label">자기소개</label>
-						<div class="col-sm-4">
-							<textarea id="textself" cols="30" rows="10" class="input--style-2"
-							placeholder="let me know you!" name="selfintro"></textarea>
+						<div class="col-sm-7">
+							<textarea id="summernote" name="editordata"></textarea>
 							<span id="spanself" style="color:red"></span>
 						</div>
 					</div>
-					
+
+
+
 					<div class="form-group" style="color: black">
 						<label for="id" class="col-sm-3  control-label">사진</label>
-						<div class="col-sm-4">
+						<div class="col-sm-7">
 							<input id="inputfile" class="input--style-2" type="file"
 							 name="upload">
 							<span id="spanfile" style="color:red"></span>
@@ -551,3 +554,27 @@ function Dosignup(){
 		</div>
 	</div>
 </div>
+
+<!-- summernote -->
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#summernote').summernote({
+      placeholder: '자기소개를 입력하세요',
+   	  toolbar: [
+   		    // [groupName, [list of button]]
+   		    ['style', ['bold', 'italic']],
+   		    ['fontsize', ['fontsize']],
+   		    ['color', ['color']],
+   		    ['para', ['paragraph']]
+ 		  ]
+	});	
+});
+</script>
