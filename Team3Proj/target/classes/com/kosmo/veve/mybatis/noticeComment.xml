@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="com.kosmo.veve.mybatis.noticecomment">
+	<!-- 
+	resultType을 Map으로 지정시
+	키값(대문자)은 컬럼명이고
+	밸류값는 컬럼에 저장된 값
+	 -->
+	 
+	 <delete id="commentNoDeleteByNo" parameterType="java.util.Map">
+	 	DELETE NOTICE_COMMENT WHERE notice_no=#{notice_no}
+	 </delete>
+	 <insert id="commentNoInsert" parameterType="java.util.Map">
+	 	INSERT INTO NOTICE_COMMENT
+	 	VALUES(SEQ_NOC_COM_NO.NEXTVAL,#{content},SYSDATE,#{userID},#{notice_no})
+	 </insert>
+	 
+	 <select id="commnetNoSelectList" parameterType="java.util.Map" resultType="java.util.Map">
+	 	SELECT m.*,name 
+	 	FROM NOTICE_COMMENT m JOIN member me ON m.userID=me.userID
+	 	WHERE m.notice_no= #{notice_no}
+	 	ORDER BY notice_com_no DESC	 
+	 </select>
+	 <update id="commentNoUpdate" parameterType="java.util.Map">
+	 	UPDATE NOTICE_COMMENT SET content = #{content} WHERE notice_com_no=#{notice_com_no}	 
+	 </update>
+	 <delete id="commentNoDelete" parameterType="java.util.Map">
+	 	DELETE NOTICE_COMMENT WHERE notice_com_no = #{notice_com_no}
+	 </delete>
+</mapper>
