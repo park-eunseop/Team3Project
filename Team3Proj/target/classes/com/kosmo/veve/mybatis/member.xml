@@ -19,7 +19,7 @@
 	</select>
 	
 	<insert id="memberInsert" parameterType="java.util.Map">
-		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{selfintro})
+		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{editordata})
 	</insert>
 	<insert id="authInsert" parameterType="java.util.Map">
 		INSERT INTO AUTH_SECURITY(auth_no,userID,enabled,authority) VALUES(SEQ_AUTH_NO.NEXTVAL,#{userID},DEFAULT,DEFAULT)

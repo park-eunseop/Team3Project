@@ -90,7 +90,7 @@ public class SignController {
 		System.out.println(map.get("gender"));
 		System.out.println(map.get("vg_level"));
 		System.out.println(map.get("addr"));
-		System.out.println(map.get("selfintro"));
+		System.out.println(map.get("editordata"));
 		System.out.println(map.get("f_path"));
 		System.out.println(map.get("f_name"));
 
