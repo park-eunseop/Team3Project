@@ -94,7 +94,7 @@ public class GallaryController {
 		String path=req.getContextPath();
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("fileList",fileList);
-		return "gallary/List"; 
+		return "gallary/List.tiles"; 
 	}
 	
 	@RequestMapping(value="/Gallary/GallaryWrite.do",method = RequestMethod.GET) 

@@ -104,6 +104,12 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotalMember() {
 		return dao.getTotalMember();
 	}
+
+	@Override
+	public int kakoinsert(Map map) {
+		// TODO Auto-generated method stub
+		return dao.kakoinsert(map);
+	}
 	
 	
 	

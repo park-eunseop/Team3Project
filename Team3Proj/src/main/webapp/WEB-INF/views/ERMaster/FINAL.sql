@@ -40,7 +40,7 @@ CREATE TABLE AUTH_SECURITY
 	auth_no number NOT NULL,
 	authority nvarchar2(10) DEFAULT '''USER''' NOT NULL,
 	enabled number DEFAULT 1 NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (auth_no)
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE GALLARY_BOARD
 	content nvarchar2(2000) NOT NULL,
 	postDate date DEFAULT SYSDATE,
 	visitCount number DEFAULT 0,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (gallary_no)
 );
 
@@ -63,7 +63,7 @@ CREATE TABLE GALLARY_COMMENT
 	content nvarchar2(100) NOT NULL,
 	parent number,
 	postDate date DEFAULT SYSDATE,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	gallary_no number NOT NULL,
 	PRIMARY KEY (gallary_com_no)
 );
@@ -72,7 +72,7 @@ CREATE TABLE GALLARY_COMMENT
 CREATE TABLE GALLARY_DEC
 (
 	content nvarchar2(100),
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	gallary_no number NOT NULL,
 	PRIMARY KEY (userID, gallary_no)
 );
@@ -81,14 +81,14 @@ CREATE TABLE GALLARY_DEC
 CREATE TABLE GALLARY_LIKE
 (
 	gallary_no number NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (gallary_no, userID)
 );
 
 
 CREATE TABLE GALLARY_SCRAP
 (
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	gallary_no number NOT NULL,
 	PRIMARY KEY (userID, gallary_no)
 );
@@ -99,7 +99,7 @@ CREATE TABLE GAL_FILE
 	gallary_file_no number NOT NULL,
 	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	gallary_no number NOT NULL,
 	PRIMARY KEY (gallary_file_no)
 );
@@ -112,7 +112,7 @@ CREATE TABLE NOTICE_BOARD
 	content nvarchar2(2000) NOT NULL,
 	postDate date DEFAULT SYSDATE,
 	visitCount number DEFAULT 0,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (notice_no)
 );
 
@@ -123,7 +123,7 @@ CREATE TABLE NOTICE_COMMENT
 	content nvarchar2(100) NOT NULL,
 	parent number,
 	postDate date DEFAULT SYSDATE,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	notice_no number NOT NULL,
 	PRIMARY KEY (notice_com_no)
 );
@@ -134,7 +134,7 @@ CREATE TABLE NOTICE_FILE
 	notice_file_no number NOT NULL,
 	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	notice_no number NOT NULL,
 	PRIMARY KEY (notice_file_no)
 );
@@ -154,7 +154,7 @@ CREATE TABLE REC_BOARD
 	content nvarchar2(2000) NOT NULL,
 	postDate date DEFAULT SYSDATE,
 	visitCount number DEFAULT 0,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	vg_level nvarchar2(20) NOT NULL,
 	PRIMARY KEY (rec_no)
 );
@@ -166,7 +166,7 @@ CREATE TABLE REC_COMMENT
 	content nvarchar2(100) NOT NULL,
 	parent number,
 	postDate date DEFAULT SYSDATE,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	rec_no nvarchar2(50) NOT NULL,
 	PRIMARY KEY (rec_com_no)
 );
@@ -175,7 +175,7 @@ CREATE TABLE REC_COMMENT
 CREATE TABLE REC_DEC
 (
 	content nvarchar2(100),
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	rec_no nvarchar2(50) NOT NULL,
 	PRIMARY KEY (userID, rec_no)
 );
@@ -186,7 +186,7 @@ CREATE TABLE REC_FILE
 	rec_file_no number NOT NULL,
 	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	rec_no nvarchar2(50) NOT NULL,
 	PRIMARY KEY (rec_file_no)
 );
@@ -194,7 +194,7 @@ CREATE TABLE REC_FILE
 
 CREATE TABLE REC_LIKE
 (
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	rec_no nvarchar2(50) NOT NULL,
 	PRIMARY KEY (userID, rec_no)
 );
@@ -202,7 +202,7 @@ CREATE TABLE REC_LIKE
 
 CREATE TABLE REC_SCRAP
 (
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	rec_no nvarchar2(50) NOT NULL,
 	PRIMARY KEY (userID, rec_no)
 );
@@ -233,7 +233,7 @@ CREATE TABLE RES_REVIEW_DEC
 (
 	content nvarchar2(50) NOT NULL,
 	review_no number NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (review_no, userID)
 );
 
@@ -241,7 +241,7 @@ CREATE TABLE RES_REVIEW_DEC
 CREATE TABLE RES_REVIEW_LIKE
 (
 	review_no number NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (review_no, userID)
 );
 
@@ -249,7 +249,7 @@ CREATE TABLE RES_REVIEW_LIKE
 CREATE TABLE RES_REVIEW_SCRAP
 (
 	review_no number NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (review_no, userID)
 );
 
@@ -261,7 +261,7 @@ CREATE TABLE RES_VIEW
 	title nvarchar2(50) NOT NULL,
 	content nvarchar2(100) NOT NULL,
 	postDate date DEFAULT SYSDATE,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	res_no number NOT NULL,
 	PRIMARY KEY (review_no)
 );
@@ -273,7 +273,7 @@ CREATE TABLE USER_DIET
 	category nvarchar2(20) DEFAULT 'DINNER',
 	eatDate date DEFAULT SYSDATE,
 	kal nvarchar2(10),
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (diet_no)
 );
 
@@ -284,7 +284,7 @@ CREATE TABLE USER_DM
 	toOtherUser nvarchar2(20) NOT NULL,
 	content nvarchar2(100) NOT NULL,
 	postDate date DEFAULT SYSDATE,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (dm_no)
 );
 
@@ -294,7 +294,7 @@ CREATE TABLE USER_FILE
 	user_file_no number NOT NULL,
 	f_path nvarchar2(300) NOT NULL,
 	f_name nvarchar2(100) NOT NULL,
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (user_file_no)
 );
 
@@ -302,13 +302,13 @@ CREATE TABLE USER_FILE
 CREATE TABLE USER_FOLLOW
 (
 	otherID nvarchar2(20) NOT NULL,
-	userID varchar2(20 char) NOT NULL
+	userID varchar2(50 char) NOT NULL
 );
 
 
 CREATE TABLE VG_USER
 (
-	userID varchar2(20 char) NOT NULL,
+	userID varchar2(50 char) NOT NULL,
 	password nvarchar2(20) NOT NULL,
 	nickname nvarchar2(10) NOT NULL,
 	gender nvarchar2(10) DEFAULT 'MALE' NOT NULL,
@@ -609,51 +609,6 @@ ALTER TABLE USER_FOLLOW
 	REFERENCES VG_USER (userID)
 	ON DELETE CASCADE
 ;
-
-/* SEQUENCE */
-CREATE SEQUENCE SEQ_DIET_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_AUTH_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_USER_FILE_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_GAL_FILE_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_GALLARY_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_GAL_COM_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_USERID
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_REC_COM_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_REC_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_REC_FILE_NO
-NOCACHE
-NOCYCLE;
-
-CREATE SEQUENCE SEQ_USER_DM_NO
-NOCACHE
-NOCYCLE;
 
 
 

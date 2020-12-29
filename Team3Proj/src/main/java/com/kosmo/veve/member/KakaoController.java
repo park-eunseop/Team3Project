@@ -1,6 +1,7 @@
 package com.kosmo.veve.member;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -10,12 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kosmo.veve.model.service.MemberService;
+
 @Controller
 public class KakaoController {
 	
 	@Resource(name="kakaoService")
     private KakaoService kakaoService;
 	
+	@Resource(name = "memberService")
+	private MemberService service;
 	
 	@RequestMapping("/login")
 	public String login(@RequestParam("code") String code, HttpSession session,Model model) {
@@ -30,12 +35,47 @@ public class KakaoController {
 	    
 	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    if (userInfo.get("email") != null) {
-	        session.setAttribute("userId", userInfo.get("email"));
+	        session.setAttribute("KakaoUserId", userInfo.get("email"));
+	        session.setAttribute("UserID", (String)userInfo.get("email"));//아이디
+	        session.setAttribute("KakaoUserImg", userInfo.get("profile_image"));
 	        //session.setAttribute("access_Token", access_Token);
 	    }
-	    model.addAttribute("userinfo", userInfo);
+	    //model.addAttribute("userinfo", userInfo);
 	    System.out.println("카카오톡 로그인 성공!");
-	    return "member/Myhome.tiles";
+	    //카카오에서 뽑아온 정보
+	    String userID = (String)userInfo.get("email");
+	    String nickname = (String)userInfo.get("nickname");
+	    String gender = (String)userInfo.get("gender");
+	    String age = (String)userInfo.get("age_range");
+	    age = age.split("~")[0];    
+	    
+	    Map map = new HashMap();
+	    map.put("userID",userID);
+	    map.put("password","1"); //pw 임의 값
+	    map.put("name",nickname); //name 임의값
+	    map.put("nickname",nickname);
+	    map.put("gender",gender);
+	    map.put("age",age);
+	    map.put("vg_level","Vegun"); //레벨 임의값
+	    map.put("addr","서울시"); //주소 임의값 -> 임의값은 추후 입력
+	    map.put("selfintro","Hi"); //자기소개 임의값 -> 임의값은 추후 입력
+	    
+	    boolean flag = service.idCheck(userID);
+	    System.out.println(flag); //true면 있는 아이디, false면 없는아이디
+	    if(flag) {
+	    	//회원가입 필요없어
+	    	return "forward:/Member/MyHome.do";
+	    }
+	    else{
+	    	//회원가입해야해
+	    	int temp = service.kakoinsert(map);
+	    	System.out.println("kakaoinsert temp:"+temp);
+	    	return "forward:/Member/MyHome.do";
+	    }
+	    
+	    
+	    
+	    
 	}
 
 	
@@ -45,7 +85,9 @@ public class KakaoController {
 		System.out.println(session.getAttribute("access_Token"));
 		kakaoService.kakaoLogout((String)session.getAttribute("access_Token"));
 		session.removeAttribute("access_Token");
-	    session.removeAttribute("userId");
+	    session.removeAttribute("KakaoUserId");
+	    session.removeAttribute("KakaoUserImg");
+	    session.removeAttribute("UserID");
 	    System.out.println("카카오톡 로그아웃!");
 	    return "home.tiles";
 	}

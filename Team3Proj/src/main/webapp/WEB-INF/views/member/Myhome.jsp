@@ -226,7 +226,12 @@
     
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
+          <c:if test="${empty KakaoUserId}" var="isNotKakaologin">
           <img src='<c:url value="/upload/${filedto.f_name}"/>' style="width:100%" alt="Avatar">
+          </c:if>
+          <c:if test="${not isNotKakaologin }">
+          <img src='${KakaoUserImg}' style="width:100%" alt="KaKaoAvatar">
+          </c:if>
           <div class="w3-display-bottomleft w3-container w3-text-black">
             <h2>Jane Doe</h2>
           </div>
@@ -239,8 +244,14 @@
           <div>
 				<a href="<c:url value="/Member/Mypage.do"/>"
 					class="btn btn-success btn-sm">개인정보 수정 </a>
+				<c:if test="${empty KakaoUserId}" var="isNotKakaologin">	
 				<a href="javascript:logout()"
 					class="btn btn-success btn-sm">로그아웃 </a>
+				</c:if>
+				<c:if test="${not isNotKakaologin }">
+				<a href="<c:url value="/logout"/>" class="btn btn-success btn-sm">로그아웃</a>	
+				</c:if>
+				
 			</div>
           <hr>
 

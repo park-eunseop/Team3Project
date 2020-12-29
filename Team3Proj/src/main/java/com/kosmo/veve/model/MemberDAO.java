@@ -118,6 +118,20 @@ public class MemberDAO implements MemberService {
 	public int getTotalMember() {
 		return sqlMapper.selectOne("getTotalMember");
 	}
+
+	@Override
+	public int kakoinsert(Map map) {
+		// TODO Auto-generated method stub
+				System.out.println("here! insert");
+				int user = sqlMapper.insert("memberInsert",map); //member insert
+				System.out.println("kako user: "+user);
+				int auth =0;
+				if(user == 1) {				
+					auth = sqlMapper.insert("authInsert", map);
+					System.out.println("auth: "+auth); //auth insert
+				}
+				return auth;
+	}
 	
 	
 

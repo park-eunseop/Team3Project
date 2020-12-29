@@ -144,7 +144,7 @@
 
 
 
-
+		 <c:if test="${empty KakaoUserId}" var="isNotKakaologin">
 		 <sec:authorize access="isAnonymous()">
           <div class="login">
             <button><a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;Login</a></button>
@@ -158,7 +158,10 @@
                  <button><a href="<c:url value="/Admin/Main.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;Admin</a></button>   
              </c:if>
           </sec:authorize>
-          
+          </c:if>
+          <c:if test="${not isNotKakaologin }">
+          	<button><a href="<c:url value="/Member/MyHome.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;MyHome</a></button>  
+          </c:if>
     
           <div class="icon menu-btn">
             <i class="fas fa-bars"></i>
