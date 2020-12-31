@@ -58,7 +58,7 @@ public class KakaoController {
 	    map.put("age",age);
 	    map.put("vg_level","Vegun"); //레벨 임의값
 	    map.put("addr","서울시"); //주소 임의값 -> 임의값은 추후 입력
-	    map.put("selfintro","Hi"); //자기소개 임의값 -> 임의값은 추후 입력
+	    map.put("editordata","Hi"); //자기소개 임의값 -> 임의값은 추후 입력
 	    
 	    boolean flag = service.idCheck(userID);
 	    System.out.println(flag); //true면 있는 아이디, false면 없는아이디
@@ -72,8 +72,6 @@ public class KakaoController {
 	    	System.out.println("kakaoinsert temp:"+temp);
 	    	return "forward:/Member/MyHome.do";
 	    }
-	    
-	    
 	    
 	    
 	}

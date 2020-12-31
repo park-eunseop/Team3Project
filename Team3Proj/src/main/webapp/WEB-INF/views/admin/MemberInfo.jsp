@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 로그아웃 시작 -->
 <script>
@@ -10,45 +11,15 @@
 		$('#logoutForm').submit();
 	}
 </script>
-<form id="logoutForm" method="post"
-	action="<c:url value="/Member/Auth/Logout.do"/>">
-	<input type="hidden" name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
+<form id="logoutForm" method="post" action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 <!-- 로그아웃 끝 -->
 
-<!-- 페이징 -->
+<!-- 정렬 -->
 <script>
-	$(function(){
-		//POST method: json으로 하나의 데이터를 받아서 받은 결과 그대로 json으로 응답 보내기
-		$('#btn1').on('click',function(){
-			//var data = $('#form1').serialize();//쿼리스트링으로 연결된다.//name=1&age=2&addr=3
-			var data =  $('#form1').serializeArray();//[{…}, {…}, {…}] 형태
-			/*
-			[{name: "name", value: "1"},
-			{name: "age", value: "2"},
-			{name: "addr", value: "3"}]
-			폼 하위요소의 속성명이 키가 되고, 파라미터 명이나 사용자가 입력한 값이 속성명에 따른 벨류값이 돤다.
-			*/
-			console.log(data);
-			obj = {};
-			$.each(data,function(index,element){
-				obj[element.name]=element.value;
-			});
-			console.log(obj);
-			$.ajax({
-				type:'post',
-				url:"<c:url value='/json/users/one'/>",
-				dataType:'json',
-				data:JSON.stringify(obj),
-				contentType:'application/json',
-				success:function(data){
-					console.log('서버로 부터 받은 데이터: ',data);
-				}
-			});
-			
-		});
-	});//로드시 실행되는 function
+	var isAscending = true;
+	console.log(${isAscending})
 </script>
 
 <nav class="navbar navbar-default navbar-fixed">
@@ -81,23 +52,70 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
-						<h4>전체 회원</h4>
-						<p class="category">
-						테이블을 클릭하여 유저 정보를 관리하세요.<br/>
-						회원 레벨별 분류, 나이순, 게시글, 댓글 순 정렬 넣기
+						<div style="float:left; font-size: 20px; font-weight: lighter ; padding: 1px">전체 회원</div><!-- h4 tag의 font-size:20px -->
+						<div style="text-align: right; float:right;">
+							<span style="font-size: 0.8em; border: 0.5rem outset orange; border-radius: 9px;">
+							&nbsp;총 회원수: ${totalMemberCount}&nbsp; 
+							</span>
+						</div>
+						<p class="category" style="clear:both;">
+						권한 제거 항목으로 유저 계정을 차단하세요.<br/>
+						 나이순, 게시글, 댓글 순 정렬 넣기<br/>
+						차단 당한 회원, 회원 레벨별 분류, 성별 분류 버튼 만들기</br>
+						분류한 내용대로 총 인원수 알려주기
 						</p>
 					</div>
+					
+					<!-- 검색용 UI -->
+					<div style="text-align: right; margin: 20px">
+						<form class="form-inline" method="post" action="<c:url value='/Admin/MemberInfo.do'/>">
+							<div class="form-group">
+								<select name="searchColumn" class="form-control">
+									<option value="nickname">닉네임</option>
+									<option value="userID">아이디</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<input type="text" name="searchWord" class="form-control" />
+							</div>
+							<button type="submit" class="btn ">검색</button>
+						</form>
+					</div>
+					
+					<!-- table 시작 -->
 					<div class="content table-responsive table-full-width">
 						<table class="table table-hover table-striped">
 							<thead>
-								<th>아이디</th>
-								<th>닉네임</th>
-								<th>비건 등급</th>
-								<th>성별</th>
-								<th>나이</th>
-								<th>게시글 수</th>
-								<th>댓글 수</th>
-								<th>권한 제거</th>
+								<th class="col-xs-2">아이디</th>
+								<th class="col-xs-2">닉네임</th>
+								<th class="col-xs-2">비건 등급</th>
+								<th class="col-xs-2">성별</th>
+								<th class="col-xs-1">나이
+								<!-- ?searchWord=" 
+					+map.get("searchWord")+"&searchColumn="+map.get("searchColumn")+"&"
+					nowPage=${nowPage } -->
+									<c:choose >
+										<c:when test="${searchWord != null and isAscending == true}">
+											<a href="<c:url value="/Admin/MemberInfo/Sort.do?nowPage=${nowPage }&searchWord=${searchWord }&searchColumn=${searchColumn }"/>">
+										</c:when>
+										<c:otherwise>
+											<a href="<c:url value="/Admin/MemberInfo/Sort.do?nowPage=${nowPage }"/>">
+										</c:otherwise>
+									</c:choose>
+										<span class="glyphicon glyphicon-sort-by-attributes"></span>
+									</a>
+								</th>
+								<th class="col-xs-1">게시글 수
+									<a href="<c:url value="/Admin/MemberInfo.do"/>">
+										<span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+									</a>
+								</th>
+								<th class="col-xs-1">댓글 수
+									<a href="<c:url value="/Admin/MemberInfo.do"/>">
+										<span class="glyphicon glyphicon-sort-by-attributes"></span>
+									</a>
+								</th>
+								<th class="col-xs-1">권한 제거</th>
 							</thead>
 							<tbody>
 								<c:forEach var="item" items="${list }" varStatus="loop">
@@ -107,9 +125,9 @@
 										<td>${item.vg_level}</td>
 										<td>${item.gender}</td>
 										<td>${item.age}</td>
-										<td>${item.age}</td>
-										<td>${item.age}</td>
-										<td>${item.age}</td>
+										<td>${item.writtenPostCount}</td>
+										<td>${item.writtenCommentCount}</td>
+										<td>&nbsp;O / X</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -123,10 +141,25 @@
 					</div>
 					
 				</div><!-- card -->
-			</div>
-
-
+			</div><!-- col-md-12 -->
 		</div><!-- row -->
-	</div>
-</div>
-
+		
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="header">
+						<div style="float:left; font-size: 20px; font-weight: lighter ; padding: 1px">
+						비건 등급
+						</div><!-- h4 tag의 font-size:20px -->
+						<p class="category" style="clear:both;">
+						드랍다운느낌으로 설명 뿌려주기<br/> 비건 회원별로 볼 수 있는 버튼 만들고 등급별 인원수 뿌려주기
+						</p>
+					</div>
+				</div><!-- card -->
+			</div><!-- col-md-12 -->
+		</div><!-- row -->
+		
+		
+	</div><!-- container-fluid -->
+</div><!-- content -->

@@ -19,4 +19,8 @@ public class MemberDTO {
 	private String vg_level;
 	private String selfintro;
 
+	//admin에서 총 게시글, 댓글 수를 위한 변수
+	private String writtenPostCount;
+	private String writtenCommentCount;
+	
 }
