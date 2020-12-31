@@ -26,9 +26,9 @@
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/style.css"/>"><!-- 템플릿 베이직 CSS -->
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/nav.css"/>"><!-- 네비게이션바 CSS-->
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/owl.css"/>"><!-- owl캐러셀 CSS-->
-  <!-- 갤러리 CSS 
+  <!-- 갤러리 CSS--> 
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/bootstrap.css"/>">
--->
+
   <!-- datepicker js -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

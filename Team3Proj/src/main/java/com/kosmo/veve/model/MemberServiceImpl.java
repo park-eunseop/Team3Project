@@ -93,18 +93,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getFollowerInfo(userID);
 	}
 	
-	////////////////////////////////////admin
-	//관리자 페이지 모든 맴버 출력용
-	public List<MemberDTO> selectList_admin(Map map) {
-		return dao.selectList_admin(map);
-	}
 	
-	//페이징을 위한 
-	//총 맴버수 확인
-	public int getTotalMember() {
-		return dao.getTotalMember();
-	}
-
 	@Override
 	public int kakoinsert(Map map) {
 		// TODO Auto-generated method stub
@@ -113,6 +102,24 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////admin
+	//관리자 페이지 모든 맴버 출력용
+	public List<MemberDTO> selectList_admin(Map map) {
+		return dao.selectList_admin(map);
+	}
+	
+	//페이징을 위한 
+	//총 맴버수 확인
+	public int getTotalMember(Map map) {
+		return dao.getTotalMember(map);
+	}
+
 	
 	
 

@@ -107,18 +107,7 @@ public class MemberDAO implements MemberService {
 		return sqlMapper.selectList("memberFollowerInfo", userID);
 	}
 	
-	///////////////////////////////////////////////////////////admin
-	//관리자 페이지 모든 맴버 출력용
-	public List<MemberDTO> selectList_admin(Map map) {
-		return sqlMapper.selectList("selectList_admin", map);
-	}
 	
-	//페이징을 위한 
-	//총 맴버수 확인
-	public int getTotalMember() {
-		return sqlMapper.selectOne("getTotalMember");
-	}
-
 	@Override
 	public int kakoinsert(Map map) {
 		// TODO Auto-generated method stub
@@ -134,5 +123,22 @@ public class MemberDAO implements MemberService {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////////////////admin
+	//관리자 페이지 모든 맴버 출력용
+	public List<MemberDTO> selectList_admin(Map map) {
+		return sqlMapper.selectList("selectList_admin", map);
+	}
+	
+	//페이징을 위한 
+	//총 맴버수 확인
+	public int getTotalMember(Map map) {
+		return sqlMapper.selectOne("getTotalMember",map);
+	}
 
 }

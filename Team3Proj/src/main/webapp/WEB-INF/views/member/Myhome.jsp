@@ -363,7 +363,13 @@
 		</script> 
         
       </div>
- 
+      
+      
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16">채팅 공간</h2>
+        <a href="<c:url value="/chatting/WebSocket.do"/>" class="btn btn-success" style="margin-bottom: 30px">채팅하러가기</a>
+      </div>
+ 	
 
     <!-- End Right Column    -->
     </div>

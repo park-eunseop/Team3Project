@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -42,6 +44,14 @@
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
 	</beans:bean>
+	
+	
+	<!-- web socket용  bean 생성-->
+	<beans:bean id='chatServer' class="com.kosmo.veve.chatting.WebSocketServer"/>
+	<!-- 웹소켓 서버와 클라이언트에서 접속하는 path mapping -->
+	<websocket:handlers allowed-origins="*"><!-- 모든 허용 -->
+		<websocket:mapping handler="chatServer" path="/chat-ws.do"/>
+	</websocket:handlers>
 	
 	
 </beans:beans>
