@@ -18,7 +18,7 @@
     font-family: "basic-B"
 }
 @font-face {
-    src : url("../fonts/NanumSquareEB.ttf");
+    src : url("../fonts/NanumSquareRoundEB.ttf");
     font-family: "basic-EB"
 }
 @font-face {
@@ -83,6 +83,19 @@ h6 {
     line-height: 24px;
 }
 
+/*form태그*/
+.form-control{
+    padding: .375rem 1rem;
+    color:#222222;
+    height: calc(1.5em + .75rem + 8px);
+}
+.form-control::placeholder {
+    color: #CCCCCC;
+}
+.form-group{
+    margin-bottom: 38px;
+}
+
 /* 커스텀 스크롤바 */
 ::-webkit-scrollbar {
     width: 10px;
@@ -95,6 +108,25 @@ h6 {
 }
 ::selection{
   background: rgb(0,123,255,0.3);
+}
+
+/*커스텀 체크박스, 라디오 customCheck1*/
+.custom-control-label::before {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    content: "";
+    background-color: #fff;
+    border: #adb5bd solid 1px;
+  }
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #F3D55A;
+    background-color: #F3D55A;
 }
 
 /* ==========================================================================
@@ -139,6 +171,10 @@ h6 {
     padding-top: 40px;
     padding-bottom: 40px;
 }
+.roomy-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .roomy-end {
     padding-bottom: 250px;
 }
@@ -153,9 +189,25 @@ h6 {
 .m-top-25 {
     margin-top: 25px;
 }
+.m-top-20 {
+    margin-top: 20px;
+}
 .m-top-15 {
     margin-top: 15px;
 }
+.m-bottom-70 {
+    margin-bottom: 70px;
+}
+.m-bottom-50 {
+    margin-bottom: 50px;
+}
+.m-bottom-30 {
+    margin-bottom: 30px;
+}
+.m-bottom-20 {
+    margin-bottom: 20px;
+}
+
 
 /* ==========================================================================
     버튼
@@ -164,7 +216,7 @@ button{
     border: none;
     background: none;
 }
-   .btn{
+.btn{
     -webkit-transition: all 0.6s;
     transition: all 0.6s;
     font-size:14px;
@@ -315,6 +367,172 @@ button{
     background-color: #ddd;
     margin:13px auto;
 }
+.separator2{
+    width:250px;
+    height: 1px;
+    background-color: #ddd;
+    margin:13px auto;
+}
+.separator3{
+    width:360px;
+    height: 1px;
+    background-color: #ddd;
+    margin:80px auto;
+}
+.separator4{
+    width:326px;
+    height: 1px;
+    background-color: #ddd;
+    margin:15px auto;
+}
 
 
 
+/* ==========================================================================
+    로그인페이지
+   ========================================================================== */
+.login-form{
+    width: 100%;
+    max-width: 380px;
+    padding: 40px 30px;
+    margin: auto;
+    height: 95vh;
+}
+
+.btn-login, .btn-login:hover {
+    font-family: "basic-EB";
+    font-size: 18px;
+    width: 100%;
+    color: #fff;
+    background-color: #F3D55A;
+    border: 1px solid;
+    border-color: #F3D55A;
+}
+.btn-login:active{
+    background-color: #f7df7f;
+}
+
+.form-group-id{
+    margin-bottom: -1px;
+    width: 100%;
+}
+
+.form-group-id > .form-control{
+    border-radius: 4px 4px 0 0;
+    height: 50px;
+}
+
+.form-group-pwd > .form-control{
+    border-radius: 0 0 4px 4px;
+    height: 50px;
+}
+
+.login-sns{
+    font-size: 12px;
+    font-weight: 600;
+}
+.login-sns p{
+    margin-bottom: 9px;
+}
+.sns{
+    height: 50px;
+    font-size: 14px;
+    font-family: "basic-EB";
+}
+
+/*SNS 간편로그인*/
+.sns > ul{
+    padding: 0;
+}
+
+.sns li{
+    display:inline;
+    padding-right:30px;
+}
+.sns li:last-child{
+    display:inline;
+    padding-right:0px;
+}
+.sns a{
+    color: #797979;
+    text-decoration: none;
+}
+.icon-sns{
+    border-radius: 50%;
+}
+.sns-list{
+    display: inline;
+}
+
+/*footer*/
+.footer-login{
+    font-family: "basic-EB";
+    font-size: 10.5px;
+}
+
+
+
+/* ==========================================================================
+    회원가입 페이지
+   ========================================================================== */
+ .sign-form{
+    width: 100%;
+    max-width: 450px;
+    padding: 40px 30px;
+    margin: auto;
+}
+.sign-title h3{
+    font-family: "basic-EB";
+    font-size: 24px;
+    line-height: 2rem;
+}
+.sign-title p{
+    line-height: 1.55rem;
+}
+label{
+    font-family: "basic-R";
+    font-size: 15px;
+    font-weight: 900;
+    color: #222222;
+    margin-bottom: .75rem;
+}
+.sign-form .form-group p{
+    font-size: 12.5px;
+    padding: 0;
+    padding-top: 2px;
+    line-height: 0.5rem;
+
+}
+.btn-sign, .btn-sign:hover {
+    font-family: "basic-EB";
+    font-size: 19.5px;
+    width: 100%;
+    color: #fff;
+    background-color: #F3D55A;
+    border: 1px solid;
+    border-color: #F3D55A;
+    padding: 2rem 4rem;
+}
+.btn-sign:active{
+    background-color: #f7df7f;
+}
+
+/*약관동의*/
+.terms{
+    width: 100%;
+    height: 240px;
+    border: 1px solid;
+    border-color: #ced4da;
+    padding: 23px 23px 6px 16px;
+}
+.terms label{
+    font-family: "basic-L";
+    font-size: 14px;
+}
+#all{
+    font-family: "basic-EB";
+}
+.terms a{
+    color: #222222;
+    text-decoration: underline;
+}

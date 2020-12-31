@@ -8,14 +8,19 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosmo.veve.fileupdown.FileUpDownUtils;
+import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.service.MemberService;
 
 @Controller
@@ -97,6 +102,30 @@ public class SignController {
 		int temp = service.insert(map);
 
 		return "member/Login.tiles";
+	}
+	
+	//아이디 중복확인
+	@RequestMapping(value = "/Member/sign/idCheck.do",produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String idcheck(HttpServletRequest req) {
+		
+		JSONObject obj = new JSONObject();
+		String userID = req.getParameter("userID");
+		String msg;
+		
+		boolean flag = service.idCheck(userID);
+		System.out.println(flag);
+		
+		
+		if(flag) { 
+			obj.put("flag", "0");
+			obj.put("msg", "사용중인 아이디입니다.");
+		}
+		else {
+			obj.put("flag", "1");
+			obj.put("msg", "멋진 아이디네요!");
+		}		
+		return obj.toJSONString();
 	}
 
 }

@@ -40,8 +40,7 @@
 </div><!-- container -->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- pure speech bubble로 검색 -->
 <!-- codepen 사이트에서 가져온다. -->
 <script>
@@ -50,7 +49,7 @@
 	
 	//입장버튼 클릭시, 서버와 연결된 소켓 클라이언트 생성
 	$('#enterBtn').one('click',function(){
-		wsocket = new WebSocket("ws://192.168.219.105:8080<c:url value='/chat-ws.do'/>");
+		wsocket = new WebSocket("ws://192.168.56.1:8080<c:url value='/chat-ws.do'/>");
 		//서버와 연결된 소켓에 이벤트 등록(open,close,message,error)
 		wsocket.onopen = open;
 		wsocket.onclose=function(){

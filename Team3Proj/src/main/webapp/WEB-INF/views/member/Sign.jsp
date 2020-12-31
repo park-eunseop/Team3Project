@@ -13,100 +13,7 @@ $(function(){
 	       maxDate: "-16Y",
 	       minDate: "-100Y",
 	       yearRange: "-100:-16"
-	});
-	var milk_ck=0;
-	var egg_ck=0;
-	$('#milk').click(function(){
-		console.log(milk_ck);
-		if(milk_ck==0){
-			$('#milk').attr("src","<c:url value="/resources/vg_level/milk_on.png"/>");
-			milk_ck=1;
-		}
-		else{
-			$('#milk').attr("src","<c:url value="/resources/vg_level/milk_off.png"/>");
-			milk_ck=0;
-		}
-		if((milk_ck==1) && (egg_ck==0) && (fish_ck==0) && (bird_ck==0) && (beef_ck==0)){
-			console.log('Lacto');
-			$('#milk_ck').attr("selected","selected");			
-			
-		}
-		
-		
-	});//milk
-	$('#egg').click(function(){
-		console.log(egg_ck);
-		if(egg_ck==0){
-			$('#egg').attr("src","<c:url value="/resources/vg_level/egg_on.png"/>");
-			egg_ck=1;
-		}
-		else{
-			$('#egg').attr("src","<c:url value="/resources/vg_level/egg_off.png"/>");
-			egg_ck=0;
-		}
-		if((milk_ck==0) && (egg_ck==1) && (fish_ck==0) && (bird_ck==0) && (beef_ck==0)){
-			console.log('Ovo');
-			$('#egg_ck').attr("selected","selected");
-		}
-		else if((milk_ck==1) && (egg_ck==1) && (fish_ck==0) && (bird_ck==0) && (beef_ck==0)){
-			console.log('Lacto_Ovo');
-			$('#both_ck').attr("selected","selected");			
-			
-		}
-	});//egg
-	var fish_ck=0;
-	$('#fish').click(function(){
-		console.log(fish_ck);
-		if(fish_ck==0){
-			$('#fish').attr("src","<c:url value="/resources/vg_level/fish_on.png"/>");
-			fish_ck=1;
-		}
-		else{
-			$('#fish').attr("src","<c:url value="/resources/vg_level/fish_off.png"/>");
-			fish_ck=0;
-		}
-		if((milk_ck==1) && (egg_ck==1) && (fish_ck==1) && (bird_ck==0) && (beef_ck==0)){
-			console.log('pesco');
-			$('#fish_ck').attr("selected","selected");			
-			
-		}
-	});//fish
-	var bird_ck=0;
-	$('#bird').click(function(){
-		console.log(bird_ck);
-		if(bird_ck==0){
-			$('#bird').attr("src","<c:url value="/resources/vg_level/bird_on.png"/>");
-			bird_ck=1;
-		}
-		else{
-			$('#bird').attr("src","<c:url value="/resources/vg_level/bird_off.png"/>");
-			bird_ck=0;
-		}
-		if((milk_ck==1) && (egg_ck==1) && (fish_ck==1) && (bird_ck==1) && (beef_ck==0)){
-			console.log('pollo');
-			$('#bird_ck').attr("selected","selected");			
-			
-		}
-	});//bird
-	var beef_ck=0;
-	$('#beef').click(function(){
-		console.log(beef_ck);
-		if(beef_ck==0){
-			$('#beef').attr("src","<c:url value="/resources/vg_level/beef_on.png"/>");
-			beef_ck=1;
-		}
-		else{
-			$('#beef').attr("src","<c:url value="/resources/vg_level/beef_off.png"/>");
-			beef_ck=0;
-		}
-		if((milk_ck==1) && (egg_ck==1) && (fish_ck==1) && (bird_ck==1) && (beef_ck==1)){
-			console.log('Flexi');
-			$('#beef_ck').attr("selected","selected");			
-			
-		}
-	});//beef
-	
-	
+	});	
 	$("#inputfile").change(function(){
 			 if(this.files && this.files[0]) {
 			 var reader = new FileReader;
@@ -117,9 +24,9 @@ $(function(){
 		  }
 	});//첨부파일 사진
 	
-	$('#inputid').blur(function(){
+	$('#id').blur(function(){
 		console.log('아이디');
-		var id = $('#inputid').val();
+		var id = $('#id').val();
 		if(id.length==0){		
 			$('#spanid').attr('style','color:#ff0000').html('필수사항입니다.');
 		}
@@ -128,19 +35,13 @@ $(function(){
 		}
 		else{
 			$('#spanid').html('');
-			var data = $('#inputid').serializeArray();
+			var data = $('#id').val();
 			console.log(data);
-			obj = {};//{userID:eunseop1224}
-			$.each(data,function(index,element){
-				obj[element.name]=element.value;				
-			});//json
-			console.log(obj);
 			$.ajax({
-				type:'post',
-				url:"<c:url value='/json/sign/idCheck'/>",
-				dataType:'json',
-				data:JSON.stringify(obj),
-				contentType:'application/json',
+				type:"post",
+				url:"<c:url value='/Member/sign/idCheck.do'/>",
+				dataType: 'json',
+				data: "userID="+data,
 				success:function(data){
 					console.log('서버로 부터 받은 데이타 : ',data["flag"]);
 					if(data["flag"]=='1')
@@ -148,12 +49,12 @@ $(function(){
 					else
 						$('#spanid').attr('style','color:#ff0000').html(data["msg"]);
 				}				
-			});				
+			});						
 		}		
 	});//아이디
 	
-	$('#inputpwd').blur(function(){
-		var pwd = $('#inputpwd').val();
+	$('#pwd').blur(function(){
+		var pwd = $('#pwd').val();
 		if(pwd.length==0){			
 			$('#spanpwd').attr('style','color:#ff0000').html('필수사항입니다.');
 		}
@@ -164,8 +65,8 @@ $(function(){
 			$('#spanpwd').html('');							
 		}		
 	});//비밀번호
-	$('#inputpwdcheck').blur(function(){
-		var pwdck = $('#inputpwdcheck').val();
+	$('#pwdcheck').blur(function(){
+		var pwdck = $('#pwdcheck').val();
 		if(pwdck.length==0){			
 			$('#spanpwdcheck').attr('style','color:#ff0000').html('필수사항입니다.');
 		}
@@ -347,213 +248,148 @@ function Dosignup(){
 
 
 </script>
+
 <style>
-.bg-img {
-  /* The image used */
-  background-image: url('<c:url value="/resources/assets/images/homebg.jpg"/>');
-
-  min-height:1000px;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;  
-  position: relative;
-}
-.wrapper {
-  margin: 0 auto;
-  
-}
-
-.wrapper--w960 {
-  max-width: 960px;
-}
-.card {
-  overflow: hidden;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background: #fff;
-}
-
-.card-2 {
-  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  width: 100%;
-  display: table;
-}
-
-.card-2 .card-heading {
-  background: url('<c:url value="/resources/assets/images/bg-heading-02.jpg"/>') top left/cover no-repeat;
-  width: 29.1%;
-  display: table-cell;
-}
-
-.card-2 .card-body {
-  display: table-cell;
-  padding: 80px 90px;
-  padding-bottom: 88px;
-}
-
+    /*현재 페이지는 네비게이션바와 footer를 없앤 페이지입니다.*/
+    .navbar{
+        display: none;
+    }
+    .footer{
+        display: none;
+    }
 </style>
 
+    <!-- 회원가입 화면 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 m-top-45">
+                <a href="<c:url value="/"/>"><img src="<c:url value="/resources/assets/images/로고.png"/>" alt=""></a> <!--여기는 홈페이지 이동으로 연결해주세요-->
+            </div>
+        </div>     
+    </div>
+
+    
+    <div class="sign-form">
+        <div class="container">
+            <div class="sign-title m-bottom-70">
+                <h3 ><strong>베리베지 회원가입</strong></h3>
+                <p>VERY VEGGI.와 건강한 채식 라이프를 즐길 준비가 되었나요?<br/>기본 정보와 프로필을 작성해주세요 :)</p>
+            </div>
+
+            <form action="#" <c:url value="/Member/UserSignUp.do"/>" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="id">아이디</label>
+                    <input type="text" class="form-control" placeholder="아이디" id="id" name="userID">
+                    <span id="spanid" style="color:red"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">비밀번호</label>
+                    <p>8자 이상 입력해주세요.</p>
+                    <input type="password" class="form-control" placeholder="비밀번호" id="pwd" name="password">
+                    <span id="spanpwd" style="color:red"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">비밀번호 확인</label>
+                    <input type="password" class="form-control" placeholder="비밀번호 확인" id="pwdcheck" name="password">
+                    <span id="spanpwdcheck" style="color:red"></span>
+                </div>
+
+                <div class="separator3"></div>
+
+                <div class="form-group">
+                    <label for="usr">프로필 사진</label>
+                    <input type="file" class="form-control-file">
+                </div>
+            
+                <div class="form-group">
+                    <label for="usr">별명</label>
+                    <p>다른 유저와 중복되지 않는 별명을 입력해주세요. (2~15자)</p>
+                    <input type="text" class="form-control" placeholder="별명 (2~15자)" id="usr" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="usr">성별</label>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+                        <label class="custom-control-label" for="customRadio">남자</label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+                        <label class="custom-control-label" for="customRadio2">여자</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="usr">생년월일</label>
+                    <input type="text" class="form-control" placeholder="yyyy-MM-dd" id="inputage" name="birth">
+                </div>
+
+                <div class="form-group">
+                    <label for="usr">채식 스타일</label>
+                    <p>채식 스타일은 '마이페이지'에서 수정하실 수 있습니다.</p>
+                    <select class="form-control" id="sel1">
+                        <option>비건</option>
+                        <option>락토</option>
+                        <option>오보</option>
+                        <option>락토-오보</option>
+                        <option>페스코</option>
+                        <option>폴로</option>
+                        <option>플렉시테리언</option>
+                        <option>채식주의자가 아니에요.</option>
+                      </select>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label for="usr">약관 동의</label>
+                    <div class="terms">
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck0" name="example1">
+                            <label class="custom-control-label" for="customCheck0" id='all'>전체동의</label>
+                        </div>
+
+                        <div class="separator4"></div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
+                            <label class="custom-control-label" for="customCheck1">만 14세 이상입니다.&nbsp;&nbsp;<span style="color: #EAC31B; font-size: 10px;">(필수)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="example2">
+                            <label class="custom-control-label" for="customCheck2"><a href="https://ohou.se/usepolicy">이용약관</a>&nbsp;&nbsp;<span style="color: #EAC31B; font-size: 10px;">(필수)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck3" name="example3">
+                            <label class="custom-control-label" for="customCheck3"><a href="https://ohou.se/privacy">개인정보 처리방침</a>&nbsp;&nbsp;<span style="color: #EAC31B; font-size: 10px;">(필수)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck4" name="example1">
+                            <label class="custom-control-label" for="customCheck4">이벤트, 프로모션 알림 메일 및 SMS 수신&nbsp;&nbsp;<span style="color: #CCCCCC; font-size: 10px;">(선택)</span></label>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+
+                
+
+                <button type="submit" class="btn btn-sign m-bottom-20">회원가입 완료</button>
+
+                <div class="text-center m-bottom-50">
+                <p>이미 아이디가 있으신가요?&nbsp;&nbsp;<strong><a href="<c:url value="/Member/Auth/Login.do"/>">로그인</a></strong></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 회원가입 화면 끝 -->
 
 
 
-
-
-
-<div class="bg-img">
-	<div class="wrapper wrapper--w960" style="padding-top: 200px;padding-bottom: 200px">
-		<div class="card card-2">
-			<div class="card-heading"></div>
-		<div class="card-body">
-		<h1>  Sign up</h1>
-			<div class="col-sm-12">
-				<form  class ="form-horizontal" id="form" method="post" action="<c:url value="/Member/UserSignUp.do"/>" enctype="multipart/form-data">
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">아이디</label>
-						<div class="col-sm-4">
-							<input id="inputid" type="text" class="form-control" name="userID" 
-								placeholder="아이디를 입력하세요" style="width:200px">
-							<span id="spanid" style="color:red"></span>
-						</div>
-					</div>
-					<div class="form-group" style="color: black">
-						<label for="pwd" class="col-sm-3  control-label">비밀번호</label>
-						<div class="col-sm-4">
-							<input id="inputpwd" type="password" class="form-control" 
-								name="password" placeholder="비밀번호를 입력하세요" style="width:200px">
-							<span id="spanpwd" style="color:red"></span>
-						</div>
-					</div>
-					<div class="form-group" style="color: black">
-						<label for="pwd" class="col-sm-3  control-label">비밀번호 확인</label>
-						<div class="col-sm-4">
-							<input type="password" class="form-control" id="inputpwdcheck"
-								name="passwordcheck" placeholder="비밀번호를 다시 입력하세요" style="width:200px">
-							<span id="spanpwdcheck" style="color:red"></span>
-						</div>
-					</div>
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">이름</label>
-						<div class="col-sm-4">
-							<input id="inputname" type="text" class="form-control" name="name" 
-								placeholder="이름를 입력하세요" style="width:200px">
-							<span id="spanname" style="color:red"></span>
-						</div>
-					</div>
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">닉네임</label>
-						<div class="col-sm-4">
-							<input id="inputnickname" type="text" class="form-control" name="nickname" 
-								placeholder="닉네임를 입력하세요" style="width:200px">
-							<span id="spannickname" style="color:red"></span>
-						</div>
-					</div>
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">나이</label>
-						<div class="col-sm-4">
-							<input id="inputage" type="text" class="form-control" name="age" 
-							placeholder="나이를 입력하세요" style="width:200px">
-							<span id="spanage" style="color:red"></span>
-						</div>
-					</div>
-					
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">성별</label>
-						<div class="col-sm-4">
-							<select name="gender" id="selectgender">
-								<option disabled="disabled" selected="selected">Gender</option>
-								<option>Male</option>
-								<option>Female</option>
-								<option>Other</option>
-							</select>
-							<span id="spangender" style="color:red"></span>
-						</div>
-					</div>
-					
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">Level</label>
-						<div class="col-sm-4">
-							<select name="vg_level" id="selectlevel">
-								<option disabled="disabled" selected="selected">Level</option>
-								<option>Vegan</option>
-								<option id="milk_ck">Lacto</option>
-								<option id="egg_ck">Ovo</option>
-								<option id="both_ck">Lacto-Ovo</option>
-								<option id="fish_ck">Pesco</option>
-								<option id="bird_ck">Pollo</option>
-								<option id="beef_ck">Flexi</option>
-							</select>
-							<span id="spanlevel" style="color:red"></span>
-							<div style="width: 500px">
-							<img style="width: 30px; height: 30px;"
-						src="<c:url value="/resources/vg_level/vg_on.png"/>"/>
-							<img id="milk" style="width: 30px; height: 30px;"
-						src="<c:url value="/resources/vg_level/milk_off.png"/>"/>
-						<img id="egg" style="width: 30px; height: 30px;"
-						src="<c:url value="/resources/vg_level/egg_off.png"/>"/>
-						<img id="fish" style="width: 30px; height: 30px;"
-						src="<c:url value="/resources/vg_level/fish_off.png"/>"/>
-						<img id="bird" style="width: 30px; height: 30px;"
-						src="<c:url value="/resources/vg_level/bird_off.png"/>"/>
-						<img id="beef" style="width: 30px; height: 30px;"
-						src="<c:url value="/resources/vg_level/beef_off.png"/>"/>
-						</div>
-						
-						</div>
-					</div>
-					
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">주소</label>
-						<div class="col-sm-4">
-							<input id="inputaddr" type="text" class="form-control" name="addr" 
-							placeholder="주소를 입력하세요" style="width:200px">
-							<span id="spanaddr" style="color:red"></span>
-						</div>
-					</div>
-					
-					
-					
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">자기소개</label>
-						<div class="col-sm-7">
-							<textarea id="summernote" name="editordata"></textarea>
-							<span id="spanself" style="color:red"></span>
-						</div>
-					</div>
-
-
-
-					<div class="form-group" style="color: black">
-						<label for="id" class="col-sm-3  control-label">사진</label>
-						<div class="col-sm-7">
-							<input id="inputfile" class="input--style-2" type="file"
-							 name="upload">
-							<span id="spanfile" style="color:red"></span>
-							<div class="select_img"><img src="" /></div> 														
-						</div>
-						
-					</div>
-			
-					
-					
-					<div class="form-group">
-						<div class="col-sm-offset-6 col-sm-10">
-							<button type="button" class="btn btn--radius btn--green"  onclick="javascript:Dosignup()">Sign up</button>
-						</div>
-					</div>
-				</form>
-				</div>				
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <script>

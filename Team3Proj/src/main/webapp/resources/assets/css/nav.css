@@ -1,6 +1,4 @@
-
-
-  .content{
+.content{
     width: 80%;
     margin:auto;
     padding: 0 50px;
@@ -11,7 +9,11 @@
     z-index: 2;
     padding: 43px 0 20px 0;
     transition: all 0.3s ease;
+    background: #fff;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+    border-bottom: solid 1px #e0e0e0;
   }
+
   .navbar.sticky{
     background: #fff;
     border-bottom: solid 1px #e0e0e0;
@@ -47,7 +49,7 @@
     list-style: none;
   }
   .menu-list li a{
-    color:  #ffffff;
+    color: #797979;
     font-size: 14.5px;
     font-weight: 600;
     margin-left: 25px;
@@ -90,11 +92,12 @@
     }
     .icon{
       display: block;
+      margin-top: 6px;
     }
     .icon.hide{
       display: none;
     }
-    .login{
+    .nav-login{
         display: none;
     }
     .navbar .menu-list{
@@ -109,25 +112,21 @@
       text-align: center;
       background: #222;
       transition: all 0.3s ease;
+      margin-top: 0px;
     }
     .navbar.show .menu-list{
       left: 0%;
     }
     .navbar .menu-list li{
-      margin-top: 45px;
+      margin-top: 45px; /*행간조절*/
     }
     .navbar .menu-list li a{
-      font-size: 23px;
+      font-size: 20px;
       margin-left: -100%;
       transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     .navbar.show .menu-list li a{
       margin-left: 0px;
-    }
-  }
-  @media (max-width: 380px) {
-    .navbar .logo a{
-      font-size: 27px;
     }
   }
   
@@ -142,6 +141,3 @@
   .logo2.show{
     display: block;
   }
-  
-  
-
