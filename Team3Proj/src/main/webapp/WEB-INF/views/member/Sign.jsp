@@ -5,7 +5,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <script>
 $(function(){
-	$("#inputage").datepicker({
+	$("#age").datepicker({
 		
 		dateFormat: "yy-mm-dd",
 	       changeMonth: true,
@@ -70,129 +70,135 @@ $(function(){
 		if(pwdck.length==0){			
 			$('#spanpwdcheck').attr('style','color:#ff0000').html('필수사항입니다.');
 		}
-		else if(pwdck != $('#inputpwd').val()){			
+		else if(pwdck != $('#pwd').val()){			
 			$('#spanpwdcheck').attr('style','color:#ff0000').html('비밀번호가 일치하지 않습니다.');
 		}
 		else{
 			$('#spanpwdcheck').html('');							
 		}		
 	});//비밀번호 확인
-	$('#inputname').blur(function(){
-		var name = $('#inputname').val();
-		if(name.length!=0){			
-			$('#spanname').html('');			
+	
+	
+	
+	//약관선택
+	$(':checkbox').click(function(){
+		if($(this).val()=='all'){//전체선택 클릭
+			console.log('all check');
+			if($(this).prop('checked')){//체크한 경우
+				$(':checkbox:gt(0)').each(function(){
+					$(this).prop('checked',true);
+				});
+			}
+			else{//해제한 경우
+				$(':checkbox:gt(0)').each(function(){
+					$(this).prop('checked',false);
+				});
+			}
 		}
-			
-	});//이름
+		else{//전체 선택이 아닌 체크박스 클릭
+			if($(this).prop('checked')){//체크한 경우
+				//체크된 모든 체크박스의 수와 전체선택을 제외한 체크박스의 수가 같다면 
+				//즉 모두 선택되었다면 
+				if($(':checkbox:gt(0)').length==$(':checkbox:checked').length)
+					$(':checkbox:first').prop('checked',true);
+			}
+			else{//해제한 경우
+				$(':checkbox:first').prop('checked',false);
+			}
+		}
+	});
 
 });
 
-
-
 function Dosignup(){
 	console.log('here');
-	var id = $('#inputid').val();
-	var pwd = $('#inputpwd').val();
-	var pwdck = $('#inputpwdcheck').val();
-	var name = $('#inputname').val();
-	var nickname = $('#inputnickname').val();
-	var age = $('#inputage').val();
-	var gender = $("#selectgender option:selected").val();
+	
+	var id = $('#id').val();
+	var pwd = $('#pwd').val();
+	var pwdck = $('#pwdcheck').val();
+	var nickname = $('#nickname').val();
+	var age = $('#age').val();
+	var male = $('#customRadio').is(":checked");
+	var female = $('#customRadio2').is(":checked");
 	var level = $("#selectlevel option:selected").val();
 	var file = $('#inputfile').val();
-	var addr = $('#inputaddr').val();
-	var self = $('#summernote').val();
+	//var self = $('#summernote').val();
+	
+	var returnFalse = 1;
+	
 	console.log('id: ',id);
 	console.log('pwd: ',pwd);
-	console.log('name: ',name);
 	console.log('nickname: ',nickname);
 	console.log('age: ',age);
-	console.log('gender: ',gender);
+	//console.log('gender: ',gender);
 	console.log('level: ',level);
 	console.log('file: ',file);
-	console.log('addr: ',addr);
-	console.log('self: ',self);
+	//console.log('self: ',self);
 	
+	
+	//아이디
 	if(id.length==0){		
 		$('#spanid').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#inputid').focus();
-		return false;
 	}
 	else if(id.length<5){			
 		$('#spanid').attr('style','color:#ff0000').html('5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다..');
-		$('#inputid').focus();
-		return false;
 	}
 	else{
-		$('#spanid').html('');
-		var data = $('#inputid').serializeArray();
-		obj = {};
-		$.each(data,function(index,element){
-			obj[element.name]=element.value;				
-		});
+		var data = $('#id').val();
+		console.log(data);
 		$.ajax({
-			type:'post',
-			url:"<c:url value='/json/sign/idCheck'/>",
-			dataType:'json',
-			data:JSON.stringify(obj),
-			contentType:'application/json',
+			type:"post",
+			url:"<c:url value='/Member/sign/idCheck.do'/>",
+			dataType: 'json',
+			data: "userID="+data,
 			success:function(data){
 				console.log('서버로 부터 받은 데이타 : ',data["flag"]);
 				if(data["flag"]=='0'){
 					$('#spanid').attr('style','color:#ff0000').html(data["msg"]);
-					$('#inputid').focus();
-					return false;
 				}
 			}				
-		});				
+		});	
 	}
+	//비밀번호
 	if(pwd.length==0){			
 		$('#spanpwd').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#inputpwd').focus();
-		return false;
 	}
 	else if(pwd.length<8){			
 		$('#spanpwd').attr('style','color:#ff0000').html('8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.');
-		$('#inputpwd').focus();
-		return false;
 	}
+	//비밀번호 확인
 	if(pwdck.length==0){			
 		$('#spanpwdcheck').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#inputpwdcheck').focus();
-		return false;
 	}
-	else if(pwdck != $('#inputpwd').val()){			
+	else if(pwdck != $('#pwd').val()){			
 		$('#spanpwdcheck').attr('style','color:#ff0000').html('비밀번호가 일치하지 않습니다.');
-		$('#inputpwdcheck').focus();
-		return false;
+
 	}
-	if(name.length==0){		
-		$('#spanname').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#inputname').focus();
-		return false;
+	//파일 확인
+	if(file.length==0){		
+		$('#spanfile').attr('style','color:#ff0000').html('필수사항입니다.');		
 	}
-	else if(name.length!=0){		
-		$('#spanname').html('');
-		
+	else if(file.length!=0){		
+		$('#spanfile').html('');		
 	}
+	//닉네임 확인
 	if(nickname.length==0){		
 		$('#spannickname').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#inputnickname').focus();
-		return false;
+
 	}
 	else if(nickname.length!=0){		
-		$('#spannickname').html('');
-		
+		$('#spannickname').html('');		
 	}
+	//생년월일 확인
 	if(age.length==0){		
 		$('#spanage').attr('style','color:#ff0000').html('필수사항입니다.');
-		$('#inputage').focus();
-		return false;
 	}
 	else if(age.length!=0){		
 		$('#spanage').html('');
 		
 	}
+
+	/*
 	if(gender =='Gender'){		
 		$('#spangender').attr('style','color:#ff0000').html('필수사항입니다.');
 		$("#selectgender").focus();
@@ -202,6 +208,7 @@ function Dosignup(){
 		$('#spangender').html('');
 		
 	}
+	
 	if(level =='Level'){		
 		$('#spanlevel').attr('style','color:#ff0000').html('필수사항입니다.');
 		$("#selectlevel").focus();
@@ -211,14 +218,8 @@ function Dosignup(){
 		$('#spanlevel').html('');
 		
 	}
-	if(file.length==0){		
-		$('#spanfile').attr('style','color:#ff0000').html('필수사항입니다.');
-		return false;
-	}
-	else if(file.length!=0){		
-		$('#spanfile').html('');
-		
-	}
+	*/
+	/* 주소랑 자기소개는 추후 입력?
 	if(addr.length==0){		
 		$('#spanaddr').attr('style','color:#ff0000').html('필수사항입니다.');
 		$('#inputaddr').focus();
@@ -237,13 +238,58 @@ function Dosignup(){
 		$('#spanself').html('');
 		
 	}
+	*/
+	var option1 = $('#customCheck1').is(":checked");
+	var option2 = $('#customCheck2').is(":checked");
+	var option3 = $('#customCheck3').is(":checked");
+	console.log(option1);
+
+	if($('#spanid').html().length!=0 && $('#spanid').html() != '멋진 아이디네요!' ){
+		console.log('여기로 들어오는건가');
+		$('#id').focus();		
+		return false;
+	}//아이디에서 오류가 있을 시
+	else if($('#spanpwd').html().length!=0){
+		$('#pwd').focus();
+		return false;
+	}//비밀번호에서 오류가 있을 시
+	else if($('#spanpwdcheck').html().length!=0){
+		$('#pwdcheck').focus();
+		return false;
+	}//비밀번호확인에서 오류가 있을 시
+	else if($('#spanfile').html().length!=0){
+		$('#inputfile').focus();
+		return false;
+	}//파일 미 입력시
+	else if($('#spannickname').html().length!=0){
+		$('#nickname').focus();
+		return false;
+	}//닉네임 미입력시
+	else if($('#spanage').html().length!=0){
+		$('#age').focus();
+		return false;
+	}//생년월일 미 입력시
+	else if(!option1){
+		alert('필수 약관동의를 체크해주세요');
+		return false;
+	}
+	else if(!option2){
+		alert('필수 약관동의를 체크해주세요');
+		return false;
+	}
+	else if(!option3){
+		alert('필수 약관동의를 체크해주세요');
+		return false;
+	}
+		
 	
-	
-	
-	alert('회원가입 되셨습니다.');
-	
+
+	//alert('회원가입 되셨습니다.');
 	console.log('yes');
 	$('#form').submit();
+
+	
+	
 }
 
 
@@ -276,13 +322,12 @@ function Dosignup(){
                 <p>VERY VEGGI.와 건강한 채식 라이프를 즐길 준비가 되었나요?<br/>기본 정보와 프로필을 작성해주세요 :)</p>
             </div>
 
-            <form action="#" <c:url value="/Member/UserSignUp.do"/>" enctype="multipart/form-data">
+            <form action="<c:url value="/Member/UserSignUp.do"/>"  id="form" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="id">아이디</label>
                     <input type="text" class="form-control" placeholder="아이디" id="id" name="userID">
                     <span id="spanid" style="color:red"></span>
                 </div>
-
                 <div class="form-group">
                     <label for="pwd">비밀번호</label>
                     <p>8자 이상 입력해주세요.</p>
@@ -300,37 +345,47 @@ function Dosignup(){
 
                 <div class="form-group">
                     <label for="usr">프로필 사진</label>
-                    <input type="file" class="form-control-file">
+                    <input id="inputfile" class="form-control-file" type="file"
+							 name="upload">
+					<span id="spanfile" style="color:red"></span>
+					<input type="hidden" id ="filehidden"/>
+                    <div class="select_img"><img src="" /></div>
                 </div>
             
                 <div class="form-group">
                     <label for="usr">별명</label>
                     <p>다른 유저와 중복되지 않는 별명을 입력해주세요. (2~15자)</p>
-                    <input type="text" class="form-control" placeholder="별명 (2~15자)" id="usr" name="username">
+                    <input type="text" class="form-control" placeholder="별명 (2~15자)" id="nickname" name="nickname">
+                	<span id="spannickname" style="color:red"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="usr">성별</label>
+                    
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="Male" checked="checked">
                         <label class="custom-control-label" for="customRadio">남자</label>
                     </div>
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="Female">
                         <label class="custom-control-label" for="customRadio2">여자</label>
                     </div>
+                   	<span id="spangender" style="color:red"></span>
                 </div>
+                
+               
 
                 <div class="form-group">
                     <label for="usr">생년월일</label>
-                    <input type="text" class="form-control" placeholder="yyyy-MM-dd" id="inputage" name="birth">
+                    <input type="text" class="form-control" placeholder="yyyy-MM-dd" id="age" name="age">
+                	<span id="spanage" style="color:red"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="usr">채식 스타일</label>
                     <p>채식 스타일은 '마이페이지'에서 수정하실 수 있습니다.</p>
-                    <select class="form-control" id="sel1">
+                    <select class="form-control" name="vg_level" id="selectlevel">
                         <option>비건</option>
                         <option>락토</option>
                         <option>오보</option>
@@ -340,14 +395,14 @@ function Dosignup(){
                         <option>플렉시테리언</option>
                         <option>채식주의자가 아니에요.</option>
                       </select>
-                    
+                      <span id="spanpwdcheck" style="color:red"></span>
                 </div>
                 
                 <div class="form-group">
                     <label for="usr">약관 동의</label>
                     <div class="terms">
                         <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck0" name="example1">
+                            <input type="checkbox" class="custom-control-input" id="customCheck0" name="example1" value="all">
                             <label class="custom-control-label" for="customCheck0" id='all'>전체동의</label>
                         </div>
 
@@ -378,7 +433,7 @@ function Dosignup(){
 
                 
 
-                <button type="submit" class="btn btn-sign m-bottom-20">회원가입 완료</button>
+                <button type="button" class="btn btn-sign m-bottom-20"  onclick="javascript:Dosignup()">회원가입 완료</button>
 
                 <div class="text-center m-bottom-50">
                 <p>이미 아이디가 있으신가요?&nbsp;&nbsp;<strong><a href="<c:url value="/Member/Auth/Login.do"/>">로그인</a></strong></p>

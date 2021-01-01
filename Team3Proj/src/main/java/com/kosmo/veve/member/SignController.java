@@ -84,18 +84,26 @@ public class SignController {
 		map.put("f_name", upload.getOriginalFilename());
 		System.out.println(map.get("userID"));
 		System.out.println(map.get("password"));
-		System.out.println(map.get("name"));
+		
 		System.out.println(map.get("nickname"));
 		System.out.println(map.get("age"));
 		String age = (String)map.get("age");
 		String[] birth = age.split("-");
 		int born = Integer.parseInt(birth[0]);
-		int cuAge = 2020-born;		
+		int cuAge = 2021-born;
+		
+		map.put("name", map.get("nickname")); // name = nickname
+		map.put("addr", "서울시"); // 자기소개, Hi
+		map.put("editordata", "Hi"); // 자기소개, Hi
 		map.put("age", String.valueOf(cuAge));
+		
+		System.out.println(map.get("editordata"));
+		
+		System.out.println(map.get("age"));
 		System.out.println(map.get("gender"));
 		System.out.println(map.get("vg_level"));
 		System.out.println(map.get("addr"));
-		System.out.println(map.get("editordata"));
+		
 		System.out.println(map.get("f_path"));
 		System.out.println(map.get("f_name"));
 
