@@ -14,18 +14,35 @@ public class WebSocketServer extends TextWebSocketHandler {
 	//키는 웹소켓 세션 아이디
 	private Map<String,WebSocketSession> clients = new HashMap<String, WebSocketSession>();
 	
+	
+	
 	//클라이언트와 연결되었을때 호출되는 콜백 메서드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println(session.getId()+"연결이 되었어요.");
 		clients.put(session.getId(), session);
+		TextMessage connectionMemberCount = new TextMessage(String.valueOf(clients.size()));
+		for(WebSocketSession client: clients.values()) {
+			client.sendMessage(connectionMemberCount);
+		}
+		
 	}
 	
 	//클라이언트와 연결이 끊겼을때 호출되는 콜백 메서드
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println(session.getId()+"연결이 끊어졌어요.");
 		clients.remove(session.getId());
+		TextMessage connectionMemberCount = new TextMessage(String.valueOf(clients.size()));
+		for(WebSocketSession client: clients.values()) {
+			client.sendMessage(connectionMemberCount);
+//			Map map = session.getAttributes();
+//			System.out.println(map);
+//			for(Object m : map.values()) {
+//				System.out.println(m);
+//			}
+			
+			//TextMessage closeMessage = new TextMessage("'msg: '+nickname+'가(이) 퇴장했어요.'");
+			//client.sendMessage(closeMessage);
+		}
 		
 	}
 	

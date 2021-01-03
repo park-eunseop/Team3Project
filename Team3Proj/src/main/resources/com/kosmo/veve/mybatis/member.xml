@@ -73,7 +73,6 @@
 		WHERE R BETWEEN #{start} AND #{end}
 	</select>
 	
-	
 	<!-- 페이징을 위한 모든 맴버 수 --><!-- admin 빼기 -->
 	<select id="getTotalMember" resultType="int">
 		SELECT COUNT(*) FROM VG_USER

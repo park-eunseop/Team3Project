@@ -51,6 +51,11 @@
 	<!-- 웹소켓 서버와 클라이언트에서 접속하는 path mapping -->
 	<websocket:handlers allowed-origins="*"><!-- 모든 허용 -->
 		<websocket:mapping handler="chatServer" path="/chat-ws.do"/>
+		<!-- parameter 추가해주기 위해서 추가 
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
+		-->
 	</websocket:handlers>
 	
 	

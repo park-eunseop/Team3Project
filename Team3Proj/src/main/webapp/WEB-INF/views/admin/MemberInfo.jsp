@@ -19,7 +19,7 @@
 <!-- 정렬 -->
 <script>
 	var isAscending = true;
-	console.log(${isAscending})
+	/*console.log(${isAscending})*/
 </script>
 
 <nav class="navbar navbar-default navbar-fixed">
