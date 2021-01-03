@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.balloon {position:relative; display:inline-block; margin-top:5px;margin-bottom:5px;margin-left:5px;}
+.balloon.test_3 span {display:inline-block; padding:10px; color:#fff; background:#F3D55A; border-radius:20px; color:#000;margin-left:17px}
+.balloon.test_4 span {display:inline-block; padding:10px; color:#fff; background:#fff; border-radius:20px; color:#000; margin-right:22px}
+.balloon:after {content:''; position:absolute; width:0; height:0; border-style:solid;}
+
+.balloon.test_3:after,
+.balloon.test_4:after {border-width:10px 15px; top:50%; margin-top:-10px;}
+
+.balloon.test_3:after {border-color:transparent #F3D55A transparent transparent; left:-22px; top:25px;margin-left:17px}
+.balloon.test_4:after {border-color:transparent transparent transparent #fff; right:-22px; top:25px;margin-right:22px}
+
+.jumbotron{
+   background-image: url(/veve/resources/assets/images/forest.jpg);
+   background-size: 100%;
+}
+
+body{
+      -ms-overflow-style:none;
+}
+::webkit-scroller{
+      display:none;
+}
+#chatMessage{
+      -ms-overflow-style:none;
+}
+#chatMessage::-webkit-scrollbar{
+      display:none;
+}
