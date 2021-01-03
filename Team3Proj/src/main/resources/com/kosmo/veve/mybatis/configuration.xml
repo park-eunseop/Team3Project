@@ -42,6 +42,7 @@
 		<mapper resource="com/kosmo/veve/mybatis/gallaryBoard.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/gallaryComment.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/gallaryLike.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/chatting.xml"/>
 	</mappers>
 
 
