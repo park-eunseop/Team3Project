@@ -78,6 +78,80 @@ $(function(){
 		}		
 	});//비밀번호 확인
 	
+	//비건레벨 선택
+	
+	$("#sel1").change(function(){
+		
+		var option_level = $(this).val();
+		console.log(option_level);
+		//비건레벨선택시
+		if(option_level=="rac"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level2.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/on2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/off3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/off4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/off5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/off6.png'/>");
+		}
+		else if(option_level=="ov"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level3.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/off2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/on3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/off4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/off5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/off6.png'/>");	
+		}
+		else if(option_level=="racov"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level4.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/on2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/on3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/off4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/off5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/off6.png'/>");
+		}
+		else if(option_level=="pesco"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level5.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/on2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/on3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/on4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/off5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/off6.png'/>");
+		}
+		else if(option_level=="polo"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level6.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/on2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/on3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/on4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/on5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/off6.png'/>");
+		}
+		else if(option_level=="none"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level7.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/on2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/on3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/on4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/on5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/on6.png'/>");
+		}
+		else if(option_level=="vegan"){
+			$('#main_vg_image').attr("src","<c:url value='/resources/assets/images/level1.png'/>");
+			$('#food1').attr("src","<c:url value='/resources/assets/images/on1.png'/>");
+			$('#food2').attr("src","<c:url value='/resources/assets/images/off2.png'/>");
+			$('#food3').attr("src","<c:url value='/resources/assets/images/off3.png'/>");
+			$('#food4').attr("src","<c:url value='/resources/assets/images/off4.png'/>");
+			$('#food5').attr("src","<c:url value='/resources/assets/images/off5.png'/>");
+			$('#food6').attr("src","<c:url value='/resources/assets/images/off6.png'/>");
+		}
+		
+		
+	});
+	
 	
 	
 	//약관선택
@@ -120,7 +194,7 @@ function Dosignup(){
 	var age = $('#age').val();
 	var male = $('#customRadio').is(":checked");
 	var female = $('#customRadio2').is(":checked");
-	var level = $("#selectlevel option:selected").val();
+	var level = $("#sel1 option:selected").val();
 	var file = $('#inputfile').val();
 	//var self = $('#summernote').val();
 	
@@ -384,18 +458,29 @@ function Dosignup(){
 
                 <div class="form-group">
                     <label for="usr">채식 스타일</label>
-                    <p>채식 스타일은 '마이페이지'에서 수정하실 수 있습니다.</p>
-                    <select class="form-control" name="vg_level" id="selectlevel">
-                        <option>비건</option>
-                        <option>락토</option>
-                        <option>오보</option>
-                        <option>락토-오보</option>
-                        <option>페스코</option>
-                        <option>폴로</option>
-                        <option>플렉시테리언</option>
-                        <option>채식주의자가 아니에요.</option>
+                    <p>나의 채식스타일, 잘 모르겠다면?</p> <!--여기에 버튼-->
+                    <div class="mylevel text-center" style="padding-bottom: 15px">
+                        <img id="main_vg_image" src="<c:url value='/resources/assets/images/level1.png'/>" alt="채식레벨"/>
+                        <p style="padding-top: 15px" id="level">채식레벨 입력</p>
+                        <div class="food">
+                            <img id=food1 src="<c:url value='/resources/assets/images/on1.png'/>" alt="1"/>
+                            <img id=food2 src="<c:url value='/resources/assets/images/off2.png'/>" alt="2"/>
+                            <img id=food3 src="<c:url value='/resources/assets/images/off3.png'/>" alt="3"/>
+                            <img id=food4 src="<c:url value='/resources/assets/images/off4.png'/>" alt="4"/>
+                            <img id=food5 src="<c:url value='/resources/assets/images/off5.png'/>" alt="5"/>
+                            <img id=food6 src="<c:url value='/resources/assets/images/off6.png'/>" alt="6"/>
+                        </div>
+                    </div>
+                    <select class="form-control" id="sel1">
+                        <option value="vegan">비건</option>
+                        <option value="rac">락토</option>
+                        <option value="ov">오보</option>
+                        <option value="racov">락토-오보</option>
+                        <option value="pesco">페스코</option>
+                        <option value="polo">폴로</option>
+                        <option value="none">채식주의자가 아니에요</option>
                       </select>
-                      <span id="spanpwdcheck" style="color:red"></span>
+                    <p style="padding-top: 15px">채식 스타일은 '마이페이지'에서 수정하실 수 있습니다.</p>
                 </div>
                 
                 <div class="form-group">
