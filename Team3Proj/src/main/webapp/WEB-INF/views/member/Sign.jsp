@@ -471,7 +471,7 @@ function Dosignup(){
                             <img id=food6 src="<c:url value='/resources/assets/images/off6.png'/>" alt="6"/>
                         </div>
                     </div>
-                    <select class="form-control" id="sel1">
+                    <select class="form-control" id="sel1" name="vg_level">
                         <option value="vegan">비건</option>
                         <option value="rac">락토</option>
                         <option value="ov">오보</option>

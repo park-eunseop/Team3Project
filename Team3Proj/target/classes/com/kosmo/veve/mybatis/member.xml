@@ -11,6 +11,10 @@
 	<select id="memberSelectOne" parameterType="java.util.Map" resultType="MemberDTO">
 		SELECT * FROM VG_USER WHERE userID=#{userID}
 	</select>
+	<select id="memberSelectAll"  resultType="MemberDTO">
+		SELECT * FROM VG_USER
+	</select>
+	
 	<select id="memberIDcheck" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM VG_USER WHERE userID=#{userID}
 	</select>

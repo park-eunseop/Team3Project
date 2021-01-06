@@ -4,6 +4,42 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+<script>
+      $(function() {    //화면 다 뜨면 시작
+    	var arraydata;
+
+		$.ajax({
+			type : 'post',
+			url : "<c:url value="/json"/>",
+			dataType : "json",
+			success : function(data) {
+				console.log("%O",Object.values(data));
+				arraydata=Object.values(data);
+				console.log(arraydata);
+				$("#search").autocomplete({
+					source: arraydata,
+
+			        select: function(event, ui) {
+
+			            console.log(ui.item);
+
+			        },
+
+			        focus: function(event, ui) {
+
+			            return false;
+			        }
+
+			    });
+			}
+		});//ajax
+
+
+	});
+
+</script>
+
+
 <!-- 
 <section>
 	<div class="row text-center" style="padding-top: 30px; height: 800px">
@@ -215,6 +251,11 @@
 	</div>
 </section> 
  -->
+
+ 
+ 
+ 
+ 
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
@@ -250,8 +291,13 @@
 				</c:if>
 				<c:if test="${not isNotKakaologin }">
 				<a href="<c:url value="/logout"/>" class="btn btn-success btn-sm">로그아웃</a>	
-				</c:if>
-				
+				</c:if>				
+			</div>
+			<div>
+				<form>
+					<input id="search" style="width:200px"/>
+					<input id="serarchBtn" type="button" class="btn" value="research">
+				</form>
 			</div>
           <hr>
 

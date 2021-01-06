@@ -24,6 +24,7 @@ public class KakaoController {
 	
 	@RequestMapping("/login")
 	public String login(@RequestParam("code") String code, HttpSession session,Model model) {
+		
 		System.out.println("code:"+code);
 		String access_Token = kakaoService.getAccessToken(code);
 	    
@@ -47,27 +48,38 @@ public class KakaoController {
 	    String nickname = (String)userInfo.get("nickname");
 	    String gender = (String)userInfo.get("gender");
 	    String age = (String)userInfo.get("age_range");
-	    age = age.split("~")[0];    
+	    if(age !=null)
+	    	age = age.split("~")[0];    
 	    
 	    Map map = new HashMap();
-	    map.put("userID",userID);
-	    map.put("password","1"); //pw 임의 값
-	    map.put("name",nickname); //name 임의값
-	    map.put("nickname",nickname);
-	    map.put("gender",gender);
-	    map.put("age",age);
-	    map.put("vg_level","Vegun"); //레벨 임의값
-	    map.put("addr","서울시"); //주소 임의값 -> 임의값은 추후 입력
-	    map.put("editordata","Hi"); //자기소개 임의값 -> 임의값은 추후 입력
 	    
-	    boolean flag = service.idCheck(userID);
+	    System.out.println("여기까진 나오나?");
+	    String userIDforFlag = (String)session.getAttribute("UserID");
+	    
+	    boolean flag = service.idCheck(userIDforFlag);
 	    System.out.println(flag); //true면 있는 아이디, false면 없는아이디
 	    if(flag) {
 	    	//회원가입 필요없어
+	    	//일반 회원처럼 정보를 가져와야지
+	    	
+	    	
+	    	System.out.println("회원가입 필요없어");
+	    	
 	    	return "forward:/Member/MyHome.do";
 	    }
 	    else{
 	    	//회원가입해야해
+	    	map.put("userID",userID);
+		    map.put("password","1"); //pw 임의 값
+		    map.put("name",nickname); //name 임의값
+		    map.put("nickname",nickname);
+		    map.put("gender",gender);
+		    map.put("age",age);
+	    	map.put("vg_level","Vegun"); //레벨 임의값
+		    map.put("addr","서울시"); //주소 임의값 -> 임의값은 추후 입력
+		    map.put("editordata","Hi"); //자기소개 임의값 -> 임의값은 추후 입력
+	    	
+	    	//테이블에 insert 할거야
 	    	int temp = service.kakoinsert(map);
 	    	System.out.println("kakaoinsert temp:"+temp);
 	    	return "forward:/Member/MyHome.do";
@@ -82,10 +94,8 @@ public class KakaoController {
 		System.out.println("logout here");
 		System.out.println(session.getAttribute("access_Token"));
 		kakaoService.kakaoLogout((String)session.getAttribute("access_Token"));
-		session.removeAttribute("access_Token");
-	    session.removeAttribute("KakaoUserId");
-	    session.removeAttribute("KakaoUserImg");
-	    session.removeAttribute("UserID");
+		
+	    session.invalidate();
 	    System.out.println("카카오톡 로그아웃!");
 	    return "home.tiles";
 	}
