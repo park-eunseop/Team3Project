@@ -78,7 +78,12 @@ public class KakaoController {
 	    	map.put("vg_level","Vegun"); //레벨 임의값
 		    map.put("addr","서울시"); //주소 임의값 -> 임의값은 추후 입력
 		    map.put("editordata","Hi"); //자기소개 임의값 -> 임의값은 추후 입력
-	    	
+	    	//카카오 회원가입 시
+		    map.put("k1n0",1);
+		    //파일 insert
+		    map.put("f_path","http");
+		    map.put("f_name",userInfo.get("profile_image"));
+		    
 	    	//테이블에 insert 할거야
 	    	int temp = service.kakoinsert(map);
 	    	System.out.println("kakaoinsert temp:"+temp);

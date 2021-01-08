@@ -14,6 +14,8 @@ public interface MemberService {
 	//로그인 용]
 		boolean isLogin(Map map);
 		boolean idCheck(String userID);
+		String getid(String nickname);
+		boolean isKakao(String userID);
 		//목록용]
 		List<MemberDTO> selectList(Map map);
 		//전체 레코드 수]

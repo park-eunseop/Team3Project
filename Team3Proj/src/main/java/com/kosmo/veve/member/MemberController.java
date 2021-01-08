@@ -37,11 +37,6 @@ public class MemberController {
 		System.out.println("myhome:" + userID);
 		MemberFileDTO filedto = service.selectFile(userID);
 
-
-		
-		
-		
-
 		//user 사진 가져오기
 		req.getSession().setAttribute("filedto", filedto);
 		map.put("userID", userID);
@@ -51,6 +46,58 @@ public class MemberController {
 		req.getSession().setAttribute("userdto", userdto);
 		return "member/Myhome.tiles";
 	}
+	
+	//다른 회원 정보로 보내기
+	@RequestMapping("/Member/OtherHome.do")
+	public String otherhome(HttpServletRequest req) {
+		//세션에 담긴 filedto,kakaofiledto 삭제
+		req.getSession().removeAttribute("kakaofiledto");
+		req.getSession().removeAttribute("filedto");	
+		
+		Map map = new HashMap();
+		String otherkey = req.getParameter("otherid");
+		String userID;
+		//1)id인지 key인지 
+		//true 아이디 false nickname
+		boolean flag = service.idCheck(otherkey);
+		if(flag)
+			//id
+			userID = otherkey;
+		else 
+			//nickname-> 아이디
+			userID = service.getid(otherkey);
+		
+		//만약에 자기 자신의 아이디라면 마이 홈으로
+		if(userID.equals((String) req.getSession().getAttribute("UserID"))) {
+			System.out.println("내 아이디지롱");
+			return "forward:/Member/MyHome.do";
+		}
+			
+		
+
+		//2)카카오 회원인지 아닌지 k1no =1 이면 카카오 ,iskakao true = 카카오
+		boolean kakaoflag =service.isKakao(userID);
+		MemberFileDTO filedto = service.selectFile(userID);
+		if(kakaoflag) {			
+			//카카오 회원이라면 카카오 사진 파일
+			System.out.println(filedto.getF_name());
+			req.getSession().setAttribute("kakaofiledto", filedto);
+		}
+		else {
+			//일반 회원이랑면 일반 사진 파일
+			System.out.println(filedto.getF_name());
+			req.getSession().setAttribute("filedto", filedto);			
+		}
+
+		System.out.println("otherhome:" + userID);		
+		map.put("userID", userID);
+		MemberDTO userdto = service.selectOne(map);
+		req.getSession().setAttribute("userdto", userdto);
+		
+		
+		return "member/Otherhome.tiles";
+	}
+	
 
 	// 마이정보 페이지 이동
 	@RequestMapping("/Member/Mypage.do")
@@ -110,7 +157,6 @@ public class MemberController {
 			memberlist.add(list.get(i).getName());
 		}
 		
-		String[] array = {"김치 볶음밥", "신라면", "진라면", "라볶이", "팥빙수","너구리","삼양라면","안성탕면","불닭볶음면","짜왕","라면사리"};
 	    
         Gson gson = new Gson();
 

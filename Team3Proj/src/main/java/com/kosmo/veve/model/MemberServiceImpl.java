@@ -62,6 +62,16 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.idCheck(userID);
 	}
+	@Override
+	public boolean isKakao(String userID) {
+		// TODO Auto-generated method stub
+		return dao.isKakao(userID);
+	}
+	@Override
+	public String getid(String nickname) {
+		// TODO Auto-generated method stub
+		return dao.getid(nickname);
+	}
 
 	@Override
 	public MemberFileDTO selectFile(String userID) {

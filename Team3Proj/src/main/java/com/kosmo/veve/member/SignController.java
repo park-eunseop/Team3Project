@@ -97,6 +97,9 @@ public class SignController {
 		map.put("editordata", "Hi"); // 자기소개, Hi
 		map.put("age", String.valueOf(cuAge));
 		
+		//일반 회원가입 k1n0 : 0
+		map.put("k1n0",0);
+		
 		System.out.println(map.get("editordata"));
 		
 		System.out.println(map.get("age"));

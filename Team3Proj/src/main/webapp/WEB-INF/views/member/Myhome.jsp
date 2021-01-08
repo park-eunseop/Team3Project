@@ -273,9 +273,6 @@
           <c:if test="${not isNotKakaologin }">
           <img src='${KakaoUserImg}' style="width:100%" alt="KaKaoAvatar">
           </c:if>
-          <div class="w3-display-bottomleft w3-container w3-text-black">
-            <h2>Jane Doe</h2>
-          </div>
         </div>
         <div class="w3-container">
           <p><i class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>${userdto.nickname}</p>
@@ -294,9 +291,9 @@
 				</c:if>				
 			</div>
 			<div>
-				<form>
-					<input id="search" style="width:200px"/>
-					<input id="serarchBtn" type="button" class="btn" value="research">
+				<form method="get" action="<c:url value="/Member/OtherHome.do"/>">
+					<input id="search" name="otherid" style="width:200px"/>
+					<input id="serarchBtn" type="submit" class="btn" value="research">
 				</form>
 			</div>
           <hr>

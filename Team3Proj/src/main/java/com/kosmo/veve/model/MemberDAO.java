@@ -76,6 +76,17 @@ public class MemberDAO implements MemberService {
 		// TODO Auto-generated method stub
 		return (Integer)sqlMapper.selectOne("memberIDcheck",userID)==1?true:false;
 	}
+	@Override
+	public boolean isKakao(String userID) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlMapper.selectOne("memberKaKaocheck",userID)==1?true:false;
+	}
+	
+	@Override
+	public String getid(String nickname) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("getmemberID",nickname);
+	}
 
 	@Override
 	public MemberFileDTO selectFile(String userID) {
@@ -115,7 +126,9 @@ public class MemberDAO implements MemberService {
 				int user = sqlMapper.insert("memberInsert",map); //member insert
 				System.out.println("kako user: "+user);
 				int auth =0;
-				if(user == 1) {				
+				if(user == 1) {		
+					int file = sqlMapper.insert("userFileInsert", map);
+					System.out.println("file: "+file);//파일 insert
 					auth = sqlMapper.insert("authInsert", map);
 					System.out.println("auth: "+auth); //auth insert
 				}

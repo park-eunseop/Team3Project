@@ -317,6 +317,8 @@ CREATE TABLE VG_USER
 	addr nvarchar2(50),
 	vg_level varchar2(20),
 	selfintro nvarchar2(2000),
+	signdate date DEFAULT SYSDATE,
+	k1n0 number NOT NULL,
 	PRIMARY KEY (userID)
 );
 
