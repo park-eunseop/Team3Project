@@ -26,7 +26,41 @@ $(function() {
   			    });
   			}
   		});//ajax
- });   	  
+  		
+  		//follow버튼 클릭시
+  		$('#follow').click(function(){
+  			console.log('follow click');
+  			$.ajax({
+  				type : 'post',
+  				url : "<c:url value="/Member/follow"/>",
+  				dataType : "text",
+  				success : function(data) {
+  					console.log('follow success'); 
+  					$('#follow').hide();
+  					$('#following').removeAttr("hidden");
+  					$('#following').show();
+  					
+  				}
+  			});//ajax  			
+  		});//follow
+  		$('#following').click(function(){
+  			console.log('following click');
+  			$.ajax({
+  				type : 'post',
+  				url : "<c:url value="/Member/following"/>",
+  				dataType : "text",
+  				success : function(data) {
+  					console.log('follow success'); 
+  					$('#follow').show();
+  					$('#follow').removeAttr("hidden");
+  					$('#following').hide();
+  					
+  					
+  				}
+  			});//ajax
+  		});//following
+  		
+});   	  
 
 </script>
 
@@ -56,6 +90,17 @@ $(function() {
           <p><i class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>${userdto.selfintro}</p>
           <p><i class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>팔로잉 / 팔로워</p>
           <div>
+          		<c:if test="${empty isfollowing}" var="isNotFollowing">	
+				<button id="follow"
+					class="btn btn-success btn-sm">팔로우 </button>
+				<button id="following" class="btn btn-success btn-sm" hidden="">팔로잉</button>	
+					
+				</c:if>
+				<c:if test="${not isNotFollowing }">
+				<button id="following" class="btn btn-success btn-sm">팔로잉</button>	
+				<button id="follow"
+					class="btn btn-success btn-sm " hidden="">팔로우</button>
+				</c:if>		
 			
 			</div>
 			<div>

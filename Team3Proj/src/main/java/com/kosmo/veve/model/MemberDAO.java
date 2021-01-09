@@ -118,6 +118,25 @@ public class MemberDAO implements MemberService {
 		return sqlMapper.selectList("memberFollowerInfo", userID);
 	}
 	
+
+	@Override
+	public boolean isfollowing(Map map) {
+		// TODO Auto-generated method stub
+		return (Integer)sqlMapper.selectOne("isfollowing",map)==1?true:false;
+	}
+
+	@Override
+	public int insertfollow(Map map) {
+		// TODO Auto-generated method stub
+		return sqlMapper.insert("insertFollow", map);
+	}
+
+	@Override
+	public int deletefollow(Map map) {
+		// TODO Auto-generated method stub
+		return sqlMapper.delete("deleteFollow",map);
+	}
+	
 	
 	@Override
 	public int kakoinsert(Map map) {
@@ -153,5 +172,7 @@ public class MemberDAO implements MemberService {
 	public int getTotalMember(Map map) {
 		return sqlMapper.selectOne("getTotalMember",map);
 	}
+
+
 
 }

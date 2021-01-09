@@ -29,6 +29,11 @@
 		SELECT userID FROM VG_USER WHERE nickname=#{nickname}
 	</select>
 	
+	<select id="isfollowing" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM USER_FOLLOW WHERE userID=#{userID} AND otherID=#{otherID}
+	</select>
+	
+	
 	<insert id="memberInsert" parameterType="java.util.Map">
 		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro,signdate,k1n0) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{editordata},default,#{k1n0})
 	</insert>
@@ -51,6 +56,12 @@
 	<select id="memberFollowerInfo" parameterType="string" resultType="MemberFollowDTO">
 		SELECT * FROM USER_FOLLOW WHERE otherID=#{userID}
 	</select>
+	<insert id="insertFollow" parameterType="java.util.Map">
+		INSERT INTO USER_FOLLOW(otherID,userID) VALUES(#{otherID},#{userID})
+	</insert>
+	<delete id="deleteFollow" parameterType="java.util.Map">
+		DELETE FROM USER_FOLLOW WHERE otherID =#{otherID} AND userID= #{userID}
+	</delete>
 	
 	
 	

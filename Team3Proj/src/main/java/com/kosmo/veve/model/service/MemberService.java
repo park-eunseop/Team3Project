@@ -37,5 +37,12 @@ public interface MemberService {
 		List<MemberFollowDTO> getFollowingInfo(String userID);
 		//팔로워 회원리스트 가져오기
 		List<MemberFollowDTO> getFollowerInfo(String userID);
+		//나의 팔로잉인지 확인
+		boolean isfollowing(Map map);
+		//팔로우하기
+		int insertfollow(Map map);
+		//팔로우해제하기
+		int deletefollow(Map map);
+		
 
 }

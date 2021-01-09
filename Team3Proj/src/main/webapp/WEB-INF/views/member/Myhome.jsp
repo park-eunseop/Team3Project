@@ -317,6 +317,8 @@
           <div class="w3-light-grey w3-round-xlarge w3-small">
             <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>
           </div>
+          <a href="https://tmtest1224.netlify.app"
+				class="btn btn-success">식단 분석 </a>
           <br>
 
           <p class="w3-large w3-text-theme"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>게시물</b></p>

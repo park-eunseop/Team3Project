@@ -52,32 +52,39 @@ public class MemberController {
 	public String otherhome(HttpServletRequest req) {
 		//세션에 담긴 filedto,kakaofiledto 삭제
 		req.getSession().removeAttribute("kakaofiledto");
-		req.getSession().removeAttribute("filedto");	
+		req.getSession().removeAttribute("filedto");
+		req.getSession().removeAttribute("isfollowing");
 		
 		Map map = new HashMap();
 		String otherkey = req.getParameter("otherid");
-		String userID;
+		String otherID;
 		//1)id인지 key인지 
 		//true 아이디 false nickname
 		boolean flag = service.idCheck(otherkey);
 		if(flag)
 			//id
-			userID = otherkey;
+			otherID = otherkey;
 		else 
 			//nickname-> 아이디
-			userID = service.getid(otherkey);
+			otherID = service.getid(otherkey);
 		
 		//만약에 자기 자신의 아이디라면 마이 홈으로
-		if(userID.equals((String) req.getSession().getAttribute("UserID"))) {
+		if(otherID.equals((String) req.getSession().getAttribute("UserID"))) {
 			System.out.println("내 아이디지롱");
 			return "forward:/Member/MyHome.do";
 		}
-			
 		
+		req.getSession().setAttribute("otherID", otherID);
+		//내가 팔로잉중인지 확인
+		map.put("userID",(String) req.getSession().getAttribute("UserID"));
+		map.put("otherID",otherID);
+		boolean isfollowing = service.isfollowing(map);  //팔로잉중이면 1, true
+		if(isfollowing)
+			req.getSession().setAttribute("isfollowing", "success");
 
 		//2)카카오 회원인지 아닌지 k1no =1 이면 카카오 ,iskakao true = 카카오
-		boolean kakaoflag =service.isKakao(userID);
-		MemberFileDTO filedto = service.selectFile(userID);
+		boolean kakaoflag =service.isKakao(otherID);
+		MemberFileDTO filedto = service.selectFile(otherID);
 		if(kakaoflag) {			
 			//카카오 회원이라면 카카오 사진 파일
 			System.out.println(filedto.getF_name());
@@ -89,11 +96,13 @@ public class MemberController {
 			req.getSession().setAttribute("filedto", filedto);			
 		}
 
-		System.out.println("otherhome:" + userID);		
-		map.put("userID", userID);
+		System.out.println("otherhome:" + otherID);		
+		map.put("userID", otherID);
 		MemberDTO userdto = service.selectOne(map);
 		req.getSession().setAttribute("userdto", userdto);
 		
+		
+		//otheruser의 팔로워 팔로잉 뽑아올거야
 		
 		return "member/Otherhome.tiles";
 	}
@@ -163,6 +172,45 @@ public class MemberController {
         return gson.toJson(memberlist);
 	}
 	
+	//follow 하기
+	@RequestMapping("/Member/follow")
+	@ResponseBody
+	public String follow(HttpServletRequest req) {  
+		req.getSession().removeAttribute("isfollowing");
+		System.out.println("follow controller");
+		
+		String userID = (String)req.getSession().getAttribute("UserID");
+		String otherID = (String)req.getSession().getAttribute("otherID");
+		System.out.println(userID);
+		System.out.println(otherID);
+		Map map = new HashMap();
+		map.put("userID", userID);
+		map.put("otherID", otherID);
+		int insertfollow = service.insertfollow(map);
+		System.out.println("insertfollow:"+insertfollow);
+		return "success";
+	}
+	//follow해제 하기
+	@RequestMapping("/Member/following")
+	@ResponseBody
+	public String following(HttpServletRequest req) {  
+		req.getSession().removeAttribute("isfollowing");
+		System.out.println("following controller");
+		
+		String userID = (String)req.getSession().getAttribute("UserID");
+		String otherID = (String)req.getSession().getAttribute("otherID");
+		System.out.println("user:"+userID);
+		System.out.println("other:"+otherID);
+		Map map = new HashMap();
+		map.put("userID", userID);
+		map.put("otherID", otherID);
+	
+		int deletefollow = service.deletefollow(map);
+		System.out.println("deletefollow:"+deletefollow);
+		
+		
+		return "success";
+	}
 	
 	
 

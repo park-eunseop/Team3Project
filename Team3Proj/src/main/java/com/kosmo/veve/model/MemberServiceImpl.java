@@ -102,6 +102,25 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.getFollowerInfo(userID);
 	}
+	@Override
+	public boolean isfollowing(Map map) {
+		// TODO Auto-generated method stub
+		return dao.isfollowing(map);
+	}
+	
+	@Override
+	public int insertfollow(Map map) {
+		// TODO Auto-generated method stub
+		return dao.insertfollow(map);
+	}
+
+	@Override
+	public int deletefollow(Map map) {
+		// TODO Auto-generated method stub
+		return dao.deletefollow(map);
+	}
+
+
 	
 	
 	@Override
@@ -129,6 +148,8 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotalMember(Map map) {
 		return dao.getTotalMember(map);
 	}
+
+
 
 	
 	
