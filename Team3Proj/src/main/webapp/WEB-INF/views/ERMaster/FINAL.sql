@@ -301,7 +301,7 @@ CREATE TABLE USER_FILE
 
 CREATE TABLE USER_FOLLOW
 (
-	otherID nvarchar2(20) NOT NULL,
+	otherID nvarchar2(50) NOT NULL,
 	userID varchar2(50 char) NOT NULL
 );
 
