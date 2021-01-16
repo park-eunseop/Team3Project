@@ -15,7 +15,6 @@
   <!-- 부트스트랩 4.5.2 --> <!--부트스트랩4 튜토리얼 : https://www.w3schools.com/bootstrap4/default.asp-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!--아이콘(폰트어썸)-->
   <script src="https://kit.fontawesome.com/01f3b3b8bd.js" crossorigin="anonymous"></script>
   <!-- owl 캐러셀 -->
@@ -29,9 +28,7 @@
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/nav.css"/>"><!-- 네비게이션바 CSS-->
   <link rel="stylesheet" href="<c:url value="/resources/assets/css/owl.css"/>"><!-- owl캐러셀 CSS-->
   
-  <!-- 갤러리 CSS 
-  <link rel="stylesheet" href="<c:url value="/resources/assets/css/bootstrap.css"/>">
--->
+
    
    <!-- 전체 jquery 필수 -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
