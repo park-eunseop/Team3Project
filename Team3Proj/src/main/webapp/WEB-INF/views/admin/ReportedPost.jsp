@@ -15,7 +15,10 @@
 </form>
 <!-- 로그아웃 끝 -->
 
-
+<!-- 모달  -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<!-- 모달 -->
 
 <!-- 구글 차트용 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -66,6 +69,7 @@
 
 <!--신고내용 CSS 모달창 -->
 <link href="/veve/resources/assets_admin/css/ReportedPostList.css" rel="stylesheet" />
+<button type="button" data-toggle="modal" data-target="#galleryModal">게시글 추가하기</button>
 
 
 

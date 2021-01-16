@@ -45,7 +45,7 @@
 
 
     <!-- 네비게이션바 -->
-    <nav class="navbar">
+    <nav class="navbar" style="z-index: 9">
         <div class="content text-center">
           <div class="logo">
             <a href="<c:url value="/"/>"><img src="<c:url value="/resources/assets/images/로고.png"/>" alt=""></a>
