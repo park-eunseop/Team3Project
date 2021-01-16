@@ -59,12 +59,11 @@
                 <i class="fas fa-times"></i>
                 </div>
                 <li><a href="<c:url value="/"/>">홈</a></li>
-                <li><a href="#">베지식단 코칭</a>
-                <li><a href="#">베지맛집 찾기</a></li>
-                <li><a href="#">채식 레시피</a></li>
-                <li><a href="#">커뮤니티</a></li>
-                <li><a href="#">이벤트</a></li>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="<c:url value="/Member/MemberDiet.do"/>">베지식단 코칭</a>
+                <li><a href="<c:url value="/Board/Restaurant.do"/>">베지맛집 찾기</a></li>
+                <li><a href="<c:url value="/recipe.do"/>">채식 레시피</a></li>
+                <li><a href="<c:url value="/Gallary/List.do"/>">커뮤니티</a></li>
+
             </ul>
 
 

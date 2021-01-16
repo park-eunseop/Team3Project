@@ -59,8 +59,12 @@
                             VERY VEGGI.는 더 건강하고 편리한 채식 라이프를 위해, 이용자 채식 스타일별 맞춤 컨텐츠를 제공합니다.<br/>
                             다른 사람들과 다양한 채식 노하우를 VERY VEGGI.에서 공유해보세요!
                         </h6>
-                    
+                    	<c:if test="${empty UserID}">
                         <a href="<c:url value="/Member/SignUp.do"/>" class="btn btn-primary m-top-40">회원가입하러 가기</a>
+                    	</c:if>
+                    	<c:if test="${! empty UserID}">
+                    	<a href="<c:url value="/Member/MyHome.do"/>" class="btn btn-primary m-top-40">마이홈</a>
+                    	</c:if>
                     </div> 
 
                 </div>
@@ -83,7 +87,12 @@
                         매 끼니 식사 전 사진 촬영 한번으로 올바른 채식생활을 위한 코칭 서비스를 이용해보세요!<br/>
                         VERI VEGGI.만의 알고리즘을 통해, 기간 별 영양밸런스 분석으로 추가 섭취해야 할 채식 메뉴를 피드백 받을 수 있습니다.
                     </p>
-                    <a href="" class="btn btn-default m-top-40">오늘의 채식 식단 코칭받으러가기!</a>
+                    <c:if test="${empty UserID}">
+                    <a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-default m-top-40">오늘의 채식 식단 코칭받으러가기!</a>
+                	</c:if>
+                	<c:if test="${!empty UserID}">
+                    <a href="<c:url value="/Member/MemberDiet.do"/>" class="btn btn-default m-top-40">오늘의 채식 식단 코칭받으러가기!</a>
+                	</c:if>
                 </div>
 
                 <!--캐러셀1-->
@@ -157,7 +166,12 @@
                         더 스마트한 채식라이프를 위해, 내주변 식당을 지도로 쉽게 검색하는 서비스를 제공합니다.&nbsp;&nbsp;
                         채식단계 필터 기능과 다른 이용자들의 후기를 확인하여, 검증된 채식맛집을 찾아보세요!
                     </p>
-                    <a href="" class="btn btn-default m-top-40">인생 채식 맛집 찾으러가기!</a>
+                    <c:if test="${empty UserID}">
+                    <a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-default m-top-40">인생 채식 맛집 찾으러가기!</a>
+                	</c:if>
+                	<c:if test="${!empty UserID}">
+                    <a href="<c:url value="/Board/Restaurant.do"/>" class="btn btn-default m-top-40">인생 채식 맛집 찾으러가기!</a>
+                	</c:if>
                 </div>
 
             </div>
@@ -206,7 +220,13 @@
                 </div>
 
                 <div class="offset-1 col-sm-10 text-center">
-                    <a href="#" class="btn btn-default m-top-40">맛있는 두부스테이크 만들러가기!</a>
+                	<c:if test="${empty UserID}">
+                    <a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-default m-top-40">맛있는 두부스테이크 만들러가기!</a>
+                	</c:if>
+                	<c:if test="${! empty UserID}">
+                    <a href="<c:url value="/recipe.do"/>" class="btn btn-default m-top-40">맛있는 두부스테이크 만들러가기!</a>
+                	</c:if>
+                
                 </div>
             </div>
         </div>
@@ -257,7 +277,13 @@
                 </div>
 
                 <div class="offset-1 col-sm-10 text-center roomy-end">
-                    <a href="#" class="btn btn-default m-top-45">채식 꿀팁 소통하기!</a>
+                    <c:if test="${empty UserID}">
+                    <a href="<c:url value="/Member/Auth/Login.do"/>" class="btn btn-default m-top-45">채식 꿀팁 소통하기!</a>
+               		</c:if>
+               		<c:if test="${! empty UserID}">
+                    <a href="<c:url value="/Gallary/List.do"/>" class="btn btn-default m-top-45">채식 꿀팁 소통하기!</a>
+               		</c:if>
+               
                 </div>
             </div>
         </div>
