@@ -317,8 +317,11 @@
           <div class="w3-light-grey w3-round-xlarge w3-small">
             <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>
           </div>
-          <a href="https://tmtest1224.netlify.app"
+          
+          
+          <a href="<c:url value="/Member/MemberDiet.do"/>"
 				class="btn btn-success">식단 분석 </a>
+				 
           <br>
 
           <p class="w3-large w3-text-theme"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>게시물</b></p>
@@ -333,6 +336,8 @@
           <br>
         </div>
       </div><br>
+      
+      
 
     <!-- End Left Column -->
     </div>
@@ -351,6 +356,12 @@
         <h2 class="w3-text-grey w3-padding-16">레시피 게시판</h2>
         <a href="<c:url value="/recipe.do"/>" class="btn btn-success">레시피
 				작성</a>
+		<iframe
+    allow="microphone;"
+    width="350"
+    height="430"
+    src="https://console.dialogflow.com/api-client/demo/embedded/8a19ff3d-cdd4-46e7-933c-3644cded410f">
+</iframe>		
         
       </div>
       <div class="w3-container w3-card w3-white w3-margin-bottom">
@@ -424,3 +435,5 @@
  
   <!-- End Page Container -->
 </div>
+
+
