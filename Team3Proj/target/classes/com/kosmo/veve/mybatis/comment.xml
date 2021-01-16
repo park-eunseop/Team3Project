@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="com.kosmo.veve.mybatis.comment">
+<resultMap type="memoCommentDTO" id="memoCommentDTOResult">
+		<!-- property:자바빈의 속성명 column:테이블의 컬럼(조회결과의 컬럼들 의미) -->
+		<result property="rec_com_no" column="rec_com_no" />
+		<result property="content" column="content" />
+		<result property="parent" column="parent" />
+		<result property="postDate" column="postDate" />
+		<result property="userID" column="userID" />
+		<result property="rec_no" column="rec_no" />
+		<!-- <result property="notice_file_no" column="notice_file_no"/> <result 
+			property="f_path" column="f_path"/> <result property="f_name" column="f_name"/> -->
+	</resultMap>
+	<!-- resultType을 Map으로 지정시 키값(대문자)은 컬럼명이고 밸류값는 컬럼에 저장된 값 -->
+	 <delete id="commentDeleteByNo" parameterType="java.util.Map">
+	 	DELETE rec_comment WHERE rec_no=#{rec_no,jdbcType=NUMERIC}
+	 </delete>
+	 <insert id="commentInsert" parameterType="java.util.Map">
+	 	INSERT INTO rec_comment(rec_com_no,content,userID,rec_no)
+	 	VALUES(SEQ_REC_COM_NO.NEXTVAL,#{content},#{userID},#{rec_no,jdbcType=NUMERIC})
+	 </insert>
+	 
+	 <select id="commnetSelectList" parameterType="java.util.Map" resultType="java.util.Map">
+	 	SELECT r_c.rec_com_no,r_c.userID,r_c.content,r_c.postDate 
+	 	FROM rec_comment r_c JOIN vg_user v ON r_c.userID=v.userID
+	 	WHERE r_c.rec_no= #{rec_no,jdbcType=NUMERIC}
+	 	ORDER BY r_c.rec_com_no DESC	 
+	 </select>
+	 <update id="commentUpdate" parameterType="java.util.Map">
+	 	UPDATE rec_comment SET content = #{content} WHERE rec_com_no=#{rec_com_no,jdbcType=NUMERIC}	 
+	 </update>
+	 <delete id="commentDelete" parameterType="java.util.Map">
+	 	DELETE rec_comment WHERE rec_com_no = #{rec_com_no,jdbcType=NUMERIC}
+	 </delete>
+</mapper>

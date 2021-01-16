@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="com.kosmo.veve.mybatis.member">
+	<!--resultMap사용시 column속성 필수:ibatis와 다른점  -->
+	
+	
+	<select id="memberSelectOne" parameterType="java.util.Map" resultType="MemberDTO">
+		SELECT * FROM VG_USER WHERE userID=#{userID}
+	</select>
+	<select id="memberSelectAll"  resultType="MemberDTO">
+		SELECT * FROM VG_USER
+	</select>
+	
+	<select id="memberIDcheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM VG_USER WHERE userID=#{userID}
+	</select>
+	<select id="memberKaKaocheck" parameterType="string" resultType="int">
+		SELECT k1n0 FROM VG_USER WHERE userID=#{userID}
+	</select>
+	
+	<select id="memberFile" parameterType="string" resultType="MemberFileDTO">
+		SELECT * FROM USER_FILE WHERE userID=#{userID}
+	</select>
+	<select id="getmemberID" parameterType="string" resultType="string">
+		SELECT userID FROM VG_USER WHERE nickname=#{nickname}
+	</select>
+	
+	<select id="isfollowing" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM USER_FOLLOW WHERE userID=#{userID} AND otherID=#{otherID}
+	</select>
+	
+	
+	<insert id="memberInsert" parameterType="java.util.Map">
+		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro,signdate,k1n0) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{editordata},default,#{k1n0})
+	</insert>
+	<insert id="authInsert" parameterType="java.util.Map">
+		INSERT INTO AUTH_SECURITY(auth_no,userID,enabled,authority) VALUES(SEQ_AUTH_NO.NEXTVAL,#{userID},DEFAULT,DEFAULT)
+	</insert>
+	<insert id="userFileInsert" parameterType="java.util.Map">
+		INSERT INTO USER_FILE(user_file_no,userID,f_path,f_name) VALUES(SEQ_USER_FILE_NO.NEXTVAL,#{userID},#{f_path},#{f_name})
+	</insert>
+	<!-- 팔로잉/팔로워 count -->
+	<select id="memberFollowing" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM USER_FOLLOW WHERE userID=#{userID}
+	</select>
+	<select id="memberFollower" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM USER_FOLLOW WHERE otherID=#{userID}
+	</select>
+	<select id="memberFollowingInfo" parameterType="string" resultType="MemberFollowDTO">
+		SELECT * FROM USER_FOLLOW WHERE userID=#{userID}
+	</select>
+	<select id="memberFollowerInfo" parameterType="string" resultType="MemberFollowDTO">
+		SELECT * FROM USER_FOLLOW WHERE otherID=#{userID}
+	</select>
+	<insert id="insertFollow" parameterType="java.util.Map">
+		INSERT INTO USER_FOLLOW(otherID,userID) VALUES(#{otherID},#{userID})
+	</insert>
+	<delete id="deleteFollow" parameterType="java.util.Map">
+		DELETE FROM USER_FOLLOW WHERE otherID =#{otherID} AND userID= #{userID}
+	</delete>
+	
+	
+	
+	
+	
+	
+	<!--  =========================================  admin -->
+	<!-- 모든 맴버 출력용 -->
+	<select id="selectList_admin" resultType="MemberDTO">
+		SELECT * FROM 
+		(SELECT T.*, ROWNUM R FROM 
+		(SELECT u.*, 
+		(SELECT COUNT(*) FROM REC_BOARD rec  
+		WHERE u.userID = rec.userID ) +
+		(SELECT COUNT(*) FROM GALLARY_BOARD gal  
+		WHERE u.userID = gal.userID )
+		as "writtenPostCount", 
+		(SELECT COUNT(*) FROM REC_COMMENT rec_com  
+		WHERE u.userID = rec_com.userID ) +
+		(SELECT COUNT(*) FROM GALLARY_COMMENT gal_com  
+		WHERE u.userID = gal_com.userID ) +
+		(SELECT COUNT(*) FROM NOTICE_COMMENT not_com  
+		WHERE u.userID = not_com.userID )
+		as "writtenCommentCount" 
+		FROM VG_USER u
+		<if test="searchColumn != null">
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%' 		
+		</if>
+		
+		ORDER BY 1) T) 
+		WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 페이징을 위한 모든 맴버 수 --><!-- admin 빼기 -->
+	<select id="getTotalMember" resultType="int">
+		SELECT COUNT(*) FROM VG_USER
+		<if test="searchColumn != null">
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	
+	
+</mapper>
