@@ -76,7 +76,7 @@
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
           	<c:if test="${empty Admin}">
-                 <button><a href="<c:url value="/Member/MyHome.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;MyHome</a></button>   
+                 <button><a href="<c:url value="/Member/MyHome.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;마이홈</a></button>   
             </c:if>
             <c:if test="${!empty Admin}">
                  <button><a href="<c:url value="/Admin/Main.do"/>" class="btn btn-nav"><i class="fas fa-user"></i>&nbsp;&nbsp;Admin</a></button>   
