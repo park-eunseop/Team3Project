@@ -50,6 +50,10 @@
 		SELECT * FROM gal_file
 	</select>
 	
+	<select id="gallaryFileSelectListOne" parameterType="java.util.Map" resultType="gallaryFileDTO" >
+		SELECT * FROM gal_file WHERE gallary_no = #{gallary_no}
+	</select>
+	
 	<select id="gallaryBoardSelectOne" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
 		SELECT g.*
 		FROM gallary_board g JOIN vg_user v ON g.userID=v.userID

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo.veve.model.service.GallaryCommentService;
 
-@SessionAttributes({"userID"})
+
 @Controller
 @RequestMapping("/Gallary/Comment/")
 public class GallaryCommentController {
@@ -27,9 +28,11 @@ public class GallaryCommentController {
    @RequestMapping(value="write.do",produces = "text/html; charset=UTF-8")
    @ResponseBody
    public String write(
-         @RequestParam Map map) {
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      map.put("userID", auth.getName());
+         @RequestParam Map map,HttpServletRequest req) {
+	  
+	   String userID = (String)req.getSession().getAttribute("UserID");
+
+      map.put("userID",userID );
       commentService.insert(map);
       return map.get("gallary_no").toString();
    }/////////////////
@@ -37,10 +40,15 @@ public class GallaryCommentController {
    @ResponseBody
    @RequestMapping(value="list.do",produces = "text/html; charset=UTF-8")
    public String list(@RequestParam Map map) {
+	  System.out.println("댓글 가지러 왔어"); 
       List<Map> list=commentService.selectList(map);
       System.out.println(JSONArray.toJSONString(list));
+      //등록일 수정
       for(Map comment:list)
          comment.put("POSTDATE", comment.get("POSTDATE").toString().substring(0,10));
+      
+      
+      
       return JSONArray.toJSONString(list);
    }////////////
    

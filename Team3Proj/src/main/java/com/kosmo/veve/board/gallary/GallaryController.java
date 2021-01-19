@@ -3,6 +3,7 @@ package com.kosmo.veve.board.gallary;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,7 +29,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.kosmo.veve.model.GallaryBoardDTO;
 import com.kosmo.veve.model.GallaryCommentDTO;
 import com.kosmo.veve.model.GallaryFileDTO;
+import com.kosmo.veve.model.MemberDTO;
+import com.kosmo.veve.model.MemberFileDTO;
 import com.kosmo.veve.model.service.GallaryBoardService;
+import com.kosmo.veve.model.service.MemberService;
 
 
 @Controller
@@ -39,6 +45,13 @@ public class GallaryController {
 		
 	@Resource(name="gallaryService") 
 	private GallaryBoardService gallaryService;
+	
+	@Resource(name = "memberService")
+	private MemberService service;
+
+	
+	
+	
 	
 	@RequestMapping("/Gallary/GallaryEdit.do") 
 	public String edit(
@@ -210,18 +223,58 @@ public class GallaryController {
         return false;
     }
     
-    @RequestMapping("/Gallary/View.do")
-	public String view(@RequestParam Map map,Model model) {
+    @RequestMapping(value="/Gallary/View.do",produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String view(@RequestParam Map map) {
 		//서비스 호출]
-		GallaryBoardDTO boardList= gallaryService.selectBoardOne(map);
-		List<GallaryFileDTO> fileList = gallaryService.selectFileList(map);
-		//데이타 저장]
-		//줄바꿈 처리
-		//boardList.setContent(boardList.getContent().replace("\r\n","<br/>"));
-		model.addAttribute("item", boardList);
-		model.addAttribute("fitem", fileList);
-		//뷰정보 반환]
-		return "gallary/View";
+    	JSONObject obj = new JSONObject();
+    	JSONArray array = new JSONArray();
+    	
+    	
+    	System.out.println(map.get("gallary_no"));
+		GallaryBoardDTO boardInfo= gallaryService.selectBoardOne(map);
+		List<GallaryFileDTO> fileList = gallaryService.selectFileListOne(map);
+		System.out.println(boardInfo);
+		System.out.println(fileList);
+		
+		String userID = boardInfo.getUserID();
+		map.put("userID", userID);
+		MemberDTO userinfo = service.selectOne(map);
+		System.out.println(userinfo.getNickname());
+		MemberFileDTO userfile = service.selectFile(userID);
+		System.out.println(userfile.getF_name());
+		
+		
+		//obj.put("userinfo", userinfo.getNickname());
+		
+		//obj.put("userfile", userfile);
+		//obj.put("boardInfo", boardInfo);
+		//obj.put("boardfile", fileList);
+		//array.add(obj);
+		//fileList.size();
+		String filenames ="";
+		for(int i=0;i<fileList.size();i++) {
+			filenames += fileList.get(i).getF_name()+"/";
+			System.out.println(filenames);
+		}
+		obj.put("filenames", filenames); //게시판 사진네임
+		obj.put("userk1n0", userinfo.getK1n0()); //유저 카카오 일반 여부
+		obj.put("userfile", userfile.getF_name());// 유저 프로필 사진
+		obj.put("usernickname", userinfo.getNickname());//user nickname
+		obj.put("boardTitle", boardInfo.getTitle());
+		obj.put("boardContent", boardInfo.getContent());
+		//System.out.println(boardInfo.getPostDate().toString());
+		//Date date = new Date();
+		
+		
+		obj.put("boardDate", boardInfo.getPostDate().toString());
+		
+		
+		String test ="sfs";
+		
+		
+		
+		return obj.toJSONString();
 	}/////////////
 
 }

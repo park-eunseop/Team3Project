@@ -61,7 +61,7 @@ CREATE TABLE GALLARY_COMMENT
 (
 	gallary_com_no number NOT NULL,
 	content nvarchar2(100) NOT NULL,
-	parent number,
+	parent number DEFAULT 0,
 	postDate date DEFAULT SYSDATE,
 	userID varchar2(50 char) NOT NULL,
 	gallary_no number NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE NOTICE_COMMENT
 (
 	notice_com_no number NOT NULL,
 	content nvarchar2(100) NOT NULL,
-	parent number,
+	parent number DEFAULT 0,
 	postDate date DEFAULT SYSDATE,
 	userID varchar2(50 char) NOT NULL,
 	notice_no number NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE REC_COMMENT
 (
 	rec_com_no number NOT NULL,
 	content nvarchar2(100) NOT NULL,
-	parent number,
+	parent number DEFAULT 0,
 	postDate date DEFAULT SYSDATE,
 	userID varchar2(50 char) NOT NULL,
 	rec_no nvarchar2(50) NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE REC_SCRAP
 CREATE TABLE RESTAURANT
 (
 	res_no number NOT NULL,
-	res_name nvarchar2(20) NOT NULL,
+	res_name nvarchar2(50) NOT NULL,
 	res_addr nvarchar2(50) NOT NULL,
 	res_tel nvarchar2(20) NOT NULL,
 	category nvarchar2(20) NOT NULL,
@@ -281,7 +281,7 @@ CREATE TABLE USER_DIET
 CREATE TABLE USER_DM
 (
 	dm_no number NOT NULL,
-	toOtherUser nvarchar2(20) NOT NULL,
+	toOtherUser nvarchar2(50) NOT NULL,
 	content nvarchar2(100) NOT NULL,
 	postDate date DEFAULT SYSDATE,
 	userID varchar2(50 char) NOT NULL,

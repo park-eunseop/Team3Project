@@ -19,8 +19,8 @@
        DELETE gallary_comment WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC}
     </delete>
     <insert id="galcommentInsert" parameterType="java.util.Map">
-       INSERT INTO gallary_comment(gallary_com_no,content,userID,gallary_no)
-       VALUES(SEQ_REC_COM_NO.NEXTVAL,#{content},#{userID},#{gallary_no,jdbcType=NUMERIC})
+       INSERT INTO gallary_comment(gallary_com_no,content,userID,gallary_no,parent)
+       VALUES(SEQ_REC_COM_NO.NEXTVAL,#{content},#{userID},#{gallary_no,jdbcType=NUMERIC},DEFAULT)
     </insert>
     
     <select id="galcommnetSelectList" parameterType="java.util.Map" resultType="java.util.Map">

@@ -35,6 +35,10 @@ public class GallaryBoardServiceImpl implements GallaryBoardService{
 	public List<GallaryFileDTO> selectFileList(Map map) {
 		return dao.selectFileList(map);
 	}
+	@Override
+	public List<GallaryFileDTO> selectFileListOne(Map map) {
+		return dao.selectFileListOne(map);
+	}
 
 	@Override
 	public GallaryBoardDTO selectBoardOne(Map map) {
