@@ -30,9 +30,9 @@ public class UserDietServiceImpl implements UserDietService {
 	}
 
 	@Override
-	public List<UserDietDTO> getTodayNutrientInfo(String today) {
+	public List<UserDietDTO> getTodayNutrientInfo(Map map) {
 		// TODO Auto-generated method stub
-		return dao.getTodayNutrientInfo(today);
+		return dao.getTodayNutrientInfo(map);
 	}
 
 	@Override

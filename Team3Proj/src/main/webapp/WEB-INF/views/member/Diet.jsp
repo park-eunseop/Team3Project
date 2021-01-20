@@ -55,6 +55,7 @@
                console.log(document.getElementById("label-container").value);
                $(".dragAndDropDiv").attr("src","/veve/resources/assets/images/upload.png");
               $('.menu_list *').remove();
+              $('.needDiet *').remove();
               $.ajax({
                   url:"<c:url value='/Member/MemberDietpost.do'/>",
                   data:{"data":data},
@@ -62,6 +63,57 @@
                   type:'post',
                   success:function(json){
                 	  console.log('정보 입력 완료!');
+                	  $('#todayProtein').attr('style','width:'+json["todayProtein"]+'%');
+                	  $('#todayB12').attr('style','width:'+json["todayB12"]+'%');
+                	  $('#todayD').attr('style','width:'+json["todayD"]+'%');
+                	  $('#todayAyen').attr('style','width:'+json["todayZinc"]+'%');
+                	  $('#todayCal').attr('style','width:'+json["todayCal"]+'%');
+                	  
+                	  
+                	  var needObjects = json["needDiet"];     
+                	  console.log(needObjects);
+          			  var files = needObjects.split("/");
+          			  console.log(files);
+                	  
+                	  $.each(files,function(index,value){
+                		  if(value=='pro'){
+                			  $('#needDiet').append(`
+                        			  <div>단백질이 부족합니다 면역력에 문제가 생길 수 있어요.. 콩,달걀을 섭취하세요</div><br/>
+                        			 `);
+                		  }
+						  if(value=='cal'){
+							  $('#needDiet').append(`
+		                			  <div>칼슘이 부족합니다 골다공증에 문제가 생길 수 있어요.. 견과류,다시마,미역을 섭취하세요</div><br/>
+		                			 `);
+                		  }
+						  if(value=='zinc'){
+							  $('#needDiet').append(`
+		                			  <div>아연 부족합니다 면역력과 회복에 문제가 생길 수 있어요.. 잡곡,두부,된장을 섭취하세요</div><br/>
+		                			 `);
+                		  }
+						  if(value=='vB'){
+							  $('#needDiet').append(`
+		                			  <div>비타민B12가 부족합니다 우을증,빈혈 등 여러 질환이 생길 수 있어요.. 해조류,단호박,검은콩을 섭취하세요</div><br/>
+		                			 `);
+                		  }
+						  if(value=='vDD'){
+							  $('#needDiet').append(`
+		                			  <div>비타민D가 부족합니다 골다공증,빈혈증상이 생길 수 있어요.. 땅콩,호두를 섭취하세요</div><br/>
+		                			 `);
+                		  }
+                		  
+                		  
+                		  
+                	  });        	  
+                	  
+                	  
+                	  
+                	 
+                	  
+                	  
+                	  
+                	  
+                	  
                   },
                   error:function(e){console.log(e);}
                   
@@ -122,34 +174,34 @@
 				<div class="col-md-12">
 					<h2>일일 영양현황</h2>
 					단백질
-					<div class="progress">
-					<div class="progress-bar progress-bar-striped" style="width: 30%"></div>
+					<div class="progress" >
+					<div id="todayProtein" class="progress-bar progress-bar-striped" style="width: 30%"></div>
 					</div>
 					<br>
 					비타민B12
 					<div class="progress">
-						<div
+						<div id="todayB12"
 							class="progress-bar bg-success progress-bar-striped progress-bar-animated"
 							style="width: 40%"></div>
 					</div>
 					<br>
 					비타민D
 					<div class="progress">
-						<div
+						<div id="todayD"
 							class="progress-bar bg-info progress-bar-striped progress-bar-animated"
 							style="width: 50%"></div>
 					</div>
 					<br>
 					아연
 					<div class="progress">
-						<div
+						<div id="todayAyen"
 							class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
 							style="width: 60%"></div>
 					</div>
 					<br>
 					칼슘
 					<div class="progress">
-						<div
+						<div id="todayCal"
 							class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
 							style="width: 70%"></div>
 					</div>
@@ -186,6 +238,9 @@
 				</div>
 				<div class="col-md-12">
 					<h2 style="padding-top: 30px">부족한 영양소</h2>
+					<div id="needDiet">
+					
+					</div>
 				</div>
 			</div>
 		</div>

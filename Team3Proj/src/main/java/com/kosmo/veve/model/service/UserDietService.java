@@ -18,7 +18,7 @@ public interface UserDietService {
 		//회원 하루 영양 정보 입력
 		int insert(Map map);
 		//회원 하루 영양정보 가져오기
-		List<UserDietDTO> getTodayNutrientInfo(String today);
+		List<UserDietDTO> getTodayNutrientInfo(Map map);
 		//회원 일주일 영양정보 가져오기
 		List<UserDietDTO> getWeekNutrientInfo(String today);
 		

@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getTodayDiet" parameterType="String" resultType="UserDietDTO">
-		SELECT * FROM USER_DIET WHERE TO_CHAR(EATDATE,'yy/MM/dd')=#{eatDate}
+		SELECT * FROM USER_DIET WHERE TO_CHAR(EATDATE,'yy/MM/dd')=#{eatDate} AND userID = #{userID}
 	</select>
 	
 	
