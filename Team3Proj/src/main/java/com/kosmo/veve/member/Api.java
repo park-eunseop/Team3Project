@@ -25,8 +25,8 @@ public class Api {
 	
 
 	
-    public String getFoodData() throws IOException {
-        StringBuilder urlBuilder = new StringBuilder("http://koreanfood.rda.go.kr/kfi/openapi/service?apiKey=20210113162022VB99F71UL6GQQYGB6U&serviceType=AA002&nowPage=1&pageSize=10&fdGrupp=&fdNm=고등어"); /*URL*/
+    public String getFoodData(String query) throws IOException {
+        StringBuilder urlBuilder = new StringBuilder(query); /*URL*/
 //        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=서비스키"); /*Service Key*/
 //        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 //        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
@@ -52,6 +52,7 @@ public class Api {
         rd.close();
         conn.disconnect();
         System.out.println("음식 데이타 json :");
+        String foodInfo = "";
         String textAll = sb.toString();
         org.json.simple.parser.JSONParser json = new org.json.simple.parser.JSONParser();
         JSONObject obj;
@@ -73,22 +74,25 @@ public class Api {
 					 JSONObject obj5 = (JSONObject)array3.get(k);
 					 if(obj5.get("irdntNm").equals("단백질")) {
 						 System.out.println("단백질:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
+						 foodInfo += obj5.get("contInfo")+"/";
 					 }
 					 if(obj5.get("irdntNm").equals("비타민 B12")) {
 						 System.out.println("비타민 B12:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
-					 }
-					 if(obj5.get("irdntNm").equals("아연")) {
-						 System.out.println("아연:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
+						 foodInfo += obj5.get("contInfo")+"/";
 					 }
 					 if(obj5.get("irdntNm").equals("비타민 D")) {
+						 System.out.println("아연:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
+						 foodInfo += obj5.get("contInfo")+"/";
+					 }
+					 if(obj5.get("irdntNm").equals("아연")) {
 						 System.out.println("비타민 D:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
+						 foodInfo += obj5.get("contInfo")+"/";
 					 }
 					 if(obj5.get("irdntNm").equals("칼슘")) {
 						 System.out.println("칼슘:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
+						 foodInfo += obj5.get("contInfo")+"/";
 					 }
-					 if(obj5.get("irdntNm").equals("오메가3 지방산")) {
-						 System.out.println("오메가3 지방산:"+obj5.get("contInfo")+" "+obj5.get("irdntUnitNm"));
-					 }
+
 				 }
 			 }			 
 
@@ -108,7 +112,7 @@ public class Api {
     
 		
         
-        return "";
+        return foodInfo;
         
      
     }

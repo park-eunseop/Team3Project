@@ -142,8 +142,13 @@ CREATE TABLE NOTICE_FILE
 
 CREATE TABLE NUTRIENT
 (
-	nur_no number NOT NULL,
-	PRIMARY KEY (nur_no)
+	age nvarchar2(50) NOT NULL,
+	gender nvarchar2(50) NOT NULL,
+	protein number NOT NULL,
+	vitB12 number NOT NULL,
+	vitD number NOT NULL,
+	zinc number NOT NULL,
+	calcium number NOT NULL
 );
 
 
@@ -270,10 +275,13 @@ CREATE TABLE RES_VIEW
 CREATE TABLE USER_DIET
 (
 	diet_no number NOT NULL,
-	category nvarchar2(20) DEFAULT 'DINNER',
 	eatDate date DEFAULT SYSDATE,
-	kal nvarchar2(10),
 	userID varchar2(50 char) NOT NULL,
+	protein number DEFAULT 0,
+	vitB12 number DEFAULT 0,
+	vitD number DEFAULT 0,
+	zinc number DEFAULT 0,
+	calcium number DEFAULT 0,
 	PRIMARY KEY (diet_no)
 );
 
@@ -612,5 +620,20 @@ ALTER TABLE USER_FOLLOW
 	ON DELETE CASCADE
 ;
 
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('10','male',65,2.4,10,10,900);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('20','male',65,2.4,10,10,800);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('30','male',65,2.4,10,10,800);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('40','male',65,2.4,10,10,800);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('50','male',60,2.4,10,10,750);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('60','male',60,2.4,15,9,750);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('70','male',60,2.4,15,9,700);
+
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('10','female',55,2.4,10,9,800);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('20','female',55,2.4,10,8,700);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('30','female',50,2.4,10,8,700);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('40','female',50,2.4,10,8,700);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('50','female',50,2.4,10,8,700);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('60','female',50,2.4,15,7,800);
+INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('70','female',50,2.4,15,7,800);
 
 

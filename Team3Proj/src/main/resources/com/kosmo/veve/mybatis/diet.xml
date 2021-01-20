@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="com.kosmo.veve.mybatis.diet">
+	<select id="getStandardDiet" parameterType="java.util.Map" resultType="NutrientDTO">
+		SELECT * FROM NUTRIENT WHERE gender=#{gender} AND age=#{age}
+	</select>
+	
+	<select id="getTodayDiet" parameterType="String" resultType="UserDietDTO">
+		SELECT * FROM USER_DIET WHERE TO_CHAR(EATDATE,'yy/MM/dd')=#{eatDate}
+	</select>
+	
+	
+
+	<insert id="insertUserDiet" parameterType="java.util.Map">
+		INSERT INTO USER_DIET(diet_no,eatDate,userID,protein,vitB12,vitD,zinc,calcium) VALUES(SEQ_DIET_NO.NEXTVAL,DEFAULT,#{userID},#{protein},#{vitB12},#{vitD},#{zinc},#{calcium})
+	</insert>
+	
+
+
+	
+	
+</mapper>
