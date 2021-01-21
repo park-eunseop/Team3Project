@@ -72,6 +72,12 @@
 						<img id="profileImage" alt="이미지 오류" src='${KakaoUserImg}' onerror="this.src='/veve/resources/assets/images/basic_profile.gif';"/>	
 						
 					</c:if>
+					<p>
+						<i
+							class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>${userdto.nickname}</p>
+					<p>
+						<i
+							class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>${userdto.vg_level}</p>
 					 <a id="modal-193710" href="#modal-container-193710" role="button" class="btn" data-toggle="modal">팔로워</a>
 					
 					<div class="modal fade" id="modal-container-193710" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

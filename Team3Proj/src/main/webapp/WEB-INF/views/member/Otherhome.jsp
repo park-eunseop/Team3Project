@@ -129,9 +129,7 @@ $(function() {
 					<p>
 						<i
 							class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>${userdto.vg_level}</p>
-					<p>
-						<i
-							class="fa fa-certificate fa-fw w3-margin-right w3-large w3-text-teal"></i>${userdto.selfintro}</p>
+					
 					<a id="modal-193710" href="#modal-container-193710" role="button"
 						class="btn" data-toggle="modal">팔로워</a>
 
