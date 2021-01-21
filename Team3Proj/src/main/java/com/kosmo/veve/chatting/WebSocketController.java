@@ -25,7 +25,7 @@ public class WebSocketController {
 		String nickname = member.getNickname();
 		
 		model.addAttribute("nickname",nickname);
-		return "chatting/WebSocket.tiles";
+		return "chatting/WebSocket";
 	}//////////webSocketChatting
 	
 }

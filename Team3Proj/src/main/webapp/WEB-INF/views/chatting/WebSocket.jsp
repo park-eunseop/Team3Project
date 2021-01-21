@@ -1,18 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="/veve/resources/assets_admin/img/veve_admin_favicon.png">
+<title>VeVe들과의 이야기 방 </title>
+</head>
 
-
+<body>
+<!-- jq -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">	
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="/veve/resources/assets/css/websocket.css" rel="stylesheet">
 
 <div class="container">
 	<!-- 점보트론(Jumbotron) -->
-	<div class="jumbotron" style="height:250px;"></div>
+	<div class="jumbotron" style="height:250px; margin:20px"></div>
 
 	<fieldset>
-		<legend>VeVe의 채팅방</legend>
+		<legend>VeVe들과의 이야기 방</legend>
 		<p style="text-align: right"> 나를 포함한 채팅방 인원: <span id="connectionMemberCount" style="color:red"></span></p>
 		<p style="text-align: right"> 나의 닉네임: <span id="nickname">${nickname}</span> </p>
 		
@@ -50,7 +60,7 @@
 	
 	//서버와 연결된 소켓 클라이언트 생성
 	$(document).ready(function(){
-		wsocket = new WebSocket("ws://192.168.56.1:8080<c:url value='/chat-ws.do'/>");
+		wsocket = new WebSocket("ws://172.30.1.14:8080<c:url value='/chat-ws.do'/>");
 		//서버와 연결된 소켓에 이벤트 등록(open,close,message,error)
 		wsocket.onopen = open;
 		wsocket.onclose=function(){
@@ -183,4 +193,5 @@
 	
 </script>
 
-
+</body>
+</html>

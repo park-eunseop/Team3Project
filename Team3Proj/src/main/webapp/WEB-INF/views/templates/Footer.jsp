@@ -2,6 +2,46 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- chatbot -->
+<style>
+	#chatbot_img{
+		position: fixed;
+		bottom: 65px;
+		right: 20px;
+		width: 50px;
+	    height: 50px; 
+	    border-radius: 70%;
+	}
+	#userChat_img{
+		position: fixed;
+		bottom: 130px;
+		right: 20px;
+		width: 50px;
+	    height: 50px; 
+	    border-radius: 70%;
+	}
+</style>
+
+
+<script>
+	function openChatPop(url, name){
+	    var options = 'top=30, left=30, width=552, height=600, status=no, menubar=no, toolbar=no';
+	    window.open(url, name, options);
+	}
+	
+</script>
+<a href="javascript:openChatPop('<c:url value="/chatting/WebSocket.do"/>', 'userChat');">
+	<img id="userChat_img" src="/veve/resources/chatbot/userChat.png" alt="유저  채팅 이미지"/>
+</a>
+<a href="javascript:openChatPop('<c:url value="/chatbot/ChatbotMain.do"/>', 'chatbot');">
+	<img id="chatbot_img" src="/veve/resources/assets_admin/img/veve_admin_favicon.png" alt="챗봇 이미지"/>
+</a>
+
+
+<!-- chatbot -->
+
+
+
     <!-- footer -->
     <section class="footer bg-black roomy-40">
             
