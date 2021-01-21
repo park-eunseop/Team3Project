@@ -43,6 +43,9 @@
 	<insert id="userFileInsert" parameterType="java.util.Map">
 		INSERT INTO USER_FILE(user_file_no,userID,f_path,f_name) VALUES(SEQ_USER_FILE_NO.NEXTVAL,#{userID},#{f_path},#{f_name})
 	</insert>
+	
+	
+	
 	<!-- 팔로잉/팔로워 count -->
 	<select id="memberFollowing" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM USER_FOLLOW WHERE userID=#{userID}

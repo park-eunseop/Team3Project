@@ -18,7 +18,7 @@
 				<div class="h-100 justify-content-center">
 					<div class="chat-container" style="overflow: auto; max-height: 80vh">
 						<div class="chat-message col-md-5 bot-message" style="margin-bottom: 50px">
-							안녕하세요. VEVE 챗봇입니다. 😀
+							안녕하세요. VEVE 챗봇입니다. 😀 현재 저는 비건등급, 중요 영양소, 홈페이지 기능을 알려드릴 수 있어요~
 						</div>
 					</div>
 					<input class="input" type="text" placeholder="질의어를 입력하세요" id="query" />
