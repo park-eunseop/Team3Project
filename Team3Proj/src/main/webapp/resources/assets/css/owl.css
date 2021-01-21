@@ -1,12 +1,12 @@
-.card{
+.owl-board{
     border: none;
 }
-.card-body{
+/*.card-body{
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 50px;
     padding-right: 50px;
-}
+}*/
 .owl-prev{left: 10px;}
 .owl-next{right: 10px;}
 .owl-prev, .owl-next{

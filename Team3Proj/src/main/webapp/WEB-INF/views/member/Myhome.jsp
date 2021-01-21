@@ -158,6 +158,7 @@
 										<span aria-hidden="true">×</span>
 									</button>
 								</div>
+						
 								<div class="modal-body">
 
 
@@ -203,8 +204,9 @@
 
 					</div>
 					<!-- 모달 -->
+					<div style="padding-top: 15px">
 					<a href="<c:url value="/Member/Mypage.do"/>"
-						class="btn btn-success btn-sm">개인정보 수정 </a>
+						class="btn btn-success btn-sm" >개인정보 수정 </a>
 					<c:if test="${empty KakaoUserId}" var="isNotKakaologin">
 						<a href="javascript:logout()" class="btn btn-success btn-sm">로그아웃
 						</a>
@@ -212,10 +214,11 @@
 					<c:if test="${not isNotKakaologin }">
 						<a href="<c:url value="/logout"/>" class="btn btn-success btn-sm">로그아웃</a>
 					</c:if>
-					<div>
+					</div>
+					<div style="padding-top: 5px">
 						<form method="get" action="<c:url value="/Member/OtherHome.do"/>">
 							<input id="search" name="otherid" style="width: 200px" /> <input
-								id="serarchBtn" type="submit" class="btn" style="width: 30px"
+								id="serarchBtn" type="submit" class="btn" style="font-size:5px; padding:5px 5px"
 								value="검색">
 						</form>
 					</div>

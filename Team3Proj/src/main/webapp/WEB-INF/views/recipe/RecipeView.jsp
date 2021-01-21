@@ -10,6 +10,34 @@
 }
 </style>
 
+<!-- 네비게이션바 거리유지 -->
+    <section class="pad">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    dfadfadf
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--네비게이션바 거리유지 끝-->
+
+    
+
+    <!--서비스 소개 시작-->
+    <section class="introduce">
+        <div class="container">
+            <div class="sign-title m-bottom-30">
+                <h3 ><strong>레시피 작성</strong></h3>
+            </div>
+        </div>
+    </section>
+    <!--서비스 소개 끝-->
+    
+    
+    
+    
+
 		<div class="container">
 			<!-- 점보트론(Jumbotron) -->
 			<div class="jumbotron"></div>
