@@ -175,35 +175,35 @@
 					<h2>일일 영양현황</h2>
 					단백질
 					<div class="progress" >
-					<div id="todayProtein" class="progress-bar progress-bar-striped" style="width: 30%"></div>
+					<div id="todayProtein" class="progress-bar progress-bar-striped" style="width: ${strproteinPercent}%"></div>
 					</div>
 					<br>
 					비타민B12
 					<div class="progress">
 						<div id="todayB12"
 							class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-							style="width: 40%"></div>
+							style="width: ${strbPercent}%"></div>
 					</div>
 					<br>
 					비타민D
 					<div class="progress">
 						<div id="todayD"
 							class="progress-bar bg-info progress-bar-striped progress-bar-animated"
-							style="width: 50%"></div>
+							style="width: ${strdPercent}%"></div>
 					</div>
 					<br>
 					아연
 					<div class="progress">
 						<div id="todayAyen"
 							class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
-							style="width: 60%"></div>
+							style="width: ${strzincPercent}%"></div>
 					</div>
 					<br>
 					칼슘
 					<div class="progress">
 						<div id="todayCal"
 							class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
-							style="width: 70%"></div>
+							style="width: ${strcalPercent}%"></div>
 					</div>
 				</div>
 				<div class="col-md-12">
