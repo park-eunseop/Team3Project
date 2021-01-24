@@ -16,8 +16,6 @@ public class ChatbotController {
 	
 	@RequestMapping("/chatbot/ChatbotMain.do")
 	public String ChatbotMain(@RequestParam Map map, Model model, HttpSession session) {
-		//회원 이름등 넣기
-		
 		return "chatbot/ChatbotMain";
 	}//////////webSocketChatting
 

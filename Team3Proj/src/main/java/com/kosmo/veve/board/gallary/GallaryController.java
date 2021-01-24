@@ -242,7 +242,7 @@ public class GallaryController {
 		MemberDTO userinfo = service.selectOne(map);
 		System.out.println(userinfo.getNickname());
 		MemberFileDTO userfile = service.selectFile(userID);
-		System.out.println(userfile.getF_name());
+		//System.out.println(userfile.getF_name());
 		
 		
 		//obj.put("userinfo", userinfo.getNickname());
