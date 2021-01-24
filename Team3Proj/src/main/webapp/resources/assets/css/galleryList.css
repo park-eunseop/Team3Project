@@ -27,17 +27,18 @@ body {
     color: #262626;
     padding-bottom: 3rem;
 }
-
 img {
     display: block;
 }
 
-.container {
+
+.container_main {
     max-width: 93.5rem;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+/*
 .btn {
     display: inline-block;
     font: inherit;
@@ -51,7 +52,7 @@ img {
 .btn:focus {
     outline: 0.5rem auto #4d90fe;
 }
-
+*/
 .visually-hidden {
     position: absolute !important;
     height: 1px;

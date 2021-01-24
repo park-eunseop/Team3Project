@@ -10,12 +10,20 @@
 	/* 132px이 딱 맞는 크기*/
 }
 </style>
+
+<!-- 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
+	 -->
+	
+	
 <div id="first_container"></div>
 <!-- 위의 칸 띄우기 용 -->
 
@@ -60,7 +68,7 @@
 			</p>			
 			<div class="flex" style="display: flex;">	
 				<img alt="#" src="#" id="user_profile"  onerror="this.src='/veve/resources/assets/images/basic_profile.gif';"/>
-				<span id="user_nickname" style="width:50%; padding-left: 20px;padding-top:10px; font-weight: bold; font-size: 2em">nick</span>
+				<span id="user_nickname" style="width:50%; padding-left: 20px;padding-top:10px; font-weight: bold; font-size: 1.5em">nick</span>
 				
 			</div>
 			<hr width="100%">
@@ -137,14 +145,16 @@
 <!-- mian 인스타 페이지 -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/assets/css/galleryList.css"/>">
+	
+
 <main>
-	<div class="container">
+	<div class="container_main">
 		<div class="gallery">
 			<c:forEach var="item" items="${boardList}" varStatus="var">
 				<div class="gallery-item" tabindex="0">
 					<img src="<c:url value='/upload/${fileList[var.index].fileName}'/>"
-						class="gallery-image" alt="">
-					<div class="gallery-item-info" onclick="view(${item.gallary_no})">
+						class="gallery-image" alt="" style="width: 300px;height: 300px">
+					<div class="gallery-item-info" onclick="view(${item.gallary_no})" style="width: 300px;height: 300px">
 						<ul>
 							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
 								class="fas fa-heart" aria-hidden="true"></i> 56</li>
