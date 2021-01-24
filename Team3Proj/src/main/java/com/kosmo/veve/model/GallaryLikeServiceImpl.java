@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosmo.veve.model.service.GallaryLikeService;
 
-@Service("likeService")
+@Service("gallaryLikeService")
 public class GallaryLikeServiceImpl implements GallaryLikeService{
 
 	@Resource(name="gallaryLikeDAO")
@@ -38,6 +38,12 @@ public class GallaryLikeServiceImpl implements GallaryLikeService{
 	@Override
 	public List<GallaryLikeDTO> selectLikeList(Map map) {
 		return dao.selectLikeList(map);
+	}
+
+	@Override
+	public int getMyLike(Map map) {
+		// TODO Auto-generated method stub
+		return dao.getMyLike(map);
 	}
 	
 }

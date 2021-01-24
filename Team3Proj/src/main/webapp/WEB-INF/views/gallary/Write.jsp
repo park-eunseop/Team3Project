@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 
-<form method="post" action='<c:url value=""/>'
+<form method="post" action='<c:url value="/Gallary/GallaryWrite.do"/>'
 	enctype="multipart/form-data">
 	<label class="col-sm-2 control-label">제목</label>
 	<div class="col-sm-4">

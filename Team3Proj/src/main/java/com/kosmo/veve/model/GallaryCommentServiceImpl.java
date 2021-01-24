@@ -36,6 +36,12 @@ public class GallaryCommentServiceImpl implements GallaryCommentService{
 	public int update(Map map) {
 		return dao.update(map);
 	}
+
+	@Override
+	public int getCommentCount(String gallary_no) {
+		// TODO Auto-generated method stub
+		return dao.getCommentCount(gallary_no);
+	}
 	
 	
 

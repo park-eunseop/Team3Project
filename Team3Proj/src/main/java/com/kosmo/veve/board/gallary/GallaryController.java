@@ -32,6 +32,8 @@ import com.kosmo.veve.model.GallaryFileDTO;
 import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.MemberFileDTO;
 import com.kosmo.veve.model.service.GallaryBoardService;
+import com.kosmo.veve.model.service.GallaryCommentService;
+import com.kosmo.veve.model.service.GallaryLikeService;
 import com.kosmo.veve.model.service.MemberService;
 
 
@@ -49,8 +51,12 @@ public class GallaryController {
 	@Resource(name = "memberService")
 	private MemberService service;
 
+	@Resource(name = "gallaryLikeService")
+	private GallaryLikeService likeservice;
 	
 	
+	@Resource(name="galcommentService")
+	private GallaryCommentService commentService;
 	
 	
 	@RequestMapping("/Gallary/GallaryEdit.do") 
@@ -94,12 +100,14 @@ public class GallaryController {
 		List<GallaryBoardDTO> boardList= gallaryService.selectBoardList(map);
 		List<GallaryFileDTO> fileList = gallaryService.selectFileList(map);
 		
+		List<String> likeList = new ArrayList<String>();
+		List<String> commentList = new ArrayList<String>();
 		List<List> files = new ArrayList<List>();
 		
 		for(int i=0;i<boardList.size();i++) {
 			//리스트 크기만큰 for문을 돌면서 번호에 해당하는 파일들을 List에 담아올꺼야
 			String no = boardList.get(i).getGallary_no();
-			System.out.println("대장 게시물:"+no);
+			//System.out.println("대장 게시물:"+no);
 			List<String> files2 = new ArrayList<String>();
 
 			//파일 리스트 돌면서 일치하는 파일들을 List에 넣을꺼야
@@ -108,18 +116,39 @@ public class GallaryController {
 				String includeno = fileList.get(k).getGallary_no();
 				
 				if(no.equals(includeno)){
-					System.out.println("쫄병 게시물:"+fileList.get(k).getGallary_no());
+					//System.out.println("쫄병 게시물:"+fileList.get(k).getGallary_no());
 
 					files2.add(fileList.get(k).getF_name());
 				}				
 			}
-			files.add(files2);	
+			
+			files.add(files2);
+			
+			
+			//게시물 번호로 좋아요 갯수를 가져올꺼야
+		
+			map.put("gallary_no", no);
+			int likeCount = likeservice.getLikeCount(map);
+			System.out.printf("%s 게실물 , %s 좋아요 갯수 %n",no,likeCount);
+			likeList.add(String.valueOf(likeCount));
+			
+			
+			//게시물 번호로 댓글 수 가져올꺼야
+			
+			int commentCount = commentService.getCommentCount(no);
+			System.out.println("댓글수:"+commentCount);
+			commentList.add(String.valueOf(commentCount));
+			
+			
+				
 				
 		}
 		System.out.println("게시판 갯수:"+boardList.size());
 		System.out.println("게시판 갯수(파일):"+files.size());
 		
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("likeList", likeList);
+		model.addAttribute("commentList", commentList);
 		
 		
 		List<Map> fileList3 = new ArrayList<Map>();
@@ -133,6 +162,13 @@ public class GallaryController {
 			fileList3.add(filemap);
 		}
 		model.addAttribute("fileList",fileList3);
+		
+		
+		
+		
+		
+		
+		
 		return "gallary/List.tiles"; 
 	}
 	
@@ -223,6 +259,8 @@ public class GallaryController {
         return false;
     }
     
+    
+    //뷰 페이지로 넘길 값들
     @RequestMapping(value="/Gallary/View.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String view(@RequestParam Map map) {
@@ -242,16 +280,13 @@ public class GallaryController {
 		MemberDTO userinfo = service.selectOne(map);
 		System.out.println(userinfo.getNickname());
 		MemberFileDTO userfile = service.selectFile(userID);
-		//System.out.println(userfile.getF_name());
+
+		
+		//like 유무
+		int myLike = likeservice.getMyLike(map);
+		System.out.println("나의 라이크:"+myLike);
 		
 		
-		//obj.put("userinfo", userinfo.getNickname());
-		
-		//obj.put("userfile", userfile);
-		//obj.put("boardInfo", boardInfo);
-		//obj.put("boardfile", fileList);
-		//array.add(obj);
-		//fileList.size();
 		String filenames ="";
 		for(int i=0;i<fileList.size();i++) {
 			filenames += fileList.get(i).getF_name()+"/";
@@ -265,7 +300,7 @@ public class GallaryController {
 		obj.put("boardContent", boardInfo.getContent());
 		//System.out.println(boardInfo.getPostDate().toString());
 		//Date date = new Date();
-		
+		obj.put("myLike", myLike);
 		
 		obj.put("boardDate", boardInfo.getPostDate().toString());
 		

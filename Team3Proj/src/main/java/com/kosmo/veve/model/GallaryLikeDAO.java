@@ -43,6 +43,12 @@ public class GallaryLikeDAO implements GallaryLikeService {
 		return sqlMapper.selectList("selectLikeList", map);
 	}
 
+	@Override
+	public int getMyLike(Map map) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("gallaryMyLikeCount", map);
+	}
+
 	
 	
 }

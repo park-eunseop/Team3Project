@@ -36,4 +36,11 @@ public class GallaryCommentDAO implements GallaryCommentService{
 		return sqlMapper.update("galcommentUpdate", map);
 	}
 
+	@Override
+	public int getCommentCount(String gallary_no) {
+		// TODO Auto-generated method stub
+		System.out.println("게시물 번호:"+gallary_no);
+		return sqlMapper.selectOne("getGallaryCommentCount", gallary_no);
+	}
+
 }

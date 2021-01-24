@@ -11,4 +11,7 @@ public interface GallaryCommentService {
 	int insert(Map map);
 	int delete(Map map);
 	int update(Map map);
+	
+	//게시물에 따른 총 댓글 수 가져오기
+	int getCommentCount(String gallary_no);
 }

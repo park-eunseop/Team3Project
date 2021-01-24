@@ -29,6 +29,11 @@
        WHERE r_c.gallary_no= #{gallary_no,jdbcType=NUMERIC}
        ORDER BY r_c.gallary_com_no DESC    
     </select>
+    
+    <select id="getGallaryCommentCount" parameterType="String" resultType="int">
+       SELECT COUNT(*) FROM gallary_comment WHERE gallary_no = #{gallary_no}
+    </select>
+    
     <update id="galcommentUpdate" parameterType="java.util.Map">
        UPDATE gallary_comment SET content = #{content} WHERE gallary_com_no=#{gallary_com_no,jdbcType=NUMERIC}    
     </update>

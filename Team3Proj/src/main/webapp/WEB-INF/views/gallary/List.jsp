@@ -23,6 +23,23 @@
 	
 	 -->
 	
+<script>
+$(function(){
+	$('#commentIcon').click(function(){
+		console.log('댓글 아이콘 클릭');
+		
+		$('#commentInput').focus();
+		
+	});
+
+	
+});
+
+
+
+
+</script>
+
 	
 <div id="first_container"></div>
 <!-- 위의 칸 띄우기 용 -->
@@ -78,14 +95,13 @@
 			<hr width="100%">
 			<div id="board_comment" style="padding-top: 10px;height:130px">댓글</div>
 			<hr width="100%">
-			<div style="padding-top: 10px;height:50px"">
-			<i class="fas fa-heart fa-2x" aria-hidden="true"></i>
-			<span style="color:red"><i class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
-			<i class="fas fa-comment fa-2x" aria-hidden="true"></i>
+			<div style="padding-top: 10px;height:50px"">			
+			<span id="heartColor" style="color:red"><i class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
+			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
 			<span id="board_date"></span>
 			</div>
 			<hr width="100%">
-			<input type="text" placeholder="댓글 달기..." style="width: 95%;"/>
+			<input id="commentInput" type="text" placeholder="댓글 달기..." style="width: 95%;"/>
 			<div style="height: 20px">
 			</div>
 		</div>
@@ -94,6 +110,27 @@
 	</div>
 	<!-- 외곽 flex container -->
 </div>
+<!-- View -->
+
+<!-- Write 페이지 -->
+<div class="white_content" id="wopen">
+	<div id="flex_container" style="display: flex;">
+		<div style="display: flex; width: 60%;">
+			<h2>글 작성 페이지 입니다.</h2>
+		</div>
+		<!-- div right -->
+
+		<div style="display: flex; width: 40%; flex-direction: column; padding-left: 10px">
+			여기서 글 작성
+		</div>
+		<!-- div left -->
+
+	</div>
+	<!-- 외곽 flex container -->
+</div>
+
+<!-- Write 페이지 -->
+
 
 
 
@@ -154,13 +191,13 @@
 				<div class="gallery-item" tabindex="0">
 					<img src="<c:url value='/upload/${fileList[var.index].fileName}'/>"
 						class="gallery-image" alt="" style="width: 300px;height: 300px">
-					<div class="gallery-item-info" onclick="view(${item.gallary_no})" style="width: 300px;height: 300px">
+					<div class="gallery-item-info" onclick="view(${item.gallary_no})" style="width:300px;height:300px">
 						<ul>
 							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
-								class="fas fa-heart" aria-hidden="true"></i> 56</li>
+								class="fas fa-heart" aria-hidden="true"></i> ${likeList[var.index] }</li>
 							<li class="gallery-item-comments"><span
 								class="visually-hidden">Comments:</span><i
-								class="fas fa-comment" aria-hidden="true"></i> 2</li>
+								class="fas fa-comment" aria-hidden="true"></i> ${commentList[var.index] }</li>
 						</ul>
 					</div>
 
@@ -196,7 +233,7 @@
 <div style="height: 170px"></div>
 <div class="row">
 	<div class="col-md-10 text-right">
-		<a href="<c:url value="/Gallary/GallaryWrite.do"/>"
+		<a href="#wopen"
 			class="btn btn-success">작성</a>
 	</div>
 </div>
@@ -266,6 +303,17 @@ function view(board_no){
 
 				
 			});//each
+			console.log('하트',data["myLike"])
+			//1.좋아요 유무 확인
+			if(data["myLike"]=='1'){
+				console.log('하트 빨간색')
+				$('#heartColor').attr('style','color:red');
+			}
+			else{
+				$('#heartColor').attr('style','color:black');
+			}
+			
+			//2.댓글 가져오기
 			
 			//showComments(board_no);
 			
@@ -295,6 +343,7 @@ function showComments(board_no){
    });
    
 }//////////////showComments
+
 
 
 

@@ -30,10 +30,16 @@
        WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC} AND userID=#{userID}
     </delete>
 
-	<select id="gallaryLikeCount" parameterType="java.util.Map" resultType="java.util.Map">
+	<select id="gallaryLikeCount" parameterType="java.util.Map" resultType="int">
        SELECT COUNT(*) 
        FROM gallary_like 
-       WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC} AND userID in #{userID};
+       WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC}
+    </select>
+    
+    <select id="gallaryMyLikeCount" parameterType="java.util.Map" resultType="int">
+       SELECT COUNT(*) 
+       FROM gallary_like 
+       WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC} AND userID = #{userID}
     </select>
     
     <select id="selectLikeList" parameterType="java.util.Map" resultType="gallaryLikeDTO" >
