@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="<c:url value="/resources/chatbot/chatbot_style.css" />">
 <title>VEVE 챗봇</title>
 </head>
-
+<!-- 선생님 참고 수업자료 -->
+<!-- template -> Footer.jsp에 챗봇 자료 담김 -->
 <body>
 	<div class="container h-100">
 		<div class="row align-items-center h-100">
