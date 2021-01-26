@@ -43,11 +43,17 @@
    </insert>
 
    <select id="gallaryBoardSelectList" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
-      SELECT * FROM gallary_board
-   </select>
+      SELECT * FROM (SELECT * FROM GALLARY_BOARD) WHERE ROWNUM <![CDATA[>=]]> 1 AND ROWNUM<![CDATA[<=]]> 6
+    </select>
+    
+    <select id="gallaryBoardSelectListInfinit" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
+      SELECT * FROM (SELECT ROWNUM AS ROWNUMBER,B.* FROM GALLARY_BOARD B) A WHERE A.ROWNUMBER <![CDATA[>=]]> #{start} AND A.ROWNUMBER<![CDATA[<=]]> #{end}
+    
+    </select>
    
    <select id="gallaryFileSelectList" parameterType="java.util.Map" resultType="gallaryFileDTO" >
       SELECT * FROM gal_file
+      
    </select>
    
    <select id="gallaryFileSelectListOne" parameterType="java.util.Map" resultType="gallaryFileDTO" >

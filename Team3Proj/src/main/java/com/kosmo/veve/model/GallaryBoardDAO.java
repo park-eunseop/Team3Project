@@ -69,4 +69,11 @@ public class GallaryBoardDAO implements GallaryBoardService{
 	}
 
 
+	@Override
+	public List<GallaryBoardDTO> selectBoardListInfinit(Map map) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectList("gallaryBoardSelectListInfinit",map);
+	}
+
+
 }

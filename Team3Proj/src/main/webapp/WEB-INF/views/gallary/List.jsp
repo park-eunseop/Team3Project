@@ -31,11 +31,66 @@ $(function(){
 		$('#commentInput').focus();
 		
 	});
-	$('#closeView').click(function(){
-		
+	$('#boardHeart').click(function(){
+		console.log('하트 아이콘 클릭');
+		var color = $('#heartColor').attr("style");
+		console.log(color);
+		if(color=='color:black'){
+			//heart insert
+			$('#heartColor').attr("style",'color:red');
+			
+		}
+		else{
+			//heart delete
+			$('#heartColor').attr("style",'color:black');
+		}
 		
 	});
-	
+	var board_no_infinit =0;
+	$(window).scroll(function(){
+         let $window = $(this);
+         let scrollTop = $window.scrollTop();
+         let windowHeight = $window.height();
+         let documentHeight = $(document).height();
+         
+         console.log(board_no_infinit);
+         //console.log(scrollTop);
+         if( scrollTop + windowHeight + 30 > documentHeight){
+             console.log('스크롤 도착');
+             board_no_infinit += 7;
+             $.ajax({
+                 url:"<c:url value='/Gallary/infinit'/>",
+                 data:{"gallary_no":board_no_infinit},
+                 dataType:'json',
+                 type:'post',
+                 success:function(data){
+               	  //console.log(data[0]);
+               	 
+               	  var src = '/veve/upload/';
+               	  
+               	  $.each(data,function(index,value){
+               		  console.log(value["boardMainPic"]);
+               		  var src1 = value["boardMainPic"];
+               		  
+               		 $('#appendPosition').append(`
+               				<div class="gallery-item" tabindex="0"><img src="`+src+src1+`" class="gallery-image" alt="" style="width: 300px;height: 300px"/></div>              			 
+               			`);      
+               		  
+    				
+    			   });//each
+    			   
+               	  
+            
+                  
+               	  
+                 },
+                 error:function(e){console.log(e);}
+                 
+              });
+             
+             
+         }
+    })
 	
 
 	
@@ -102,7 +157,7 @@ $(function(){
 			<div id="board_comment" style="padding-top: 10px;height:130px">댓글</div>
 			<hr width="100%">
 			<div style="padding-top: 10px;height:50px"">			
-			<span id="heartColor" style="color:red"><i class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
+			<span id="heartColor" style="color:red"><i id="boardHeart" class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
 			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
 			<span id="board_date"></span>
 			</div>
@@ -192,7 +247,7 @@ $(function(){
 
 <main>
 	<div class="container_main">
-		<div class="gallery">
+		<div class="gallery" id="appendPosition">
 			<c:forEach var="item" items="${boardList}" varStatus="var">
 				<div class="gallery-item" tabindex="0">
 					<img src="<c:url value='/upload/${fileList[var.index].fileName}'/>"

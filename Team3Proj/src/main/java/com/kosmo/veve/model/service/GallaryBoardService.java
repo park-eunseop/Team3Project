@@ -17,6 +17,7 @@ public interface GallaryBoardService {
 	int updateFile(Map map);
 	
 	List<GallaryBoardDTO> selectBoardList(Map map);
+	List<GallaryBoardDTO> selectBoardListInfinit(Map map);
 	List<GallaryFileDTO> selectFileList(Map map);
 	List<GallaryFileDTO> selectFileListOne(Map map);
 	

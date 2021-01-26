@@ -92,6 +92,81 @@ public class GallaryController {
 		return "forward:/Gallary/List.do";
 	}////////////
 	
+	///무한 스크롤용
+	@RequestMapping("/Gallary/infinit")
+	@ResponseBody
+	public String appendlist(HttpServletRequest req) {
+		
+		System.out.println(req.getParameter("gallary_no"));
+		int startNum = Integer.parseInt(req.getParameter("gallary_no"));
+		int endNum = startNum + 6;
+		Map map = new HashMap();
+		map.put("start", startNum);
+		map.put("end", endNum);
+		System.out.println(String.valueOf(startNum));
+		System.out.println(String.valueOf(endNum));
+		
+		List<GallaryBoardDTO> boardList = gallaryService.selectBoardListInfinit(map);
+		System.out.println("가져온 리스트"+boardList);
+		List<GallaryFileDTO> fileList = gallaryService.selectFileList(map);
+		
+		List<String> likeList = new ArrayList<String>();
+		List<String> commentList = new ArrayList<String>();
+		List<List> files = new ArrayList<List>();
+		
+		for(int i=0;i<boardList.size();i++) {
+			//리스트 크기만큰 for문을 돌면서 번호에 해당하는 파일들을 List에 담아올꺼야
+			String no = boardList.get(i).getGallary_no();
+			//System.out.println("대장 게시물:"+no);
+			List<String> files2 = new ArrayList<String>();
+
+			//전체 파일 리스트 돌면서 일치하는 파일들을 List에 넣을꺼야
+			for(int k=0;k<fileList.size();k++) {
+				//System.out.println("쫄병 게시물:"+fileList.get(k).getGallary_no());
+				String includeno = fileList.get(k).getGallary_no();
+				
+				if(no.equals(includeno)){
+					//System.out.println("쫄병 게시물:"+fileList.get(k).getGallary_no());
+
+					files2.add(fileList.get(k).getF_name());
+				}				
+			}
+			
+			files.add(files2);			
+			//게시물 번호로 좋아요 갯수를 가져올꺼야		
+			map.put("gallary_no", no);
+			int likeCount = likeservice.getLikeCount(map);
+			System.out.printf("%s 게실물 , %s 좋아요 갯수 %n",no,likeCount);
+			likeList.add(String.valueOf(likeCount));
+						
+			//게시물 번호로 댓글 수 가져올꺼야			
+			int commentCount = commentService.getCommentCount(no);
+			System.out.println("댓글수:"+commentCount);
+			commentList.add(String.valueOf(commentCount));					
+		}
+		
+		List<Map> totallist = new ArrayList<Map>();
+		
+		//totalmap.put("test", "test");
+		//totallist.add(totalmap);
+		for(int j=0;j<boardList.size();j++) {
+			Map totalmap = new HashMap();
+			totalmap.put("likeCount", likeList.get(j));
+			totalmap.put("commentCount", commentList.get(j));
+			totalmap.put("boardNum",boardList.get(j).getGallary_no()); //boardNum
+			totalmap.put("boardMainPic", files.get(j).get(0));  //메인 사진 name
+			
+			totallist.add(totalmap);
+			
+		}
+		System.out.println(totallist);
+		
+				
+		return JSONArray.toJSONString(totallist);
+	}
+	
+	
+	//list로 보내기
 	@RequestMapping("/Gallary/List.do") 
 	public String list(@RequestParam Map map,
 						HttpServletRequest req,//컨텍스트 루트 얻기용
