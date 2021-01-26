@@ -33,6 +33,10 @@
 		//location.replace("<c:url value="/OneMemo/Auth/Logout.do"/>");
 		$('#logoutForm').submit();//스프링 씨큐리티의 csrf공격 사용시
 	}
+	function login(){
+		alert("로그인 후 이용하세요");
+		$('#islogin').get(0).click();
+	}
 
 </script>
 
@@ -59,11 +63,18 @@
                 <i class="fas fa-times"></i>
                 </div>
                 <li><a href="<c:url value="/"/>">홈</a></li>
-                <li><a href="<c:url value="/Member/MemberDiet.do"/>">베지식단 코칭</a>
-                <li><a href="<c:url value="/Board/Restaurant.do"/>">베지맛집 찾기</a></li>
+                <c:if test="${empty UserID}" var="IsLogin">
+                <li><a href="javascript:login()">베지식단 코칭</a>
+                <li><a href="javascript:login()">베지맛집 찾기</a></li>
+                </c:if>
+                <c:if test="${! IsLogin}">
+                	<li><a href="<c:url value="/Member/MemberDiet.do"/>">베지식단 코칭</a>
+                	<li><a href="<c:url value="/Board/Restaurant.do"/>">베지맛집 찾기</a></li>
+                </c:if>
                 <li><a href="<c:url value="/recipe.do"/>">채식 레시피</a></li>
                 <li><a href="<c:url value="/Gallary/List.do"/>">커뮤니티</a></li>
-
+                <li><a href="#">공지사항</a></li>
+				<a id="islogin" href="<c:url value="/Member/Auth/Login.do"/>" hidden="" ></a>
             </ul>
 
 

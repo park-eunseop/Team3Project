@@ -26,6 +26,27 @@
 				});
 			}
 		});//ajax
+		
+		
+		$('#sendToPython').click(function(){
+			
+			$.ajax({
+				type : 'post',
+				url : "http://localhost:8383/crawl",
+				dataType : "text",
+				success : function(data) {
+					console.log('파이썬에서 돌아왔어',data)
+					var videoLink = data;
+					//videoLink.replace('watch?v=','embed/');
+					//console.log('video:',videoLink)
+					$('#crawlVideo').attr('src',videoLink.replace('watch?v=','embed/'));
+				}
+			});//ajax
+			
+			
+		});
+		
+		
 	});
 </script>
 <!-- 새로 만든 스타일 -->
@@ -259,28 +280,9 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div id="card-560222">
-						<div class="card">
-							<div class="card-header">
-								<a class="card-link" data-toggle="collapse"
-									data-parent="#card-560222" href="#card-element-992035">Collapsible
-									Group Item #1</a>
-							</div>
-							<div id="card-element-992035" class="collapse show">
-								<div class="card-body">Anim pariatur cliche...</div>
-							</div>
-						</div>
-						<div class="card">
-							<div class="card-header">
-								<a class="card-link" data-toggle="collapse"
-									data-parent="#card-560222" href="#card-element-656013">Collapsible
-									Group Item #2</a>
-							</div>
-							<div id="card-element-656013" class="collapse show">
-								<div class="card-body">Anim pariatur cliche...</div>
-							</div>
-						</div>
-					</div>
+					<iframe id="crawlVideo" src=" ">
+					
+					</iframe>
 					<div class="carousel slide" id="carousel-464309">
 						<ol class="carousel-indicators">
 							<li data-slide-to="0" data-target="#carousel-464309"></li>
@@ -344,6 +346,7 @@
 					<!-- tab1 내 피드 -->
 					<div class="tab-pane active" id="tab1">
 						<p>내 피드가 들어갈 곳</p>
+						<button id="sendToPython">파이썬으로  코드 보내기</button>
 						<!-- sumnail  -->
 						<div class="row">
 							<div class="col-md-4">

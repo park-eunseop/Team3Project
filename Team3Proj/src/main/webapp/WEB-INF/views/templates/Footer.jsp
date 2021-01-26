@@ -46,9 +46,18 @@
 <script src="<c:url value="/resources/chatbot/chatbot.js"/>"></script>
 
 <!-- 우측 하단의 버튼 -->
+<c:if test="${empty UserID}" var="IsLogin">
+<a href="javascript:login()">
+	<img id="userChat_img" src="/veve/resources/chatbot/userChat.png" alt="유저  채팅 이미지"/>
+</a>
+</c:if>
+<c:if test="${! IsLogin}">
 <a href="javascript:openChatPop('<c:url value="/chatting/WebSocket.do"/>', 'userChat');">
 	<img id="userChat_img" src="/veve/resources/chatbot/userChat.png" alt="유저  채팅 이미지"/>
 </a>
+</c:if>
+
+
 <img id="chatbot_img" src="/veve/resources/chatbot/VEVEbot.png" alt="베베봇"
 	onmouseover="this.src='/veve/resources/chatbot/VEVEbot_hover.png'" 
 	onmouseout="this.src='/veve/resources/chatbot/VEVEbot.png'" />

@@ -31,6 +31,12 @@ $(function(){
 		$('#commentInput').focus();
 		
 	});
+	$('#closeView').click(function(){
+		
+		
+	});
+	
+	
 
 	
 });
@@ -81,7 +87,7 @@ $(function(){
 
 		<div style="display: flex; width: 40%; flex-direction: column; padding-left: 10px">
 			<p align="right">
-				<a href="#close">CLOSE&nbsp;&nbsp;</a>
+				<a href="#close" id="closeView">CLOSE&nbsp;&nbsp;</a>
 			</p>			
 			<div class="flex" style="display: flex;">	
 				<img alt="#" src="#" id="user_profile"  onerror="this.src='/veve/resources/assets/images/basic_profile.gif';"/>
