@@ -71,17 +71,23 @@ $(function(){
                	  $.each(data,function(index,value){
                		  console.log(value["boardMainPic"]);
                		  var src1 = value["boardMainPic"];
+               		  var no = value["boardNum"];
+               		  var like = value["likeCount"];
+               		  var comment= value["commentCount"];
                		  
                		 $('#appendPosition').append(`
-               				<div class="gallery-item" tabindex="0"><img src="`+src+src1+`" class="gallery-image" alt="" style="width: 300px;height: 300px"/></div>              			 
+               				<div class="gallery-item" tabindex="0"><img src="`+src+src1+`" class="gallery-image" alt="" style="width: 300px;height: 300px"/>
+               				<div class="gallery-item-info" onclick="view(`+no+`)" style="width:300px;height:300px">
+               				<ul>
+        					<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>`+like+`</li>
+        					<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>`+comment+`</li>
+        					</ul></div></div>
                			`);      
                		  
     				
     			   });//each
     			   
-               	  
-            
-                  
+ 
                	  
                  },
                  error:function(e){console.log(e);}

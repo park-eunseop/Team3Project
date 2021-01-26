@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -93,7 +94,8 @@ public class GallaryController {
 	}////////////
 	
 	///무한 스크롤용
-	@RequestMapping("/Gallary/infinit")
+	//json 한글 깨짐처리위해 produces = "application/text; charset=UTF-8" 추가
+	@RequestMapping(value = "/Gallary/infinit" , produces = "application/text; charset=UTF-8" )
 	@ResponseBody
 	public String appendlist(HttpServletRequest req) {
 		
@@ -129,6 +131,7 @@ public class GallaryController {
 					//System.out.println("쫄병 게시물:"+fileList.get(k).getGallary_no());
 
 					files2.add(fileList.get(k).getF_name());
+					//System.out.println("파일 이름 여기야:"+fileList.get(k).getF_name());
 				}				
 			}
 			
