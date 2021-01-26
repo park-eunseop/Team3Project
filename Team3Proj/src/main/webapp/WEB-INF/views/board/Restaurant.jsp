@@ -242,8 +242,8 @@
     left: 20px;
     top: 152px;
     z-index: 3;
-    width: 350px;
-    height: 620px;
+    width: 330px;
+    height: 560px;
     padding: 15px 29px;
     background-color: #fff;
     border: 1px solid #dddddd;

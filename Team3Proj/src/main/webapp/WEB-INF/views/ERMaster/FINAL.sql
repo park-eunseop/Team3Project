@@ -620,6 +620,7 @@ ALTER TABLE USER_FOLLOW
 	ON DELETE CASCADE
 ;
 
+/*식단 분석 자료*/
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('10','male',65,2.4,10,10,900);
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('20','male',65,2.4,10,10,800);
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('30','male',65,2.4,10,10,800);
@@ -636,15 +637,98 @@ INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('50','f
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('60','female',50,2.4,15,7,800);
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('70','female',50,2.4,15,7,800);
 
+/*공지사항*/
 CREATE SEQUENCE SEQ_NOC_COM_NO
 NOCACHE
 NOCYCLE;
-
 CREATE SEQUENCE SEQ_NOC_NO
 NOCACHE
 NOCYCLE;
-
 CREATE SEQUENCE SEQ_NOC_FILE_NO
 NOCACHE
 NOCYCLE;
+
+
+
+/* 새로 만든 restaurant 자료  -테이블 삭제후 아래 쿼리문 실행*/
+DROP TABLE RES_FILE CASCADE CONSTRAINTS;
+DROP TABLE RES_REVIEW_DEC CASCADE CONSTRAINTS;
+DROP TABLE RES_REVIEW_LIKE CASCADE CONSTRAINTS;
+DROP TABLE RES_REVIEW_SCRAP CASCADE CONSTRAINTS;
+DROP TABLE RES_VIEW CASCADE CONSTRAINTS;
+DROP TABLE RESTAURANT CASCADE CONSTRAINTS;
+drop table res_view_file CASCADE CONSTRAINTS;/* res_view_file table은 없던 것이여서 오류가 날 수 있다.*/
+
+
+CREATE TABLE RESTAURANT
+(
+	res_no number NOT NULL,
+	res_name nvarchar2(50) NOT NULL,
+	res_addr nvarchar2(50) NOT NULL,
+	res_tel nvarchar2(20) NOT NULL,
+	res_menu nvarchar2(800),
+	category nvarchar2(20) NOT NULL,
+	PRIMARY KEY (res_no)
+);
+
+CREATE TABLE RES_FILE
+(
+	res_file_no number NOT NULL,
+	f_path nvarchar2(300) NOT NULL,
+	f_name nvarchar2(100) NOT NULL,
+	res_no number NOT NULL,
+	PRIMARY KEY (res_file_no),
+	FOREIGN KEY (res_no) REFERENCES RESTAURANT(res_no) ON DELETE CASCADE
+);
+
+CREATE TABLE RES_VIEW
+(
+	review_no number NOT NULL,
+	star number DEFAULT 3 NOT NULL,
+	content nvarchar2(2000) NOT NULL,
+	postDate date DEFAULT SYSDATE,
+	userID varchar2(50 char) NOT NULL,
+	res_no number NOT NULL,
+	PRIMARY KEY (review_no)
+);
+
+CREATE TABLE RES_VIEW_FILE
+(
+	res_view_file_no number primary key,
+	f_path nvarchar2(300) not null,
+	f_name nvarchar2(100) not null,
+	review_no number not null references RES_VIEW(review_no)  
+);
+
+CREATE TABLE RES_REVIEW_DEC
+(
+	content nvarchar2(50) NOT NULL,
+	review_no number NOT NULL,
+	userID varchar2(50 char) NOT NULL,
+	PRIMARY KEY (review_no, userID),
+	FOREIGN KEY (review_no) REFERENCES RES_VIEW(review_no) ON DELETE CASCADE,
+	FOREIGN KEY (userID) REFERENCES VG_USER(userID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE RES_REVIEW_LIKE
+(
+	review_no number NOT NULL,
+	userID varchar2(50 char) NOT NULL,
+	PRIMARY KEY (review_no, userID),
+	FOREIGN KEY (review_no) REFERENCES RES_VIEW(review_no) ON DELETE CASCADE,
+	FOREIGN KEY (userID) REFERENCES VG_USER(userID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE RES_REVIEW_SCRAP
+(
+	review_no number NOT NULL,
+	userID varchar2(50 char) NOT NULL,
+	PRIMARY KEY (review_no, userID),
+	FOREIGN KEY (review_no) REFERENCES RES_VIEW(review_no) ON DELETE CASCADE,
+	FOREIGN KEY (userID) REFERENCES VG_USER(userID) ON DELETE CASCADE
+);
+
+
 

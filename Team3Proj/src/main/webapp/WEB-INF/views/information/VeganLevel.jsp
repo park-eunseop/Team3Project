@@ -3,10 +3,8 @@
 <style>
 #first_container {
 	padding-top: 200px;
-	/* 132px이 딱 맞는 크기*/
-}
-.card {
 	padding-bottom: 70px;
+	/* 132px이 딱 맞는 크기*/
 }
 .card-header {
 	color: #f0c828;
