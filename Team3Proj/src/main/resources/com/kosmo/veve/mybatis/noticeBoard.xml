@@ -1,64 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kosmo.veve.mybatis.noticeBoard">
 	<!--resultMap사용시 column속성 필수:ibatis와 다른점 -->
+	<resultMap type="noticeFileDTO" id="noticeFileDTOResult">
+		<result property="notice_file_no" column="notice_file_no" />
+		<result property="f_path" column="f_path" />
+		<result property="f_name" column="f_name" />
+		<result property="userID" column="userID" />
+		<result property="notice_no" column="notice_no" />
+	</resultMap>
 
-	<resultMap type="noticeDTO" id="noticeDTOResult">
+	<resultMap type="noticeBoardDTO" id="noticeBoardDTOResult">
 		<!-- property:자바빈의 속성명 column:테이블의 컬럼(조회결과의 컬럼들 의미) -->
 		<result property="notice_no" column="notice_no" />
 		<result property="title" column="title" />
 		<result property="content" column="content" />
 		<result property="postDate" column="postDate" />
 		<result property="userID" column="userID" />
-		<!-- <result property="name" column="name"/> -->
+		<result property="sq" column="sq"/>
 		<result property="visitCount" column="visittCount" />
 
 		<collection property="comments" column="notice_no"
-			select="com.kosmo.veve.mybatis.noticecomment.commnetNoSelectList"
+			select="com.kosmo.veve.mybatis.noticeComment.commentNoSelectList"
 			javaType="List"
-			ofType="com.kosmo.veve.board.model.NoticeCommentDTO" />
+			ofType="com.kosmo.veve.model.NoticeCommentDTO" />
 	</resultMap>
+	
 
-	<select id="noticeSelectList" parameterType="java.util.Map" resultType="noticeDTO">
+	<select id="noticeSelectList" parameterType="java.util.Map" resultType="noticeBoardDTO">
+		 SELECT *
+		 FROM (SELECT T.*, ROW_NUMBER() OVER(ORDER BY T.NOTICE_NO) AS SQ
+			   FROM NOTICE_BOARD T
+			   ORDER BY T.NOTICE_NO )
+		WHERE SQ BETWEEN #{start} AND #{end}
+		 <!--SELECT *
+		 FROM (SELECT T.*, ROWNUM R FROM NOTICE_BOARD T)
+		 WHERE R BETWEEN #{start} AND #{end}
 		SELECT * FROM
-		(SELECT T.*,ROWNUM R FROM (SELECT o.*,(SELECT COUNT(*)
-		FROM NOTICE_COMMENT WHERE notice_no=o.notice_no) as notice_com_no FROM
-		member m JOIN NOTICE_BOARD o ON m.userID=o.userID
+		(SELECT T.*,ROWNUM R FROM (SELECT B.*,V.name,(SELECT COUNT(*) FROM NOTICE_COMMENT WHERE notice_no=B.notice_no) as visitCount FROM VG_USER V JOIN NOTICE_BOARD B ON V.userID=B.userID
 		<if test="searchColumn !=null">
-			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'	
 		</if>
-
 		ORDER BY no DESC) T)
-		WHERE R BETWEEN #{start} AND #{end}
+		WHERE R BETWEEN #{start} AND #{end}	 --> 
 	</select>
 	
 	<select id="noticeGetTotalRecord" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) FROM NOTICE_BOARD o JOIN member m ON o.userID=m.userID
-		<if test="searchColumn !=null">
-			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'
-		</if>
+		SELECT COUNT(*) FROM NOTICE_BOARD B JOIN VG_USER V ON B.userID=V.userID
+		<!-- <if test="searchColumn !=null">
+			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'	
+		</if> -->
+	</select>
+	<select id="noticeSelectOne" parameterType="java.util.Map" resultMap="noticeBoardDTOResult">
+		SELECT B.NOTICE_NO, B.TITLE, B.CONTENT, B.POSTDATE, B.VISITCOUNT, B.USERID
+		FROM NOTICE_BOARD B JOIN VG_USER V ON B.userID=V.userID
+		WHERE B.notice_no=#{notice_no,jdbcType=NUMERIC}
 	</select>
 
 	<insert id="noticeInsert" parameterType="java.util.Map">
-		INSERT INTO
-		NOTICE_BOARD(notice_no,title,content,userID)
-		VALUES(SEQ_NOTICE_NO.NEXTVAL,#{title},#{content},#{userID})
+		INSERT INTO NOTICE_BOARD(notice_no,title,content,userID)
+		VALUES(SEQ_NOC_NO.NEXTVAL,#{title},#{content},#{userID})
 	</insert>
 	
-	<select id="noticeSelectOne" parameterType="java.util.Map" resultMap="noticeDTOResult">
-		SELECT o.*, FROM member m JOIN NOTICE_BOARD o ON
-		m.userID=o.userID
-		WHERE notice_no=#{notice_no}
-	</select>
 	
 	<update id="noticeUpdate" parameterType="java.util.Map">
-		UPDATE NOTICE_BOARD SET
-		title=#{title},content=#{content}
-		WHERE notice_no = #{notice_no}
+		UPDATE notice_board SET title=#{title},content=#{content}
+		WHERE notice_no = #{notice_no, jdbcType=NUMERIC}
 	</update>
 	
 	<delete id="noticeDelete" parameterType="java.util.Map">
-		DELETE NOTICE_BOARD
-		WHERE notice_no=#{notice_no}
+		DELETE NOTICE_BOARD 
+		WHERE notice_no=#{notice_no,jdbcType=NUMERIC}
 	</delete>
+	
+	<select id="noticeSelectListFile" parameterType="java.util.Map" resultType="noticeFileDTO">
+		SELECT F.notice_file_no, F.f_path, F.f_name, F.userID, F.notice_no FROM notice_file F
+	</select>
+	
+	<insert id="noticeInsertFile" parameterType="java.util.Map">
+		INSERT INTO notice_file(notice_file_no,f_path,f_name,userID,notice_no)
+		VALUES(SEQ_NOC_FILE_NO.NEXTVAL,#{f_path},#{f_name},#{userID},SEQ_NOC_NO.CURRVAL)
+
+	</insert>
+	
+	<update id="noticeUpdateFile" parameterType="java.util.Map">
+		UPDATE notice_file SET f_path=#{f_path,jdbcType=VARCHAR},f_name=#{f_name,jdbcType=VARCHAR}
+		WHERE notice_file_no = #{notice_file_no,jdbcType=NUMERIC}
+	
+	</update>
+	
+   <delete id="noticeDeleteFile" parameterType="java.util.Map">
+      DELETE notice_file 
+      WHERE notice_file_no=#{notice_file_no,jdbcType=NUMERIC}
+   </delete>
+	
+	<!-- <select id="noticeSelectOneFile" parameterType="java.util.Map" resultMap="noticeFileDTOResult">
+		SELECT B.NOTICE_FILE_NO, B.F_PATH, B.F_NAME,  B.USERID, B.NOTICE_NO
+		FROM NOTICE_FILE B JOIN VG_USER V ON B.userID=V.userID
+		WHERE B.notice_file_no=#{notice_file_no,jdbcType=NUMERIC}
+	</select> -->
+	
+	
 
 </mapper>

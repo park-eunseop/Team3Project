@@ -38,20 +38,20 @@
 					<th class="col-xs-2 col-md-1 text-center">작성자</th>
 					<th class="col-xs-3 col-md-2 text-center">작성일</th>
 				</tr>
-				<c:if test="${empty list }" var="isEmpty">
+				<c:if test="${empty noticeList }" var="isEmpty">
 					<tr>
-						<td colspan="4" style="height: 16em; vertical-align: middle;">등록된
-							게시물이 없어요</td>
+						<td colspan="4" style="height: 16em; vertical-align: middle;">등록된 게시물이 없어요</td>
 					</tr>
 				</c:if>
 				<c:if test="${!isEmpty}">
-					<c:forEach var="item" items="${list }" varStatus="loop">
+					<c:forEach var="item" items="${noticeList}" varStatus="loop">
 						<tr>
-							<td>${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>
-							<td class="text-left"><a
-								href="<c:url value='/Board/Notice/NoticeView.do?no=${item.no}&nowPage='/><c:out value='${param.nowPage}' default='1'/>">${item.title }</a>
-								<span class="badge">${item.commentCount}</span></td>
-							<td>${item.name}</td>
+							<td>${item.sq}</td>
+							<td class="text-left">
+							<a	href="<c:url value='/Board/Notice/NoticeView.do?notice_no=${item.notice_no}&nowPage='/><c:out value='${param.nowPage}' default='1'/>">${item.title }</a></td>
+							<%-- <td>${item.notice_no}</td>
+							<td>${item.title}</td> --%>
+							<td>${item.userID}</td>
 							<td>${item.postDate}</td>
 						</tr>
 					</c:forEach>

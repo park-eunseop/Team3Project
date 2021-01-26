@@ -37,6 +37,17 @@
 			alias="userDietDTO" />
 		<typeAlias type="com.kosmo.veve.model.NutrientDTO"
 			alias="nutrientDTO" />
+		<typeAlias
+			type="com.kosmo.veve.model.NoticeBoardDTO"
+			alias="noticeBoardDTO" />
+
+		<typeAlias
+			type="com.kosmo.veve.model.NoticeCommentDTO"
+			alias="noticeCommentDTO" />
+
+		<typeAlias
+			type="com.kosmo.veve.model.NoticeFileDTO"
+			alias="noticeFileDTO" />
 
 	</typeAliases>
 
@@ -47,8 +58,10 @@
 		<mapper resource="com/kosmo/veve/mybatis/gallaryBoard.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/gallaryComment.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/gallaryLike.xml" />
-		<mapper resource="com/kosmo/veve/mybatis/chatting.xml"/>
-		<mapper resource="com/kosmo/veve/mybatis/diet.xml"/>
+		<mapper resource="com/kosmo/veve/mybatis/chatting.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/diet.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/noticeBoard.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/noticeComment.xml" />
 	</mappers>
 
 

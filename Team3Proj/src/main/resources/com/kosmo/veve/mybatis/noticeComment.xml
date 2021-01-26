@@ -4,31 +4,40 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
 <!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
-<mapper namespace="com.kosmo.veve.mybatis.noticecomment">
-	<!-- 
-	resultType을 Map으로 지정시
-	키값(대문자)은 컬럼명이고
-	밸류값는 컬럼에 저장된 값
-	 -->
+<mapper namespace="com.kosmo.veve.mybatis.noticeComment">
+	<resultMap type="noticeCommentDTO" id="noticeCommentDTOResult">
+      <result property="notice_com_no" column="notice_com_no" />
+      <result property="content" column="content" />
+      <result property="parent" column="parent" />
+      <result property="postDate" column="postDate" />
+      <result property="userID" column="userID" />
+      <result property="notice_no" column="notice_no" />
+   </resultMap>
+	 
+	 
+	 <select id="commentNoSelectList" parameterType="java.util.Map" resultType="java.util.Map">
+	 SELECT C.NOTICE_COM_NO,
+    		C.CONTENT,
+     		C.PARENT,
+     		TO_CHAR(C.POSTDATE, 'YYYY-MM-DD') AS POSTDATE,
+     		C.USERID,
+     		C.NOTICE_NO
+	 FROM	NOTICE_COMMENT C 
+	 WHERE	C.notice_no= #{notice_no,jdbcType=NUMERIC}
+	 ORDER	BY notice_com_no DESC	
+	 </select>
 	 
 	 <delete id="commentNoDeleteByNo" parameterType="java.util.Map">
-	 	DELETE NOTICE_COMMENT WHERE notice_no=#{notice_no}
+	 	DELETE NOTICE_COMMENT WHERE notice_no=#{notice_no,jdbcType=NUMERIC}
 	 </delete>
 	 <insert id="commentNoInsert" parameterType="java.util.Map">
 	 	INSERT INTO NOTICE_COMMENT
-	 	VALUES(SEQ_NOC_COM_NO.NEXTVAL,#{content},SYSDATE,#{userID},#{notice_no})
+	 	VALUES( SEQ_NOC_COM_NO.NEXTVAL, #{content}, NULL, SYSDATE, #{userID}, #{notice_no, jdbcType=NUMERIC} )
 	 </insert>
-	 
-	 <select id="commnetNoSelectList" parameterType="java.util.Map" resultType="java.util.Map">
-	 	SELECT m.*,name 
-	 	FROM NOTICE_COMMENT m JOIN member me ON m.userID=me.userID
-	 	WHERE m.notice_no= #{notice_no}
-	 	ORDER BY notice_com_no DESC	 
-	 </select>
 	 <update id="commentNoUpdate" parameterType="java.util.Map">
-	 	UPDATE NOTICE_COMMENT SET content = #{content} WHERE notice_com_no=#{notice_com_no}	 
+	 	UPDATE NOTICE_COMMENT SET content = #{content} WHERE notice_com_no = #{notice_com_no}	 
 	 </update>
 	 <delete id="commentNoDelete" parameterType="java.util.Map">
-	 	DELETE NOTICE_COMMENT WHERE notice_com_no = #{notice_com_no}
+	 	DELETE NOTICE_COMMENT WHERE notice_com_no = #{notice_com_no,jdbcType=NUMERIC}
 	 </delete>
 </mapper>

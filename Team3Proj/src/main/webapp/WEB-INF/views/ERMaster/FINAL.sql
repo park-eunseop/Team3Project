@@ -636,4 +636,15 @@ INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('50','f
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('60','female',50,2.4,15,7,800);
 INSERT INTO NUTRIENT(age,gender,protein,vitB12,vitD,zinc,calcium) VALUES('70','female',50,2.4,15,7,800);
 
+CREATE SEQUENCE SEQ_NOC_COM_NO
+NOCACHE
+NOCYCLE;
+
+CREATE SEQUENCE SEQ_NOC_NO
+NOCACHE
+NOCYCLE;
+
+CREATE SEQUENCE SEQ_NOC_FILE_NO
+NOCACHE
+NOCYCLE;
 

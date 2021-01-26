@@ -1,5 +1,7 @@
 package com.kosmo.veve.model;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,8 +15,11 @@ public class NoticeBoardDTO {
 	private String title;
 	private String content;
 	private String postDate;
-	private String visitCount;
+	private String visitCount;//방문자수
 	
-	private String userID;
+	private String userID;//아이디
+	//private String commentCount;//각 글에 따른 댓글 총수 출력용
+	private int sq;
+	private List<NoticeCommentDTO> comments;
 	
 }

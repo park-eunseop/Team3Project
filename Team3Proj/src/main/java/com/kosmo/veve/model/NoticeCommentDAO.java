@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kosmo.veve.model.service.NoticeCommentService;
 
 
-@Repository("noticeCommentDao")
+@Repository("noticeCommentDAO")
 public class NoticeCommentDAO implements NoticeCommentService {
 	
 	@Resource(name ="template")
@@ -20,7 +20,7 @@ public class NoticeCommentDAO implements NoticeCommentService {
 	@Override
 	public List<Map> selectList(Map map) {
 		// TODO Auto-generated method stub
-		return sqlMapper.selectList("commnetNoSelectList",map);
+		return sqlMapper.selectList("commentNoSelectList",map);
 	}
 
 	@Override

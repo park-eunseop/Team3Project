@@ -13,7 +13,7 @@ import com.kosmo.veve.model.service.NoticeCommentService;
 @Service("noticeCommentService")
 public class NoticeCommentServiceImpl implements NoticeCommentService {
 	
-	@Resource(name="noticeCommentDao")
+	@Resource(name="noticeCommentDAO")
 	private NoticeCommentDAO dao;
 	
 

@@ -22,8 +22,8 @@ public class NoticeBoardDAO implements NoticeBoardService {
 	}
 
 	@Override
-	public int getTotalRecord(Map map) {
-		return sqlMapper.selectOne("noticeGetTotalRecord",map);
+	public int getTotalRecord() {
+		return sqlMapper.selectOne("noticeGetTotalRecord");
 	}
 
 	@Override
@@ -48,6 +48,31 @@ public class NoticeBoardDAO implements NoticeBoardService {
 	@Override
 	public int update(Map map) {
 		return sqlMapper.update("noticeUpdate", map);
+	}
+
+	@Override
+	public int insertFile(Map map) {
+		return sqlMapper.insert("noticeInsertFile",map);
+	}
+
+	@Override
+	public int deleteFile(Map map) {
+		   return sqlMapper.delete("noticeDeleteFile", map);
+	}
+
+	@Override
+	public int updateFile(Map map) {
+		return sqlMapper.update("noticeUpdateFile",map);
+	}
+
+	@Override
+	public List<NoticeFileDTO> selectListFile(Map map) {
+		return sqlMapper.selectList("noticeSelectListFile",map);
+	}
+
+	@Override
+	public List<NoticeFileDTO> selectOneFile(Map map) {
+		return sqlMapper.selectOne("noticeSelectOneFile", map);
 	}
 
 }

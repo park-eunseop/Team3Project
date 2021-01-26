@@ -11,7 +11,10 @@ public class NoticeCommentDTO {
 
 	private String notice_com_no;
 	private String content;
-	private String patent;
 	private java.sql.Date postDate;
+	private String parent;
+	
+	private String notice_no;
+	private String userID;//아이디
 	
 }

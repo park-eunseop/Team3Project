@@ -73,7 +73,7 @@
                 </c:if>
                 <li><a href="<c:url value="/recipe.do"/>">채식 레시피</a></li>
                 <li><a href="<c:url value="/Gallary/List.do"/>">커뮤니티</a></li>
-                <li><a href="#">공지사항</a></li>
+                <li><a href="<c:url value="/Board/Notice/NoticeList.do"/>">공지사항</a></li>
 				<a id="islogin" href="<c:url value="/Member/Auth/Login.do"/>" hidden="" ></a>
             </ul>
 

@@ -22,9 +22,9 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	}
 
 	@Override
-	public int getTotalRecord(Map map) {
+	public int getTotalRecord() {
 		// TODO Auto-generated method stub
-		return dao.getTotalRecord(map);
+		return dao.getTotalRecord();
 	}
 
 	@Override
@@ -49,6 +49,36 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	public int update(Map map) {
 		// TODO Auto-generated method stub
 		return dao.update(map);
+	}
+
+	@Override
+	public int insertFile(Map map) {
+		// TODO Auto-generated method stub
+		return dao.insertFile(map);
+	}
+
+	@Override
+	public int deleteFile(Map map) {
+		// TODO Auto-generated method stub
+		return dao.deleteFile(map);
+	}
+
+	@Override
+	public int updateFile(Map map) {
+		// TODO Auto-generated method stub
+		return dao.updateFile(map);
+	}
+
+	@Override
+	public List<NoticeFileDTO> selectListFile(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectListFile(map);
+	}
+
+	@Override
+	public List<NoticeFileDTO> selectOneFile(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectOneFile(map);
 	}
 
 }
