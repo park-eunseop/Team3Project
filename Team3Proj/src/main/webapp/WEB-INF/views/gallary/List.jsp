@@ -9,19 +9,12 @@
 	padding-top: 200px;
 	/* 132px이 딱 맞는 크기*/
 }
+#board_comment::-webkit-scrollbar {
+   display: none;
+}
+
 </style>
 
-<!-- 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	
-	
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	
-	 -->
 	
 <script>
 $(function(){
@@ -33,16 +26,41 @@ $(function(){
 	});
 	$('#boardHeart').click(function(){
 		console.log('하트 아이콘 클릭');
+		var UserID = $('#logincheck').val(); 
+		if(UserID==''){console.log('null이야'); login();}
+		var for_no = $('#for_no').val();
+		console.log('하트 게시물 번호',for_no)
 		var color = $('#heartColor').attr("style");
 		console.log(color);
 		if(color=='color:black'){
 			//heart insert
 			$('#heartColor').attr("style",'color:red');
+			 $.ajax({
+                 url:"<c:url value='/Gallary/Like/addheart.do'/>",
+                 data:{"gallary_no":for_no},
+                 dataType:'text',
+                 type:'post',
+                 success:function(data){            
+               	  
+                 },
+                 error:function(e){console.log(e);}                 
+              });
+			
 			
 		}
 		else{
 			//heart delete
 			$('#heartColor').attr("style",'color:black');
+			$.ajax({
+                url:"<c:url value='/Gallary/Like/deleteheart.do'/>",
+                data:{"gallary_no":for_no},
+                dataType:'text',
+                type:'post',
+                success:function(data){            
+              	  
+                },
+                error:function(e){console.log(e);}                 
+             });
 		}
 		
 	});
@@ -91,19 +109,55 @@ $(function(){
                	  
                  },
                  error:function(e){console.log(e);}
+                 //<div class="loader"></div>
                  
               });
              
              
          }
     })
-	
-
-	
-});
-
-
-
+    
+    
+    $('#commentInput').keyup(function(e){
+    	var UserID = $('#logincheck').val();    	
+    	if(e.keyCode == 13){
+    		if(UserID==''){console.log('null이야'); login();}
+    		var for_no = $('#for_no').val();
+    		var content = $('#commentInput').val();
+    		
+    		$.ajax({
+                url:"<c:url value='/Gallary/Comment/write.do'/>",
+                data:{"gallary_no":for_no,"content":content},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+        			console.log('댓글 작성!');
+        			$('#board_comment').html(" ");
+        			$('#commentInput').val('');
+        			
+        			var comments = "";
+        	    	   if (data.length == 0) {
+        	    	      console.log("if문안에 들어옴")
+        	    	      $('#board_comment').html("등록된 댓글이 없어요");
+        	    	   }
+        	    	   $.each(data,
+        	    	      function(index, element) {
+        	    	         comments += "<div>";
+        	    	         comments += "<span style='padding-right: 1em; font-weight: bold;'>"+element['USERID']+"</span>";
+        	    	         comments += "<span style='padding-right: 1em'>"+element['CONTENT']+"</span>";
+        	    	         comments += "<span>"+element['POSTDATE']+"</span>";
+        	    	         comments += "</div>";
+        	    	      });
+        	    	   $('#board_comment').html(comments);
+	  
+                },
+                error:function(e){console.log(e);}                
+             });    		
+    		
+    	}
+    	
+    })	
+});///function
 
 </script>
 
@@ -160,9 +214,9 @@ $(function(){
 			<div id="board_title" style="padding-top: 10px;font-weight: bold; font-size: 3em;height:50px"></div>
 			<div id="board_content" style="padding-top: 10px;font-size: 2.5em;height:150px"></div>
 			<hr width="100%">
-			<div id="board_comment" style="padding-top: 10px;height:130px">댓글</div>
+			<div id="board_comment" style="padding-top: 10px;height:130px; overflow:scroll;"></div>
 			<hr width="100%">
-			<div style="padding-top: 10px;height:50px"">			
+			<div style="padding-top: 10px;height:50px">			
 			<span id="heartColor" style="color:red"><i id="boardHeart" class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
 			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
 			<span id="board_date"></span>
@@ -170,6 +224,8 @@ $(function(){
 			<hr width="100%">
 			<input id="commentInput" type="text" placeholder="댓글 달기..." style="width: 95%;"/>
 			<div style="height: 20px">
+			<input type="hidden" id="for_no"/>
+			<input type="hidden" value="${UserID}" id="logincheck"/>
 			</div>
 		</div>
 		<!-- div left -->
@@ -271,8 +327,8 @@ $(function(){
 				</div>
 			</c:forEach>
 		</div>
-		<!-- End of gallery -->
-		<div class="loader"></div>
+		
+		
 	</div>
 	<!-- End of container -->
 	<a id="a_open" href="#open" hidden=""></a>
@@ -381,8 +437,10 @@ function view(board_no){
 			}
 			
 			//2.댓글 가져오기
+			$('#for_no').val(data["boardNo"]);
+			showComments(data["boardNo"]);
 			
-			//showComments(board_no);
+			
 			
 			$('#a_open').get(0).click();
 			
@@ -404,6 +462,26 @@ function showComments(board_no){
       type:'post',
       success:function(data){
     	  console.log('댓글 완료!');
+    	  console.log(data)
+    	  var comments = "";
+    	   if (data.length == 0) {
+    	      console.log("if문안에 들어옴")
+    	      $('#board_comment').html("등록된 댓글이 없어요");
+    	   }
+    	   $.each(data,
+    	      function(index, element) {
+    	         //console.log("댓글 리스트 확인:")
+    	         comments += "<div>";
+    	         comments += "<span style='padding-right: 1em; font-weight: bold;'>"+element['USERID']+"</span>";
+    	         comments += "<span style='padding-right: 1em'>"+element['CONTENT']+"</span>";
+    	         comments += "<span>"+element['POSTDATE']+"</span>";
+    	         comments += "</div>";
+    	      });
+    	   $('#board_comment').html(comments);
+    	  
+    	  
+    	  
+    	  
       },
       error:function(e){console.log(e);}
       

@@ -376,6 +376,7 @@ public class GallaryController {
 		obj.put("usernickname", userinfo.getNickname());//user nickname
 		obj.put("boardTitle", boardInfo.getTitle());
 		obj.put("boardContent", boardInfo.getContent());
+		obj.put("boardNo", boardInfo.getGallary_no());
 		//System.out.println(boardInfo.getPostDate().toString());
 		//Date date = new Date();
 		obj.put("myLike", myLike);
@@ -389,5 +390,26 @@ public class GallaryController {
 		
 		return obj.toJSONString();
 	}/////////////
+    
+    @ResponseBody
+    @RequestMapping(value = "/Gallary/Like/deleteheart.do", method = RequestMethod.POST, produces = "application/json")
+    public String deleteheart(@RequestParam Map map,HttpServletRequest req){
+		String userID = (String)req.getSession().getAttribute("UserID");
+		map.put("userID", userID);
+		
+		int addcheck = likeservice.deleteLike(map);
+		System.out.println("좋아요 추가 확인"+addcheck);
+		return "none";
+    }
+
+	@ResponseBody
+    @RequestMapping(value = "/Gallary/Like/addheart.do", method = RequestMethod.POST, produces = "application/json")
+    public String addheart(@RequestParam Map map,HttpServletRequest req){
+		String userID = (String)req.getSession().getAttribute("UserID");
+		map.put("userID", userID);
+		likeservice.insertLike(map);
+
+		return "none";
+    }
 
 }

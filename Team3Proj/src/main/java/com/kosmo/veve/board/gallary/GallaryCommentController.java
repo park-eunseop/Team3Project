@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo.veve.model.service.GallaryCommentService;
 
-
 @Controller
 @RequestMapping("/Gallary/Comment/")
 public class GallaryCommentController {
@@ -28,27 +27,29 @@ public class GallaryCommentController {
    @RequestMapping(value="write.do",produces = "text/html; charset=UTF-8")
    @ResponseBody
    public String write(
-         @RequestParam Map map,HttpServletRequest req) {
-	  
-	   String userID = (String)req.getSession().getAttribute("UserID");
-
-      map.put("userID",userID );
+		  HttpServletRequest req, 
+         @RequestParam Map map) {
+	   String id = (String)req.getSession().getAttribute("UserID");
+	   System.out.println("댓글 작성:"+id+":"+map.get("gallary_no")+"content:"+map.get("content"));
+	   map.put("userID", id);
       commentService.insert(map);
-      return map.get("gallary_no").toString();
+      
+      List<Map> list=commentService.selectList(map);
+      System.out.println(JSONArray.toJSONString(list));
+      for(Map comment:list)
+         comment.put("POSTDATE", comment.get("POSTDATE").toString().substring(0,10));
+      
+      
+      return JSONArray.toJSONString(list);
    }/////////////////
    
    @ResponseBody
    @RequestMapping(value="list.do",produces = "text/html; charset=UTF-8")
    public String list(@RequestParam Map map) {
-	  System.out.println("댓글 가지러 왔어"); 
       List<Map> list=commentService.selectList(map);
       System.out.println(JSONArray.toJSONString(list));
-      //등록일 수정
       for(Map comment:list)
          comment.put("POSTDATE", comment.get("POSTDATE").toString().substring(0,10));
-      
-      
-      
       return JSONArray.toJSONString(list);
    }////////////
    
