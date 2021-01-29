@@ -143,7 +143,7 @@ $(function(){
         	    	   $.each(data,
         	    	      function(index, element) {
         	    	         comments += "<div>";
-        	    	         comments += "<span style='padding-right: 1em; font-weight: bold;'>"+element['USERID']+"</span>";
+        	    	         comments += "<span style='padding-right: 1em; font-weight: bold;'>"+element['NICKNAME']+"</span>";
         	    	         comments += "<span style='padding-right: 1em'>"+element['CONTENT']+"</span>";
         	    	         comments += "<span>"+element['POSTDATE']+"</span>";
         	    	         comments += "</div>";
@@ -353,11 +353,17 @@ $(function(){
 
 
 
-<div style="height: 170px"></div>
+<div style="height: 50px"></div>
 <div class="row">
 	<div class="col-md-10 text-right">
-		<a href="#wopen"
+		<c:if test="${empty UserID}" var="IsLogin">
+		<a href="javascript:login()"
 			class="btn btn-success">작성</a>
+		</c:if>
+		<c:if test="${! IsLogin}">
+		<a href="<c:url value='/Gallary/GallaryWrite.do'/>"
+			class="btn btn-success">작성</a>
+		</c:if>
 	</div>
 </div>
 
@@ -472,7 +478,7 @@ function showComments(board_no){
     	      function(index, element) {
     	         //console.log("댓글 리스트 확인:")
     	         comments += "<div>";
-    	         comments += "<span style='padding-right: 1em; font-weight: bold;'>"+element['USERID']+"</span>";
+    	         comments += "<span style='padding-right: 1em; font-weight: bold;'>"+element['NICKNAME']+"</span>";
     	         comments += "<span style='padding-right: 1em'>"+element['CONTENT']+"</span>";
     	         comments += "<span>"+element['POSTDATE']+"</span>";
     	         comments += "</div>";

@@ -63,6 +63,11 @@
                   type:'post',
                   success:function(json){
                 	  console.log('정보 입력 완료!');
+                	  
+                	  
+                	  
+                	  
+                	  
                 	  $('#todayProtein').attr('style','width:'+json["todayProtein"]+'%');
                 	  $('#todayB12').attr('style','width:'+json["todayB12"]+'%');
                 	  $('#todayD').attr('style','width:'+json["todayD"]+'%');
@@ -71,10 +76,12 @@
                 	  
                 	  
                 	  var needObjects = json["needDiet"];     
-                	  console.log(needObjects);
+                	  console.log('???:',needObjects);
           			  var files = needObjects.split("/");
           			  console.log(files);
-                	  
+                	  $('#needDiet *').remove();
+          			  
+          			  
                 	  $.each(files,function(index,value){
                 		  if(value=='pro'){
                 			  $('#needDiet').append(`
@@ -96,16 +103,32 @@
 		                			  <div>비타민B12가 부족합니다 우을증,빈혈 등 여러 질환이 생길 수 있어요.. 해조류,단호박,검은콩을 섭취하세요</div><br/>
 		                			 `);
                 		  }
-						  if(value=='vDD'){
+						  if(value=='vD'){
 							  $('#needDiet').append(`
 		                			  <div>비타민D가 부족합니다 골다공증,빈혈증상이 생길 수 있어요.. 땅콩,호두를 섭취하세요</div><br/>
 		                			 `);
-                		  }
+                		  }							
+						  
+						  
                 		  
                 		  
                 		  
                 	  });        	  
-                	  
+                	  $.ajax({
+							type : 'post',
+							url : "http://localhost:8383/crawl",
+							dataType : "json",
+							success : function(data) {
+								console.log('파이썬에서 돌아왔어',data)
+								var videoLink = data["href"];
+								$('#img1').attr('src',data["img1"]);
+								$('#img2').attr('src',data["img2"]);
+								$('#img3').attr('src',data["img3"]);
+								
+								$('#crawlVideo').attr('src',videoLink.replace('watch?v=','embed/'));
+								
+							}
+					  });//ajax
                 	  
                 	  
                 	 
@@ -207,36 +230,6 @@
 					</div>
 				</div>
 				<div class="col-md-12">
-					<h2 style="padding-top: 30px">월 영양현황</h2>
-					<div class="progress">
-						<div class="progress-bar progress-bar-striped" style="width: 30%"></div>
-					</div>
-					<br>
-					<div class="progress">
-						<div
-							class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-							style="width: 40%"></div>
-					</div>
-					<br>
-					<div class="progress">
-						<div
-							class="progress-bar bg-info progress-bar-striped progress-bar-animated"
-							style="width: 50%"></div>
-					</div>
-					<br>
-					<div class="progress">
-						<div
-							class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
-							style="width: 60%"></div>
-					</div>
-					<br>
-					<div class="progress">
-						<div
-							class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
-							style="width: 70%"></div>
-					</div>
-				</div>
-				<div class="col-md-12">
 					<h2 style="padding-top: 30px">부족한 영양소</h2>
 					<div id="needDiet">
 					
@@ -251,7 +244,9 @@
 			<div class="col-md-12">
 					<h4 style="padding-top: 30px">추천 메뉴 / 레시피</h4>
 			</div>
-		
+			<div id="foodname">
+			
+			</div>		
 			<div class="carousel slide" id="carousel-172006">
 				<ol class="carousel-indicators">
 					<li data-slide-to="0" data-target="#carousel-172006"></li>
@@ -261,34 +256,19 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item">
-						<img class="d-block w-100" alt="Carousel Bootstrap First"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" />
-						<div class="carousel-caption">
-							<h4>First Thumbnail label</h4>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-								quam. Donec id elit non mi porta gravida at eget metus. Nullam
-								id dolor id nibh ultricies vehicula ut id elit.</p>
-						</div>
+						<img id="img1" class="d-block w-100" alt="Carousel Bootstrap First"
+							src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" style="width: 300px;height: 300px"/>
+						
 					</div>
 					<div class="carousel-item active">
-						<img class="d-block w-100" alt="Carousel Bootstrap Second"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg" />
-						<div class="carousel-caption">
-							<h4>Second Thumbnail label</h4>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-								quam. Donec id elit non mi porta gravida at eget metus. Nullam
-								id dolor id nibh ultricies vehicula ut id elit.</p>
-						</div>
+						<img id="img2" class="d-block w-100" alt="Carousel Bootstrap Second"
+							src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg" style="width: 300px;height: 300px"/>
+						
 					</div>
 					<div class="carousel-item">
-						<img class="d-block w-100" alt="Carousel Bootstrap Third"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg" />
-						<div class="carousel-caption">
-							<h4>Third Thumbnail label</h4>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-								quam. Donec id elit non mi porta gravida at eget metus. Nullam
-								id dolor id nibh ultricies vehicula ut id elit.</p>
-						</div>
+						<img id="img3" class="d-block w-100" alt="Carousel Bootstrap Third"
+							src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg" style="width: 300px;height: 300px" />
+						
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carousel-172006"
@@ -299,7 +279,11 @@
 					<span class="sr-only">Next</span></a>
 			</div>
 			<div class="row">
-				<div class="col-md-12"></div>
+				<div class="col-md-12" style="padding-top: 10px">
+					<iframe id="crawlVideo" src=" " style="width: 100%;height: 300px">
+					
+					</iframe>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12"></div>

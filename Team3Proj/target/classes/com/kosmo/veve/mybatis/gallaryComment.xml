@@ -24,12 +24,12 @@
     </insert>
     
     <select id="galcommnetSelectList" parameterType="java.util.Map" resultType="java.util.Map">
-       SELECT r_c.gallary_com_no,r_c.userID,r_c.content,r_c.postDate 
+       SELECT r_c.gallary_com_no,r_c.userID,r_c.content,r_c.postDate,v.nickname 
        FROM gallary_comment r_c JOIN vg_user v ON r_c.userID=v.userID
        WHERE r_c.gallary_no= #{gallary_no,jdbcType=NUMERIC}
        ORDER BY r_c.gallary_com_no DESC    
     </select>
-    
+
     <select id="getGallaryCommentCount" parameterType="String" resultType="int">
        SELECT COUNT(*) FROM gallary_comment WHERE gallary_no = #{gallary_no}
     </select>

@@ -245,6 +245,8 @@ public class MemberDietController {
 		float calPercent = Todaycalcium / standardCalcium * 100;
 		System.out.println(calPercent);
 		String strcalPercent = String.format("%.2f", calPercent);
+		
+		
 
 		obj.put("todayProtein", strproteinPercent);
 		obj.put("todayB12", strbPercent);

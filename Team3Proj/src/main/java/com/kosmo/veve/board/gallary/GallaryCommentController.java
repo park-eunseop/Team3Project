@@ -47,7 +47,6 @@ public class GallaryCommentController {
    @RequestMapping(value="list.do",produces = "text/html; charset=UTF-8")
    public String list(@RequestParam Map map) {
       List<Map> list=commentService.selectList(map);
-      System.out.println(JSONArray.toJSONString(list));
       for(Map comment:list)
          comment.put("POSTDATE", comment.get("POSTDATE").toString().substring(0,10));
       return JSONArray.toJSONString(list);

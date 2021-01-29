@@ -33,10 +33,10 @@
 			$.ajax({
 				type : 'post',
 				url : "http://localhost:8383/crawl",
-				dataType : "text",
+				dataType : "json",
 				success : function(data) {
 					console.log('파이썬에서 돌아왔어',data)
-					var videoLink = data;
+					var videoLink = data["href"];
 					//videoLink.replace('watch?v=','embed/');
 					//console.log('video:',videoLink)
 					$('#crawlVideo').attr('src',videoLink.replace('watch?v=','embed/'));
