@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<link rel="stylesheet"
+	href="<c:url value="/resources/assets/css/galleryList.css"/>">
 
 <script>
 	$(function() { //화면 다 뜨면 시작
@@ -25,26 +27,8 @@
 					}
 				});
 			}
-		});//ajax
-		
-		
-		$('#sendToPython').click(function(){
-			
-			$.ajax({
-				type : 'post',
-				url : "http://localhost:8383/crawl",
-				dataType : "json",
-				success : function(data) {
-					console.log('파이썬에서 돌아왔어',data)
-					var videoLink = data["href"];
-					//videoLink.replace('watch?v=','embed/');
-					//console.log('video:',videoLink)
-					$('#crawlVideo').attr('src',videoLink.replace('watch?v=','embed/'));
-				}
-			});//ajax
-			
-			
-		});
+		});//ajax		
+
 		
 		
 	});
@@ -155,7 +139,7 @@
 								</div>
 								<div class="modal-footer">
 
-								
+
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -178,7 +162,7 @@
 										<span aria-hidden="true">×</span>
 									</button>
 								</div>
-						
+
 								<div class="modal-body">
 
 
@@ -225,21 +209,21 @@
 					</div>
 					<!-- 모달 -->
 					<div style="padding-top: 15px">
-					<a href="<c:url value="/Member/Mypage.do"/>"
-						class="btn btn-success btn-sm" >개인정보 수정 </a>
-					<c:if test="${empty KakaoUserId}" var="isNotKakaologin">
-						<a href="javascript:logout()" class="btn btn-success btn-sm">로그아웃
-						</a>
-					</c:if>
-					<c:if test="${not isNotKakaologin }">
-						<a href="<c:url value="/logout"/>" class="btn btn-success btn-sm">로그아웃</a>
-					</c:if>
+						<a href="<c:url value="/Member/Mypage.do"/>"
+							class="btn btn-success btn-sm">개인정보 수정 </a>
+						<c:if test="${empty KakaoUserId}" var="isNotKakaologin">
+							<a href="javascript:logout()" class="btn btn-success btn-sm">로그아웃
+							</a>
+						</c:if>
+						<c:if test="${not isNotKakaologin }">
+							<a href="<c:url value="/logout"/>" class="btn btn-success btn-sm">로그아웃</a>
+						</c:if>
 					</div>
 					<div style="padding-top: 5px">
 						<form method="get" action="<c:url value="/Member/OtherHome.do"/>">
 							<input id="search" name="otherid" style="width: 200px" /> <input
-								id="serarchBtn" type="submit" class="btn" style="font-size:5px; padding:5px 5px"
-								value="검색">
+								id="serarchBtn" type="submit" class="btn"
+								style="font-size: 5px; padding: 5px 5px" value="검색">
 						</form>
 					</div>
 
@@ -280,9 +264,7 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<iframe id="crawlVideo" src=" ">
-					
-					</iframe>
+					<iframe id="crawlVideo" src=" "> </iframe>
 					<div class="carousel slide" id="carousel-464309">
 						<ol class="carousel-indicators">
 							<li data-slide-to="0" data-target="#carousel-464309"></li>
@@ -345,64 +327,37 @@
 				<div class="tab-content">
 					<!-- tab1 내 피드 -->
 					<div class="tab-pane active" id="tab1">
-						<p>내 피드가 들어갈 곳</p>
-						<button id="sendToPython">파이썬으로  코드 보내기</button>
 						<!-- sumnail  -->
-						<div class="row">
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" alt="Bootstrap Thumbnail First"
-										src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
-									<div class="card-block">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">
-											Cras justo odio, dapibus ac facilisis i<span>n,
-												egestas eget quam. Donec id elit non mi porta gravida at
-												eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-												elit.</span>
-										</p>
-										<p>
-											<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-												href="#">Action</a>
-										</p>
-									</div>
+						<main style="padding-top: 10px">
+							<div class="container_main">
+								<div class="gallery" id="appendPosition">
+									<c:forEach var="item" items="${boardList}" varStatus="var">
+										<div class="gallery-item" tabindex="0">
+											<img
+												src="<c:url value='/upload/${fileList[var.index].fileName}'/>"
+												class="gallery-image" alt=""
+												style="width: 300px; height: 300px">
+											<div class="gallery-item-info"
+												onclick="view(${item.gallary_no})"
+												style="width: 300px; height: 300px">
+												<ul>
+													<li class="gallery-item-likes"><span
+														class="visually-hidden">Likes:</span><i
+														class="fas fa-heart" aria-hidden="true"></i>
+														${likeList[var.index] }</li>
+													<li class="gallery-item-comments"><span
+														class="visually-hidden">Comments:</span><i
+														class="fas fa-comment" aria-hidden="true"></i>
+														${commentList[var.index] }</li>
+												</ul>
+											</div>
+										</div>
+									</c:forEach>
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" alt="Bootstrap Thumbnail Second"
-										src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-									<div class="card-block">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">Cras justo odio, dapibus ac facilisis
-											in, egestas eget quam. Donec id elit non mi porta gravida at
-											eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-											elit.</p>
-										<p>
-											<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-												href="#">Action</a>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="card">
-									<img class="card-img-top" alt="Bootstrap Thumbnail Third"
-										src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-									<div class="card-block">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">Cras justo odio, dapibus ac facilisis
-											in, egestas eget quam. Donec id elit non mi porta gravida at
-											eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-											elit.</p>
-										<p>
-											<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-												href="#">Action</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+							<!-- End of container -->
+							<a id="a_open" href="#open" hidden=""></a>
+						</main>
 						<!-- sumnail  -->
 
 					</div>

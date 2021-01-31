@@ -46,6 +46,11 @@
       SELECT * FROM (SELECT * FROM GALLARY_BOARD) WHERE ROWNUM <![CDATA[>=]]> 1 AND ROWNUM<![CDATA[<=]]> 6
     </select>
     
+    <select id="gallaryMyBoardSelectList" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
+      SELECT * FROM (SELECT * FROM GALLARY_BOARD) WHERE userID = #{userID} AND ROWNUM <![CDATA[>=]]> 1 AND ROWNUM<![CDATA[<=]]> 3
+    </select>
+    
+    
     <select id="gallaryBoardSelectListInfinit" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
       SELECT * FROM (SELECT ROWNUM AS ROWNUMBER,B.* FROM GALLARY_BOARD B) A WHERE A.ROWNUMBER <![CDATA[>=]]> #{start} AND A.ROWNUMBER<![CDATA[<=]]> #{end}
     

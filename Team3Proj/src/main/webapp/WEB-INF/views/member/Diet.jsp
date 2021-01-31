@@ -117,6 +117,7 @@
                 	  $.ajax({
 							type : 'post',
 							url : "http://localhost:8383/crawl",
+							data : {"data":"아연"},
 							dataType : "json",
 							success : function(data) {
 								console.log('파이썬에서 돌아왔어',data)

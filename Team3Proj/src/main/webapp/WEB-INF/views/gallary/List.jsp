@@ -323,7 +323,6 @@ $(function(){
 								class="fas fa-comment" aria-hidden="true"></i> ${commentList[var.index] }</li>
 						</ul>
 					</div>
-
 				</div>
 			</c:forEach>
 		</div>
