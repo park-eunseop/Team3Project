@@ -7,27 +7,34 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-	
+<script
+	src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
 <!-- 새로 만든 스타일 -->
 <style>
 #first_container {
 	padding-top: 200px;
 }
-  p {font-size: 16px;}
-  .margin {margin-bottom: 45px;}
-  .bg-1 { 
-    background-color: #474e5d; 
-    color: #ffffff;
-  }
 
-  .container-fluid {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
+p {
+	font-size: 16px;
+}
 
+.margin {
+	margin-bottom: 45px;
+}
 
+.bg-1 {
+	background-color: #474e5d;
+	color: #ffffff;
+}
+
+.container-fluid {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 </style>
 <script>
      $(document).ready(function(){
@@ -159,10 +166,11 @@
 		<div class="col-md-4" style="height: 800px">
 			<h4>오늘 메뉴를 넣어주세요</h4>
 			<div style="width: 100%; height: 80%">
-			<!-- 사진 분석 -->
+				<!-- 사진 분석 -->
 				<div class="container-fluid bg-1 text-center">
 
-					<img id="face-image" src="<c:url value="/resources/assets/images/upload.png"/>"
+					<img id="face-image"
+						src="<c:url value="/resources/assets/images/upload.png"/>"
 						class="img-responsive img-circle margin dragAndDropDiv"
 						style="display: inline; background-color: white;" alt="Bird"
 						width="150" height="150"> <input type="file"
@@ -186,7 +194,7 @@
 						style="color: black;" hidden />
 					</form>
 				</div>
-			<!-- 사진 분석 -->
+				<!-- 사진 분석 -->
 
 
 
@@ -198,32 +206,29 @@
 				<div class="col-md-12">
 					<h2>일일 영양현황</h2>
 					단백질
-					<div class="progress" >
-					<div id="todayProtein" class="progress-bar progress-bar-striped" style="width: ${strproteinPercent}%"></div>
+					<div class="progress">
+						<div id="todayProtein" class="progress-bar progress-bar-striped"
+							style="width: ${strproteinPercent}%"></div>
 					</div>
-					<br>
-					비타민B12
+					<br> 비타민B12
 					<div class="progress">
 						<div id="todayB12"
 							class="progress-bar bg-success progress-bar-striped progress-bar-animated"
 							style="width: ${strbPercent}%"></div>
 					</div>
-					<br>
-					비타민D
+					<br> 비타민D
 					<div class="progress">
 						<div id="todayD"
 							class="progress-bar bg-info progress-bar-striped progress-bar-animated"
 							style="width: ${strdPercent}%"></div>
 					</div>
-					<br>
-					아연
+					<br> 아연
 					<div class="progress">
 						<div id="todayAyen"
 							class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
 							style="width: ${strzincPercent}%"></div>
 					</div>
-					<br>
-					칼슘
+					<br> 칼슘
 					<div class="progress">
 						<div id="todayCal"
 							class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
@@ -232,22 +237,55 @@
 				</div>
 				<div class="col-md-12">
 					<h2 style="padding-top: 30px">부족한 영양소</h2>
-					<div id="needDiet">
-					
+					<div id="needDiet"></div>
+					<!-- tab -->
+					<div class="tabbable" id="category_tabs">
+						<ul class="nav nav-pills justify-content-center">
+							<li class="nav-item"><a class="nav-link active" href="#tab1"
+								data-toggle="tab">내 피드</a></li>
+							<li class="nav-item"><a class="nav-link" href="#tab2"
+								data-toggle="tab">내 레시피</a></li>
+							<li class="nav-item"><a class="nav-link" href="#tab3"
+								data-toggle="tab">스크랩</a></li>
+						</ul>
+						<div class="tab-content">
+							<!-- tab1 내 피드 -->
+							<div class="tab-pane active" id="tab1">
+						
+
+							</div>
+							<!-- tab1 내 피드 -->
+
+							<!-- 두번째 tab 내 레시피 -->
+							<div class="tab-pane" id="tab2">
+								<p>Section 2. 내 레시피 보여주기</p>
+							</div>
+							<!-- 두번째 tab 내 레시피 -->
+
+							<!-- 세번째 tab 내 레시피 -->
+							<div class="tab-pane" id="tab3">
+								<p>Section 3. 스크랩한 것들</p>
+							</div>
+							
+							<!-- 세번째 tab 내 레시피 -->
+
+
+						</div>
+						<!-- tab-content -->
 					</div>
+					<!-- tab -->
+
 				</div>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<div class="col-md-4">
 			<div class="col-md-12">
-					<h4 style="padding-top: 30px">추천 메뉴 / 레시피</h4>
+				<h4 style="padding-top: 30px">추천 메뉴 / 레시피</h4>
 			</div>
-			<div id="foodname">
-			
-			</div>		
+			<div id="foodname"></div>
 			<div class="carousel slide" id="carousel-172006">
 				<ol class="carousel-indicators">
 					<li data-slide-to="0" data-target="#carousel-172006"></li>
@@ -257,19 +295,25 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item">
-						<img id="img1" class="d-block w-100" alt="Carousel Bootstrap First"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" style="width: 300px;height: 300px"/>
-						
+						<img id="img1" class="d-block w-100"
+							alt="Carousel Bootstrap First"
+							src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg"
+							style="width: 300px; height: 300px" />
+
 					</div>
 					<div class="carousel-item active">
-						<img id="img2" class="d-block w-100" alt="Carousel Bootstrap Second"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg" style="width: 300px;height: 300px"/>
-						
+						<img id="img2" class="d-block w-100"
+							alt="Carousel Bootstrap Second"
+							src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg"
+							style="width: 300px; height: 300px" />
+
 					</div>
 					<div class="carousel-item">
-						<img id="img3" class="d-block w-100" alt="Carousel Bootstrap Third"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg" style="width: 300px;height: 300px" />
-						
+						<img id="img3" class="d-block w-100"
+							alt="Carousel Bootstrap Third"
+							src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg"
+							style="width: 300px; height: 300px" />
+
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carousel-172006"
@@ -281,8 +325,8 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12" style="padding-top: 10px">
-					<iframe id="crawlVideo" src=" " style="width: 100%;height: 300px">
-					
+					<iframe id="crawlVideo" src=" " style="width: 100%; height: 300px">
+
 					</iframe>
 				</div>
 			</div>
