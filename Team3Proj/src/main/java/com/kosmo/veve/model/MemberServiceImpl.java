@@ -155,6 +155,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.deletefollowWithdraw(userID);
 	}
 
+	@Override
+	public int updatePwd(Map map) {
+		// TODO Auto-generated method stub
+		return dao.updatePwd(map);
+	}
+
 
 
 	

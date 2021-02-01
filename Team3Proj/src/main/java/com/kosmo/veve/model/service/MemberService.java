@@ -28,7 +28,8 @@ public interface MemberService {
 		int delete(String userID);
 		//회원삭제를위한 follow삭제
 		int deletefollowWithdraw(String userID);
-		
+		//패스워드 변경
+		int updatePwd(Map map);
 		
 		int update(Map map);
 		//회원 사진 가져오기용]

@@ -349,6 +349,35 @@ public class MemberController {
 		}
 
 	}
+	// 회원탈퇴
+		@RequestMapping("/Member/MemberEditPWD")
+		@ResponseBody
+		public String memberEditPWD(HttpServletRequest req,HttpSession session) {
+			
+			//현재사용중인 패스워드
+			String curPwd = req.getParameter("curPwd");
+			//변경할 패스워드
+			String editPwd = req.getParameter("editPwd");
+			// 사용중인 사용자 아이디 가져오기
+			String userID = (String) req.getSession().getAttribute("UserID");
+			Map map = new HashMap();
+			map.put("userID", userID);
+			map.put("editPWD", editPwd);
+		
+			MemberDTO userdto = service.selectOne(map);
+			String userPwd = userdto.getPassword();
+			// 비교하기
+			if (userPwd.equals(curPwd)) {
+				// 변경해야해
+				service.updatePwd(map);			
+			
+				return "Success";
+			} else {
+				return "false";
+			}
+
+		}
+	
 
 	// 회원 검색 자동완성
 	@RequestMapping(value = "/json", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")

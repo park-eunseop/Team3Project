@@ -105,13 +105,52 @@ $(function(){
 				alert('비밀번호를 다시 확인해주세요');
 				$('#withpwdcheck').focus();
 			}			
+		}		
+	});
+	$('#editBtn').click(function(){
+		var curPwd = $('#curPwd').val();
+		var editPwd = $('#editPwd').val();
+		var editPwdCheck = $('#editPwdcheck').val();
+		if(curPwd.length==0){
+			alert('현재 비밀번호를 입력하세요');
+			$('#curPwd').focus();
+		}
+		else{			
+			if(editPwd==editPwdCheck){
+				console.log('same!')
+				$.ajax({
+					type:"post",
+					url:"<c:url value='/Member/MemberEditPWD.do'/>",
+					dataType: 'text',
+					data: {"curPwd":curPwd,"editPwd":editPwd},
+					success: function(data){
+						console.log(data);
+						
+						if(data=='Success'){
+							alert('비밀번호가 변경되셨습니다.');
+							$('#curPwd').val('');
+							$('#editPwd').val('');
+							$('#editPwdcheck').val('');
+							
+						
+						}
+						else
+							alert('비밀번호가 일치하지 않습니다.');
+					}
+					
+				});
+				
+				
+				
+			}
+			else{
+				alert('비밀번호를 다시 확인해주세요');
+				$('#editPwd').focus();
+			}			
 		}
 		
 		
-		
-		
-	});
-	
+	})
 	
 });
 
@@ -144,16 +183,16 @@ $(function(){
 					<div class="form-group" style="color: black">
 						<label for="pwd" class="col-sm-3  control-label">기존 비밀번호</label>
 						<div class="col-sm-4">
-							<input id="inputpwd" type="password" class="form-control"
-								name="password" placeholder="기존 비밀번호를 입력하세요"> <span
+							<input id="curPwd" type="password" class="form-control"
+								name="curPwd" placeholder="기존 비밀번호를 입력하세요"> <span
 								id="spanpwd" style="color: red"></span>
 						</div>
 					</div>
 					<div class="form-group" style="color: black">
 						<label for="pwd" class="col-sm-3  control-label">변경할 비밀번호</label>
 						<div class="col-sm-4">
-							<input type="password" class="form-control" id="inputpwdcheck"
-								name="passwordcheck" placeholder="변경할 비밀번호를 입력하세요"> <span
+							<input type="password" class="form-control" id="editPwd"
+								name="editPwd" placeholder="변경할 비밀번호를 입력하세요"> <span
 								id="spanpwdcheck" style="color: red"></span>
 						</div>
 					</div>
@@ -161,15 +200,14 @@ $(function(){
 						<label for="pwd" class="col-sm-3  control-label">변경할 비밀번호
 							확인</label>
 						<div class="col-sm-4">
-							<input type="password" class="form-control" id="inputpwdcheck"
-								name="passwordcheck" placeholder="비밀번호를 다시 입력하세요"> <span
+							<input type="password" class="form-control" id="editPwdcheck"
+								name="editPwdcheck" placeholder="비밀번호를 다시 입력하세요"> <span
 								id="spanpwdcheck" style="color: red"></span>
 						</div>
 					</div>
 
 					<div class="col-sm-offset-6 col-sm-10">
-						<button type="button" class="btn btn--radius btn--green"
-							onclick="javascript:DoEdit()">변경</button>
+						<button id="editBtn" type="button" class="btn btn--radius btn--green">변경</button>
 					</div>
 				</form>
 			</div>

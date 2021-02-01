@@ -53,6 +53,11 @@
 		DELETE FROM USER_FOLLOW WHERE otherID =#{userID}
 	</delete>
 	
+	 
+	 <update id="updateUserPwd" parameterType="java.util.Map">
+	 	UPDATE VG_USER SET PASSWORD = #{editPWD} WHERE userID = #{userID}
+	 </update>
+	
 	
 	
 	<!-- 팔로잉/팔로워 count -->
