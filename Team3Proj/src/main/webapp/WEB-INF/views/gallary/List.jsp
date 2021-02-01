@@ -219,7 +219,10 @@ $(function(){
 			<div style="padding-top: 10px;height:50px">			
 			<span id="heartColor" style="color:red"><i id="boardHeart" class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
 			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
-			<span id="board_date"></span>
+			<i class="fas fa-bookmark fa-2x" id="btn_scrap"></i>	
+			<i class="far fa-bookmark fa-2x" id="btn_scrap"></i>		
+			
+			<span style="padding-left: 220px" id="board_date"></span>
 			</div>
 			<hr width="100%">
 			<input id="commentInput" type="text" placeholder="댓글 달기..." style="width: 95%;"/>

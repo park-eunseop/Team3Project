@@ -32,6 +32,10 @@
 			alias="gallaryCommentDTO" />
 		<typeAlias type="com.kosmo.veve.model.GallaryLikeDTO"
 			alias="gallaryLikeDTO" />
+		<typeAlias type="com.kosmo.veve.model.GallaryScrapDTO" 
+			alias="gallaryScrapDTO"/>	
+			
+			
 		<!-- Diet -->
 		<typeAlias type="com.kosmo.veve.model.UserDietDTO"
 			alias="userDietDTO" />
@@ -58,10 +62,12 @@
 		<mapper resource="com/kosmo/veve/mybatis/gallaryBoard.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/gallaryComment.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/gallaryLike.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/gallaryScrap.xml"/>
 		<mapper resource="com/kosmo/veve/mybatis/chatting.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/diet.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/noticeBoard.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/noticeComment.xml" />
+		
 	</mappers>
 
 

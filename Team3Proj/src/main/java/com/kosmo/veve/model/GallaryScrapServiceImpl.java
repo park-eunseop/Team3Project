@@ -1,0 +1,58 @@
+package com.kosmo.veve.model;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.kosmo.veve.model.service.GallaryScrapService;
+
+@Service("scrapService")
+public class GallaryScrapServiceImpl implements GallaryScrapService{
+	
+	@Resource(name="gallaryScrapDAO")
+	private GallaryScrapDAO dao;
+
+	@Override
+	public int insertScrap(Map map) {
+		return dao.insertScrap(map);
+	}
+
+	@Override
+	public int deleteScrap(Map map) {
+		return dao.deleteScrap(map);
+	}
+	
+	@Override
+	public int updateScrap(Map map) {
+		return dao.updateScrap(map);
+	}
+
+//	@Override
+//	public List<GallaryBoardDTO> selectBoardList(Map map) {
+//		return dao.selectBoardList(map);
+//	}
+//
+//	@Override
+//	public List<GallaryFileDTO> selectFileList(Map map) {
+//		return dao.selectFileList(map);
+//	}
+
+	@Override
+	public GallaryBoardDTO selectBoardOne(Map map) {
+		return dao.selectBoardOne(map);
+	}
+
+	@Override
+	public List<GallaryScrapDTO> selectScrapList(Map map) {
+		return dao.selectScrapList(map);
+	}
+
+	@Override
+	public int getScrapCount(Map map) {
+		return dao.getScrapCount(map);
+	}
+	
+}
