@@ -59,6 +59,7 @@ p {
                document.getElementById("label-container").value="";
                foods="";
                console.log(data);
+               
                console.log(document.getElementById("label-container").value);
                $(".dragAndDropDiv").attr("src","/veve/resources/assets/images/upload.png");
               $('.menu_list *').remove();
@@ -87,44 +88,217 @@ p {
           			  var files = needObjects.split("/");
           			  console.log(files);
                 	  $('#needDiet *').remove();
-          			  
+                	  $('.justify-content-center *').remove();
+                	  $('.tab-content *').remove();
+                	 
           			  
                 	  $.each(files,function(index,value){
-                		  if(value=='pro'){
-                			  $('#needDiet').append(`
-                        			  <div>단백질이 부족합니다 면역력에 문제가 생길 수 있어요.. 콩,달걀을 섭취하세요</div><br/>
-                        			 `);
+                		  if(index==0){
+                			  if(value=='pro'){
+                				  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link active" href="#tab0"
+          								data-toggle="tab">단백질</a></li>                					  
+                    				`);
+                				  $('.tab-content').append(`
+                						  <div class="tab-pane active" id="tab0">단백질이 부족합니다.</div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='cal'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link active" href="#tab0"
+          								data-toggle="tab">칼슘</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+                						  <div class="tab-pane active" id="tab0">
+    									  <div class="col-md-12">
+	          								<div class="row">
+	          									<div class="col-md-12">
+	          										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/calcium.jpg"/>" />
+	          									</div>
+	          									<div class="col-md-12">
+	          										<ul>
+	          										<li>기분의 급격한 변화</li>
+	          										<li>빈번한 감기와 독감</li>
+	          										<li>지속적인 피로감</li>
+	          										</ul>
+	          									</div>
+	          								</div>
+	          						  	</div>                						  
+                						  </div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='zinc'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link active" href="#tab0"
+          								data-toggle="tab">아연</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+                						  <div class="tab-pane active" id="tab0">아연이 부족합니다.</div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='vB'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link active" href="#tab0"
+          								data-toggle="tab">비타민 B12</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+                						  <div class="tab-pane active" id="tab0">비타민이부족합니다.</div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='vD'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link active" href="#tab0"
+          								data-toggle="tab">비타민 D</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+                						  <div class="tab-pane active" id="tab0">비타민이부족합니다.</div>               				  
+                				  `); 
+                    		  }	
+                			  
+                			 
+                			  
                 		  }
-						  if(value=='cal'){
-							  $('#needDiet').append(`
-		                			  <div>칼슘이 부족합니다 골다공증에 문제가 생길 수 있어요.. 견과류,다시마,미역을 섭취하세요</div><br/>
-		                			 `);
+                		  else{
+                			  var tab = "#tab"+index;
+                			  var tabid ="tab"+index;
+                			  console.log(tab);
+                			  
+                			  if(value=='pro'){
+                				  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link " href="`+tab+`"
+          								data-toggle="tab">단백질</a></li>                					  
+                    				`);
+                				  $('.tab-content').append(`
+                						  <div class="tab-pane " id="`+tabid+`">
+              						  	<div class="col-md-12">
+              								<div class="row">
+              									<div class="col-md-12">
+              										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/protein.jpg"/>" />
+              									</div>
+              									<div class="col-md-12">
+              										<ul>
+              										<li>기분의 급격한 변화</li>
+              										<li>빈번한 감기와 독감</li>
+              										<li>지속적인 피로감</li>
+              										</ul>
+              									</div>
+              								</div>
+              						  	</div>    							  	
+  							  		  </div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='cal'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link " href="`+tab+`"
+          								data-toggle="tab">칼슘</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+                						  <div class="tab-pane " id="`+tabid+`">
+                						  <div class="col-md-12">
+		          								<div class="row">
+		          									<div class="col-md-12">
+		          										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/calcium.jpg"/>" />
+		          									</div>
+		          									<div class="col-md-12">
+		          										<ul>
+		          										<li>기분의 급격한 변화</li>
+		          										<li>빈번한 감기와 독감</li>
+		          										<li>지속적인 피로감</li>
+		          										</ul>
+		          									</div>
+		          								</div>
+		          						  	</div>                   						  
+                						  </div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='zinc'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link " href="`+tab+`"
+          								data-toggle="tab">아연</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+                						  <div class="tab-pane " id="`+tabid+`">
+                						  	<div class="col-md-12">
+                								<div class="row">
+                									<div class="col-md-12">
+                										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/zinc.jpg"/>" />
+                									</div>
+                									<div class="col-md-12">
+                										<ul>
+                										<li>기분의 급격한 변화</li>
+                										<li>빈번한 감기와 독감</li>
+                										<li>지속적인 피로감</li>
+                										</ul>
+                									</div>
+                								</div>
+                						  	</div>    							  	
+    							  		  </div>               				  
+                				  `); 
+                    		  }
+    						  if(value=='vB'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link " href="`+tab+`"
+          								data-toggle="tab">비타민 B12</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+    									  <div class="tab-pane " id="`+tabid+`">
+              						  	<div class="col-md-12">
+              								<div class="row">
+              									<div class="col-md-12">
+              										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaB12.jpg"/>" />
+              									</div>
+              									<div class="col-md-12">
+              										<ul>
+              										<li>기분의 급격한 변화</li>
+              										<li>빈번한 감기와 독감</li>
+              										<li>지속적인 피로감</li>
+              										</ul>
+              									</div>
+              								</div>
+              						  	</div>    							  	
+  							  		  </div>                				  
+                				  `); 
+                    		  }
+    						  if(value=='vD'){
+    							  $('.justify-content-center').append(`
+                    					  <li class="nav-item"><a class="nav-link " href="`+tab+`"
+          								data-toggle="tab">비타민 D</a></li>                					  
+                    				`);
+    							  $('.tab-content').append(`
+    									  <div class="tab-pane " id="`+tabid+`">
+                						  	<div class="col-md-12">
+                								<div class="row">
+                									<div class="col-md-12">
+                										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaD.jpg"/>" />
+                									</div>
+                									<div class="col-md-12">
+                										<ul>
+                										<li>기분의 급격한 변화</li>
+                										<li>빈번한 감기와 독감</li>
+                										<li>지속적인 피로감</li>
+                										</ul>
+                									</div>
+                								</div>
+                						  	</div>    							  	
+    							  		  </div>                 				  
+                				  `); 
+                    		  }                			  
                 		  }
-						  if(value=='zinc'){
-							  $('#needDiet').append(`
-		                			  <div>아연 부족합니다 면역력과 회복에 문제가 생길 수 있어요.. 잡곡,두부,된장을 섭취하세요</div><br/>
-		                			 `);
-                		  }
-						  if(value=='vB'){
-							  $('#needDiet').append(`
-		                			  <div>비타민B12가 부족합니다 우을증,빈혈 등 여러 질환이 생길 수 있어요.. 해조류,단호박,검은콩을 섭취하세요</div><br/>
-		                			 `);
-                		  }
-						  if(value=='vD'){
-							  $('#needDiet').append(`
-		                			  <div>비타민D가 부족합니다 골다공증,빈혈증상이 생길 수 있어요.. 땅콩,호두를 섭취하세요</div><br/>
-		                			 `);
-                		  }							
+                		  
+                		  
+                		  
+                		  						
 						  
 						  
                 		  
                 		  
                 		  
-                	  });        	  
+                	  });    
+                	  console.log(json["mini"]);
                 	  $.ajax({
 							type : 'post',
 							url : "http://localhost:8383/crawl",
-							data : {"data":"아연"},
+							data : {"data":json["mini"]},
 							dataType : "json",
 							success : function(data) {
 								console.log('파이썬에서 돌아왔어',data)
@@ -132,7 +306,7 @@ p {
 								$('#img1').attr('src',data["img1"]);
 								$('#img2').attr('src',data["img2"]);
 								$('#img3').attr('src',data["img3"]);
-								
+								$('#recommandMenu').html(data["food"]);
 								$('#crawlVideo').attr('src',videoLink.replace('watch?v=','embed/'));
 								
 							}
@@ -241,33 +415,10 @@ p {
 					<!-- tab -->
 					<div class="tabbable" id="category_tabs">
 						<ul class="nav nav-pills justify-content-center">
-							<li class="nav-item"><a class="nav-link active" href="#tab1"
-								data-toggle="tab">내 피드</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tab2"
-								data-toggle="tab">내 레시피</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tab3"
-								data-toggle="tab">스크랩</a></li>
+							
 						</ul>
 						<div class="tab-content">
-							<!-- tab1 내 피드 -->
-							<div class="tab-pane active" id="tab1">
-						
-
-							</div>
-							<!-- tab1 내 피드 -->
-
-							<!-- 두번째 tab 내 레시피 -->
-							<div class="tab-pane" id="tab2">
-								<p>Section 2. 내 레시피 보여주기</p>
-							</div>
-							<!-- 두번째 tab 내 레시피 -->
-
-							<!-- 세번째 tab 내 레시피 -->
-							<div class="tab-pane" id="tab3">
-								<p>Section 3. 스크랩한 것들</p>
-							</div>
 							
-							<!-- 세번째 tab 내 레시피 -->
 
 
 						</div>
@@ -283,7 +434,7 @@ p {
 
 		<div class="col-md-4">
 			<div class="col-md-12">
-				<h4 style="padding-top: 30px">추천 메뉴 / 레시피</h4>
+				<h3 style="padding-top: 30px; font-weight: bold;" id="recommandMenu">추천 메뉴 / 레시피</h4>
 			</div>
 			<div id="foodname"></div>
 			<div class="carousel slide" id="carousel-172006">

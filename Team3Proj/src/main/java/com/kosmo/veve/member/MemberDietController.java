@@ -2,6 +2,7 @@ package com.kosmo.veve.member;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,7 +38,7 @@ public class MemberDietController {
 	private UserDietService dietservice;
 
 	// 식단분석
-	@RequestMapping("/Member/MemberDiet.do")
+	@RequestMapping(value ="/Member/MemberDiet.do", produces = "text/plain;charset=UTF-8")
 	public String myhome(HttpServletRequest req,Model model) {
 		String userID = (String) req.getSession().getAttribute("UserID");
 		Map map = new HashMap();
@@ -110,6 +112,12 @@ public class MemberDietController {
 		System.out.println(calPercent);
 		String strcalPercent = String.format("%.2f", calPercent);
 		
+		
+
+			
+		
+		
+		
 		model.addAttribute("strproteinPercent", strproteinPercent);
 		model.addAttribute("strbPercent", strbPercent);
 		model.addAttribute("strdPercent", strdPercent);
@@ -121,7 +129,7 @@ public class MemberDietController {
 	}
 
 	// 식단분석
-	@RequestMapping("/Member/MemberDietpost.do")
+	@RequestMapping(value="/Member/MemberDietpost.do", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String getdiet(HttpServletRequest req) throws IOException {
 		JSONObject obj = new JSONObject();
@@ -245,6 +253,34 @@ public class MemberDietController {
 		float calPercent = Todaycalcium / standardCalcium * 100;
 		System.out.println(calPercent);
 		String strcalPercent = String.format("%.2f", calPercent);
+		
+		
+		//최소값 가져오기
+				List minimum = new ArrayList();
+				minimum.add(proteinPercent);
+				minimum.add(b12Percent);
+				minimum.add(dPercent);
+				minimum.add(zincPercent);
+				minimum.add(calPercent);
+				float mini = (float)minimum.get(0);
+				for(int m=1;m<minimum.size();m++) {
+					if((float)minimum.get(m)< mini) {
+						mini = (float)minimum.get(m);
+					}			
+				}
+				System.out.println("최소 퍼센트:"+mini);
+				if(mini==b12Percent)
+					obj.put("mini", "비타민B12");
+				if(mini==proteinPercent)
+					obj.put("mini", "단백질");
+				if(mini==dPercent)
+					obj.put("mini", "비타민D");
+				if(mini==zincPercent) {
+					System.out.println("여기왔다");
+					obj.put("mini","아연");
+				}
+				if(mini==calPercent)
+					obj.put("mini", "칼슘");
 		
 		
 
