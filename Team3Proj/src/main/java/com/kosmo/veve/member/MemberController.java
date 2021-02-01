@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -323,7 +324,7 @@ public class MemberController {
 	// 회원탈퇴
 	@RequestMapping("/Member/MemberRemove")
 	@ResponseBody
-	public String memberRemove(HttpServletRequest req) {
+	public String memberRemove(HttpServletRequest req,HttpSession session) {
 
 		String curPwd = req.getParameter("curPwd");
 		// 사용중인 사용자 아이디 가져오기
@@ -338,6 +339,7 @@ public class MemberController {
 			System.out.println("탈퇴해야해:"+map.get("userID"));
 			int withdraw = service.delete(userID);
 			System.out.println("탈퇴여부:"+withdraw);
+			session.invalidate();
 			return "Success";
 		} else {
 			return "false";
