@@ -60,9 +60,9 @@ public class MemberDAO implements MemberService {
 	}
 
 	@Override
-	public int delete(Map map) {
+	public int delete(String userID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlMapper.delete("deleteUser",userID);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public interface MemberService {
 		//입력/수정/삭제용]
 		int insert(Map map);
 		int kakoinsert(Map map);
-		int delete(Map map);
+		int delete(String userID);
 		int update(Map map);
 		//회원 사진 가져오기용]
 		MemberFileDTO selectFile(String userID);

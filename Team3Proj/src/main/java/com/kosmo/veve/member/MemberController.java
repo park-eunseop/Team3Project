@@ -335,7 +335,9 @@ public class MemberController {
 		// 비교하기
 		if (userPwd.equals(curPwd)) {
 			// 삭제해야해
-			service.delete(map);
+			System.out.println("탈퇴해야해:"+map.get("userID"));
+			int withdraw = service.delete(userID);
+			System.out.println("탈퇴여부:"+withdraw);
 			return "Success";
 		} else {
 			return "false";

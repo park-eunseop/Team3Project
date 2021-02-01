@@ -46,9 +46,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int delete(Map map) {
+	public int delete(String userID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(userID);
 	}
 
 	@Override
