@@ -149,6 +149,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getTotalMember(map);
 	}
 
+	@Override
+	public int deletefollowWithdraw(String userID) {
+		// TODO Auto-generated method stub
+		return dao.deletefollowWithdraw(userID);
+	}
+
 
 
 	

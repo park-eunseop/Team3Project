@@ -337,6 +337,9 @@ public class MemberController {
 		if (userPwd.equals(curPwd)) {
 			// 삭제해야해
 			System.out.println("탈퇴해야해:"+map.get("userID"));
+			//otherid에 있는 follow 다 삭제해야해
+			service.deletefollowWithdraw(userID);
+			
 			int withdraw = service.delete(userID);
 			System.out.println("탈퇴여부:"+withdraw);
 			session.invalidate();

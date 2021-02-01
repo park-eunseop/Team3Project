@@ -173,6 +173,12 @@ public class MemberDAO implements MemberService {
 		return sqlMapper.selectOne("getTotalMember",map);
 	}
 
+	@Override
+	public int deletefollowWithdraw(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.delete("deleteFollowforWithdraw",userID);
+	}
+
 
 
 }

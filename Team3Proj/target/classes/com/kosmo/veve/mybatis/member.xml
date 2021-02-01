@@ -49,6 +49,10 @@
 	<delete id="deleteUser" parameterType="String">
 		DELETE FROM VG_USER WHERE userID=#{userID}
 	</delete>
+	<delete id="deleteFollowforWithdraw" parameterType="String">
+		DELETE FROM USER_FOLLOW WHERE otherID =#{userID}
+	</delete>
+	
 	
 	
 	<!-- 팔로잉/팔로워 count -->
