@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.kosmo.veve.model.GallaryBoardDTO;
 import com.kosmo.veve.model.GallaryFileDTO;
+import com.kosmo.veve.model.GallaryScrapDTO;
 import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.MemberFileDTO;
 import com.kosmo.veve.model.MemberFollowDTO;
@@ -31,6 +32,7 @@ import com.kosmo.veve.model.UserDietDTO;
 import com.kosmo.veve.model.service.GallaryBoardService;
 import com.kosmo.veve.model.service.GallaryCommentService;
 import com.kosmo.veve.model.service.GallaryLikeService;
+import com.kosmo.veve.model.service.GallaryScrapService;
 import com.kosmo.veve.model.service.MemberService;
 import com.kosmo.veve.model.service.UserDietService;
 
@@ -48,6 +50,8 @@ public class MemberController {
 	@Resource(name = "gallaryLikeService")
 	private GallaryLikeService likeservice;
 	
+	@Resource(name = "gallaryscrapService")
+	private GallaryScrapService scrapservice;
 	
 	@Resource(name="galcommentService")
 	private GallaryCommentService commentService;
@@ -243,6 +247,79 @@ public class MemberController {
 			fileList3.add(filemap);
 		}
 		model.addAttribute("fileList", fileList3);
+		
+		
+		
+		///////스크랩 가져오기
+		List<GallaryScrapDTO> gsdto =  scrapservice.selectScrapList(map);
+		System.out.println("내가 스크랩한 리스트:"+gsdto.size());
+		                                                         
+		//갤러리 번호로 갤러리 정보를 가져와야해
+		List<GallaryBoardDTO> scrapgallist = new ArrayList<GallaryBoardDTO>();
+		for(int g=0;g<gsdto.size();g++) {
+			map.put("gallary_no", gsdto.get(g).getGallary_no());
+			GallaryBoardDTO sgdto = gallaryService.selectBoardOneByNo(map);
+			scrapgallist.add(sgdto);
+		}
+		System.out.println("sgdto:"+scrapgallist);
+		
+		/////////////여기서 부터 수정
+		List<GallaryFileDTO> scrapfileList = gallaryService.selectFileList(map);
+
+		List<String> scraplikeList = new ArrayList<String>();
+		List<String> scrapcommentList = new ArrayList<String>();
+		List<List> scrapfiles = new ArrayList<List>();
+
+		for (int i = 0; i < scrapgallist.size(); i++) {
+			// 리스트 크기만큰 for문을 돌면서 번호에 해당하는 파일들을 List에 담아올꺼야
+			String no = scrapgallist.get(i).getGallary_no();
+			// System.out.println("대장 게시물:"+no);
+			List<String> scrapfiles2 = new ArrayList<String>();
+
+			// 파일 리스트 돌면서 일치하는 파일들을 List에 넣을꺼야
+			for (int k = 0; k < scrapfileList.size(); k++) {
+				// System.out.println("쫄병 게시물:"+fileList.get(k).getGallary_no());
+				String includeno = scrapfileList.get(k).getGallary_no();
+
+				if (no.equals(includeno)) {
+
+					scrapfiles2.add(scrapfileList.get(k).getF_name());
+				}
+			}
+			System.out.println(i+"번째게시물:"+scrapfiles2);
+			scrapfiles.add(scrapfiles2);
+
+			// 게시물 번호로 좋아요 갯수를 가져올꺼야
+
+			map.put("gallary_no", no);
+			int likeCount = likeservice.getLikeCount(map);
+			System.out.printf("%s 게실물 , %s 좋아요 갯수 %n", no, likeCount);
+			scraplikeList.add(String.valueOf(likeCount));
+
+			// 게시물 번호로 댓글 수 가져올꺼야
+
+			int commentCount = commentService.getCommentCount(no);
+			System.out.println("댓글수:" + commentCount);
+			scrapcommentList.add(String.valueOf(commentCount));
+
+		}
+
+
+		model.addAttribute("scrapboardList", scrapgallist);
+		model.addAttribute("scraplikeList", scraplikeList);
+		model.addAttribute("scrapcommentList", scrapcommentList);
+
+		List<Map> scrapfileList3 = new ArrayList<Map>();
+
+		for (int j = 0; j < scrapfiles.size(); j++) {
+			Map filemap = new HashMap();
+			filemap.put("fileSize", scrapfiles.get(j).size());
+			filemap.put("fileName", scrapfiles.get(j).get(0));
+			scrapfileList3.add(filemap);
+		}
+		model.addAttribute("scrapfileList", scrapfileList3);
+		
+		///////////////////////////
 
 		return "member/Myhome.tiles";
 	}

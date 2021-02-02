@@ -161,7 +161,7 @@ $(function(){
 </div>
 
 
-<div class="w3-row  w3-border ">
+<div class="w3-row  w3-border " >
   
 
 	<h2>회원 정보 수정 페이지 입니다.</h2>
@@ -176,7 +176,7 @@ $(function(){
 	</div>
 
 	<div id="PasswordEdit" class="tabcontent"
-		style="background-color: white;">
+		style="background-color: white; height: 600px">
 		<div class="row" style="padding-top: 50px;">
 			<div class="col-sm-12">
 				<form class="form-horizontal">
@@ -228,7 +228,7 @@ $(function(){
 	</div>
 
 	<div id="Withdrawal" class="tabcontent"
-		style="background-color: white;">
+		style="background-color: white;height: 600px">
 		<div class="row" style="padding-top: 50px;">
 			<div class="col-sm-12">
 				<form class="form-horizontal">

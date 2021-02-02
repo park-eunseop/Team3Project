@@ -13,6 +13,5 @@ public interface GallaryLikeService {
 	//전체 수 가져오기
 	int getLikeCount(Map map);
 	int getMyLike(Map map);
-	
 	List<GallaryLikeDTO> selectLikeList(Map map);
 }

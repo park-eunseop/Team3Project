@@ -71,6 +71,11 @@
       WHERE g.gallary_no=#{gallary_no,jdbcType=NUMERIC}
    </select>
    
+   <select id="gallaryBoardSelectOneNo" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
+      SELECT * FROM gallary_board WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC}
+   </select>
+   
+   
    <update id="gallaryUpdate" parameterType="java.util.Map">
       UPDATE gallary_board SET title=#{title},content=#{content}
       WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC}

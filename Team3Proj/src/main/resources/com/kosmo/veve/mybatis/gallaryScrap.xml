@@ -10,34 +10,24 @@
       <result property="userID" column="userID" />
       <result property="gallary_no" column="gallary_no" />
    </resultMap>
-   
-    <insert id="gallaryScrapInsert" parameterType="java.util.Map">
+       <insert id="gallaryScrapInsert" parameterType="java.util.Map">
        INSERT INTO gallary_scrap
        VALUES(#{userID},#{gallary_no,jdbcType=NUMERIC})
-    </insert>
-	
-	<update id="gallaryScrapUpdate" parameterType="java.util.Map">
-       UPDATE gallary_board 
-       SET scrapCount = (
-       		SELECT COUNT(*)
-       		FROM gallary_scrap
-       		WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC})
-       WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC}    
-    </update>
-	
+    </insert>	
     <delete id="gallaryScrapDelete" parameterType="java.util.Map">
        DELETE gallary_scrap 
        WHERE userID=#{userID} AND gallary_no=#{gallary_no,jdbcType=NUMERIC}
     </delete>
 
-	<select id="gallaryScrapCount" parameterType="java.util.Map" resultType="int">
-       SELECT COUNT(*) 
-       FROM gallary_scrap 
-       WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC} AND userID = #{userID}
+	<select id="gallaryScrapCount" parameterType="java.util.Map" resultType="gallaryScrapDTO">
+       SELECT * FROM gallary_scrap 
+       WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC}
     </select>
 
     <select id="gallaryScrapList" parameterType="java.util.Map" resultType="gallaryScrapDTO" >
-		SELECT * FROM gallary_scrap WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC}
+		SELECT * FROM gallary_scrap WHERE userID = #{userID}
 	</select>
+   
+
     
 </mapper>

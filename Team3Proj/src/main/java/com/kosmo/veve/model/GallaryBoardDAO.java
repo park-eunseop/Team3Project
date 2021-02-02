@@ -83,4 +83,11 @@ public class GallaryBoardDAO implements GallaryBoardService{
 	}
 
 
+	@Override
+	public GallaryBoardDTO selectBoardOneByNo(Map map) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("gallaryBoardSelectOneNo", map);
+	}
+
+
 }

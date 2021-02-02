@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosmo.veve.model.service.GallaryScrapService;
 
-@Service("scrapService")
+@Service("gallaryscrapService")
 public class GallaryScrapServiceImpl implements GallaryScrapService{
 	
 	@Resource(name="gallaryScrapDAO")
@@ -23,11 +23,6 @@ public class GallaryScrapServiceImpl implements GallaryScrapService{
 	@Override
 	public int deleteScrap(Map map) {
 		return dao.deleteScrap(map);
-	}
-	
-	@Override
-	public int updateScrap(Map map) {
-		return dao.updateScrap(map);
 	}
 
 //	@Override
@@ -51,7 +46,7 @@ public class GallaryScrapServiceImpl implements GallaryScrapService{
 	}
 
 	@Override
-	public int getScrapCount(Map map) {
+	public List<GallaryScrapDTO> getScrapCount(Map map) {
 		return dao.getScrapCount(map);
 	}
 	

@@ -371,7 +371,36 @@
 
 					<!-- 세번째 tab 내 레시피 -->
 					<div class="tab-pane" id="tab3">
-						<p>Section 3. 스크랩한 것들</p>
+						<main style="padding-top: 10px">
+							<div class="container_main">
+								<div class="gallery" id="appendPosition">
+									<c:forEach var="item" items="${scrapboardList}" varStatus="var">
+										<div class="gallery-item" tabindex="0">
+											<img
+												src="<c:url value='/upload/${scrapfileList[var.index].fileName}'/>"
+												class="gallery-image" alt=""
+												style="width: 300px; height: 300px">
+											<div class="gallery-item-info"
+												onclick="view(${item.gallary_no})"
+												style="width: 300px; height: 300px">
+												<ul>
+													<li class="gallery-item-likes"><span
+														class="visually-hidden">Likes:</span><i
+														class="fas fa-heart" aria-hidden="true"></i>
+														${scraplikeList[var.index] }</li>
+													<li class="gallery-item-comments"><span
+														class="visually-hidden">Comments:</span><i
+														class="fas fa-comment" aria-hidden="true"></i>
+														${scrapcommentList[var.index] }</li>
+												</ul>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<!-- End of container -->
+							<a id="a_open" href="#open" hidden=""></a>
+						</main>
 					</div>
 					<!-- 세번째 tab 내 레시피 -->
 

@@ -72,4 +72,10 @@ public class GallaryBoardServiceImpl implements GallaryBoardService{
 		return dao.selectMyBoardList(map);
 	}
 
+	@Override
+	public GallaryBoardDTO selectBoardOneByNo(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectBoardOneByNo(map);
+	}
+
 }

@@ -30,11 +30,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.kosmo.veve.model.GallaryBoardDTO;
 import com.kosmo.veve.model.GallaryCommentDTO;
 import com.kosmo.veve.model.GallaryFileDTO;
+import com.kosmo.veve.model.GallaryScrapDTO;
 import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.MemberFileDTO;
 import com.kosmo.veve.model.service.GallaryBoardService;
 import com.kosmo.veve.model.service.GallaryCommentService;
+import com.kosmo.veve.model.service.GallaryDecService;
 import com.kosmo.veve.model.service.GallaryLikeService;
+import com.kosmo.veve.model.service.GallaryScrapService;
 import com.kosmo.veve.model.service.MemberService;
 
 
@@ -55,10 +58,14 @@ public class GallaryController {
 	@Resource(name = "gallaryLikeService")
 	private GallaryLikeService likeservice;
 	
+	@Resource(name = "gallaryscrapService")
+	private GallaryScrapService scrapservice;
 	
 	@Resource(name="galcommentService")
 	private GallaryCommentService commentService;
 	
+	@Resource(name="gallaryDecService")
+	private GallaryDecService decService;
 	
 	@RequestMapping("/Gallary/GallaryEdit.do") 
 	public String edit(
@@ -341,7 +348,7 @@ public class GallaryController {
     //뷰 페이지로 넘길 값들
     @RequestMapping(value="/Gallary/View.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String view(@RequestParam Map map) {
+	public String view(@RequestParam Map map,HttpServletRequest req) {
 		//서비스 호출]
     	JSONObject obj = new JSONObject();
     	JSONArray array = new JSONArray();
@@ -387,6 +394,29 @@ public class GallaryController {
 		String test ="sfs";
 		
 		
+		userID = (String)req.getSession().getAttribute("UserID");
+		map.put("userID", userID);//호출전 아이디 맵에 저장
+		
+		//scrap 정보 넘기기
+		List<GallaryScrapDTO> scrap_ = scrapservice.getScrapCount(map);
+		System.out.println(scrap_);
+		for(int k=0;k<scrap_.size();k++) {
+			String scrapUser = scrap_.get(k).getUserID();
+			System.out.println(scrapUser);
+			if(userID.equals(scrapUser)) {
+				obj.put("myScrap", 1);
+				System.out.println("스크립했어");
+				break;
+			}
+			else if(!userID.equals(scrapUser)){
+				obj.put("myScrap", 0);
+				System.out.println("스크립안했어");
+			}
+				
+			
+		}
+	
+		
 		
 		return obj.toJSONString();
 	}/////////////
@@ -411,5 +441,43 @@ public class GallaryController {
 
 		return "none";
     }
+	////////////스크랩
+	@ResponseBody
+    @RequestMapping(value = "/Gallary/Scrap/addscrap.do", method = RequestMethod.POST, produces = "application/json")
+    public String addscrap(@RequestParam Map map,HttpServletRequest req){
+		String userID = (String)req.getSession().getAttribute("UserID");
+		map.put("userID", userID);
+		
+		System.out.println("스크랩 여부:"+scrapservice.insertScrap(map));
+	
+
+		return "none";
+    }
+	
+	@ResponseBody
+    @RequestMapping(value = "/Gallary/Scrap/deletescrap.do", method = RequestMethod.POST, produces = "application/json")
+    public String deletescrap(@RequestParam Map map,HttpServletRequest req){
+		String userID = (String)req.getSession().getAttribute("UserID");
+		map.put("userID", userID);
+		System.out.println("스크랩 여부:"+scrapservice.deleteScrap(map));
+
+		return "none";
+    }
+	///신고
+	@ResponseBody
+    @RequestMapping(value = "/Gallary/Dec/insertdec.do", method = RequestMethod.POST, produces = "application/json")
+    public String insertdec(@RequestParam Map map,HttpServletRequest req){
+		String userID = (String)req.getSession().getAttribute("UserID");
+		map.put("userID", userID);
+		int dec = decService.insertDec(map);
+		System.out.println("신고 접수 여부:"+dec);
+
+		return "none";
+    }
+	
+	
+	
+	
+	
 
 }

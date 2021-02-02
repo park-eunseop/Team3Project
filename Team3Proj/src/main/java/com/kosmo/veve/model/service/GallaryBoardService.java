@@ -25,6 +25,7 @@ public interface GallaryBoardService {
 	List<GallaryFileDTO> selectFileListOne(Map map);
 	
 	GallaryBoardDTO selectBoardOne(Map map);
+	GallaryBoardDTO selectBoardOneByNo(Map map);
 	
 
 }

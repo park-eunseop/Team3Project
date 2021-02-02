@@ -24,6 +24,57 @@ $(function(){
 		$('#commentInput').focus();
 		
 	});
+	///스크랩 아이콘 클릭
+	$('#scrapIcon').click(function(){
+		
+		//console.log($('#scrapIcon').attr('class'));
+		var scrap = $('#scrapIcon').attr('class');
+		var scrap_ = scrap.split(' ')[0];
+		var for_no = $('#for_no').val();
+		console.log(scrap_);
+		
+		if(scrap_=='far'){
+			//scrap insert
+			$('#scrapIcon').attr("class",'fas fa-bookmark fa-2x');
+			
+			 $.ajax({
+                 url:"<c:url value='/Gallary/Scrap/addscrap.do'/>",
+                 data:{"gallary_no":for_no},
+                 dataType:'text',
+                 type:'post',
+                 success:function(data){            
+               	  
+                 },
+                 error:function(e){console.log(e);}                 
+              });
+			
+			
+		}
+		else{
+			//scrap delete
+			$('#scrapIcon').attr("class",'far fa-bookmark fa-2x');
+			
+			$.ajax({
+                url:"<c:url value='/Gallary/Scrap/deletescrap.do'/>",
+                data:{"gallary_no":for_no},
+                dataType:'text',
+                type:'post',
+                success:function(data){            
+              	  
+                },
+                error:function(e){console.log(e);}                 
+             });
+			
+		}
+		
+	});
+	///Dec
+	$('#gallaryDec').click(function(){
+		var for_no = $('#for_no').val();
+		prompt_dec(for_no);
+		
+	});
+	///
 	$('#boardHeart').click(function(){
 		console.log('하트 아이콘 클릭');
 		var UserID = $('#logincheck').val(); 
@@ -207,7 +258,14 @@ $(function(){
 			<div class="flex" style="display: flex;">	
 				<img alt="#" src="#" id="user_profile"  onerror="this.src='/veve/resources/assets/images/basic_profile.gif';"/>
 				<span id="user_nickname" style="width:50%; padding-left: 20px;padding-top:10px; font-weight: bold; font-size: 1.5em">nick</span>
-				
+				<span class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fas fa-ellipsis-h"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a id="gallaryDec">신고하기</button></li>
+							</ul>
+				</span>
 			</div>
 			<hr width="100%">
 			
@@ -219,10 +277,9 @@ $(function(){
 			<div style="padding-top: 10px;height:50px">			
 			<span id="heartColor" style="color:red"><i id="boardHeart" class="fas fa-heart fa-2x" aria-hidden="true"></i></span>
 			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
-			<i class="fas fa-bookmark fa-2x" id="btn_scrap"></i>	
-			<i class="far fa-bookmark fa-2x" id="btn_scrap"></i>		
+			<i id ="scrapIcon" class="far fa-bookmark fa-2x"></i>		
 			
-			<span style="padding-left: 220px" id="board_date"></span>
+			<span style="padding-left: 200px" id="board_date"></span>
 			</div>
 			<hr width="100%">
 			<input id="commentInput" type="text" placeholder="댓글 달기..." style="width: 95%;"/>
@@ -448,6 +505,12 @@ function view(board_no){
 			$('#for_no').val(data["boardNo"]);
 			showComments(data["boardNo"]);
 			
+			console.log("scrap:"+data["myScrap"]);
+			//3.scrap
+			if(data["myScrap"]==1)
+				$('#scrapIcon').attr('class',"fas fa-bookmark fa-2x")
+			else
+				$('#scrapIcon').attr('class',"far fa-bookmark fa-2x")
 			
 			
 			$('#a_open').get(0).click();
@@ -497,7 +560,25 @@ function showComments(board_no){
    
 }//////////////showComments
 
+function prompt_dec(for_no) {
+    var content = prompt("신고내용을 입력해주세요.");
+    
+    $.ajax({
+        url:"<c:url value='/Gallary/Dec/insertdec.do'/>",
+        data:{"gallary_no":for_no,"content":content},
+        dataType:'text',
+        type:'post',
+        success:function(data){ 
+        	alert("접수되셨습니다.");
+      	  
+        },
+        error:function(e){console.log(e);}                 
+     });
+    
+    
 
+    
+}
 
 
 

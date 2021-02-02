@@ -10,9 +10,8 @@ import com.kosmo.veve.model.GallaryScrapDTO;
 public interface GallaryScrapService {
 	int insertScrap(Map map);
 	int deleteScrap(Map map);
-	int updateScrap(Map map);
 	
-	int getScrapCount(Map map);
+	List<GallaryScrapDTO> getScrapCount(Map map);
 	GallaryBoardDTO selectBoardOne(Map map);
 	
 	List<GallaryScrapDTO> selectScrapList(Map map);

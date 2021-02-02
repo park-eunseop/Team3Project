@@ -18,19 +18,14 @@ public class GallaryScrapDAO implements GallaryScrapService{
 
 	@Override
 	public int insertScrap(Map map) {
-		sqlMapper.insert("gallaryScrapInsert", map);
-		return sqlMapper.update("gallaryScrapUpdate", map);
+		
+		return sqlMapper.update("gallaryScrapInsert", map);
 	}
 
 	@Override
 	public int deleteScrap(Map map) {
-		sqlMapper.delete("gallaryScrapDelete", map);
-		return sqlMapper.update("gallaryScrapUpdate", map);
-	}
-
-	@Override
-	public int updateScrap(Map map) {
-		return sqlMapper.update("gallaryScrapUpdate", map);
+	
+		return sqlMapper.update("gallaryScrapDelete", map);
 	}
 
 //	@Override
@@ -49,8 +44,8 @@ public class GallaryScrapDAO implements GallaryScrapService{
 	}
 
 	@Override
-	public int getScrapCount(Map map) {
-		return sqlMapper.selectOne("gallaryScrapCount", map);
+	public List<GallaryScrapDTO> getScrapCount(Map map) {
+		return sqlMapper.selectList("gallaryScrapCount", map);
 	}
 	
 	@Override
