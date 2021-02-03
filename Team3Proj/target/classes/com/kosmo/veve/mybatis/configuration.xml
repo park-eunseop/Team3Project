@@ -48,7 +48,11 @@
 		<typeAlias
 			type="com.kosmo.veve.model.NoticeFileDTO"
 			alias="noticeFileDTO" />
-
+		<!-- 맛집 찾기 -->
+		<typeAlias
+			type="com.kosmo.veve.board.restaurant.RestaurantDTO"
+			alias="restaurantDTO" />
+			
 	</typeAliases>
 
 	<mappers>
@@ -62,6 +66,7 @@
 		<mapper resource="com/kosmo/veve/mybatis/diet.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/noticeBoard.xml" />
 		<mapper resource="com/kosmo/veve/mybatis/noticeComment.xml" />
+		<mapper resource="com/kosmo/veve/mybatis/restaurant.xml" />
 	</mappers>
 
 

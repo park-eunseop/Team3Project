@@ -45,7 +45,9 @@ public class MemberInfoController {
 		map.put("end", end);		
 
 		List<MemberDTO> list = memberService.selectList_admin(map);
-
+		System.out.println("여기야:  "+list);
+		
+		
 		//페이징을 위한  path 데이타 저장]
 		String path = req.getContextPath();
 		if(map.get("searchWord")!=null) {

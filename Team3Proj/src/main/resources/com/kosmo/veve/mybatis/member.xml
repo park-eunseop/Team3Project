@@ -34,6 +34,7 @@
 	</select>
 	
 	
+	
 	<insert id="memberInsert" parameterType="java.util.Map">
 		INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro,signdate,k1n0) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{editordata},default,#{k1n0})
 	</insert>

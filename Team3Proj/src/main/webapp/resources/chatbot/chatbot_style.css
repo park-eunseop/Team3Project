@@ -75,12 +75,12 @@
 
 /*chatbot_chatlog */
 #chatbot_chatlog {
- 		height: calc(100% - (70px + 60px));
- 		padding: 15px;
- 		border-bottom: 2px solid #f2f2f2;
- 		overflow-x: none;
- 		overflow-y: auto;
- 		-ms-overflow-style: none;
+	height: calc(100% - (70px + 60px));
+	padding: 15px;
+	border-bottom: 2px solid #f2f2f2;
+	overflow-x: none;
+	overflow-y: auto;
+	-ms-overflow-style: none;
 }	
 #chatbot_chatlog::-webkit-scrollbar {
 	display:none;
