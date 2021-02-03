@@ -76,14 +76,16 @@ function uploads(event){
 
 <div class="container">
 	<form method="post" action='<c:url value="/Gallary/GallaryWrite.do"/>' enctype="multipart/form-data">
-		<label class="col-sm-2 control-label">제목</label>
-		<div class="col-sm-4">
-			<input type="text" class="form-control" name="title" placeholder="제목을 입력하세요?">
-		</div>
-		<label class="col-sm-2 control-label">내용</label>
-		<div class="col-sm-4">
-			<input type="text" class="form-control" name="content" placeholder="내용 입력하세요?">
-		</div>	
+		<div class="form-group">
+        <label for="name">Title</label>
+        <input class="form-control" type="text" name="title" id="title" placeholder="제목을 입력하세요?" />
+    	</div>
+
+
+    	<div class="form-group">
+      		<label for="message">Content</label>
+      		<textarea class="form-control" name="content" rows="15" cols="30" placeholder="내용 입력하세요?"></textarea>
+    	</div>
 		<div class="upload-btn" onclick="selectFile()">
 					<i class="fas fa-cloud-upload-alt"></i>
 					<span>Choose files to Upload</span>
@@ -97,31 +99,5 @@ function uploads(event){
 		</div>
 		
 	</form>
+
 </div>
-
-
-<!-- 
-<form method="post" action='<c:url value="/Gallary/GallaryWrite.do"/>'
-	enctype="multipart/form-data">
-	<label class="col-sm-2 control-label">제목</label>
-	<div class="col-sm-4">
-		<input type="text" class="form-control" name="title"
-			placeholder="제목을 입력하세요?">
-	</div>
-	<label class="col-sm-2 control-label">내용</label>
-	<div class="col-sm-4">
-		<input type="text" class="form-control" name="content"
-			placeholder="내용 입력하세요?">
-	</div>
-	<label class="col-sm-2 control-label">파일</label>
-	<div class="col-sm-4">
-		<input type="file" class="form-control" name="upload" multiple="multiple">
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary">등록</button>
-		</div>
-	</div>
-
-</form>
- -->

@@ -19,7 +19,7 @@
 		<result property="content" column="content" />
 		<result property="postDate" column="postDate" />
 		<result property="userID" column="userID" />
-		<result property="sq" column="sq"/>
+		<!-- <result property="sq" column="sq"/> -->
 		<result property="visitCount" column="visittCount" />
 
 		<collection property="comments" column="notice_no"
@@ -30,21 +30,13 @@
 	
 
 	<select id="noticeSelectList" parameterType="java.util.Map" resultType="noticeBoardDTO">
-		 SELECT *
+		SELECT * FROM NOTICE_BOARD
+		 <!-- SELECT *
 		 FROM (SELECT T.*, ROW_NUMBER() OVER(ORDER BY T.NOTICE_NO) AS SQ
 			   FROM NOTICE_BOARD T
 			   ORDER BY T.NOTICE_NO )
-		WHERE SQ BETWEEN #{start} AND #{end}
-		 <!--SELECT *
-		 FROM (SELECT T.*, ROWNUM R FROM NOTICE_BOARD T)
-		 WHERE R BETWEEN #{start} AND #{end}
-		SELECT * FROM
-		(SELECT T.*,ROWNUM R FROM (SELECT B.*,V.name,(SELECT COUNT(*) FROM NOTICE_COMMENT WHERE notice_no=B.notice_no) as visitCount FROM VG_USER V JOIN NOTICE_BOARD B ON V.userID=B.userID
-		<if test="searchColumn !=null">
-			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%'	
-		</if>
-		ORDER BY no DESC) T)
-		WHERE R BETWEEN #{start} AND #{end}	 --> 
+		WHERE SQ BETWEEN #{start} AND #{end} -->
+		
 	</select>
 	
 	<select id="noticeGetTotalRecord" parameterType="java.util.Map" resultType="int">

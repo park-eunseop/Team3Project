@@ -76,7 +76,7 @@
 									제목을 클릭하여 해당글로 이동하세요. <br /> 글쓴이, 제목, 신고수 누르면 페이지 이동 <br /> 
 									게시일, 조회수, 좋아요, 신고수 순으로 정렬가능하게 하기.
 								</p>
-								<button type="button" class="btn btn-primary">등록하기</button>
+								<a href="<c:url value="/Board/Notice/NoticeWrite.do"/>" class="btn btn-primary">등록하기</a>
 							</div>
 							
 							<div class="content table-responsive table-full-width">

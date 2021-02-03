@@ -21,7 +21,9 @@
 	<!-- 작성하기 버튼 -->
 	<div class="row">
 		<div class="col-md-12 text-right">
+		<c:if test="${! empty Admin}">
 			<a href="<c:url value="/Board/Notice/NoticeWrite.do"/>" class="btn btn-nav">등록</a>
+		</c:if>
 		</div>
 	</div>
 	<div class="row">
@@ -33,10 +35,10 @@
 				class="table table-bordered table-hover table-condensed text-center">
 				<!-- 테이블 컬럼폭은 col-*-*계열로 설정 -->
 				<tr>
-					<th class="col-xs-2 col-md-1 text-center">번호</th>
-					<th class="col-xs-6 col-md-6 text-center">제목</th>
-					<th class="col-xs-2 col-md-1 text-center">작성자</th>
-					<th class="col-xs-3 col-md-2 text-center">작성일</th>
+					<th style="width: 16% text-center">번호</th>
+					<th style="width: 52% text-center">제목</th>
+					<th style="width: 16% text-center">작성자</th>
+					<th style="width: 16% text-center">작성일</th>
 				</tr>
 				<c:if test="${empty noticeList }" var="isEmpty">
 					<tr>
@@ -46,7 +48,7 @@
 				<c:if test="${!isEmpty}">
 					<c:forEach var="item" items="${noticeList}" varStatus="loop">
 						<tr>
-							<td>${item.sq}</td>
+							<td>${item.notice_no}</td>
 							<td class="text-left">
 							<a	href="<c:url value='/Board/Notice/NoticeView.do?notice_no=${item.notice_no}&nowPage='/><c:out value='${param.nowPage}' default='1'/>">${item.title }</a></td>
 							<%-- <td>${item.notice_no}</td>

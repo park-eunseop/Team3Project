@@ -229,10 +229,7 @@
 							<button class="btn btn-nav" type="submit">등록</button>
 						</div>
 					</div>
-					<div class="hidden-xs hidden-sm col-md-offset-2 col-md-10">
-						<a href="<c:url value="/Board/Notice/NoticeList.do"/>" class="btn btn-nav">취소</a>
-						<button class="btn btn-nav" type="submit">등록</button>
-					</div>
+				
 				</div>
 			</form>
 		</div>

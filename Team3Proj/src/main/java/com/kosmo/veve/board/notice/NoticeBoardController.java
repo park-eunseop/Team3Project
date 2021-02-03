@@ -52,8 +52,7 @@ public class NoticeBoardController {
 	}
 	
 	@RequestMapping("/NoticeList.do")
-	public String list(
-			Authentication auth,
+	public String list(			
 			@RequestParam(required = false,defaultValue = "1") int nowPage,
 			HttpServletRequest req, Model model) {
 		
@@ -107,8 +106,10 @@ public class NoticeBoardController {
 	         HttpServletRequest req
 	         ) throws IllegalStateException, IOException {
 		// 서비스 호출]
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		map.put("userID", auth.getName());
+		
+	
+		String userID = (String) req.getSession().getAttribute("UserID");
+		map.put("userID",userID);
 		noticeBoardService.insert(map);
 		writeFile(files, map, req);
 		// 뷰정보 반환:목록으로 이동
@@ -121,8 +122,8 @@ public class NoticeBoardController {
 			@RequestParam Map map,
 			HttpServletRequest req
 			) throws IllegalStateException, IOException {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		   
+	
+		  String userID = (String) req.getSession().getAttribute("UserID");
 	      String path = req.getServletContext().getRealPath("/upload");
 	      
 	      for(MultipartFile mf : files) {
@@ -131,7 +132,7 @@ public class NoticeBoardController {
 	         mf.transferTo(file); 
 	         map.put("f_path", path);  
 	         map.put("f_name", mf.getOriginalFilename());
-	         map.put("userID",auth.getName()); 
+	         map.put("userID",userID); 
 	         
 	         noticeBoardService.insertFile(map);
 	      }
