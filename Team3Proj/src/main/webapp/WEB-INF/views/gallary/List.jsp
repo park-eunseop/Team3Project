@@ -270,7 +270,7 @@ $(function(){
 			<hr width="100%">
 			
 			<div id="board_title" style="padding-top: 10px;font-weight: bold; font-size: 3em;height:50px"></div>
-			<div id="board_content" style="padding-top: 10px;font-size: 2.5em;height:100px"></div>
+			<div id="board_content" style="padding-top: 10px;font-size: 2.5em;height:200px"></div>
 			<hr width="100%">
 			<div id="board_comment" style="padding-top: 10px;height:130px; overflow:scroll;"></div>
 			<hr width="100%">
