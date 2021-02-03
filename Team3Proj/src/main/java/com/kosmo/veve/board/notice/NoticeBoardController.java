@@ -58,7 +58,7 @@ public class NoticeBoardController {
 		
 		//페이징을 로직]
 		//전체 레코드수	
-		System.out.println(">>> " + req.getSession().getAttribute("UserID"));
+		System.out.println(">>> " + req.getSession().getAttribute("Admin"));
 		int totalRecordCount = noticeBoardService.getTotalRecord();		
 		//전체 페이지수
 		int totalPage=(int)Math.ceil((double)totalRecordCount/pageSize);
@@ -123,7 +123,7 @@ public class NoticeBoardController {
 			HttpServletRequest req
 			) throws IllegalStateException, IOException {
 	
-		  String userID = (String) req.getSession().getAttribute("UserID");
+		  String userID = (String) req.getSession().getAttribute("Admin");
 	      String path = req.getServletContext().getRealPath("/upload");
 	      
 	      for(MultipartFile mf : files) {

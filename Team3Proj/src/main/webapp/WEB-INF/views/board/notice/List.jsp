@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- Notice List -->
 
-
 <section>
 	<div class="visible-lg" style="background: black; height: 5em;">
 	</div>
@@ -83,7 +82,6 @@
 					<input type="text" name="searchWord" class="form-control" />
 				</div>
 				<button type="submit" class="btn btn-primary:hover">검색</button>
-
 			</form>
 		</div>
 	</div>
