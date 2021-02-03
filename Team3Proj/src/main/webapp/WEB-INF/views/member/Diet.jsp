@@ -118,8 +118,8 @@ p {
 	          									<div class="col-md-12">
 	          										<ul>
 	          										<li>기분의 급격한 변화</li>
-	          										<li>빈번한 감기와 독감</li>
-	          										<li>지속적인 피로감</li>
+              										<li>빈번한 감기와 독감</li>
+              										<li>지속적인 피로감</li>
 	          										</ul>
 	          									</div>
 	          								</div>
@@ -177,9 +177,9 @@ p {
               									</div>
               									<div class="col-md-12">
               										<ul>
-              										<li>기분의 급격한 변화</li>
-              										<li>빈번한 감기와 독감</li>
-              										<li>지속적인 피로감</li>
+              										<li>피곤, 우을증</li>
+              										<li>피부트러블</li>
+              										<li>식욕저하</li>
               										</ul>
               									</div>
               								</div>
@@ -201,9 +201,9 @@ p {
 		          									</div>
 		          									<div class="col-md-12">
 		          										<ul>
-		          										<li>기분의 급격한 변화</li>
-		          										<li>빈번한 감기와 독감</li>
-		          										<li>지속적인 피로감</li>
+		          										<li>골다공증</li>
+		          										<li>근육, 신경이상</li>
+		          										<li>기억력 저하</li>
 		          										</ul>
 		          									</div>
 		          								</div>
@@ -249,8 +249,8 @@ p {
               									</div>
               									<div class="col-md-12">
               										<ul>
-              										<li>기분의 급격한 변화</li>
-              										<li>빈번한 감기와 독감</li>
+              										<li>정신 기능 손상</li>
+              										<li>근육 쇠약</li>
               										<li>지속적인 피로감</li>
               										</ul>
               									</div>
@@ -273,9 +273,8 @@ p {
                 									</div>
                 									<div class="col-md-12">
                 										<ul>
-                										<li>기분의 급격한 변화</li>
-                										<li>빈번한 감기와 독감</li>
-                										<li>지속적인 피로감</li>
+                										<li>근육통, 쇠약 및 뼈 통증</li>
+                										<li>구루병</li>
                 										</ul>
                 									</div>
                 								</div>
