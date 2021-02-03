@@ -350,9 +350,9 @@ p {
 						width="150" height="150"> <input type="file"
 						name="fileUpload" id="fileUpload" style="display: none;" />
 					<h5>분석할 메뉴를 올려주세요</h5>
-					<button id="sendinfo" class="btn btn-large btn-success"
+					<button id="sendinfo" class="btn  btn-nav"
 						type="button">분석하기</button>
-					<button class="btn btn-large btn-success add" onclick="predict()"
+					<button class="btn  btn-nav add" onclick="predict()"
 						type="button">Add</button>
 					<script class="jsbin"
 						src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

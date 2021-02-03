@@ -412,6 +412,10 @@ public class GallaryController {
 				obj.put("myScrap", 0);
 				System.out.println("스크립안했어");
 			}
+			else if(userID==null) {
+				obj.put("myScrap", 0);
+				System.out.println("스크립안했어");
+			}
 				
 			
 		}

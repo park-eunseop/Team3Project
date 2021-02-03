@@ -47,7 +47,7 @@
     </select>
     
     <select id="gallaryMyBoardSelectList" parameterType="java.util.Map" resultType="gallaryBoardDTO" >
-      SELECT * FROM (SELECT * FROM GALLARY_BOARD) WHERE userID = #{userID} AND ROWNUM <![CDATA[>=]]> 1 AND ROWNUM<![CDATA[<=]]> 3
+      SELECT * FROM (SELECT * FROM GALLARY_BOARD) WHERE userID = #{userID} 
     </select>
     
     
