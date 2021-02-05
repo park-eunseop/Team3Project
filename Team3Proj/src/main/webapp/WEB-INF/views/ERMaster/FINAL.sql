@@ -155,14 +155,19 @@ CREATE TABLE NUTRIENT
 
 CREATE TABLE REC_BOARD
 (
-	rec_no nvarchar2(50) NOT NULL,
-	title nvarchar2(50) NOT NULL,
-	content nvarchar2(2000) NOT NULL,
-	postDate date DEFAULT SYSDATE,
-	visitCount number DEFAULT 0,
-	userID varchar2(50 char) NOT NULL,
-	vg_level nvarchar2(20) NOT NULL,
-	PRIMARY KEY (rec_no)
+   rec_no nvarchar2(50) NOT NULL,
+   title nvarchar2(50) NOT NULL,
+   content nvarchar2(2000) NOT NULL,
+   postDate date DEFAULT SYSDATE,
+   visitCount number DEFAULT 0,
+   vg_level nvarchar2(20) NOT NULL,
+   userID varchar2(50 char) NOT NULL,
+   category nvarchar2(10) NOT NULL,
+   difficulty nvarchar2(3) NOT NULL,
+   cooktime nvarchar2(10) NOT NULL,
+   ingredients nvarchar2(2000) NOT NULL,
+   tools nvarchar2(2000) NOT NULL,
+   PRIMARY KEY (rec_no)
 );
 
 

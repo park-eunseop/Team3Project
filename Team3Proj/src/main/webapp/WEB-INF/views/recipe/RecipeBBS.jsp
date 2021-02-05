@@ -205,28 +205,19 @@
 					<div class="list" style="background-color: #fffff0;">
 						<c:forEach var="file" items="${fileList}" varStatus="var">
 							<c:if test="${item.rec_no == file.rec_no}">
-								<img src="<c:url value='/upload/${file.f_name}'/>"
-									style="height: 255px; width: 100%;" />
+								<img src="<c:url value='/upload/${file.f_name}'/>" style="height: 255px; width: 100%;" />
 							</c:if>
 						</c:forEach>
 
-						<div class="hotel_text_iner">
-							<h3>
-								<a
-									href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.title}</a>
-							</h3>
+						<div class="summary">
+							<h2>
+								<a href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.title}</a>
+							</h2>
 
-							<div class="place_review">
-								<a href="#"><i class="fas fa-star"></i></a> <a href="#"><i
-									class="fas fa-star"></i></a> <a href="#"><i class="fas fa-star"></i></a>
-								<a href="#"><i class="fas fa-star"></i></a> <a href="#"><i
-									class="fas fa-star"></i></a> <span>(210 review)</span>
-							</div>
-							<a
-								href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.content }</a>
+							<a href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.content }</a>
 							<p></p>
-							<p>ID: ${item.userID }</p>
-							<p>Date: ${item.postDate }</p>
+							<p>${item.userID }</p>
+							<p>${item.postDate }</p>
 						</div>
 					</div>
 				</div>

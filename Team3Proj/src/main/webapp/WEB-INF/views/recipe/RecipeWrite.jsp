@@ -5,8 +5,8 @@
 
 <style>
 #preview img {
-	width: 100px;
-	height: 100px;
+	width: auto;
+	height: 100%;
 }
 
 #preview p {
@@ -28,9 +28,12 @@
 	color: #92AAB0;
 	text-align: center;
 	vertical-align: middle;
-	padding: 10px 0px 10px 10px;
 	font-size: 100%;
-	display: table-cell;
+	overflow: hidden; 
+	justify-content:center; 
+	align-items:center; 
+	display:flex;
+	cursor:pointer;
 }
 
 .statusbar {
@@ -74,6 +77,21 @@
 	cursor: pointer;
 	vertical-align: top
 }
+.darkness {
+  position:absolute;
+  top:0;
+  left:15px;
+  width:inherit;
+  height:inherit;
+  background:#ffffff;
+  /* 추가된 부분 */
+  opacity:0;
+  transition:all .3s linear;
+}
+
+.dragAndDropDiv:hover .darkness{
+opacity:0.4;
+}
 </style>
 
 <script>
@@ -116,6 +134,7 @@
 							e.stopPropagation();
 							e.preventDefault();
 						});
+						
 						//drag 영역 클릭시 파일 선택창
 						objDragAndDrop.on('click', function(e) {
 							$('input[type=file]').trigger('click');
@@ -130,69 +149,10 @@
 							for (var i = 0; i < files.length; i++) {
 								var fd = new FormData();
 								fd.append('file', files[i]);
-
-								var status = new createStatusbar(obj); //Using this we can set progress.
-								status.setFileNameSize(files[i].name,
-										files[i].size);
-								sendFileToServer(fd, status);
-
 							}
 						}
 
-						var rowCount = 0;
-						function createStatusbar(obj) {
-
-							rowCount++;
-							var row = "odd";
-							if (rowCount % 2 == 0)
-								row = "even";
-							this.statusbar = $("<div class='statusbar "+row+"'></div>");
-							this.filename = $("<div class='filename'></div>")
-									.appendTo(this.statusbar);
-							this.size = $("<div class='filesize'></div>")
-									.appendTo(this.statusbar);
-							this.progressBar = $(
-									"<div class='progressBar'><div></div></div>")
-									.appendTo(this.statusbar);
-							this.abort = $("<div class='abort'>중지</div>")
-									.appendTo(this.statusbar);
-
-							obj.after(this.statusbar);
-
-							this.setFileNameSize = function(name, size) {
-								var sizeStr = "";
-								var sizeKB = size / 1024;
-								if (parseInt(sizeKB) > 1024) {
-									var sizeMB = sizeKB / 1024;
-									sizeStr = sizeMB.toFixed(2) + " MB";
-								} else {
-									sizeStr = sizeKB.toFixed(2) + " KB";
-								}
-
-								this.filename.html(name);
-								this.size.html(sizeStr);
-							}
-
-							this.setProgress = function(progress) {
-								var progressBarWidth = progress
-										* this.progressBar.width() / 100;
-								this.progressBar.find('div').animate({
-									width : progressBarWidth
-								}, 10).html(progress + "% ");
-								if (parseInt(progress) >= 100) {
-									this.abort.hide();
-								}
-							}
-
-							this.setAbort = function(jqxhr) {
-								var sb = this.statusbar;
-								this.abort.click(function() {
-									jqxhr.abort();
-									sb.hide();
-								});
-							}
-						}
-
+						
 						function sendFileToServer(formData, status) {
 							var uploadURL = "/upload"; //Upload URL
 							var extraData = {}; //Extra Data.
@@ -251,7 +211,7 @@ body {
 <section class="pad">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12">dfadfadf</div>
+			<div class="col-sm-12">d</div>
 		</div>
 	</div>
 </section>
@@ -262,7 +222,7 @@ body {
 <!--서비스 소개 시작-->
 <section class="introduce">
 	<div class="container">
-		<div class="sign-title m-bottom-30">
+		<div class="sign-title m-top-70">
 			<h3>
 				<strong>레시피 작성</strong>
 			</h3>
@@ -273,7 +233,7 @@ body {
 
 
 <!--레시피 입력 시작-->
-<section class="recipe-form">
+<section class="recipe-form roomy-20">
 	<div class="container">
 
 		<form class="form-horizontal" method="post"
@@ -293,7 +253,7 @@ body {
 								<label class="col-md-4" for="title">레시피 이름</label>
 								<div class="form-group col-md-8">
 									<input type="text" class="form-control " id="title"
-										placeholder="예) 아보카도 요거트 볼" name="title" required>
+										placeholder="예: 아보카도 요거트 볼  (최대 30자)" name="title" required>
 								</div>
 							</div>
 
@@ -305,24 +265,32 @@ body {
 										name="content" placeholder="이 레시피에 대한 간단한 설명을 적어주세요!" required></textarea>
 								</div>
 							</div>
+							
+							
 
 							<!--카테고리-->
 							<div class="row">
-								<label class="col-md-4" for="cartegory">카테고리</label>
-								<div class="form-group col-md-8">
-									<input type="text" class="form-control " id="cartegory"
-										placeholder="카테고리 입력" name="cartegory" required>
-								</div>
+								<label class="col-md-4" for="category">카테고리</label>
+									<div class="form-group col-md-8">
+										<select class="form-control" name="category" id="selectcategory">
+											<option disabled="disabled" selected="selected">카테고리를 선택해주세요</option>
+											<option id="1">식사 레시피</option>
+											<option id="2">간식 레시피</option>
+											<option id="3">홈카페 레시피</option>
+										</select>
+									</div>
+
+
 							</div>
+							
+							
 
 							<!--채식 스타일-->
-
 							<div class="row">
 								<label class="col-md-4" for="selectlevel">채식 스타일</label>
 								<div class="form-group col-md-8">
 									<select class="form-control" name="vg_level" id="selectlevel">
-										<option disabled="disabled" selected="selected">채식스타일을
-											선택해주세요</option>
+										<option disabled="disabled" selected="selected">채식스타일을 선택해주세요</option>
 										<option>비건</option>
 										<option id="milk_ck">락토</option>
 										<option id="egg_ck">오보</option>
@@ -333,13 +301,19 @@ body {
 									</select>
 								</div>
 							</div>
+							
 
 							<!--난이도-->
 							<div class="row">
-								<label class="col-md-4" for="hardness">난이도</label>
+								<label class="col-md-4" for="difficulty">난이도</label>
 								<div class="form-group col-md-8">
-									<input type="text" class="form-control " id="hardness"
-										placeholder="Enter username" name="hardness" required>
+									<select class="form-control" name="difficulty" id="selectdifficulty">
+										<option disabled="disabled" selected="selected">조리난이도를 지정해주세요</option>
+										<option>초간단</option>
+										<option>초보</option>
+										<option>중간</option>
+										<option>높음</option>
+									</select>
 								</div>
 							</div>
 
@@ -347,30 +321,18 @@ body {
 							<div class="row">
 								<label class="col-md-4" for="cooktime">조리 시간</label>
 								<div class="form-group col-md-8">
-									<div style="display: inline-block;">
-										<select class="form-control" id="hour" name="cooktime">
-											<option>0</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
+									약&nbsp;&nbsp;&nbsp;&nbsp;<div style="display: inline-block;">
+										<select class="form-control" id="cooktime" name="cooktime">
 											<option>5</option>
-											<option>6</option>
-											<option>7</option>
-											<option>8</option>
-										</select>
-									</div>
-									&nbsp;시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-									<div style="display: inline-block;">
-										<select class="form-control" id="minute" name="sellist1">
-											<option>00</option>
+											<option>10</option>
 											<option>15</option>
 											<option>30</option>
-											<option>45</option>
+											<option>60</option>
+											<option>90</option>
+											<option>120분 이상</option>
 										</select>
 									</div>
-									&nbsp;분
+									분
 								</div>
 							</div>
 						</div>
@@ -380,10 +342,12 @@ body {
 							<div class="form-group">
 								<!-- 첨부 버튼 -->
 								<div id="attach">
-									<div id="fileUpload" class="dragAndDropDiv">대표 이미지 등록<br/>- 여기를 눌러 파일을 등록하거나, 사진을 드래그하여 첨부하세요 -</div>
-									<input id="uploadInputBox" type="file" style="display: none;"
-										name="upload" multiple />
-									<div id="preview" class="content"></div>
+									<div id="preview" class="dragAndDropDiv">
+										<img class="default_preview" src="<c:url value="/resources/assets/images/레시피대표이미지.jpg"/>" alt="대표이미지">
+										<div class="darkness"></div>
+									</div>
+									
+									<input id="uploadInputBox" type="file" style="display: none;"name="upload" />
 								</div>
 							</div>
 						</div>
@@ -401,10 +365,10 @@ body {
 					<div class="col-md-12">
 						<!--레시피 재료-->
 						<div class="row">
-							<label class="col-md-2" for="material">재료</label>
+							<label class="col-md-2" for="ingredients">재료</label>
 							<div class="form-group col-md-10">
-								<textarea class="form-control" rows="3" id="material"
-									name="material"
+								<textarea class="form-control" rows="3" id="ingredients"
+									name="ingredients"
 									placeholder="예) 슈레드치즈 50g, 아보카도 1개, 플레인요거트 1개, 방울토마토 5개, 사워크림 2T, 꿀 1t, 소금 1꼬집"
 									required></textarea>
 							</div>
@@ -455,7 +419,7 @@ body {
 									</div>
 									<!---->
 								</div>
-								<!--여기에 추가됨-->
+								<!--여기에 추가됨요!-->
 							</div>
 							<!--추가되는 항목 끝-->
 
@@ -511,16 +475,8 @@ body {
 					//div id="preview" 내에 동적코드추가.
 					//이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
 					var imgNum = previewIndex++;
-					$("#preview")
-							.append(
-									"<div class=\"preview-box\" value=\"" + imgNum +"\">"
-											+ "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>"
-											+ "<p>"
-											+ "</p>"
-											+ "<a href=\"#\" value=\""
-											+ imgNum
-											+ "\" onclick=\"deletePreview(this)\">"
-											+ "삭제" + "</a>" + "</div>");
+					$("#preview *").remove();
+					$("#preview").append("<img class=\'thumbnail\' src=\'" + img.target.result + "\'\ />");
 					files[imgNum] = file;
 				};
 				reader.readAsDataURL(file);
@@ -545,8 +501,8 @@ body {
 		var fileNameExtensionIndex = fileName.lastIndexOf('.') + 1;
 		var fileNameExtension = fileName.toLowerCase().substring(
 				fileNameExtensionIndex, fileName.length);
-		if (!((fileNameExtension === 'jpg') || (fileNameExtension === 'gif') || (fileNameExtension === 'png'))) {
-			alert('jpg, gif, png 확장자만 업로드 가능합니다.');
+		if (!((fileNameExtension === 'jpg') || (fileNameExtension === 'gif') || (fileNameExtension === 'png') || (fileNameExtension === 'jpeg') || (fileNameExtension === 'bmp'))) {
+			alert('사진 파일만 업로드할 수 있습니다.');
 			return true;
 		} else {
 			return false;
@@ -567,6 +523,16 @@ body {
 			if ($(this).get(0).selectlevel.value == "채식스타일을 선택해주세요") {
 				alert("채식스타일을 선택해주세요.");
 				$("#selectlevel").focus();
+				return false;
+			}
+			if ($(this).get(0).selectcategory.value == "카테고리를 선택해주세요") {
+				alert("카테고리를 선택해주세요.");
+				$("#selectcategory").focus();
+				return false;
+			}
+			if ($(this).get(0).selectdifficulty.value == "조리난이도를 지정해주세요") {
+				alert("조리난이도를 지정해주세요.");
+				$("#selectdifficulty").focus();
 				return false;
 			}
 		});
@@ -618,6 +584,10 @@ body {
 		});
 	});
 
+	
+	
+	
+	
 	
 	
 	
