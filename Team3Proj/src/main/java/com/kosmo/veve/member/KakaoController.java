@@ -87,7 +87,7 @@ public class KakaoController {
 	    	//테이블에 insert 할거야
 	    	int temp = service.kakoinsert(map);
 	    	System.out.println("kakaoinsert temp:"+temp);
-	    	return "forward:/Member/MyHome.do";
+	    	return "member/KakaoSign.tiles";
 	    }
 	    
 	    

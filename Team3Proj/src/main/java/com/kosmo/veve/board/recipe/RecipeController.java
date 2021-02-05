@@ -173,7 +173,7 @@ public class RecipeController {
           List<RecipeFileDTO> fileList = recipeService.selectListFile(map);
           //데이타 저장]
           String path=req.getContextPath();
-          model.addAttribute("boardList", boardList);
+          model.addAttribute("reboardList", boardList);
           model.addAttribute("fileList",fileList);
           
           return "recipe/RecipeBBS.tiles"; 

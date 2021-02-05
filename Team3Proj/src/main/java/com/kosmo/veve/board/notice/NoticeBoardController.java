@@ -107,8 +107,8 @@ public class NoticeBoardController {
 	         ) throws IllegalStateException, IOException {
 		// 서비스 호출]
 		
-	
-		String userID = (String) req.getSession().getAttribute("UserID");
+		
+		String userID = (String) req.getSession().getAttribute("Admin");
 		map.put("userID",userID);
 		noticeBoardService.insert(map);
 		writeFile(files, map, req);

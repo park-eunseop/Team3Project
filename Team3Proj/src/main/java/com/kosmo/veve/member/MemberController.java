@@ -28,12 +28,15 @@ import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.MemberFileDTO;
 import com.kosmo.veve.model.MemberFollowDTO;
 import com.kosmo.veve.model.NutrientDTO;
+import com.kosmo.veve.model.RecipeDTO;
+import com.kosmo.veve.model.RecipeFileDTO;
 import com.kosmo.veve.model.UserDietDTO;
 import com.kosmo.veve.model.service.GallaryBoardService;
 import com.kosmo.veve.model.service.GallaryCommentService;
 import com.kosmo.veve.model.service.GallaryLikeService;
 import com.kosmo.veve.model.service.GallaryScrapService;
 import com.kosmo.veve.model.service.MemberService;
+import com.kosmo.veve.model.service.RecipeService;
 import com.kosmo.veve.model.service.UserDietService;
 
 @Controller
@@ -56,6 +59,8 @@ public class MemberController {
 	@Resource(name="galcommentService")
 	private GallaryCommentService commentService;
 	
+	@Resource(name="recipeService")
+	private RecipeService recipeService;
 	
 	// 마이홈 페이지 이동
 	@RequestMapping("/Member/MyHome.do")
@@ -320,6 +325,16 @@ public class MemberController {
 		model.addAttribute("scrapfileList", scrapfileList3);
 		
 		///////////////////////////
+		
+		
+		
+		///recipe board
+		List<RecipeDTO> reboardList= recipeService.selectList(map);
+        List<RecipeFileDTO> refileList = recipeService.selectListFile(map);
+        //데이타 저장]
+        String path=req.getContextPath();
+        model.addAttribute("reboardList", reboardList);
+        model.addAttribute("refileList",refileList);
 
 		return "member/Myhome.tiles";
 	}
@@ -518,5 +533,13 @@ public class MemberController {
 
 		return "success";
 	}
+	
+	//카카오 추가 입력정보 페이지에서 마이홈으로
+		@RequestMapping("/Member/kakaovgLevel.do")
+		public String getSomeInfo(HttpServletRequest req) {
+		
+
+			return "forward:/Member/MyHome.do";
+		}
 
 }

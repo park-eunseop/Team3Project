@@ -581,7 +581,28 @@
 
 					<!-- 두번째 tab 내 레시피 -->
 					<div class="tab-pane" id="tab2">
-						<p>Section 2. 내 레시피 보여주기</p>
+						<c:forEach var="item" items="${reboardList}" varStatus="var">
+							<div class="col-sm-3">
+								<div class="list" style="background-color: #fffff0;">
+									<c:forEach var="file" items="${refileList}" varStatus="var">
+										<c:if test="${item.rec_no == file.rec_no}">
+											<img src="<c:url value='/upload/${file.f_name}'/>" style="height: 255px; width: 100%;" />
+										</c:if>
+									</c:forEach>
+			
+									<div class="summary">
+										<h2>
+											<a href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.title}</a>
+										</h2>
+			
+										<a href="<c:url value='/RecipeBBS/view.do?rec_no=${item.rec_no}'/>">${item.content }</a>
+										<p></p>
+										<p>${item.userID }</p>
+										<p>${item.postDate }</p>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
 					<!-- 두번째 tab 내 레시피 -->
 
