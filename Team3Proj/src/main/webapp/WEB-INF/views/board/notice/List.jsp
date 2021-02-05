@@ -14,7 +14,7 @@
 	<!-- 점보트론(Jumbotron) -->
 	<div class="jumbotron">
 		<h1>
-			Notice<small>공지사항</small>
+			<small>공지사항</small>
 		</h1>
 	</div>
 	<!-- 작성하기 버튼 -->

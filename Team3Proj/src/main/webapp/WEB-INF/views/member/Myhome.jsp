@@ -128,59 +128,7 @@
 			}
 			
 		});
-		var board_no_infinit =0;
-		$(window).scroll(function(){
-	         let $window = $(this);
-	         let scrollTop = $window.scrollTop();
-	         let windowHeight = $window.height();
-	         let documentHeight = $(document).height();
-	         
-	         console.log(board_no_infinit);
-	         //console.log(scrollTop);
-	         if( scrollTop + windowHeight + 30 > documentHeight){
-	             console.log('스크롤 도착');
-	             board_no_infinit += 7;
-	             $.ajax({
-	                 url:"<c:url value='/Gallary/infinit'/>",
-	                 data:{"gallary_no":board_no_infinit},
-	                 dataType:'json',
-	                 type:'post',
-	                 success:function(data){
-	               	  //console.log(data[0]);
-	               	 
-	               	  var src = '/veve/upload/';
-	               	  
-	               	  $.each(data,function(index,value){
-	               		  console.log(value["boardMainPic"]);
-	               		  var src1 = value["boardMainPic"];
-	               		  var no = value["boardNum"];
-	               		  var like = value["likeCount"];
-	               		  var comment= value["commentCount"];
-	               		  
-	               		 $('#appendPosition').append(`
-	               				<div class="gallery-item" tabindex="0"><img src="`+src+src1+`" class="gallery-image" alt="" style="width: 300px;height: 300px"/>
-	               				<div class="gallery-item-info" onclick="view(`+no+`)" style="width:300px;height:300px">
-	               				<ul>
-	        					<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>`+like+`</li>
-	        					<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>`+comment+`</li>
-	        					</ul></div></div>
-	               			`);      
-	               		  
-	    				
-	    			   });//each
-	    			   
-	 
-	               	  
-	                 },
-	                 error:function(e){console.log(e);}
-	                 //<div class="loader"></div>
-	                 
-	              });
-	             
-	             
-	         }
-	    })
-	    
+		
 	    
 	    $('#commentInput').keyup(function(e){
 	    	var UserID = $('#logincheck').val();    	
@@ -347,8 +295,8 @@
 			</div>
 			<hr width="100%">
 			
-			<div id="board_title" style="padding-top: 10px;font-weight: bold; font-size: 3em;height:50px"></div>
-			<div id="board_content" style="padding-top: 10px;font-size: 2.5em;height:100px"></div>
+			<div id="board_title" style="padding-top: 10px; font-size: 1.5em;height:50px"></div>
+			<div id="board_content" style="padding-top: 10px;font-size: 1.5em;height:100px"></div>
 			<hr width="100%">
 			<div id="board_comment" style="padding-top: 10px;height:130px; overflow:scroll;"></div>
 			<hr width="100%">
@@ -357,7 +305,7 @@
 			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
 			<i id ="scrapIcon" class="far fa-bookmark fa-2x"></i>		
 			
-			<span style="padding-left: 200px" id="board_date"></span>
+			<span style="padding-left: 150px" id="board_date"></span>
 			</div>
 			<hr width="100%">
 			<input id="commentInput" type="text" placeholder="댓글 달기..." style="width: 95%;"/>

@@ -4,7 +4,6 @@
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
 <!-- 로그아웃 시작 -->
 <script>
 	function logout(){
@@ -127,7 +126,8 @@
 										<td>${item.age}</td>
 										<td>${item.writtenPostCount}</td>
 										<td>${item.writtenCommentCount}</td>
-										<td>&nbsp;O / X</td>
+										<td><i class="fas fa-user-slash"></i><i class="fas fa-user-alt"></i></td>
+									
 									</tr>
 								</c:forEach>
 							</tbody>

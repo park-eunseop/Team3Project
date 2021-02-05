@@ -16,6 +16,15 @@
        DELETE gallary_dec
        WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC} AND userID=#{userID}
     </delete>
+    
+    <select id="gallaryreportedSelectAll" resultType="GallaryDecDTO">
+    	SELECT * FROM gallary_dec
+    </select>
+    <!-- TO_CHAR(EATDATE,'yy/MM/dd')=#{eatDate} -->
+    <select id="getCountGalDec" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM gallary_dec WHERE TO_CHAR(postDate,'yy/MM')=#{postDate}
+	</select>
+    
 
 
     

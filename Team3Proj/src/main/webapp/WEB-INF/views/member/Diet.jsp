@@ -35,6 +35,20 @@ p {
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
+
+.nav-item {
+	padding: 0 30px;
+}
+
+.nav-item a {
+	color: #000;
+}
+
+.nav-item a.active {
+	background-color: #F3D55A !important;
+}
+
+
 </style>
 <script>
      $(document).ready(function(){
@@ -100,7 +114,22 @@ p {
           								data-toggle="tab">단백질</a></li>                					  
                     				`);
                 				  $('.tab-content').append(`
-                						  <div class="tab-pane active" id="tab0">단백질이 부족합니다.</div>               				  
+                						  <div class="tab-pane active" id="tab0">
+                						  <div class="col-md-12">
+            								<div class="row">
+            									<div class="col-md-12">
+            										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/protein.jpg"/>" />
+            									</div>
+            									<div class="col-md-12">
+            										<ul>
+            										<li>피곤, 우을증</li>
+            										<li>피부트러블</li>
+            										<li>식욕저하</li>
+            										</ul>
+            									</div>
+            								</div>
+            						  	</div>  
+                				  		</div>               				  
                 				  `); 
                     		  }
     						  if(value=='cal'){
@@ -113,7 +142,7 @@ p {
     									  <div class="col-md-12">
 	          								<div class="row">
 	          									<div class="col-md-12">
-	          										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/calcium.jpg"/>" />
+	          										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/calcium.jpg"/>" />
 	          									</div>
 	          									<div class="col-md-12">
 	          										<ul>
@@ -133,7 +162,23 @@ p {
           								data-toggle="tab">아연</a></li>                					  
                     				`);
     							  $('.tab-content').append(`
-                						  <div class="tab-pane active" id="tab0">아연이 부족합니다.</div>               				  
+                						  <div class="tab-pane active" id="tab0">
+    									  <div class="col-md-12">
+          								<div class="row">
+          									<div class="col-md-12">
+          										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/zinc.jpg"/>" />
+          									</div>
+          									<div class="col-md-12" style="padding-top:10px">
+          										<ul>
+          										<li>기분의 급격한 변화</li>
+          										<li>빈번한 감기와 독감</li>
+          										<li>지속적인 피로감</li>
+          										</ul>
+          									</div>
+          								</div>
+          						  	</div>  
+    							  			
+    							  			</div>               				  
                 				  `); 
                     		  }
     						  if(value=='vB'){
@@ -142,7 +187,23 @@ p {
           								data-toggle="tab">비타민 B12</a></li>                					  
                     				`);
     							  $('.tab-content').append(`
-                						  <div class="tab-pane active" id="tab0">비타민이부족합니다.</div>               				  
+                						  <div class="tab-pane active" id="tab0">
+    									  <div class="col-md-12">
+            								<div class="row">
+            									<div class="col-md-12">
+            										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaB12.jpg"/>" />
+            									</div>
+            									<div class="col-md-12">
+            										<ul>
+            										<li>정신 기능 손상</li>
+            										<li>근육 쇠약</li>
+            										<li>지속적인 피로감</li>
+            										</ul>
+            									</div>
+            								</div>
+            						  	</div>  
+    							  	
+    							  		</div>               				  
                 				  `); 
                     		  }
     						  if(value=='vD'){
@@ -151,7 +212,22 @@ p {
           								data-toggle="tab">비타민 D</a></li>                					  
                     				`);
     							  $('.tab-content').append(`
-                						  <div class="tab-pane active" id="tab0">비타민이부족합니다.</div>               				  
+                						  <div class="tab-pane active" id="tab0">
+    									  <div class="col-md-12">
+          								<div class="row">
+          									<div class="col-md-12">
+          										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaD.jpg"/>" />
+          									</div>
+          									<div class="col-md-12">
+          										<ul>
+          										<li>근육통, 쇠약 및 뼈 통증</li>
+          										<li>구루병</li>
+          										</ul>
+          									</div>
+          								</div>
+          						  	</div> 
+    							  
+    							  		</div>               				  
                 				  `); 
                     		  }	
                 			  
@@ -173,7 +249,7 @@ p {
               						  	<div class="col-md-12">
               								<div class="row">
               									<div class="col-md-12">
-              										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/protein.jpg"/>" />
+              										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/protein.jpg"/>" />
               									</div>
               									<div class="col-md-12">
               										<ul>
@@ -197,7 +273,7 @@ p {
                 						  <div class="col-md-12">
 		          								<div class="row">
 		          									<div class="col-md-12">
-		          										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/calcium.jpg"/>" />
+		          										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/calcium.jpg"/>" />
 		          									</div>
 		          									<div class="col-md-12">
 		          										<ul>
@@ -221,7 +297,7 @@ p {
                 						  	<div class="col-md-12">
                 								<div class="row">
                 									<div class="col-md-12">
-                										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/zinc.jpg"/>" />
+                										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/zinc.jpg"/>" />
                 									</div>
                 									<div class="col-md-12">
                 										<ul>
@@ -245,7 +321,7 @@ p {
               						  	<div class="col-md-12">
               								<div class="row">
               									<div class="col-md-12">
-              										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaB12.jpg"/>" />
+              										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaB12.jpg"/>" />
               									</div>
               									<div class="col-md-12">
               										<ul>
@@ -269,7 +345,7 @@ p {
                 						  	<div class="col-md-12">
                 								<div class="row">
                 									<div class="col-md-12">
-                										<img alt="Bootstrap Image Preview" style="width:300px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaD.jpg"/>" />
+                										<img alt="Bootstrap Image Preview" style="width:260px;height:200px;padding-top: 20px" src="<c:url value="/resources/assets/images/vitaD.jpg"/>" />
                 									</div>
                 									<div class="col-md-12">
                 										<ul>
@@ -311,12 +387,7 @@ p {
 							}
 					  });//ajax
                 	  
-                	  
-                	 
-                	  
-                	  
-                	  
-                	  
+       	  
                 	  
                   },
                   error:function(e){console.log(e);}
@@ -334,10 +405,10 @@ p {
 </script>
 
 <!-- 새로 만든 스타일 -->
-<div class="container" id="first_container">
+<div class="container" id="first_container" style="background-color: #F9F8EF">
 	<div class="row">
 		<div class="col-md-4" style="height: 800px">
-			<h4>오늘 메뉴를 넣어주세요</h4>
+			<p style="font-family: serif;font-weight: bold;font-size: 2em;">메뉴를 올려주세요</p>
 			<div style="width: 100%; height: 80%">
 				<!-- 사진 분석 -->
 				<div class="container-fluid bg-1 text-center">
@@ -369,15 +440,12 @@ p {
 				</div>
 				<!-- 사진 분석 -->
 
-
-
-
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4" style="padding-right: 15px">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>일일 영양현황</h2>
+					<p style="font-family: serif;font-weight: bold;font-size: 2em;">Today 영양 상태</p>
 					단백질
 					<div class="progress">
 						<div id="todayProtein" class="progress-bar progress-bar-striped"
@@ -431,10 +499,8 @@ p {
 
 
 
-		<div class="col-md-4">
-			<div class="col-md-12">
-				<h3 style="padding-top: 30px; font-weight: bold;" id="recommandMenu">추천 메뉴 / 레시피</h4>
-			</div>
+		<div class="col-md-4" style="padding-left: 15px">
+			<p style="font-family: serif;font-weight: bold;font-size: 2em;">Recommended food</p>
 			<div id="foodname"></div>
 			<div class="carousel slide" id="carousel-172006">
 				<ol class="carousel-indicators">
@@ -447,21 +513,21 @@ p {
 					<div class="carousel-item">
 						<img id="img1" class="d-block w-100"
 							alt="Carousel Bootstrap First"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg"
+							src="<c:url value='/resources/assets/images/recom_1.jpg'/>"
 							style="width: 300px; height: 300px" />
 
 					</div>
 					<div class="carousel-item active">
 						<img id="img2" class="d-block w-100"
 							alt="Carousel Bootstrap Second"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg"
+							src="<c:url value='/resources/assets/images/recom_2.jpg'/>"
 							style="width: 300px; height: 300px" />
 
 					</div>
 					<div class="carousel-item">
 						<img id="img3" class="d-block w-100"
 							alt="Carousel Bootstrap Third"
-							src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg"
+							src="<c:url value='/resources/assets/images/recom_3.jpg'/>"
 							style="width: 300px; height: 300px" />
 
 					</div>
@@ -503,13 +569,17 @@ p {
         maxPredictions = model.getTotalClasses();
         console.log('model:',model)
         console.log('maxPredictions:',maxPredictions)
+        var image = document.getElementById("face-image");
+        const prediction = await model.predict(image,false);
 
     }
 
     async function predict() {
 			// predict can take in an image, video or canvas html element
-			var image = document.getElementById("face-image");
+	  console.log('예측 시작!');
+	  var image = document.getElementById("face-image");
       const prediction = await model.predict(image,false);
+      console.log('후보1번');
       console.log(prediction)
 
 			var name = prediction[0].className;
@@ -521,7 +591,8 @@ p {
 					value = prediction[i].probability.toFixed(2);
 					name = prediction[i].className;
 				}
-      }
+    		}
+	  console.log('후보 2번');	
       foods+=name+"/";
       document.getElementById("label-container").value=foods;
       
@@ -529,13 +600,13 @@ p {
         console.log('append 할거야')
         console.log(name)
         $('.menu_list').append(`
-            <button class="btn" type="button" style="padding-left:5px; background-color:yellow;font-color:black">`+name+`</button>
+            <span style="background-color:#CCFF99"><a class="btn">`+name+`</a></span>
           `)
       }
 
       reciveMenu(name)
 
 
-		}
+	}
 </script>
 

@@ -269,8 +269,8 @@ $(function(){
 			</div>
 			<hr width="100%">
 			
-			<div id="board_title" style="padding-top: 10px;font-weight: bold; font-size: 3em;height:50px"></div>
-			<div id="board_content" style="padding-top: 10px;font-size: 2.5em;height:200px"></div>
+			<div id="board_title" style="padding-top: 10px; font-size: 1.5em;height:50px"></div>
+			<div id="board_content" style="padding-top: 10px;font-size: 1.5em;height:100px"></div>
 			<hr width="100%">
 			<div id="board_comment" style="padding-top: 10px;height:130px; overflow:scroll;"></div>
 			<hr width="100%">
@@ -279,7 +279,7 @@ $(function(){
 			<i id="commentIcon" class="fas fa-comment fa-2x" aria-hidden="true"></i>
 			<i id ="scrapIcon" class="far fa-bookmark fa-2x"></i>		
 			
-			<span style="padding-left: 200px" id="board_date"></span>
+			<span style="padding-left: 150px" id="board_date"></span>
 			</div>
 			<hr width="100%">
 			<input id="commentInput" type="text" placeholder="댓글 달기..." style="width: 95%;"/>

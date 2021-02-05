@@ -72,6 +72,7 @@ CREATE TABLE GALLARY_COMMENT
 CREATE TABLE GALLARY_DEC
 (
 	content nvarchar2(100),
+	postDate date DEFAULT SYSDATE,
 	userID varchar2(50 char) NOT NULL,
 	gallary_no number NOT NULL,
 	PRIMARY KEY (userID, gallary_no)

@@ -40,13 +40,14 @@
 	google.charts.setOnLoadCallback(drawVisualization);
 
 	function drawVisualization() {
+
 		var data = google.visualization.arrayToDataTable([
 				[ '신고달', '피드', '레시피', '총 신고수' ],
-				[ dateList[4], 42, 1, 42+1 ],
-				[ dateList[3], 55, 8,  55+8 ],
-				[ dateList[2], 39, 4, 39+4 ],
-				[ dateList[1], 24, 3, 24+3 ],
-				[ dateList[0], 69, 2, 69+2 ] ]);
+				[ dateList[4], ${month1}, 0, ${month1} ],
+				[ dateList[3], ${month2}, 0, ${month2} ],
+				[ dateList[2], ${month3}, 0, ${month3} ],
+				[ dateList[1], ${month4}, 0, ${month4} ],
+				[ dateList[0], ${month5}, 0, ${month5} ] ]);
 		
 		var options = {
 			title : '',
@@ -69,7 +70,7 @@
 
 <!--신고내용 CSS 모달창 -->
 <link href="/veve/resources/assets_admin/css/ReportedPostList.css" rel="stylesheet" />
-<button type="button" data-toggle="modal" data-target="#galleryModal">게시글 추가하기</button>
+
 
 
 
@@ -101,7 +102,7 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-md-5">
+			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
 						<h4 class="title">신고 추이</h4>
@@ -109,6 +110,7 @@
 					</div>
 					<div class="content">
 						<!-- 막대 그래프 -->
+						
 						<div id="chart_div1"></div>
 						<div class="footer">
 							<hr>
@@ -120,7 +122,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-7">
+			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
 						<h4 class="title">신고된 게시물</h4>
@@ -129,27 +131,27 @@
 					<div class="content table-responsive table-full-width">
 						<table class="table table-hover table-striped">
 							<thead>
-								<th>신고수</th>
-								<th>글쓴이</th>
-								<th>게시글 카테고리</th>
 								<th>게시글 제목</th>
+								<th>글쓴이</th>
+								<th>신고자</th>
+								<th>신고일자</th>
 								<th>신고 내용</th>
 							</thead>
 							<tbody>
 							<!-- 각 게시판에 DEC table 참조 -->
 							<!-- 신고 내용 누르면 모달창 띄워서 여러가지 내용 보이게 하기 -->
-								<c:forEach var="item" items="${list }" varStatus="loop">
+								<c:forEach var="item" items="${list}" varStatus="index">
 									<tr>
-										<td>${item.userID }</td>
-										<td>${item.nickname}</td>
-										<td>${item.vg_level}</td>
-										<td>${item.gender}</td>
-										<td>${item.age}</td>
+										<td>${item.board_title }</td>
+										<td>${item.board_writer}</td>
+										<td>${item.board_reporter}</td>
+										<td>${item.board_date}</td>
+										<td>${item.board_content}</td>
 									</tr>
 								</c:forEach>
-
+								<!-- 임시
 								<tr>
-									<!-- 임시 -->
+								
 									<td>임시값1</td>
 									<td>임시값</td>
 									<td>임시값</td>
@@ -165,34 +167,7 @@
 								        </div>
 								    </div>
 								</tr>
-								<tr>
-									<td>임시값2</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-								</tr>
-								<tr>
-									<td>임시값3</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-								</tr>
-								<tr>
-									<td>임시값4</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-								</tr>
-								<tr>
-									<td>임시값5</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-									<td>임시값</td>
-								</tr>
+								 -->
 
 							</tbody>
 						</table>
@@ -200,7 +175,7 @@
 					</div>
 				</div>
 			</div>
-
+		
 
 		</div>
 	</div>
