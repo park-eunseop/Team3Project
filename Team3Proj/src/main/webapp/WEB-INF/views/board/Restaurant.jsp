@@ -15,39 +15,41 @@
 <!-- 지도 javaScript-->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0c2399991c756eb5abacf77c945032a&libraries=services,clusterer"></script>
 <script>
+	//마커 좌표를 담을 배열
 	var restaurantPositions = [];//new kakao.maps.LatLng(위도,경도) 형식으로 넣기
+	
 	//로드시 ajax로 list를 json형태로 받아오기
-	$(document).ready(function(){
-		$.ajax({//async: false를 주지 않으면 비동기 방식 처리로 인해 변수에 담기 불가
-		     url:"<c:url value='/Board/Restaurant/List.do'/>",
-		     data:{"category":"restaurant"},
-		     dataType:'json',
-		     type:'post',
-		     async: false,//비동기식을 동기식으로 바꾼다.
-		     success:function(restaurants){
-		   	 	console.log('json 데이터 받기 확인');
-		   	 	console.log(restaurants);
-		   	 	console.log("첫번째거: "+restaurants[0]["RES_COORDINATE"])
-		   	 	
-		   	 	$.each(restaurants, function (index, restaurant) {
-		   	 		var restaurantLat = restaurant["RES_COORDINATE"].split(",")[0];
-		   	 		var restaurantLng = restaurant["RES_COORDINATE"].split(",")[1];
-		   	 		//console.log("위도"+restaurantLat);
-		   	 		//console.log("경도"+restaurantLng);
-		   	 		restaurantPositions.push(new kakao.maps.LatLng(restaurantLat, restaurantLng));
-		   	 	});
-		   	 	
-		   	 	
-		     },
-		     error:function(e){
-		    	 console.log("오류확인");
-		    	 console.log(e);
-		    }
-		     
-		});
-      
-	});///ready
- 
+	var promise = $.ajax({//async: false를 주지 않으면 비동기 방식 처리로 인해 변수에 담기 불가
+				     url:"<c:url value='/Board/Restaurant/List.do'/>",
+				     data:{"category":"restaurant"},
+				     dataType:'json',
+				     type:'post'
+				});//ajax
+				
+    //$.ajax()는 jquery XMLHttpResquest를 반환.
+ 	promise.done(successFunction);
+	promise.error(errorFunction);
+	
+	function successFunction(restaurants){//data가 restaurants DB값
+		console.log('json 데이터 받기 확인');
+   	 	console.log(restaurants);
+   	 	console.log("첫번째거: "+restaurants[0]["RES_COORDINATE"])
+   	 	
+   	 	$.each(restaurants, function (index, restaurant) {
+   	 		var restaurantLat = restaurant["RES_COORDINATE"].split(",")[0];
+   	 		var restaurantLng = restaurant["RES_COORDINATE"].split(",")[1];
+   	 		//console.log("위도"+restaurantLat);
+   	 		//console.log("경도"+restaurantLng);
+   	 		restaurantPositions.push(new kakao.maps.LatLng(restaurantLat, restaurantLng));
+	}
+		
+	function errorFunction(request,status,error){
+		console.log("오류확인");
+		console.log(error);
+	}
+	
+	
+				
 	
 	/* 지도  */
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
