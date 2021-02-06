@@ -49,5 +49,9 @@ public interface MemberService {
 		//팔로우해제하기
 		int deletefollow(Map map);
 		
+		
+		//auth 조회 및 업데이트
+		Map showauth(String userID);
+		int updateAuth(String userID);
 
 }

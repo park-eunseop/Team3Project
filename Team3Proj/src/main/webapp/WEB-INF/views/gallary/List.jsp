@@ -417,11 +417,11 @@ $(function(){
 	<div class="col-md-10 text-right">
 		<c:if test="${empty UserID}" var="IsLogin">
 		<a href="javascript:login()"
-			class="btn btn-success">작성</a>
+			class="btn btn-nav">작성</a>
 		</c:if>
 		<c:if test="${! IsLogin}">
 		<a href="<c:url value='/Gallary/GallaryWrite.do'/>"
-			class="btn btn-success">작성</a>
+			class="btn btn-nav">작성</a>
 		</c:if>
 	</div>
 </div>

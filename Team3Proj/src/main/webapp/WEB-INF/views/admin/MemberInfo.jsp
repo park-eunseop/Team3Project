@@ -9,6 +9,7 @@
 	function logout(){
 		$('#logoutForm').submit();
 	}
+
 </script>
 <form id="logoutForm" method="post" action="<c:url value="/Member/Auth/Logout.do"/>">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -126,8 +127,12 @@
 										<td>${item.age}</td>
 										<td>${item.writtenPostCount}</td>
 										<td>${item.writtenCommentCount}</td>
-										<td><i class="fas fa-user-slash"></i><i class="fas fa-user-alt"></i></td>
-									
+										<c:if test="${authlist[loop.index].enabled eq '1'}" var="forbid">
+										<td><span onclick="changeAuth(${item.userID })"></span><i class="fas fa-user-alt"></i></td>
+										</c:if>
+										<c:if test="${!forbid}">
+										<td><span onclick="changeAuth(${item.userID })"></span><i class="fas fa-user-slash"></i></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -163,3 +168,9 @@
 		
 	</div><!-- container-fluid -->
 </div><!-- content -->
+<script>
+
+function changeAuth(data){
+	console.log(data);
+}	
+</script>

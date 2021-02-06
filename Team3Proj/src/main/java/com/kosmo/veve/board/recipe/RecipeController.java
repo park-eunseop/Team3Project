@@ -164,7 +164,7 @@ public class RecipeController {
            }
            return false;
        }
-       
+       //list
        @RequestMapping("recipe.do") 
        public String list(@RequestParam Map map,
                       HttpServletRequest req,//컨텍스트 루트 얻기용
@@ -173,7 +173,7 @@ public class RecipeController {
           List<RecipeFileDTO> fileList = recipeService.selectListFile(map);
           //데이타 저장]
           String path=req.getContextPath();
-          model.addAttribute("reboardList", boardList);
+          model.addAttribute("boardList", boardList);
           model.addAttribute("fileList",fileList);
           
           return "recipe/RecipeBBS.tiles"; 

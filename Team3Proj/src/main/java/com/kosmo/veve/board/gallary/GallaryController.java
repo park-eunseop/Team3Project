@@ -259,7 +259,7 @@ public class GallaryController {
 	
 	@RequestMapping(value="/Gallary/GallaryWrite.do",method = RequestMethod.GET) 
 	public String write() {
-		return "gallary/Write"; 
+		return "gallary/Write.tiles"; 
 	}//////////////
 
 	

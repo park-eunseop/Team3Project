@@ -57,6 +57,9 @@
 	 <update id="updateUserPwd" parameterType="java.util.Map">
 	 	UPDATE VG_USER SET PASSWORD = #{editPWD} WHERE userID = #{userID}
 	 </update>
+	 
+	 
+	
 	
 	
 	
@@ -111,6 +114,14 @@
 		ORDER BY 1) T) 
 		WHERE R BETWEEN #{start} AND #{end}
 	</select>
+	
+	<select id="showauth" parameterType="String" resultType="java.util.Map">
+		SELECT * FROM AUTH_SECURITY WHERE userID=#{userID}
+	</select>
+	 <update id="updateauth" parameterType="String">
+	 	UPDATE AUTH_SECURITY SET ENABLED = #{ENABLED} 
+	 </update>
+	
 	
 	<!-- 페이징을 위한 모든 맴버 수 --><!-- admin 빼기 -->
 	<select id="getTotalMember" resultType="int">

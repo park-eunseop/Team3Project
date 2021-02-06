@@ -1,5 +1,7 @@
 package com.kosmo.veve.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +47,22 @@ public class MemberInfoController {
 		map.put("end", end);		
 
 		List<MemberDTO> list = memberService.selectList_admin(map);
+		List<Map> authlist = new ArrayList<Map>();
+		List<String> idlist = new ArrayList<String>();
+		
 		System.out.println("여기야:  "+list);
+		for(int i=0;i<list.size();i++) {
+			Map map1 = new HashMap();
+			String id = list.get(i).getUserID();
+			map1.put("id", id);
+			map1.put("enabled", memberService.showauth(id).get("ENABLED").toString());
+			
+			authlist.add(map1);
+			
+		}
+		System.out.println(authlist);
+		
+		
 		
 		
 		//페이징을 위한  path 데이타 저장]
@@ -68,6 +85,8 @@ public class MemberInfoController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("list", list);
+		model.addAttribute("authlist", authlist);
+
 
 		return "admin/MemberInfo.adminTiles";
 	}//////////admin_MemberInfo

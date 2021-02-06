@@ -161,6 +161,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updatePwd(map);
 	}
 
+	@Override
+	public Map showauth(String userID) {
+		// TODO Auto-generated method stub
+		return dao.showauth(userID);
+	}
+
+	@Override
+	public int updateAuth(String userID) {
+		// TODO Auto-generated method stub
+		return dao.updateAuth(userID);
+	}
+
 
 
 	

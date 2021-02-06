@@ -1,3 +1,4 @@
+
 package com.kosmo.veve.model;
 
 import java.util.List;
@@ -183,6 +184,18 @@ public class MemberDAO implements MemberService {
 	public int updatePwd(Map map) {
 		// TODO Auto-generated method stub
 		return sqlMapper.update("updateUserPwd",map);
+	}
+
+	@Override
+	public Map showauth(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("showauth", userID);
+	}
+
+	@Override
+	public int updateAuth(String userID) {
+		// TODO Auto-generated method stub
+		return sqlMapper.selectOne("updateauth", userID);
 	}
 
 
