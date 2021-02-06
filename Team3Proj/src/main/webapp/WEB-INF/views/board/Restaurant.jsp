@@ -41,6 +41,7 @@
    	 		//console.log("위도"+restaurantLat);
    	 		//console.log("경도"+restaurantLng);
    	 		restaurantPositions.push(new kakao.maps.LatLng(restaurantLat, restaurantLng));
+   	 	});
 	}
 		
 	function errorFunction(request,status,error){
