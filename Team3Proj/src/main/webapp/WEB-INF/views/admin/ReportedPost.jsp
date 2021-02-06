@@ -41,6 +41,7 @@
 
 	function drawVisualization() {
 
+		
 		var data = google.visualization.arrayToDataTable([
 				[ '신고달', '피드', '레시피', '총 신고수' ],
 				[ dateList[4], ${month1}, 0, ${month1} ],
