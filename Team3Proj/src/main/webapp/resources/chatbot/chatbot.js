@@ -18,7 +18,7 @@ $(document).ready(function(){//아래 DOM 객체들이 전부 생긴뒤 코드�
 	});
 	
 	function sendMessage(message) {
-        console.log('입력메시지:',message)
+        //console.log('입력메시지:',message)
         //flask서버로부터 응답을 받으면 receiveResponse콜백함수가 호촐됨
         //$.post( "/message", {'message': message}, receiveResponse);
 
@@ -61,7 +61,7 @@ $(document).ready(function(){//아래 DOM 객체들이 전부 생긴뒤 코드�
 				'</li>'
 			)
 			$("#chatbot_chatlog").scrollTop($("#chatbot_chatlog")[0].scrollHeight);//스크롤바 아래로
-			console.log('받은 메시지:',data);
+			//console.log('받은 메시지:',data);
 		}
 		
         function receiveResponse(data) {//data는 flask로부터 받은 응답 {'message':'다이얼로그플로우가 보내준값'}
@@ -74,13 +74,13 @@ $(document).ready(function(){//아래 DOM 객체들이 전부 생긴뒤 코드�
 		    );
 		    
         	$("#chatbot_chatlog").scrollTop($("#chatbot_chatlog")[0].scrollHeight);
-        	console.log('받은 메시지:',data);
+        	//console.log('받은 메시지:',data);
         }
     }////////////sendMessage
     
     function userMessageInput(){
     	var query = $('#query').val()
-        console.log(query);
+        //console.log(query);
         if (!query) {//텍스트를 입력하지 않는 경우
           return
         }

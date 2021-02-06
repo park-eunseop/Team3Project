@@ -9,10 +9,8 @@
 		$('#logoutForm').submit();
 	}
 </script>
-<form id="logoutForm" method="post"
-	action="<c:url value="/Member/Auth/Logout.do"/>">
-	<input type="hidden" name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
+<form id="logoutForm" method="post" action="<c:url value="/Member/Auth/Logout.do"/>">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 <!-- 로그아웃 끝 -->
 

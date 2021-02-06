@@ -1,8 +1,8 @@
-@charset "EUC-KR";
-/*Áöµµ Ä«Å×°í¸®È­*/
+@charset "UTF-8";
+/*ì§€ë„ ì¹´í…Œê³ ë¦¬í™”*/
 #mapwrap{position:relative;overflow:hidden;}
 .category, .category *{margin:0;padding:0;color:#000;}   
-.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','¸¼Àº °íµñ',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
+.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','ë§‘ì€ ê³ ë”•',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
 .category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 .category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
 .category .ico_comm {display:block;margin:0 auto 2px;width:30px;height:30px;background:url('/veve/resources/restaurant/images/res_cafe_plus_mini2.png') no-repeat;back} 
@@ -10,8 +10,8 @@
 .category .ico_store {background-position:-10px -36px;}   
 .category .ico_carpark {background-position:-10px -72px;} 
 
-/*À§Ä¡ Á¤º¸ ¾Ë·ÁÁÖ±â*/
-.wrap {position: absolute;left: -6px;bottom: 65px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, 'µ¸¿ò', sans-serif;line-height: 1.5;}
+/*ìœ„ì¹˜ ì •ë³´ ì•Œë ¤ì£¼ê¸°*/
+.wrap {position: absolute;left: -6px;bottom: 65px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, 'ë‹ì›€', sans-serif;line-height: 1.5;}
 .wrap * {padding: 0;margin: 0;}
 .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
 .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}

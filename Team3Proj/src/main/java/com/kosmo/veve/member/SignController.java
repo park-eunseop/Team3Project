@@ -73,7 +73,7 @@ public class SignController {
 		System.out.println("controller here");
 		// 1]서버의 물리적 경로 얻기
 		String physicalPath = req.getServletContext().getRealPath("/upload");
-//			
+		//System.out.println(physicalPath);
 		String renameFilename = FileUpDownUtils.getNewFileName(physicalPath, upload.getOriginalFilename());
 		// File file = new File(physicalPath+File.separator+renameFilename);
 		// 2]File객체 생성
