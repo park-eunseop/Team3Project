@@ -28,7 +28,7 @@
 	 
 	//Firebase Console->프로젝트 선택->설정->프로젝트 설정
 	//->클라우드 메시징->서버키 복사
-	final String apiKey = "AAAAzckelZA:APA91bF00phtTXaXsEngiveOSx-mv69jO0OFZuj9dxT64227fUq_OXUtPkoJnwRq4IkyHlEAPTOakgsTNh6MoxAM72dWO6vKuWEUtlZI2CKX1RnC0GN0zHze43RaFAu7818lVxUJSxAn";
+	final String apiKey = "AAAA2yq_lUw:APA91bEO1IQRzJWJi5fSNQCBYUtFpOQpYrLLSPiu_LjO2XteQt1G65i0WNscBise4criVOOfd08w2v8AlNfCpzmmIuvIOGOXKL6RiY0v1-zmaA5hMGPfn1T2QvIXu41zzKYXugz4O4iw";
 	String gcmURL ="https://fcm.googleapis.com/fcm/send";	
 	JSONArray resultArray = new JSONArray();
 	
@@ -94,7 +94,7 @@
     try {
     	Class.forName("oracle.jdbc.OracleDriver");
        
-        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","SPRING","SPRING");
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","veve","veve");
         psmt= conn.prepareStatement("SELECT TOKEN FROM FCM_TOKENS");
         rs = psmt.executeQuery();       
        //알림 메시지를 전송할 토큰값을 컬렉션에 저장하기
@@ -126,7 +126,7 @@
 %>
 <script>
 	alert("<%=successTokens%>개의 기기에 메시지가 전송되었어요...");
-	location.href="PushMessageSend.jsp";
+	location.href="Main.do";
 </script>
 
 

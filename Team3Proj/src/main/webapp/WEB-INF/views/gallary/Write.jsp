@@ -259,7 +259,7 @@ body {
 
 							<!--레시피 소개-->
 							<div class="row">
-								<label class="col-md-4" for="content">레시피 소개</label>
+								<label class="col-md-4" for="content">피드 내용</label>
 								<div class="form-group col-md-8">
 									<textarea class="form-control" rows="17" id="content"
 										name="content" placeholder="내용을 작성해주세요!" required></textarea>

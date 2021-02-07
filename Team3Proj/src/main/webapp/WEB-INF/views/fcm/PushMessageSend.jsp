@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <h2>FCM 알림 메시지 입력</h2>
-<form action="PushToPhone.jsp" method="post">
+<form action='<c:url value="/Admin/fcmPostToAndroid.do"/>' method="post">
 	<table style="border-spacing:1px;background-color:gray;width:400px">
 		<tr style="border-spacing:1px;background-color:white">
 			<td style="width:20%">제목</td>

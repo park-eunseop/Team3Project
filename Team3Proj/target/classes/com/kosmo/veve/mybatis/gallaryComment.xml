@@ -40,4 +40,12 @@
     <delete id="galcommentDelete" parameterType="java.util.Map">
        DELETE gallary_comment WHERE gallary_com_no = #{gallary_com_no,jdbcType=NUMERIC}
     </delete>
+    
+    <!-- 안드 -->
+    <insert id="galcommentInsertAR" parameterType="java.util.Map">
+       INSERT INTO gallary_comment(gallary_com_no,content,userID,gallary_no,parent)
+       VALUES(SEQ_REC_COM_NO.NEXTVAL,#{content},#{userID},#{gallary_no,jdbcType=NUMERIC},DEFAULT)
+    </insert>
+	    
+    
 </mapper>

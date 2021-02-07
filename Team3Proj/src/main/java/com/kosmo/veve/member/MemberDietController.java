@@ -321,5 +321,100 @@ public class MemberDietController {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	
+	
+	
+	// 안드로이드용
+	@RequestMapping(value ="/MemberAnd/MemberDiet.do", produces = "text/plain;charset=UTF-8")
+	public String myhomeAnd(HttpServletRequest req,Model model) {
+		String userID = (String) req.getSession().getAttribute("UserID");
+		Map map = new HashMap();
+		map.put("userID", userID);
+		MemberDTO userinfo = service.selectOne(map);
+		System.out.println(userinfo.getGender());
+		System.out.println(userinfo.getAge());
+		String gender = userinfo.getGender().toLowerCase();
+		int age = Integer.parseInt(userinfo.getAge());
+		System.out.println("Age:" + age);
+		age = age / 10;
+		age = age * 10;
+		System.out.println("Age:" + age);
+		map.put("gender", gender);
+		map.put("age", String.valueOf(age));
+
+		// 하루 식단 가져오기
+		Date nowDate = new Date();
+		System.out.println("포맷 지정 전 : " + nowDate);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy/MM/dd"); // 원하는 데이터 포맷 지정
+		String strNowDate = simpleDateFormat.format(nowDate);
+		System.out.println("포맷 지정 후 : " + strNowDate);
+		String eatDate = strNowDate;
+		map.put("eatDate", eatDate);
+		List<UserDietDTO> todaylist = dietservice.getTodayNutrientInfo(map);
+		System.out.println(todaylist);
+
+		float TodayvitB12 = 0;
+		float Todayprotein = 0;
+		float Todayzinc = 0;
+		float TodayvitD = 0;
+		float Todaycalcium = 0;
+
+		for (int i = 0; i < todaylist.size(); i++) {
+			Todayprotein += Float.parseFloat(todaylist.get(i).getProtein());
+			TodayvitB12 += Float.parseFloat(todaylist.get(i).getVitB12());
+			TodayvitD += Float.parseFloat(todaylist.get(i).getVitD());
+			Todayzinc += Float.parseFloat(todaylist.get(i).getZinc());
+			Todaycalcium += Float.parseFloat(todaylist.get(i).getCalcium());
+		}
+		System.out.println("오늘 총:" + (Todayprotein + TodayvitB12 + TodayvitD + Todayzinc + Todaycalcium));
+
+		// 회원 정보에 맞는 표준 정보 가져오기
+		NutrientDTO ndto = dietservice.selectOne(map);
+		System.out.println(ndto);
+
+		float standardprotein = Float.parseFloat(ndto.getProtein());
+		float standardVitB12 = Float.parseFloat(ndto.getVitB12());
+		float standardVitD = Float.parseFloat(ndto.getVitD());
+		float standardZinc = Float.parseFloat(ndto.getZinc());
+		float standardCalcium = Float.parseFloat(ndto.getCalcium());
+
+		// 하루 단백질 %
+		float proteinPercent = Todayprotein / standardprotein * 100;
+		System.out.println(proteinPercent);
+		String strproteinPercent = String.format("%.2f", proteinPercent);
+		// 하루 B12 %
+		float b12Percent = TodayvitB12 / standardVitB12 * 100;
+		System.out.println(b12Percent);
+		String strbPercent = String.format("%.2f", b12Percent);
+		// 하루 D %
+		float dPercent = TodayvitD / standardVitD * 100;
+		System.out.println(proteinPercent);
+		String strdPercent = String.format("%.2f", dPercent);
+		// 하루 아연 %
+		float zincPercent = Todayzinc / standardZinc * 100;
+		System.out.println(zincPercent);
+		String strzincPercent = String.format("%.2f", zincPercent);
+		// 하루 칼슘 %
+		float calPercent = Todaycalcium / standardCalcium * 100;
+		System.out.println(calPercent);
+		String strcalPercent = String.format("%.2f", calPercent);
+		
+		
+
+			
+		
+		
+		
+		model.addAttribute("strproteinPercent", strproteinPercent);
+		model.addAttribute("strbPercent", strbPercent);
+		model.addAttribute("strdPercent", strdPercent);
+		model.addAttribute("strzincPercent", strzincPercent);
+		model.addAttribute("strcalPercent", strcalPercent);
+		
+
+		return "android/Diet";
+	}
 
 }

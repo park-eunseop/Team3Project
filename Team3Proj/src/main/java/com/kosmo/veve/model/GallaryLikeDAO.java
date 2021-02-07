@@ -48,6 +48,25 @@ public class GallaryLikeDAO implements GallaryLikeService {
 		// TODO Auto-generated method stub
 		return sqlMapper.selectOne("gallaryMyLikeCount", map);
 	}
+	
+	///android
+	//안드로이드
+	   @Override
+	   public int insertLikeAR(GallaryLikeDTO glDTO) {
+	      sqlMapper.insert("gallaryLikeInsertAR",glDTO);
+	      return sqlMapper.update("gallaryLikeUpdateAR",glDTO);
+	   }
+
+	   @Override
+	   public int deleteLikeAR(GallaryLikeDTO glDTO) {
+	      sqlMapper.delete("gallaryLikeDeleteAR",glDTO);
+	      return sqlMapper.update("gallaryLikeUpdateAR",glDTO);
+	   }
+	   
+	   @Override
+	   public int updateLikeAR(GallaryLikeDTO glDTO) {
+	      return sqlMapper.update("gallaryLikeUpdateAR",glDTO);
+	   }
 
 	
 	

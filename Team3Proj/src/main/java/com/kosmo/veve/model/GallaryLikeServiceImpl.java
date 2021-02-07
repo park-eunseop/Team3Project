@@ -46,4 +46,18 @@ public class GallaryLikeServiceImpl implements GallaryLikeService{
 		return dao.getMyLike(map);
 	}
 	
+	//안드로이드
+	   public int insertLikeAR(GallaryLikeDTO glDTO) {
+	      return dao.insertLikeAR(glDTO);
+	   }
+	   
+	   public int deleteLikeAR(GallaryLikeDTO glDTO) {
+	      return dao.deleteLikeAR(glDTO);
+	   }
+	   @Override
+	   public int updateLikeAR(GallaryLikeDTO glDTO) {
+	      return dao.updateLikeAR(glDTO);
+	   }
+	
+	
 }

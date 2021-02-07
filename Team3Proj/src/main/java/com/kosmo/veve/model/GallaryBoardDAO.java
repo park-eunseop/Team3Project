@@ -88,6 +88,82 @@ public class GallaryBoardDAO implements GallaryBoardService{
 		// TODO Auto-generated method stub
 		return sqlMapper.selectOne("gallaryBoardSelectOneNo", map);
 	}
+	
+	
+	//안드로이드
+	   public int post(GallaryBoardDTO g_board) {
+	      return sqlMapper.insert("galleryPost",g_board);
+	   }
+	   
+	   public int postFile(GallaryFileDTO fileDTO) {
+	      return sqlMapper.insert("galleryFilePost", fileDTO);
+	   }
+	   
+	   public int delete(String gallary_no) {
+	      return sqlMapper.delete("galleryDelete", gallary_no);
+	   }
+	   
+	   public int update(GallaryBoardDTO g_board) {
+	      return sqlMapper.update("galleryUpdate",g_board);
+	   }
+	   
+	   public int updateFile(GallaryFileDTO g_file) {
+	      return sqlMapper.update("galleryFileUpdate",g_file);
+	   }
+	   
+	   //public List<GallaryBoardDTO> boardList(Map map) {
+	      //return sqlMapper.selectList("androidGallaryList",map);
+	   //}
+	   
+	   @Override
+	   public List<GallaryBoardDTO> selectAllList(Map map) {
+	      return sqlMapper.selectList("androidGallaryList",map);
+	   }
+	   
+	   @Override
+	   public List<GallaryBoardDTO> selectMyList(Map map) {
+	      return sqlMapper.selectList("androidMyList", map);
+	   }
+	   
+	   @Override
+	   public List<GallaryFileDTO> selectMyFileLists(Map map) {
+	      return sqlMapper.selectList("androidMyFileList", map);
+	   }
+	   
+	   @Override
+	   public List<GallaryBoardDTO> selectMyScrapList(Map map) {
+	      return sqlMapper.selectList("androidMyScrapList", map);
+	   }
+	   
+	   @Override
+	   public List<GallaryFileDTO> selectMyScrapLists(Map map) {
+	      return sqlMapper.selectList("androidMyScrapLists", map);
+	   }
+
+	   @Override
+	   public int getPostCount(Map map) {
+	      return sqlMapper.selectOne("getPostCount", map);
+	   }
+
+	   @Override
+	   public int getFollowCount(Map map) {
+	      return sqlMapper.selectOne("getFollowCount", map);
+	   }
+
+	   @Override
+	   public int getFollowingCount(Map map) {
+	      return sqlMapper.selectOne("getFollowingCount", map);
+	   }
+
+	   @Override
+	   public MemberFileDTO getProfileImage(Map map) {
+	      return sqlMapper.selectOne("getProfileImage", map);
+	   }
+	   
+	   @Override
+	   public List<GallaryFileDTO> selectFileLists(Map map) {
+	      return sqlMapper.selectList("gallaryFileSelectLists",map);
+	   }
 
 
 }

@@ -199,6 +199,56 @@ public class MemberDAO implements MemberService {
 		System.out.println("result:"+result);
 		return result;
 	}
+	
+	
+	/////안드로이드
+	public MemberDTO isLogin(MemberDTO member) {
+	      return sqlMapper.selectOne("memberIsLogin",member);
+	   }
+	   
+	   public int signUp(MemberDTO member) {
+	      return sqlMapper.insert("memberSignUp", member);
+	   }
+	   
+	   public int signUpFile(MemberFileDTO member) {
+	      return sqlMapper.insert("memberSignUpFile", member);
+	   }
+	   
+	   public int memberInfoupdate(MemberDTO member) {
+	      return sqlMapper.update("memberInfoupdate",member);
+	   }
+	   
+	   public int memberFileUpdate(MemberFileDTO member) {
+	      return sqlMapper.update("memberFileUpdate", member);
+	   }
+	   
+	   public MemberDTO userIDCheck(MemberDTO member) {
+	      return sqlMapper.selectOne("userIDCheck", member);
+	   }
+	   
+	   public int insertFollowAR(MemberFollowDTO followDTO) {
+	      return sqlMapper.insert("insertFollowAR", followDTO);
+	   }
+	   
+	   public List<MemberFollowDTO> androidFollowInfo(Map map){
+	      return sqlMapper.selectList("androidFollowInfo", map);
+	   }
+	   
+	   public List<MemberFileDTO> androidFollowFile(Map map){
+	      return sqlMapper.selectList("androidFollowFile", map);
+	   }
+	   
+	   public List<MemberFollowDTO> androidFollowingInfo(Map map){
+	      return sqlMapper.selectList("androidFollowingInfo", map);
+	   }
+	   
+	   public List<MemberFileDTO> androidFollowingFile(Map map){
+	      return sqlMapper.selectList("androidFollowingFile", map);
+	   }
+
+	   public List<MemberFileDTO> androidCommentUserFile(Map map){
+	      return sqlMapper.selectList("androidCommentUserFile", map);
+	   }
 
 
 

@@ -131,5 +131,66 @@
 		</if>
 	</select>
 	
+	<!-- 안드로이드 -->
+   <select id="memberIsLogin" resultType="MemberDTO">
+      SELECT * FROM VG_USER WHERE userID=#{userID} AND password=#{password}
+   </select>
+   
+   <insert id="memberSignUp" parameterType="MemberDTO">
+      INSERT INTO VG_USER(userID,password,name,nickname,age,gender,vg_level,addr,selfintro,signdate,k1n0) VALUES(#{userID},#{password},#{name},#{nickname},#{age},#{gender},#{vg_level},#{addr},#{selfintro},default,#{k1n0})
+   </insert>
+   
+   <insert id="memberSignUpFile" parameterType="MemberFileDTO">
+      INSERT INTO USER_FILE(user_file_no,f_path,f_name,userID) VALUES(SEQ_USER_FILE_NO.NEXTVAL,#{f_path},#{f_name},#{userID})
+   </insert>
+   
+   <update id="memberInfoupdate" parameterType="MemberDTO">
+      UPDATE vg_user
+      SET password = #{password}, name = #{name}
+      WHERE userID = #{userID}
+   </update>
+   
+   <update id="memberFileUpdate" parameterType="MemberFileDTO">
+      UPDATE user_file
+      SET userID = #{userID}, user_file_no =2, f_name = #{f_name}, f_path = #{f_path}
+      WHERE userID = #{userID}
+   </update>
+   
+   <select id="userIDCheck" parameterType="MemberDTO">
+      SELECT userID FROM VG_USER WHERE userID=#{userID}
+   </select>
+   
+   <insert id="insertFollowAR" parameterType="MemberFollowDTO">
+      INSERT INTO USER_FOLLOW(otherID,userID) VALUES(#{otherID},#{userID})
+   </insert>
+   
+   <select id="androidFollowingInfo" parameterType="java.util.Map" resultType="MemberFollowDTO">
+      SELECT otherID FROM user_follow WHERE userID=#{userID}
+   </select>
+   
+   <select id="androidFollowingFile" parameterType="java.util.Map" resultType="MemberFileDTO">
+      SELECT f_name
+        FROM user_follow f, user_file ff
+        WHERE f.userID=#{userID} AND f.otherID = ff.userID
+   </select>
+   
+   <select id="androidFollowInfo" parameterType="java.util.Map" resultType="MemberFollowDTO">
+      SELECT userID FROM user_follow WHERE otherID=#{userID}
+   </select>
+   
+   <select id="androidFollowFile" parameterType="java.util.Map" resultType="MemberFileDTO">
+        SELECT f_name
+        FROM user_follow f, user_file ff
+        WHERE f.otherID=#{userID} AND f.userID = ff.userID
+   </select>
+   
+   <select id="androidCommentUserFile" parameterType="java.util.Map" resultType="MemberFileDTO">
+        SELECT f_name
+        FROM gallary_comment c,user_file f
+       WHERE c.userID = f.userID
+   </select>
+	
+	
+	
 	
 </mapper>

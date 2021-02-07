@@ -52,5 +52,25 @@ public class GallaryScrapDAO implements GallaryScrapService{
 	public List<GallaryScrapDTO> selectScrapList(Map map) {
 		return sqlMapper.selectList("gallaryScrapList", map);
 	}
+	//android
+	   @Override
+	   public int insertScrapAR(GallaryScrapDTO gsDTO) {
+	      sqlMapper.insert("gallaryScrapInsertAR", gsDTO);
+	      return sqlMapper.update("gallaryScrapUpdateAR", gsDTO);
+	   }
+
+	   @Override
+	   public int deleteScrapAR(GallaryScrapDTO gsDTO) {
+	      sqlMapper.delete("gallaryScrapDeleteAR", gsDTO);
+	      return sqlMapper.update("gallaryScrapUpdateAR", gsDTO);
+	   }
+
+	   @Override
+	   public int updateScrapAR(GallaryScrapDTO gsDTO) {
+	      return sqlMapper.update("gallaryScrapUpdateAR", gsDTO);
+	   }
+	   
+	   
+	
 
 }

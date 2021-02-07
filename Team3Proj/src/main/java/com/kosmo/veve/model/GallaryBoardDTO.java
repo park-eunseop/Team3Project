@@ -15,6 +15,7 @@ public class GallaryBoardDTO {
 	private java.sql.Date postDate;
 	private String userID;	
 	private String visitCount;
+	private String scrapCount;
 	
 	public GallaryBoardDTO() {
 		

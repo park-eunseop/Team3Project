@@ -53,6 +53,7 @@ CREATE TABLE GALLARY_BOARD
 	content nvarchar2(2000) NOT NULL,
 	postDate date DEFAULT SYSDATE,
 	visitCount number DEFAULT 0,
+	scrapCount number DEFAULT 0,
 	userID varchar2(50 char) NOT NULL,
 	PRIMARY KEY (gallary_no)
 );

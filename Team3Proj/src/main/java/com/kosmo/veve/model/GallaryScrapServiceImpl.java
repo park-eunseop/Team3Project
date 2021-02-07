@@ -49,5 +49,21 @@ public class GallaryScrapServiceImpl implements GallaryScrapService{
 	public List<GallaryScrapDTO> getScrapCount(Map map) {
 		return dao.getScrapCount(map);
 	}
+	//Android
+	   
+	   @Override
+	   public int insertScrapAR(GallaryScrapDTO gsDTO) {
+	      return dao.insertScrapAR(gsDTO);
+	   }
+
+	   @Override
+	   public int deleteScrapAR(GallaryScrapDTO gsDTO) {
+	      return dao.deleteScrapAR(gsDTO);
+	   }
+	   
+	   @Override
+	   public int updateScrapAR(GallaryScrapDTO gsDTO) {
+	      return dao.updateScrapAR(gsDTO);
+	   }
 	
 }

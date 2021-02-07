@@ -14,4 +14,10 @@ public interface GallaryLikeService {
 	int getLikeCount(Map map);
 	int getMyLike(Map map);
 	List<GallaryLikeDTO> selectLikeList(Map map);
+	
+	//안드로이드
+	   int insertLikeAR(GallaryLikeDTO glDTO);
+	   int deleteLikeAR(GallaryLikeDTO glDTO);
+	   int updateLikeAR(GallaryLikeDTO glDTO);
+	
 }

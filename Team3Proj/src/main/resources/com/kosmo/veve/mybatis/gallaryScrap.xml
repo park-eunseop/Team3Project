@@ -27,6 +27,26 @@
     <select id="gallaryScrapList" parameterType="java.util.Map" resultType="gallaryScrapDTO" >
 		SELECT * FROM gallary_scrap WHERE userID = #{userID}
 	</select>
+	
+	<!-- 안드 -->
+	<insert id="gallaryScrapInsertAR" parameterType="GallaryScrapDTO">
+       INSERT INTO gallary_scrap
+       VALUES(#{userID},#{gallary_no,jdbcType=NUMERIC})
+    </insert>
+   
+   <update id="gallaryScrapUpdateAR" parameterType="GallaryScrapDTO">
+       UPDATE gallary_board 
+       SET scrapCount = (
+             SELECT COUNT(*)
+             FROM gallary_scrap
+             WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC})
+       WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC}    
+    </update>
+   
+    <delete id="gallaryScrapDeleteAR" parameterType="GallaryScrapDTO">
+       DELETE gallary_scrap 
+       WHERE userID=#{userID} AND gallary_no=#{gallary_no,jdbcType=NUMERIC}
+    </delete>
    
 
     

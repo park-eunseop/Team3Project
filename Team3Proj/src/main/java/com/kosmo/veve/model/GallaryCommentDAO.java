@@ -42,5 +42,16 @@ public class GallaryCommentDAO implements GallaryCommentService{
 		System.out.println("게시물 번호:"+gallary_no);
 		return sqlMapper.selectOne("getGallaryCommentCount", gallary_no);
 	}
+	
+	///and
+	@Override
+	   public List<GallaryCommentDTO> selectCommentList(Map map) {
+	      return sqlMapper.selectList("galcommnetSelectList", map);
+	   }
+	
+	@Override
+	   public int insertAR(GallaryCommentDTO commentDTO) {
+	      return sqlMapper.insert("galcommentInsertAR", commentDTO);
+	   }
 
 }

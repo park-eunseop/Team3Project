@@ -77,5 +77,56 @@ public class GallaryBoardServiceImpl implements GallaryBoardService{
 		// TODO Auto-generated method stub
 		return dao.selectBoardOneByNo(map);
 	}
+	
+	//안드로이드
+	   @Override
+	   public List<GallaryBoardDTO> selectAllList(Map map) {
+	      return dao.selectAllList(map);
+	   }
+
+	   @Override
+	   public List<GallaryBoardDTO> selectMyList(Map map) {
+	      return dao.selectMyList(map);
+	   }
+	   
+	   @Override
+	   public List<GallaryFileDTO> selectMyFileLists(Map map) {
+	      return dao.selectMyFileLists(map);
+	   }
+
+	   @Override
+	   public List<GallaryFileDTO> selectMyScrapLists(Map map) {
+	      return dao.selectMyScrapLists(map);
+	   }
+
+	   @Override
+	   public int getPostCount(Map map) {
+	      return dao.getPostCount(map);
+	   }
+
+	   @Override
+	   public int getFollowCount(Map map) {
+	      return dao.getFollowCount(map);
+	   }
+
+	   @Override
+	   public int getFollowingCount(Map map) {
+	      return dao.getFollowingCount(map);
+	   }
+
+	   @Override
+	   public MemberFileDTO getProfileImage(Map map) {
+	      return dao.getProfileImage(map);
+	   }
+	   
+	   @Override
+	   public List<GallaryBoardDTO> selectMyScrapList(Map map) {
+	      return dao.selectMyScrapList(map);
+	   }
+	   
+	   @Override
+	   public List<GallaryFileDTO> selectFileLists(Map map) {
+	      return dao.selectFileLists(map);
+	   }
 
 }

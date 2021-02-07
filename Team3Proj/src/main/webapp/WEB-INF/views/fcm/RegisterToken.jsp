@@ -17,7 +17,7 @@
     try{
     	Class.forName("oracle.jdbc.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-        conn = DriverManager.getConnection(url,"VEVE","VEVE");
+        conn = DriverManager.getConnection(url,"veve","veve");
         
         System.out.println("연결성공");
     }catch(Exception e){

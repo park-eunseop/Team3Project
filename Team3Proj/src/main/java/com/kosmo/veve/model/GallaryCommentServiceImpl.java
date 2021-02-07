@@ -44,5 +44,16 @@ public class GallaryCommentServiceImpl implements GallaryCommentService{
 	}
 	
 	
+	//and
+	@Override
+	   public List<GallaryCommentDTO> selectCommentList(Map map) {
+	      return dao.selectCommentList(map);
+	   }
+
+	   @Override
+	   public int insertAR(GallaryCommentDTO commentDTO) {
+	      return dao.insertAR(commentDTO);
+	   }
+	
 
 }

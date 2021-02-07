@@ -15,4 +15,9 @@ public interface GallaryScrapService {
 	GallaryBoardDTO selectBoardOne(Map map);
 	
 	List<GallaryScrapDTO> selectScrapList(Map map);
+	
+	//Android
+	   int insertScrapAR(GallaryScrapDTO gsDTO);
+	   int deleteScrapAR(GallaryScrapDTO gsDTO);
+	   int updateScrapAR(GallaryScrapDTO gsDTO);
 }

@@ -15,11 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kosmo.veve.fileupdown.FileUpDownUtils;
+import com.kosmo.veve.model.MemberDAO;
 import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.service.MemberService;
 
@@ -28,6 +30,10 @@ public class SignController {
 
 	@Resource(name = "memberService")
 	private MemberService service;
+	
+	//[안드로이드 앱에 데이타 제공용 추가]
+	@Resource(name = "memberDAO")
+	private MemberDAO memberDao;
 
 	// 로그인 창 이동
 	@RequestMapping("/Member/Auth/Login.do")
@@ -141,5 +147,29 @@ public class SignController {
 		}		
 		return obj.toJSONString();
 	}
+	//안드로이드
+	@RequestMapping(value = "/Member/Auth/SecurityLoginAR.do",method=RequestMethod.POST)
+	   public String login2(HttpServletRequest req) {
+	      
+	      String userID = req.getParameter("userID");
+	      String password = req.getParameter("password");
+	      
+	      MemberDTO member = new MemberDTO();
+	      member.setUserID(userID);
+	      member.setPassword(password);
+	      memberDao.isLogin(member);
+	      
+	      req.getSession().setAttribute("UserID", userID);
+	      req.getSession().setAttribute("password", password);
+	      
+	      return "forward:/MemberAnd/MemberDiet.do";
+	   }
+	   
+	   @RequestMapping("/Member/Auth/Restaurant.do")
+	   public String restaurant() {
+
+	      return "board/Restaurant.tiles";
+	   }
+	
 
 }

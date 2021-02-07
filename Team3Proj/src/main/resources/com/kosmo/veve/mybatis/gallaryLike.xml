@@ -45,5 +45,27 @@
     <select id="selectLikeList" parameterType="java.util.Map" resultType="gallaryLikeDTO" >
 		SELECT * FROM gallary_like
 	</select>
+	
+	<!-- 안드 -->
+	<!-- 안드로이드 -->
+    <insert id="gallaryLikeInsertAR" parameterType="GallaryLikeDTO">
+       INSERT INTO gallary_like
+       VALUES(#{gallary_no,jdbcType=NUMERIC},#{userID})
+    </insert>
+
+    <update id="gallaryLikeUpdateAR" parameterType="GallaryLikeDTO">
+       UPDATE gallary_board 
+       SET visitCount = (
+             SELECT COUNT(*)
+             FROM gallary_like
+             WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC})
+       WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC}    
+    </update>
+
+    <delete id="gallaryLikeDeleteAR" parameterType="GallaryLikeDTO">
+       DELETE gallary_like 
+       WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC} AND userID=#{userID}
+    </delete>
+	
     
 </mapper>

@@ -93,5 +93,87 @@
    <select id="gallaryCommentCount"  parameterType="java.util.Map" resultType="gallaryCommentDTO" >
       SELECT COUNT(*) FROM gallary_comment
    </select>
+   
+   
+   <!-- 안드로이드 -->
+   <insert id="galleryPost" parameterType="GallaryBoardDTO">
+         INSERT INTO gallary_board(gallary_no,title,content,userID,scrapCount)
+      VALUES(SEQ_GALLARY_NO.NEXTVAL,#{title},#{content},#{userID},0)
+   </insert>
+   
+   <insert id="galleryFilePost" parameterType="java.util.Map">
+      INSERT INTO gal_file(gallary_file_no,f_path,f_name,userID,gallary_no)
+      VALUES(SEQ_GAL_FILE_NO.NEXTVAL,#{f_path},#{f_name},#{userID},SEQ_GALLARY_NO.CURRVAL)
+   </insert>
+   
+   <delete id="galleryDelete" parameterType="String">
+      DELETE gallary_board WHERE gallary_no=#{gallary_no,jdbcType=NUMERIC}
+   </delete>
+   
+   <update id="galleryUpdate" parameterType="GallaryBoardDTO">
+      UPDATE gallary_board SET title=#{title},content=#{content}
+      WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC}
+   </update>
+   
+   <update id="galleryFileUpdate" parameterType="java.util.Map">
+      UPDATE gal_file SET f_name=#{f_name,jdbcType=VARCHAR}
+      WHERE gallary_no = #{gallary_no,jdbcType=NUMERIC}
+   </update>
+   
+   <select id="androidGallaryList" parameterType="java.util.Map" resultType="gallaryBoardDTO">
+      SELECT * FROM gallary_board ORDER BY postDate DESC
+   </select>
+
+   <select id="androidMyList" parameterType="java.util.Map" resultType="gallaryBoardDTO">
+      SELECT * from gallary_board WHERE userID=#{userID} ORDER BY postDate DESC
+   </select>
+
+   <select id="androidMyFileList" parameterType="java.util.Map" resultType="gallaryFileDTO">
+      SELECT f_name from gal_file WHERE userID=#{userID}
+   </select>
+   
+   <select id="androidMyScrapList" parameterType="java.util.Map" resultType="gallaryBoardDTO">
+      SELECT g.* 
+      from gallary_board g, gallary_scrap s
+      WHERE s.userID=#{userID}
+      AND s.gallary_no=g.gallary_no
+      ORDER BY g.postDate DESC
+   </select>
+   
+   <select id="androidMyScrapLists" parameterType="java.util.Map" resultType="gallaryFileDTO">
+      SELECT f.f_name
+        FROM gal_file f,gallary_scrap s
+        WHERE s.userID=#{userID}
+        AND s.gallary_no=f.gallary_no
+   </select>
+   
+   <select id="getPostCount" parameterType="java.util.Map" resultType="int">
+      SELECT count(*)
+      FROM gallary_board
+      WHERE userID=#{userID}
+   </select>
+   
+   <select id="getFollowCount" parameterType="java.util.Map" resultType="int">
+      SELECT count(*)
+      FROM user_follow
+      WHERE otherID=#{userID}
+   </select>
+   
+   <select id="getFollowingCount" parameterType="java.util.Map" resultType="int">
+      SELECT count(*)
+      FROM user_follow
+      WHERE userID=#{userID}
+   </select>
+   
+   <select id="getProfileImage" parameterType="java.util.Map" resultType="memberFileDTO">
+      SELECT f_name
+      FROM user_file
+      WHERE userID=#{userID}
+   </select>
+   
+   <select id="gallaryFileSelectLists" parameterType="java.util.Map" resultType="gallaryFileDTO" >
+      SELECT * FROM gal_file
+   </select>
+   
 
 </mapper>
