@@ -31,10 +31,13 @@ public class SignController {
 
 	// 로그인 창 이동
 	@RequestMapping("/Member/Auth/Login.do")
-	public String login() {
-		
-		
-		return "member/Login.tiles";
+	public String login(HttpServletRequest req) {
+		System.out.println("여기로 들어왔음2");
+		System.out.println(req.getParameter("NotLogin"));
+		if(req.getParameter("NotLogin")==null)
+			return "member/Login.tiles";
+		else
+			return "member/Forbid.tiles";
 	}
 	// 시큐리티에서 로그인 창 이동
 		@RequestMapping("/Member/Auth/SecurityLogin.do")
@@ -63,8 +66,8 @@ public class SignController {
 		
 		return "member/Login.tiles";
 	}
-	
-	
+	///Member/Auth/Login.do?NotLogin=error
+
 
 	// 회원가입
 	@RequestMapping("/Member/UserSignUp.do")
