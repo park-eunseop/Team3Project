@@ -53,5 +53,9 @@ public class GallaryCommentDAO implements GallaryCommentService{
 	   public int insertAR(GallaryCommentDTO commentDTO) {
 	      return sqlMapper.insert("galcommentInsertAR", commentDTO);
 	   }
+	@Override
+    public List<GallaryCommentDTO> selectCommentListAR(Map map) {
+       return sqlMapper.selectList("galcommnetSelectListAR", map);
+    }
 
 }

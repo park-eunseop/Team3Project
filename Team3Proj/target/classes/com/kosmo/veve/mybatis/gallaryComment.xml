@@ -46,6 +46,12 @@
        INSERT INTO gallary_comment(gallary_com_no,content,userID,gallary_no,parent)
        VALUES(SEQ_REC_COM_NO.NEXTVAL,#{content},#{userID},#{gallary_no,jdbcType=NUMERIC},DEFAULT)
     </insert>
+    <select id="galcommnetSelectListAR" parameterType="java.util.Map" resultType="gallaryCommentDTO">
+       SELECT r_c.gallary_com_no,r_c.userID,r_c.content,r_c.postDate,v.nickname 
+       FROM gallary_comment r_c JOIN vg_user v ON r_c.userID=v.userID
+       WHERE r_c.gallary_no= #{gallary_no,jdbcType=NUMERIC}
+       ORDER BY r_c.gallary_com_no DESC    
+    </select>
 	    
     
 </mapper>

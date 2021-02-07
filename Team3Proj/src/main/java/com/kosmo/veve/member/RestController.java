@@ -607,7 +607,7 @@ public class RestController {
        
       GallaryBoardDTO gallaryDTO= gallaryService.selectBoardOne(map);
       //List<GallaryFileDTO> gallaryFileDTO = gallaryService.selectFileLists(map);
-      List<GallaryCommentDTO> gallaryCommentDTO = commentService.selectCommentList(map);
+      List<GallaryCommentDTO> gallaryCommentDTO = commentService.selectCommentListAR(map);
       List<MemberFileDTO> memberFileDTO = memberDao.androidCommentUserFile(map);
       //MemberFileDTO profileImage = gallaryService.getProfileImage(map);
           
