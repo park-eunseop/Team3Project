@@ -382,46 +382,37 @@
 
 						</div>
 					</div>
-				</div>
+				
 
 
 
-
-				<div class="col-md-6">
-					<div class="card ">
+			
+					<div class="col-md-6">
+					<div class="card " style="width: 580px">
 						<div class="header">
 							<h4 class="title">이벤트 공지</h4>
+							<hr>
 						</div>
-						<div>
+						
+						<div style="padding-left: 10px;margin: 10px">
 							<form action='<c:url value="/Admin/fcmPostToAndroid.do"/>'
 								method="post">
-								<table
-									style="border-spacing: 1px; background-color: gray; width: 400px">
-									<tr style="border-spacing: 1px; background-color: white">
-										<td style="width: 20%">제목</td></br>
-										<td><input type="text" name="dataTitle"
-											style="width: 90%" /></td>
-									</tr>
-									<tr style="border-spacing: 1px; background-color: white">
-										<td colspan="2">메시지</td>
-
-									</tr>
-									<tr style="border-spacing: 1px; background-color: white">
-
-										<td colspan="2"><textarea name="dataBody"
-												style="width: 90%; height: 200px"></textarea></td>
-									</tr>
-									<tr style="border-spacing: 1px; background-color: white">
-										<td colspan="2" style="text-align: center"><input
-											type="submit" value="확인" /></td>
-									</tr>
-
-								</table>
+								<div>
+								<input type="text" name="dataTitle"	style="width: 90%;" placeholder="이벤트 제목을 입력해주세요.."/>
+								</div>
+								<div style="padding-top: 5px">
+								<textarea name="dataBody" style="width: 90%; height: 200px;padding-top: 5px" placeholder="이벤트 내용을 입력해주세요.."></textarea>
+								</div>
+								<div style="text-align: right;">
+								<input type="submit" value="전송" />
+								</div>
+						
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 			</div>
 		</div>
 	</div>
