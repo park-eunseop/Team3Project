@@ -128,10 +128,10 @@
 										<td>${item.writtenPostCount}</td>
 										<td>${item.writtenCommentCount}</td>
 										<c:if test="${authlist[loop.index].enabled eq '1'}" var="forbid">
-										<td><span onclick="changeAuth(${item.userID })"></span><i class="fas fa-user-alt"></i></td>
+										<td><div onclick="changeAuth('${item.userID}')"><i class="fas fa-user-alt ${item.userID}"></i></div></td>
 										</c:if>
 										<c:if test="${!forbid}">
-										<td><span onclick="changeAuth(${item.userID })"></span><i class="fas fa-user-slash"></i></td>
+										<td><div onclick="changeAuth('${item.userID}')"><i class="fas fa-user-slash ${item.userID}"></i></div></td>
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -172,5 +172,25 @@
 
 function changeAuth(data){
 	console.log(data);
+	
+	$.ajax({
+        url:"<c:url value='/Admin/MemberInfo/AuthChange.do'/>",
+        data:{"id":data},
+        dataType:'text',
+        type:'post',
+        success:function(data){ 
+        	console.log(data);
+        	if(data=='forbid'){
+        		//차단시킴
+        		location.reload();
+        	}
+        	else{
+        		location.reload();
+        	}
+      	  
+        },
+        error:function(e){console.log(e);}                 
+     });
+	
 }	
 </script>

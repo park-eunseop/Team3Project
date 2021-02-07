@@ -168,9 +168,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateAuth(String userID) {
+	public int updateAuth(Map map) {
 		// TODO Auto-generated method stub
-		return dao.updateAuth(userID);
+		return dao.updateAuth(map);
 	}
 
 

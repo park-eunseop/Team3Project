@@ -118,8 +118,8 @@
 	<select id="showauth" parameterType="String" resultType="java.util.Map">
 		SELECT * FROM AUTH_SECURITY WHERE userID=#{userID}
 	</select>
-	 <update id="updateauth" parameterType="String">
-	 	UPDATE AUTH_SECURITY SET ENABLED = #{ENABLED} 
+	 <update id="updateauth" parameterType="java.util.Map">
+	 	UPDATE AUTH_SECURITY SET ENABLED = #{ENABLED} WHERE userID=#{id}
 	 </update>
 	
 	

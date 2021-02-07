@@ -193,9 +193,11 @@ public class MemberDAO implements MemberService {
 	}
 
 	@Override
-	public int updateAuth(String userID) {
+	public int updateAuth(Map map) {
 		// TODO Auto-generated method stub
-		return sqlMapper.selectOne("updateauth", userID);
+		int result =sqlMapper.update("updateauth", map);
+		System.out.println("result:"+result);
+		return result;
 	}
 
 

@@ -52,6 +52,6 @@ public interface MemberService {
 		
 		//auth 조회 및 업데이트
 		Map showauth(String userID);
-		int updateAuth(String userID);
+		int updateAuth(Map map);
 
 }

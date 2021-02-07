@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kosmo.veve.model.MemberDTO;
 import com.kosmo.veve.model.MemberServiceImpl;
@@ -99,6 +100,33 @@ public class MemberInfoController {
 		
 		return "admin/MemberInfo.adminTiles";
 	}//////////admin_MemberInfoSort
+	
+	//권한 변경
+	@RequestMapping("/Admin/MemberInfo/AuthChange.do")
+	@ResponseBody
+	public String admin_MemberInfoSort(@RequestParam Map map) {
+	
+		String auth=null;
+		System.out.println("auth change:"+map.get("id"));
+		String user_auth = memberService.showauth(map.get("id").toString()).get("ENABLED").toString();
+		if(user_auth.equals("1")) {
+			//유저 권한을 차단하겠음
+			auth="forbid";
+			map.put("ENABLED",0);
+			
+			memberService.updateAuth(map);
+		}
+		else {
+			//유저 권한을 허용하겠음
+			auth="access";
+			map.put("ENABLED",1);
+			
+			memberService.updateAuth(map);
+
+		}
+		
+		return auth;
+	}//////////auth change
 	
 
 }
